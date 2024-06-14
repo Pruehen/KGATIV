@@ -34,23 +34,23 @@ public static class JsonDataManager
             return data;
         }
     }
-    static void DataTableListSave<T>(string saveDataFileName)
-    {
-        string folderPath = Application.dataPath + saveDataFileName;
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
+    //static void DataTableListSave<T>(string saveDataFileName)
+    //{
+    //    string folderPath = Application.dataPath + saveDataFileName;
+    //    if (!Directory.Exists(folderPath))
+    //    {
+    //        Directory.CreateDirectory(folderPath);
+    //    }
 
-        T saveData = jsonCache.GetCacheData<T>();
-        string data = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+    //    T saveData = jsonCache.GetCacheData<T>();
+    //    string data = JsonConvert.SerializeObject(saveData, Formatting.Indented);
 
-        File.WriteAllText(folderPath + saveDataFileName, data);
+    //    File.WriteAllText(folderPath + saveDataFileName, data);
 
-        Debug.Log($"데이터 저장 완료 : {typeof(T).Name}");
-    }
+    //    Debug.Log($"데이터 저장 완료 : {typeof(T).Name}");
+    //}
 
-    public static EquipTable DataLode_EquipTable(EquipType key)
+    public static EquipTable DataLode_EquipTable(int key)
     {
         EquipTableList equipTableList = (jsonCache.equipTableListCache == null) ? 
             DataTableListLoad<EquipTableList>(EquipTableList.FilePath()) : 
@@ -59,7 +59,7 @@ public static class JsonDataManager
         jsonCache.equipTableListCache = equipTableList;
         return equipTableList.list[(int)key];
     }
-    public static EquipType_PossibleReinforcementOptionsListTable DataLode_EquipType_PROTable(EquipType key)
+    public static EquipType_PossibleReinforcementOptionsListTable DataLode_EquipType_PROTable(int key)
     {
         EquipType_PROListTableList equipTypeList = (jsonCache.equipType_MainableStateListTableListCache == null) ?
             DataTableListLoad<EquipType_PROListTableList>(EquipType_PROListTableList.FilePath()) :
@@ -68,6 +68,7 @@ public static class JsonDataManager
         jsonCache.equipType_MainableStateListTableListCache = equipTypeList;
         return equipTypeList.list[(int)key];
     }
+    //public static T DataLode<T, TList>()
 }
 
 public class JsonCache
@@ -76,6 +77,10 @@ public class JsonCache
     public EquipType_PROListTableList equipType_MainableStateListTableListCache;
     public ShipTableList shipTableListCache;
     public StateType_StateMultipleTableList stateType_StateMultipleTableListCache;
+
+    public UserHaveItemDataList userHaveItemDataListCache;
+    public UserHaveEquipDataList userHaveEquipDataListCache;
+    public UserHaveShipDataList userHaveShipDataListCache;
 
     public T GetCacheData<T>()
     {
@@ -86,6 +91,26 @@ public class JsonCache
         else if (typeof(T) == typeof(EquipType_PROListTableList))
         {
             return (T)(object)equipType_MainableStateListTableListCache;
+        }
+        else if (typeof(T) == typeof(ShipTableList))
+        {
+            return (T)(object)shipTableListCache;
+        }
+        else if (typeof(T) == typeof(StateType_StateMultipleTableList))
+        {
+            return (T)(object)stateType_StateMultipleTableListCache;
+        }
+        else if (typeof(T) == typeof(UserHaveItemDataList))
+        {
+            return (T)(object)userHaveItemDataListCache;
+        }
+        else if (typeof(T) == typeof(UserHaveEquipDataList))
+        {
+            return (T)(object)userHaveEquipDataListCache;
+        }
+        else if (typeof(T) == typeof(UserHaveShipDataList))
+        {
+            return (T)(object)userHaveShipDataListCache;
         }
         else
         {

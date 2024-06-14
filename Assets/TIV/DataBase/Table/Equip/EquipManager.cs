@@ -4,8 +4,8 @@ public static class EquipManager
 {
     public static UserHaveEquipData CreateEquip(EquipType equipType)
     {
-        EquipTable equipTable = JsonDataManager.DataLode_EquipTable(equipType);
-        EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable(equipTable._type);
+        EquipTable equipTable = JsonDataManager.DataLode_EquipTable((int)equipType);
+        EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable((int)equipTable._type);
 
         return new UserHaveEquipData(equipType, 1, stateTeble.GetRandomMainState());
     }

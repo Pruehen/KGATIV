@@ -220,7 +220,7 @@ public class UserHaveEquipData
             _optimizedLevel += plusLevel;
             for (int i = 0; i < plusLevel; i++)
             {
-                IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable(_key).GetRandomSubState();
+                IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable((int)_key).GetRandomSubState();
                 int stateLevel = Random.Range(3, 6);
                 _subStateList.Add(new EquipStateSet(randomType, stateLevel));
             }
@@ -280,10 +280,6 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         List<UserHaveEquipData> list = new List<UserHaveEquipData>();
-        list.Add(EquipManager.CreateEquip(EquipType.Weapon));
-        list.Add(EquipManager.CreateEquip(EquipType.Weapon));
-        list.Add(EquipManager.CreateEquip(EquipType.Weapon));
-        list.Add(EquipManager.CreateEquip(EquipType.Weapon));
         list.Add(EquipManager.CreateEquip(EquipType.Weapon));
 
         string temp = string.Empty;
