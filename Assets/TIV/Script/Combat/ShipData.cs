@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum StateType
 {
-    Hp, HpP, Atk, AtkP, Def, DefP, CritRate, CritDmg, PhysicsDmg, OpticsDmg, ParticleDmg, PlasmaDmg
+    Hp, Atk, Def, CritRate, CritDmg, PhysicsDmg, OpticsDmg, ParticleDmg, PlasmaDmg
 }
-public class State//정적 수치 보너스. 장비 등에 의한 고정 수치 변화량. 전투 중 변경되지 않음
+public class State
 {
     float _curState = 0;
     float _stateMultiplier = 1;
@@ -37,7 +36,7 @@ public class State//정적 수치 보너스. 장비 등에 의한 고정 수치 변화량. 전투 중 �
         return _curState * _stateMultiplier;
     }
 }
-public class ShipCombatData : MonoBehaviour
+public class ShipData
 {
     Dictionary<StateType, State> StateStaticBonusDic = new Dictionary<StateType, State>();
 
