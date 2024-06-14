@@ -1,0 +1,75 @@
+{
+  "list": [
+    {
+      "_key": 0,
+      "_level": 20,
+      "_optimizedLevel": 5,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 20
+      },
+      "_subStateList": [
+        {
+          "_stateType": 0,
+          "_level": 4
+        },
+        {
+          "_stateType": 1,
+          "_level": 5
+        },
+        {
+          "_stateType": 9,
+          "_level": 4
+        },
+        {
+          "_stateType": 11,
+          "_level": 4
+        },
+        {
+          "_stateType": 3,
+          "_level": 4
+        }
+      ]
+    },
+    {
+      "_key": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_key": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_key": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_key": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    }
+  ]
+}

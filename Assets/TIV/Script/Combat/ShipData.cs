@@ -1,9 +1,6 @@
+using EnumTypes;
 using System.Collections.Generic;
 
-public enum StateType
-{
-    Hp, Atk, Def, CritRate, CritDmg, PhysicsDmg, OpticsDmg, ParticleDmg, PlasmaDmg
-}
 public class State
 {
     float _curState = 0;
@@ -38,14 +35,14 @@ public class State
 }
 public class ShipData
 {
-    Dictionary<StateType, State> StateStaticBonusDic = new Dictionary<StateType, State>();
+    Dictionary<CombatStateType, State> StateStaticBonusDic = new Dictionary<CombatStateType, State>();
 
     /// <summary>
     /// StateType에 해당하는 최종 스텟을 반환함
     /// </summary>
     /// <param name="stateType"></param>
     /// <returns></returns>
-    public float GetFinalState(StateType stateType)
+    public float GetFinalState(CombatStateType stateType)
     {
         return StateStaticBonusDic[stateType].CurrentState();
     }
