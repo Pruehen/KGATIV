@@ -44,13 +44,23 @@ public class ShipTableList
 
 public class EquipTable
 {    
+    public int _key;
     public EquipType _type;
+    public int _star;
     public string _name;
+    public int _weaponSkillKey;
+    public List<SetType> _validSetList = new List<SetType>();
+    public string _info;
 
-    public EquipTable(EquipType type, string name)
+    public EquipTable(int key, EquipType type, int star, string name, int weaponSkillKey, List<SetType> validSetList, string info)
     {
+        _key = key;
         _type = type;
+        _star = star;
         _name = name;
+        _weaponSkillKey = weaponSkillKey;
+        _validSetList = validSetList;
+        _info = info;
     }
 }
 public class EquipTableList
@@ -66,6 +76,40 @@ public class EquipTableList
     }
 }
 
+public class WeaponSkillTable
+{
+    public int _key;
+    public WeaponProjectileType _weaponProjectileType;
+    public float _dmg;
+    public float _collTime;
+    public float _maxRange;
+    public float _projectileVelocity;
+    public float _halfDistance;
+    public bool _canIntercept;
+    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept)
+    {
+        _key = key;
+        _weaponProjectileType = weaponProjectileType;
+        _dmg = dmg;
+        _collTime = collTime;
+        _maxRange = maxRange;
+        _projectileVelocity = projectileVelocity;
+        _halfDistance = halfDistance;
+        _canIntercept = canIntercept;
+    }
+}
+public class WeaponSkillTableList
+{
+    public List<WeaponSkillTable> list = new List<WeaponSkillTable>();
+    public WeaponSkillTableList(List<WeaponSkillTable> list)
+    {
+        this.list = list;
+    }
+    public static string FilePath()
+    {
+        return "/TIV/DataBase/Table/Equip/WeaponSkillTable.json";
+    }
+}
 public class EquipType_PossibleReinforcementOptionsListTable
 {
     public EquipType _type;
@@ -153,27 +197,36 @@ public class UserHaveShipDataList
 
 public class UserHaveEquipData
 {
-    public EquipType _key;
+    public int _equipTableKey;
+    public SetType _setType;
     public int _level;
     public int _optimizedLevel;
     public EquipStateSet _mainState;
     public List<EquipStateSet> _subStateList;
 
     [JsonConstructor]
-    public UserHaveEquipData(EquipType key, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList)
+    public UserHaveEquipData(int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList)
     {
-        _key = key;
+        _equipTableKey = equipTableKey;
+        _setType = setType;
         _level = level;
         _optimizedLevel = optimizedLevel;
         _mainState = mainState;
         _subStateList = subStateList;
     }
-    public UserHaveEquipData(EquipType key, int level, IncreaseableStateType mainStateType)
+    /// <summary>
+    /// 새로운 장비를 얻었을 때 사용하는 생성자
+    /// </summary>
+    /// <param name="equipTableKey"></param>
+    /// <param name="setType"></param>
+    /// <param name="mainStateType"></param>
+    public UserHaveEquipData(int equipTableKey, SetType setType, IncreaseableStateType mainStateType)
     {
-        _key = key;
-        _level = level;
+        _equipTableKey = equipTableKey;
+        _setType = setType;
+        _level = 1;
         _optimizedLevel = 0;
-        _mainState = new EquipStateSet(mainStateType, level);
+        _mainState = new EquipStateSet(mainStateType, 1);
         _subStateList = new List<EquipStateSet>();
     }
     public class EquipStateSet
@@ -192,7 +245,7 @@ public class UserHaveEquipData
     }
 
     /// <summary>
-    /// 무기 레벨 강화 메서드
+    /// 장비 레벨 강화 메서드
     /// </summary>
     /// <param name="plusLevel"></param>
     /// <param name="msg"></param>
@@ -209,6 +262,11 @@ public class UserHaveEquipData
             msg = $"{plusLevel}+강화 성공";
         }
     }
+    /// <summary>
+    /// 장비 옵티마이즈 메서드
+    /// </summary>
+    /// <param name="plusLevel"></param>
+    /// <param name="msg"></param>
     public void Optimize(int plusLevel, out string msg)
     {
         if(_optimizedLevel + plusLevel > _level/4 || plusLevel <= 0)
@@ -220,7 +278,7 @@ public class UserHaveEquipData
             _optimizedLevel += plusLevel;
             for (int i = 0; i < plusLevel; i++)
             {
-                IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable((int)_key).GetRandomSubState();
+                IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable((int)_equipTableKey).GetRandomSubState();
                 int stateLevel = Random.Range(3, 6);
                 _subStateList.Add(new EquipStateSet(randomType, stateLevel));
             }
@@ -275,23 +333,32 @@ public class JsonDataCreator : MonoBehaviour
     private void OnEnable()
     {
         DataCreate();
+        DataPrint();
     }
 
     void SetData()
     {
-        List<UserHaveEquipData> list = new List<UserHaveEquipData>();
-        list.Add(EquipManager.CreateEquip(EquipType.Weapon));
+        List<UserHaveEquipData> list = EquipManager.RandomEquipDrop(SetType.Alpha, 100);
 
-        string temp = string.Empty;
-        list[0].LevelUp(19, out temp);
-        Debug.Log(temp);
-        list[0].Optimize(5, out temp);
-        Debug.Log(temp);
+        saveData = new UserHaveEquipDataList(list);
+    }
+    void DataPrint()
+    {
+        UserHaveEquipDataList data = JsonDataManager.jsonCache.UserHaveEquipDataListCache;
+        foreach (UserHaveEquipData item in data.list) 
+        {
+            EquipTable tabledata = JsonDataManager.DataLode_EquipTable(item._equipTableKey);
+            Debug.Log(tabledata._type);
+            Debug.Log($"{tabledata._star}성");
+            Debug.Log(tabledata._name);
+            Debug.Log(tabledata._info);
 
-        saveData = new UserHaveEquipDataList(list);        
+            Debug.Log($"{item._level}레벨");
+            Debug.Log($"{item._mainState._stateType} + {item._mainState._level * JsonDataManager.DataLode_StateType_StateMultipleTable(item._mainState._stateType)._multipleValue}");
+        }
     }
 
-    public void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
+    void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
     {
         string folderPath = Application.dataPath + saveFolderPath;
         if (!Directory.Exists(folderPath))

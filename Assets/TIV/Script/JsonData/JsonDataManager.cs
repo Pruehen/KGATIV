@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using UnityEngine;
 using System.IO;
 using EnumTypes;
-using System;
 
 public static class JsonDataManager
 {
@@ -52,69 +51,114 @@ public static class JsonDataManager
 
     public static EquipTable DataLode_EquipTable(int key)
     {
-        EquipTableList equipTableList = (jsonCache.equipTableListCache == null) ? 
-            DataTableListLoad<EquipTableList>(EquipTableList.FilePath()) : 
-            jsonCache.equipTableListCache;
-
-        jsonCache.equipTableListCache = equipTableList;
-        return equipTableList.list[(int)key];
+        EquipTableList equipTableList = jsonCache.EquipTableListCache;
+        return equipTableList.list[key];
     }
     public static EquipType_PossibleReinforcementOptionsListTable DataLode_EquipType_PROTable(int key)
     {
-        EquipType_PROListTableList equipTypeList = (jsonCache.equipType_MainableStateListTableListCache == null) ?
-            DataTableListLoad<EquipType_PROListTableList>(EquipType_PROListTableList.FilePath()) :
-            jsonCache.equipType_MainableStateListTableListCache;
-
-        jsonCache.equipType_MainableStateListTableListCache = equipTypeList;
-        return equipTypeList.list[(int)key];
+        EquipType_PROListTableList equipTypeList = jsonCache.EquipType_MainableStateListTableListCache;
+        return equipTypeList.list[key];
+    }
+    public static ShipTable DataLode_ShipTable(int key)
+    {
+        ShipTableList tableList = jsonCache.ShipTableListCache;
+        return tableList.list[key];
+    }
+    public static StateType_StateMultipleTable DataLode_StateType_StateMultipleTable(IncreaseableStateType key)
+    {
+        StateType_StateMultipleTableList tableList = jsonCache.StateType_StateMultipleTableListCache;
+        return tableList.list[(int)key];
     }
     //public static T DataLode<T, TList>()
 }
 
 public class JsonCache
 {
-    public EquipTableList equipTableListCache;
-    public EquipType_PROListTableList equipType_MainableStateListTableListCache;
-    public ShipTableList shipTableListCache;
-    public StateType_StateMultipleTableList stateType_StateMultipleTableListCache;
-
-    public UserHaveItemDataList userHaveItemDataListCache;
-    public UserHaveEquipDataList userHaveEquipDataListCache;
-    public UserHaveShipDataList userHaveShipDataListCache;
-
-    public T GetCacheData<T>()
+    EquipTableList _equipTableListCache;
+    public EquipTableList EquipTableListCache
     {
-        if (typeof(T) == typeof(EquipTableList))
+        get
         {
-            return (T)(object)equipTableListCache;
-        }
-        else if (typeof(T) == typeof(EquipType_PROListTableList))
-        {
-            return (T)(object)equipType_MainableStateListTableListCache;
-        }
-        else if (typeof(T) == typeof(ShipTableList))
-        {
-            return (T)(object)shipTableListCache;
-        }
-        else if (typeof(T) == typeof(StateType_StateMultipleTableList))
-        {
-            return (T)(object)stateType_StateMultipleTableListCache;
-        }
-        else if (typeof(T) == typeof(UserHaveItemDataList))
-        {
-            return (T)(object)userHaveItemDataListCache;
-        }
-        else if (typeof(T) == typeof(UserHaveEquipDataList))
-        {
-            return (T)(object)userHaveEquipDataListCache;
-        }
-        else if (typeof(T) == typeof(UserHaveShipDataList))
-        {
-            return (T)(object)userHaveShipDataListCache;
-        }
-        else
-        {
-            throw new InvalidOperationException("Unsupported type.");
+            if (_equipTableListCache == null)
+            {
+                _equipTableListCache = JsonDataManager.DataTableListLoad<EquipTableList>(EquipTableList.FilePath());
+            }
+            return _equipTableListCache;
         }
     }
+    EquipType_PROListTableList _equipType_MainableStateListTableListCache;
+    public EquipType_PROListTableList EquipType_MainableStateListTableListCache
+    {
+        get
+        {
+            if (_equipType_MainableStateListTableListCache == null)
+            {
+                _equipType_MainableStateListTableListCache = JsonDataManager.DataTableListLoad<EquipType_PROListTableList>(EquipType_PROListTableList.FilePath());
+            }
+            return _equipType_MainableStateListTableListCache;
+        }
+    }
+    ShipTableList _shipTableListCache;
+    public ShipTableList ShipTableListCache
+    {
+        get
+        {
+            if (_shipTableListCache == null)
+            {
+                _shipTableListCache = JsonDataManager.DataTableListLoad<ShipTableList>(ShipTableList.FilePath());
+            }
+            return _shipTableListCache;
+        }
+    }
+    StateType_StateMultipleTableList _stateType_StateMultipleTableListCache;
+    public StateType_StateMultipleTableList StateType_StateMultipleTableListCache
+    {
+        get
+        {
+            if (_stateType_StateMultipleTableListCache == null)
+            {
+                _stateType_StateMultipleTableListCache = JsonDataManager.DataTableListLoad<StateType_StateMultipleTableList>(StateType_StateMultipleTableList.FilePath());
+            }
+            return _stateType_StateMultipleTableListCache;
+        }
+    }
+
+    UserHaveItemDataList _userHaveItemDataListCache;
+    public UserHaveItemDataList UserHaveItemDataListCache
+    {
+        get
+        {
+            if (_userHaveItemDataListCache == null)
+            {
+                _userHaveItemDataListCache = JsonDataManager.DataTableListLoad<UserHaveItemDataList>(UserHaveItemDataList.FilePath());
+            }
+            return _userHaveItemDataListCache;
+        }
+    }
+    UserHaveEquipDataList _userHaveEquipDataListCache;
+    public UserHaveEquipDataList UserHaveEquipDataListCache
+    {
+        get
+        {
+            if (_userHaveEquipDataListCache == null)
+            {
+                _userHaveEquipDataListCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataList>(UserHaveEquipDataList.FilePath());
+            }
+            return _userHaveEquipDataListCache;
+        }
+    }
+    UserHaveShipDataList _userHaveShipDataListCache;
+    public UserHaveShipDataList UserHaveShipDataListCache
+    {
+        get
+        {
+            if (_userHaveShipDataListCache == null)
+            {
+                _userHaveShipDataListCache = JsonDataManager.DataTableListLoad<UserHaveShipDataList>(UserHaveShipDataList.FilePath());
+            }
+            return _userHaveShipDataListCache;
+        }
+    }
+
+
 }

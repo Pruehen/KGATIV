@@ -1,35 +1,1104 @@
 {
   "list": [
     {
-      "_key": 0,
-      "_level": 20,
-      "_optimizedLevel": 5,
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 2,
-        "_level": 20
+        "_level": 1
       },
-      "_subStateList": [
-        {
-          "_stateType": 7,
-          "_level": 4
-        },
-        {
-          "_stateType": 1,
-          "_level": 3
-        },
-        {
-          "_stateType": 7,
-          "_level": 4
-        },
-        {
-          "_stateType": 11,
-          "_level": 5
-        },
-        {
-          "_stateType": 11,
-          "_level": 3
-        }
-      ]
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 9,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 5,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 14,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 14,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 5,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 14,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 9,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 9,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 9,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 5,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 9,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 4,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
+    },
+    {
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 1,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 1
+      },
+      "_subStateList": []
     }
   ]
 }

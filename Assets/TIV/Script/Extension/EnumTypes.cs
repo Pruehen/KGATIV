@@ -31,6 +31,22 @@ namespace EnumTypes
         Reactor,
         Radiator
     }
+    public enum WeaponProjectileType
+    {
+        Physics,
+        Optics,
+        Particle,
+        Plasma
+    }
+    public enum SetType
+    {
+        Alpha,
+        Beta,
+        Gamma,
+        Delta,
+        Epsilon,
+        Zeta
+    }
     public enum ItemType
     {
         EnergyCredit,

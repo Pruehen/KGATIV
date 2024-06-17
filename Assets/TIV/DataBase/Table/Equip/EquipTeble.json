@@ -1,24 +1,460 @@
 {
   "list": [
     {
+      "_key": 0,
       "_type": 0,
-      "_name": "실험용 무기"
+      "_star": 5,
+      "_name": "경 자기 가속포",
+      "_weaponSkillKey": 0,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "실탄을 발사하는 소형 포대입니다."
     },
     {
+      "_key": 1,
+      "_type": 0,
+      "_star": 5,
+      "_name": "자기 가속포",
+      "_weaponSkillKey": 1,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "실탄을 발사하는 증형 포대입니다."
+    },
+    {
+      "_key": 2,
+      "_type": 0,
+      "_star": 5,
+      "_name": "중 자기 가속포",
+      "_weaponSkillKey": 2,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "실탄을 발사하는 대형 포대입니다."
+    },
+    {
+      "_key": 3,
+      "_type": 0,
+      "_star": 5,
+      "_name": "64cm 레이저 포대",
+      "_weaponSkillKey": 3,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "레이저를 조사하는 소형 포대입니다. 실탄을 요격할 수 있습니다."
+    },
+    {
+      "_key": 4,
+      "_type": 0,
+      "_star": 5,
+      "_name": "128cm 레이저 포대",
+      "_weaponSkillKey": 4,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "레이저를 조사하는 증형 포대입니다. 실탄을 요격할 수 있습니다."
+    },
+    {
+      "_key": 5,
+      "_type": 0,
+      "_star": 5,
+      "_name": "384cm 레이저 포대",
+      "_weaponSkillKey": 5,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "레이저를 조사하는 대형 포대입니다. 실탄을 요격할 수 있습니다."
+    },
+    {
+      "_key": 6,
+      "_type": 0,
+      "_star": 5,
+      "_name": "경 플라즈마 가속기",
+      "_weaponSkillKey": 6,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "플라즈마를 발사하는 소형 포대입니다."
+    },
+    {
+      "_key": 7,
+      "_type": 0,
+      "_star": 5,
+      "_name": "플라즈마 가속기",
+      "_weaponSkillKey": 7,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "플라즈마를 발사하는 증형 포대입니다."
+    },
+    {
+      "_key": 8,
+      "_type": 0,
+      "_star": 5,
+      "_name": "중 플라즈마 가속기",
+      "_weaponSkillKey": 8,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "플라즈마를 발사하는 대형 포대입니다."
+    },
+    {
+      "_key": 9,
+      "_type": 0,
+      "_star": 5,
+      "_name": "경 입자포",
+      "_weaponSkillKey": 9,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "이온 입자를 발사하는 소형 포대입니다."
+    },
+    {
+      "_key": 10,
+      "_type": 0,
+      "_star": 5,
+      "_name": "입자포",
+      "_weaponSkillKey": 10,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "이온 입자를 발사하는 증형 포대입니다."
+    },
+    {
+      "_key": 11,
+      "_type": 0,
+      "_star": 5,
+      "_name": "중 입자포",
+      "_weaponSkillKey": 11,
+      "_validSetList": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "_info": "이온 입자를 발사하는 대형 포대입니다."
+    },
+    {
+      "_key": 12,
       "_type": 1,
-      "_name": "실험용 장갑"
+      "_star": 5,
+      "_name": "알파 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        0
+      ],
+      "_info": "장갑입니다."
     },
     {
+      "_key": 13,
+      "_type": 1,
+      "_star": 5,
+      "_name": "베타 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        1
+      ],
+      "_info": "장갑입니다."
+    },
+    {
+      "_key": 14,
+      "_type": 1,
+      "_star": 5,
+      "_name": "감마 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        2
+      ],
+      "_info": "장갑입니다."
+    },
+    {
+      "_key": 15,
+      "_type": 1,
+      "_star": 5,
+      "_name": "델타 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        3
+      ],
+      "_info": "장갑입니다."
+    },
+    {
+      "_key": 16,
+      "_type": 1,
+      "_star": 5,
+      "_name": "엡실론 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        4
+      ],
+      "_info": "장갑입니다."
+    },
+    {
+      "_key": 17,
+      "_type": 1,
+      "_star": 5,
+      "_name": "제타 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        5
+      ],
+      "_info": "장갑입니다."
+    },
+    {
+      "_key": 18,
       "_type": 2,
-      "_name": "실험용 추진기"
+      "_star": 5,
+      "_name": "알파 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        0
+      ],
+      "_info": "추진기입니다."
     },
     {
-      "_type": 3,
-      "_name": "실험용 반응로"
+      "_key": 19,
+      "_type": 2,
+      "_star": 5,
+      "_name": "베타 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        1
+      ],
+      "_info": "추진기입니다."
     },
     {
+      "_key": 20,
+      "_type": 2,
+      "_star": 5,
+      "_name": "감마 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        2
+      ],
+      "_info": "추진기입니다."
+    },
+    {
+      "_key": 21,
+      "_type": 2,
+      "_star": 5,
+      "_name": "델타 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        3
+      ],
+      "_info": "추진기입니다."
+    },
+    {
+      "_key": 22,
+      "_type": 2,
+      "_star": 5,
+      "_name": "엡실론 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        4
+      ],
+      "_info": "추진기입니다."
+    },
+    {
+      "_key": 23,
+      "_type": 2,
+      "_star": 5,
+      "_name": "제타 추진기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        5
+      ],
+      "_info": "추진기입니다."
+    },
+    {
+      "_key": 24,
       "_type": 4,
-      "_name": "실험용 방열기"
+      "_star": 5,
+      "_name": "알파 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        0
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 25,
+      "_type": 4,
+      "_star": 5,
+      "_name": "베타 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        1
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 26,
+      "_type": 4,
+      "_star": 5,
+      "_name": "감마 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        2
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 27,
+      "_type": 4,
+      "_star": 5,
+      "_name": "델타 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        3
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 28,
+      "_type": 4,
+      "_star": 5,
+      "_name": "엡실론 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        4
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 29,
+      "_type": 4,
+      "_star": 5,
+      "_name": "제타 방열기",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        5
+      ],
+      "_info": "방열기입니다."
+    },
+    {
+      "_key": 30,
+      "_type": 3,
+      "_star": 5,
+      "_name": "알파 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        0
+      ],
+      "_info": "반응로입니다."
+    },
+    {
+      "_key": 31,
+      "_type": 3,
+      "_star": 5,
+      "_name": "베타 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        1
+      ],
+      "_info": "반응로입니다."
+    },
+    {
+      "_key": 32,
+      "_type": 3,
+      "_star": 5,
+      "_name": "감마 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        2
+      ],
+      "_info": "반응로입니다."
+    },
+    {
+      "_key": 33,
+      "_type": 3,
+      "_star": 5,
+      "_name": "델타 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        3
+      ],
+      "_info": "반응로입니다."
+    },
+    {
+      "_key": 34,
+      "_type": 3,
+      "_star": 5,
+      "_name": "엡실론 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        4
+      ],
+      "_info": "반응로입니다."
+    },
+    {
+      "_key": 35,
+      "_type": 3,
+      "_star": 5,
+      "_name": "제타 반응로",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        5
+      ],
+      "_info": "반응로입니다."
     }
   ]
 }

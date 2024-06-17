@@ -1,0 +1,124 @@
+{
+  "list": [
+    {
+      "_key": 0,
+      "_weaponProjectileType": 0,
+      "_dmg": 70.0,
+      "_collTime": 2.0,
+      "_maxRange": 1200.0,
+      "_projectileVelocity": 1200.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    },
+    {
+      "_key": 1,
+      "_weaponProjectileType": 0,
+      "_dmg": 210.0,
+      "_collTime": 4.0,
+      "_maxRange": 1600.0,
+      "_projectileVelocity": 1600.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    },
+    {
+      "_key": 2,
+      "_weaponProjectileType": 0,
+      "_dmg": 630.0,
+      "_collTime": 8.0,
+      "_maxRange": 2000.0,
+      "_projectileVelocity": 2000.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    },
+    {
+      "_key": 3,
+      "_weaponProjectileType": 1,
+      "_dmg": 80.0,
+      "_collTime": 1.0,
+      "_maxRange": 600.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 200.0,
+      "_canIntercept": true
+    },
+    {
+      "_key": 4,
+      "_weaponProjectileType": 1,
+      "_dmg": 160.0,
+      "_collTime": 2.0,
+      "_maxRange": 800.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 400.0,
+      "_canIntercept": true
+    },
+    {
+      "_key": 5,
+      "_weaponProjectileType": 1,
+      "_dmg": 320.0,
+      "_collTime": 4.0,
+      "_maxRange": 1000.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 1000.0,
+      "_canIntercept": true
+    }
+    {
+      "_key": 6,
+      "_weaponProjectileType": 2,
+      "_dmg": 30.0,
+      "_collTime": 1.5,
+      "_maxRange": 700.0,
+      "_projectileVelocity": 2100.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+    {
+      "_key": 7,
+      "_weaponProjectileType": 2,
+      "_dmg": 105.0,
+      "_collTime": 3.0,
+      "_maxRange": 900.0,
+      "_projectileVelocity": 2700.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+    {
+      "_key": 8,
+      "_weaponProjectileType": 2,
+      "_dmg": 360.0,
+      "_collTime": 6.0,
+      "_maxRange": 1100.0,
+      "_projectileVelocity": 3300.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+    {
+      "_key": 9,
+      "_weaponProjectileType": 3,
+      "_dmg": 50.0,
+      "_collTime": 2.0,
+      "_maxRange": 500.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+    {
+      "_key": 10,
+      "_weaponProjectileType": 3,
+      "_dmg": 200.0,
+      "_collTime": 2.0,
+      "_maxRange": 650.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+    {
+      "_key": 11,
+      "_weaponProjectileType": 3,
+      "_dmg": 800.0,
+      "_collTime": 2.0,
+      "_maxRange": 800.0,
+      "_projectileVelocity": 0.0,
+      "_halfDistance": 0.0,
+      "_canIntercept": false
+    }
+  ]
+}
