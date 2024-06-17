@@ -31,6 +31,7 @@ namespace EnumTypes
         Reactor,
         Radiator
     }
+
     public enum WeaponProjectileType
     {
         Physics,
@@ -54,5 +55,95 @@ namespace EnumTypes
         MetaMaterial,
         ReserchSample,
         Fuel
+    }
+    public enum GachaItemType
+    {
+        Item,
+        Star4Ship,
+        Star5Ship
+    }
+
+    public static class EnumTextData
+    {
+        public static string EquipTypeText(EquipType enumData)
+        {
+            string text = string.Empty;
+            switch (enumData)
+            {
+                case EquipType.Weapon:
+                    text = "무기";
+                    break;
+                case EquipType.Armor:
+                    text = "장갑";
+                    break;
+                case EquipType.Thruster:
+                    text = "추진기";
+                    break;
+                case EquipType.Reactor:
+                    text = "반응로";
+                    break;
+                case EquipType.Radiator:
+                    text = "방열기";
+                    break;
+            }
+
+            return text;
+        }
+        public static string EquipTypeText(IncreaseableStateType enumData, float value)
+        {
+            string text = string.Empty;
+            switch (enumData)
+            {
+                case IncreaseableStateType.Hp:
+                    text = $"체력 + {value:F0}";
+                    break;
+                case IncreaseableStateType.HpMultiple:
+                    text = $"체력 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.Atk:
+                    text = $"공격력 + {value:F0}";
+                    break;
+                case IncreaseableStateType.AtkMultiple:
+                    text = $"공격력 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.Def:
+                    text = $"방어력 + {value:F0}";
+                    break;
+                case IncreaseableStateType.DefMultiple:
+                    text = $"방어력 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.Accuracy:
+                    text = $"명중률 + {value:F0}";
+                    break;
+                case IncreaseableStateType.AccuracyMultiple:
+                    text = $"명중률 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.Evade:
+                    text = $"회피율 + {value:F0}";
+                    break;
+                case IncreaseableStateType.EvadeMultiple:
+                    text = $"회피율 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.CritRate:
+                    text = $"치명타 확률 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.CritDmg:
+                    text = $"치명타 피해 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.PhysicsDmg:
+                    text = $"물리 피해 증가 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.OpticsDmg:
+                    text = $"레이저 피해 증가 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.ParticleDmg:
+                    text = $"입자 피해 증가 + {value:F1}%";
+                    break;
+                case IncreaseableStateType.PlasmaDmg:
+                    text = $"플라즈마 피해 증가 + {value:F1}%";
+                    break;
+            }
+            return text;
+        }
     }
 }

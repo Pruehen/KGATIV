@@ -2,52 +2,49 @@ using Newtonsoft.Json;
 using UnityEngine;
 using System.IO;
 using EnumTypes;
+using System;
 
 public static class JsonDataManager
 {
     public static JsonCache jsonCache = new JsonCache();
-    public static T DataTableListLoad<T>(string saveDataFileName)
+    public static T DataTableListLoad<T>(string saveDataFileName) where T : class, new()
     {
-        if (!File.Exists(Application.dataPath + saveDataFileName))
-            return default(T);
-        
-        string fileData = File.ReadAllText(Application.dataPath + saveDataFileName);
+        string filePath = Application.dataPath + saveDataFileName;
+
+        if (!File.Exists(filePath))
+            return new T();
+
+        string fileData = File.ReadAllText(filePath);
         T data;
 
         try
         {
-            data = JsonConvert.DeserializeObject<T>(fileData);            
+            data = JsonConvert.DeserializeObject<T>(fileData);
             if (data == null)
             {
-                data = default(T);                
+                data = new T();
                 Debug.Log("새 저장 데이터 생성");
             }
 
             Debug.Log($"데이터 불러오기 완료 : {typeof(T).Name}");
             return data;
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError($"데이터 불러오기 실패 : {e.Message}");
-            data = default(T);
-            return data;
+            return new T();
         }
     }
-    //static void DataTableListSave<T>(string saveDataFileName)
-    //{
-    //    string folderPath = Application.dataPath + saveDataFileName;
-    //    if (!Directory.Exists(folderPath))
-    //    {
-    //        Directory.CreateDirectory(folderPath);
-    //    }
+    public static void DataSave<T>(T jsonCacheData, string saveDataFileName)
+    {
+        string filePath = Application.dataPath + saveDataFileName;
 
-    //    T saveData = jsonCache.GetCacheData<T>();
-    //    string data = JsonConvert.SerializeObject(saveData, Formatting.Indented);
+        string data = JsonConvert.SerializeObject(jsonCacheData, Formatting.Indented);
 
-    //    File.WriteAllText(folderPath + saveDataFileName, data);
+        File.WriteAllText(filePath, data);
 
-    //    Debug.Log($"데이터 저장 완료 : {typeof(T).Name}");
-    //}
+        Debug.Log($"데이터 저장 완료 : {typeof(T).Name}");
+    }
 
     public static EquipTable DataLode_EquipTable(int key)
     {
@@ -69,6 +66,16 @@ public static class JsonDataManager
         StateType_StateMultipleTableList tableList = jsonCache.StateType_StateMultipleTableListCache;
         return tableList.list[(int)key];
     }
+    public static UserHaveEquipData DataLode_UserHaveEquipData(string key)
+    {
+        UserHaveEquipDataDictionary dataDictionary = jsonCache.UserHaveEquipDataDictionaryCache;
+        return dataDictionary._dic[key];
+    }
+    public static UserHaveItemData DataLode_UserHaveItemData(ItemType itemType)
+    {
+        UserHaveItemDataList dataList = jsonCache.UserHaveItemDataListCache;
+        return dataList.list[(int)itemType];
+    }
     //public static T DataLode<T, TList>()
 }
 
@@ -81,7 +88,7 @@ public class JsonCache
         {
             if (_equipTableListCache == null)
             {
-                _equipTableListCache = JsonDataManager.DataTableListLoad<EquipTableList>(EquipTableList.FilePath());
+                _equipTableListCache = JsonDataManager.DataTableListLoad<EquipTableList>(EquipTableList.FilePath());                
             }
             return _equipTableListCache;
         }
@@ -110,6 +117,19 @@ public class JsonCache
             return _shipTableListCache;
         }
     }
+    GachaTable _gachaTableCache;
+    public GachaTable GachaTableCache
+    {
+        get
+        {
+            if (_gachaTableCache == null)
+            {
+                _gachaTableCache = JsonDataManager.DataTableListLoad<GachaTable>(GachaTable.FilePath());
+            }
+            return _gachaTableCache;
+        }
+    }
+
     StateType_StateMultipleTableList _stateType_StateMultipleTableListCache;
     public StateType_StateMultipleTableList StateType_StateMultipleTableListCache
     {
@@ -135,16 +155,16 @@ public class JsonCache
             return _userHaveItemDataListCache;
         }
     }
-    UserHaveEquipDataList _userHaveEquipDataListCache;
-    public UserHaveEquipDataList UserHaveEquipDataListCache
+    UserHaveEquipDataDictionary _userHaveEquipDataDictionaryCache;
+    public UserHaveEquipDataDictionary UserHaveEquipDataDictionaryCache
     {
         get
         {
-            if (_userHaveEquipDataListCache == null)
+            if (_userHaveEquipDataDictionaryCache == null)
             {
-                _userHaveEquipDataListCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataList>(UserHaveEquipDataList.FilePath());
+                _userHaveEquipDataDictionaryCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataDictionary>(UserHaveEquipDataDictionary.FilePath());
             }
-            return _userHaveEquipDataListCache;
+            return _userHaveEquipDataDictionaryCache;
         }
     }
     UserHaveShipDataList _userHaveShipDataListCache;

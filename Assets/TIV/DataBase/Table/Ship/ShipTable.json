@@ -9,7 +9,8 @@
       "_evade": 45.0,
       "_name": "4F1",
       "_shipClass": 0,
-      "_star": 4
+      "_star": 4,
+      "_maxCombatSlot": 4
     },
     {
       "_key": 1,
@@ -20,7 +21,8 @@
       "_evade": 30.0,
       "_name": "4D1",
       "_shipClass": 1,
-      "_star": 4
+      "_star": 4,
+      "_maxCombatSlot": 6
     },
     {
       "_key": 2,
@@ -31,7 +33,8 @@
       "_evade": 15.0,
       "_name": "4C1",
       "_shipClass": 2,
-      "_star": 4
+      "_star": 4,
+      "_maxCombatSlot": 8
     },
     {
       "_key": 3,
@@ -42,7 +45,8 @@
       "_evade": 5.0,
       "_name": "4B1",
       "_shipClass": 3,
-      "_star": 4
+      "_star": 4,
+      "_maxCombatSlot": 10
     },
     {
       "_key": 4,
@@ -53,7 +57,8 @@
       "_evade": 1.0,
       "_name": "5T1",
       "_shipClass": 4,
-      "_star": 5
+      "_star": 5,
+      "_maxCombatSlot": 12
     }
   ]
 }

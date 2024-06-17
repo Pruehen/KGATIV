@@ -1,0 +1,69 @@
+{
+  "_itemTableDic": {
+    "Item": {
+      "_percentage": 90.0,
+      "_dropCodeList": [
+        1000,
+        1001,
+        1002
+      ]
+    },
+    "Star4Ship": {
+      "_percentage": 10.0,
+      "_dropCodeList": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "Star5Ship": {
+      "_percentage": 1.0,
+      "_dropCodeList": [
+        4
+      ]
+    }
+  },
+  "_gachaCodeTable": {
+    "0": {
+      "_gachaCode": 0,
+      "_itemTableCode": 0,
+      "_count": 1
+    },
+    "1": {
+      "_gachaCode": 1,
+      "_itemTableCode": 1,
+      "_count": 1
+    },
+    "2": {
+      "_gachaCode": 2,
+      "_itemTableCode": 2,
+      "_count": 1
+    },
+    "3": {
+      "_gachaCode": 3,
+      "_itemTableCode": 3,
+      "_count": 1
+    },
+    "4": {
+      "_gachaCode": 4,
+      "_itemTableCode": 4,
+      "_count": 1
+    },
+    "1000": {
+      "_gachaCode": 1000,
+      "_itemTableCode": 0,
+      "_count": 10000
+    },
+    "1001": {
+      "_gachaCode": 1001,
+      "_itemTableCode": 2,
+      "_count": 100
+    },
+    "1002": {
+      "_gachaCode": 1002,
+      "_itemTableCode": 3,
+      "_count": 100
+    }
+  }
+}

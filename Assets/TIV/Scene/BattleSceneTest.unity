@@ -419,6 +419,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2657146430227838647, guid: 0c168610608cbd74291a9cbf941b5aef, type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657146430227838647, guid: 0c168610608cbd74291a9cbf941b5aef, type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2657146430227838647, guid: 0c168610608cbd74291a9cbf941b5aef, type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6435967639159185100, guid: 0c168610608cbd74291a9cbf941b5aef, type: 3}
       propertyPath: m_Name
       value: JsonDataCreator

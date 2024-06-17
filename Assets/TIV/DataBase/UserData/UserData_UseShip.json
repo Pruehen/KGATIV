@@ -1,12 +1,49 @@
 {
   "list": [
     {
-      "_key": 0,
-      "_level": 1
+      "_shipTablekey": 0,
+      "_level": 1,
+      "_isHave": true,
+      "_thrusterSlotItemKey": "",
+      "_reactorSlotItemKey": "",
+      "_radiatorSlotItemKey": "",
+      "_combatSlotItemKeyList": []
     },
     {
-      "_key": 1,
-      "_level": 1
+      "_shipTablekey": 1,
+      "_level": 1,
+      "_isHave": true,
+      "_thrusterSlotItemKey": "",
+      "_reactorSlotItemKey": "",
+      "_radiatorSlotItemKey": "",
+      "_combatSlotItemKeyList": []
+    },
+    {
+      "_shipTablekey": 2,
+      "_level": 1,
+      "_isHave": true,
+      "_thrusterSlotItemKey": "",
+      "_reactorSlotItemKey": "",
+      "_radiatorSlotItemKey": "",
+      "_combatSlotItemKeyList": []
+    },
+    {
+      "_shipTablekey": 3,
+      "_level": 1,
+      "_isHave": true,
+      "_thrusterSlotItemKey": "",
+      "_reactorSlotItemKey": "",
+      "_radiatorSlotItemKey": "",
+      "_combatSlotItemKeyList": []
+    },
+    {
+      "_shipTablekey": 4,
+      "_level": 1,
+      "_isHave": true,
+      "_thrusterSlotItemKey": "",
+      "_reactorSlotItemKey": "",
+      "_radiatorSlotItemKey": "",
+      "_combatSlotItemKeyList": []
     }
   ]
 }
