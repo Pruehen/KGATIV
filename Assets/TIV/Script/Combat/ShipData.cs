@@ -1,13 +1,15 @@
 using EnumTypes;
-using System;
 using System.Collections.Generic;
-
 public class State
 {
     float _curState = 0;
     float _stateMultiplier = 1;
 
-    public State(float curState = 0, float stateMultiplier = 1)
+    public State()
+    {
+        Init();
+    }
+    public void Init(float curState = 0, float stateMultiplier = 1)
     {
         _curState = curState;
         _stateMultiplier = stateMultiplier;
@@ -43,18 +45,86 @@ public class ShipData
     public ShipData(UserHaveShipData shipData)
     {
         _shipData = shipData;
-        _shipTable = JsonDataManager.DataLode_ShipTable(shipData._shipTablekey);
-        int level = shipData._level;
+        _shipTable = JsonDataManager.DataLode_ShipTable(shipData._shipTablekey);        
 
-        StateStaticBonusDic.Add(CombatStateType.Hp, new State(_shipTable.GetHp(level)));
-        StateStaticBonusDic.Add(CombatStateType.Atk, new State(_shipTable.GetAtk(level)));
-        StateStaticBonusDic.Add(CombatStateType.Def, new State(_shipTable.GetDef(level)));
-        StateStaticBonusDic.Add(CombatStateType.CritRate, new State(5));
-        StateStaticBonusDic.Add(CombatStateType.CritDmg, new State(50));
+        StateStaticBonusDic.Add(CombatStateType.Hp, new State());
+        StateStaticBonusDic.Add(CombatStateType.Atk, new State());
+        StateStaticBonusDic.Add(CombatStateType.Def, new State());
+        StateStaticBonusDic.Add(CombatStateType.CritRate, new State());
+        StateStaticBonusDic.Add(CombatStateType.CritDmg, new State());
         StateStaticBonusDic.Add(CombatStateType.PhysicsDmg, new State());
         StateStaticBonusDic.Add(CombatStateType.OpticsDmg, new State());
         StateStaticBonusDic.Add(CombatStateType.ParticleDmg, new State());
         StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State());
+
+        AllDataUpdate();
+    }
+    void AllDataUpdate()
+    {
+        int level = _shipData._level;
+
+        StateStaticBonusDic[CombatStateType.Hp].Init(_shipTable.GetHp(level));
+        StateStaticBonusDic[CombatStateType.Atk].Init(_shipTable.GetAtk(level));
+        StateStaticBonusDic[CombatStateType.Def].Init(_shipTable.GetDef(level));
+        StateStaticBonusDic[CombatStateType.CritRate].Init(5);
+        StateStaticBonusDic[CombatStateType.CritDmg].Init(50);
+        StateStaticBonusDic[CombatStateType.PhysicsDmg].Init();
+        StateStaticBonusDic[CombatStateType.OpticsDmg].Init();
+        StateStaticBonusDic[CombatStateType.ParticleDmg].Init();
+        StateStaticBonusDic[CombatStateType.PlasmaDmg].Init();
+
+        List<string> equipedItemKeyList = _shipData.GetAllEquipedItemKey();
+        if (equipedItemKeyList != null && equipedItemKeyList.Count != 0)
+        {
+            foreach (string equipKey in equipedItemKeyList)//장착 중인 아이템 순회
+            {
+                UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipKey);
+                foreach (var stateSet in equipData.GetAllEquipStateSet())//장착 중인 아이템의 모든 스탯 순회
+                {
+                    switch (stateSet._stateType)
+                    {
+                        case IncreaseableStateType.Hp:
+                            StateStaticBonusDic[CombatStateType.Hp].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.HpMultiple:
+                            StateStaticBonusDic[CombatStateType.Hp].ChangePercentageState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.Atk:
+                            StateStaticBonusDic[CombatStateType.Atk].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.AtkMultiple:
+                            StateStaticBonusDic[CombatStateType.Atk].ChangePercentageState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.Def:
+                            StateStaticBonusDic[CombatStateType.Def].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.DefMultiple:
+                            StateStaticBonusDic[CombatStateType.Def].ChangePercentageState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.CritRate:
+                            StateStaticBonusDic[CombatStateType.CritRate].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.CritDmg:
+                            StateStaticBonusDic[CombatStateType.CritDmg].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.PhysicsDmg:
+                            StateStaticBonusDic[CombatStateType.PhysicsDmg].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.OpticsDmg:
+                            StateStaticBonusDic[CombatStateType.OpticsDmg].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.ParticleDmg:
+                            StateStaticBonusDic[CombatStateType.ParticleDmg].ChangeCurState(stateSet.GetValue());
+                            break;
+                        case IncreaseableStateType.PlasmaDmg:
+                            StateStaticBonusDic[CombatStateType.PlasmaDmg].ChangeCurState(stateSet.GetValue());
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
     }
     /// <summary>
     /// StateType에 해당하는 최종 스텟을 반환함
@@ -116,5 +186,9 @@ public class ShipData
             stringDataArray[i] = GetFinalStateText((CombatStateType)i-3);
         }
         return stringDataArray;
+    }
+    public int GetMaxSlot()
+    {
+        return _shipTable._maxCombatSlot;
     }
 }

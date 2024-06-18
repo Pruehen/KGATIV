@@ -14,7 +14,9 @@
         4,
         5
       ],
-      "_info": "실탄을 발사하는 소형 포대입니다."
+      "_info": "실탄을 발사하는 소형 포대입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_LightCoilgunBatteryMk1"
     },
     {
       "_key": 1,
@@ -30,7 +32,9 @@
         4,
         5
       ],
-      "_info": "실탄을 발사하는 증형 포대입니다."
+      "_info": "실탄을 발사하는 증형 포대입니다.",
+      "_slotUsage": 2,
+      "_spriteName": "ICO_LightCoilgunBatteryMk2"
     },
     {
       "_key": 2,
@@ -46,7 +50,9 @@
         4,
         5
       ],
-      "_info": "실탄을 발사하는 대형 포대입니다."
+      "_info": "실탄을 발사하는 대형 포대입니다.",
+      "_slotUsage": 4,
+      "_spriteName": "ICO_LightCoilgunBatteryMk3"
     },
     {
       "_key": 3,
@@ -62,7 +68,9 @@
         4,
         5
       ],
-      "_info": "레이저를 조사하는 소형 포대입니다. 실탄을 요격할 수 있습니다."
+      "_info": "레이저를 조사하는 소형 포대입니다. 실탄을 요격할 수 있습니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_60cmIRLaserBattery"
     },
     {
       "_key": 4,
@@ -78,7 +86,9 @@
         4,
         5
       ],
-      "_info": "레이저를 조사하는 증형 포대입니다. 실탄을 요격할 수 있습니다."
+      "_info": "레이저를 조사하는 증형 포대입니다. 실탄을 요격할 수 있습니다.",
+      "_slotUsage": 2,
+      "_spriteName": "ICO_60cmGreenArcLaserBattery"
     },
     {
       "_key": 5,
@@ -94,7 +104,9 @@
         4,
         5
       ],
-      "_info": "레이저를 조사하는 대형 포대입니다. 실탄을 요격할 수 있습니다."
+      "_info": "레이저를 조사하는 대형 포대입니다. 실탄을 요격할 수 있습니다.",
+      "_slotUsage": 4,
+      "_spriteName": "ICO_60cmUVPhaserBattery"
     },
     {
       "_key": 6,
@@ -110,7 +122,9 @@
         4,
         5
       ],
-      "_info": "플라즈마를 발사하는 소형 포대입니다."
+      "_info": "플라즈마를 발사하는 소형 포대입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_LightRailgunBatteryMk1"
     },
     {
       "_key": 7,
@@ -126,7 +140,9 @@
         4,
         5
       ],
-      "_info": "플라즈마를 발사하는 증형 포대입니다."
+      "_info": "플라즈마를 발사하는 증형 포대입니다.",
+      "_slotUsage": 2,
+      "_spriteName": "ICO_LightRailgunBatteryMk2"
     },
     {
       "_key": 8,
@@ -142,7 +158,9 @@
         4,
         5
       ],
-      "_info": "플라즈마를 발사하는 대형 포대입니다."
+      "_info": "플라즈마를 발사하는 대형 포대입니다.",
+      "_slotUsage": 4,
+      "_spriteName": "ICO_LightRailgunBatteryMk3"
     },
     {
       "_key": 9,
@@ -158,7 +176,9 @@
         4,
         5
       ],
-      "_info": "이온 입자를 발사하는 소형 포대입니다."
+      "_info": "하전 입자를 발사하는 소형 포대입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_LightE-BeamBattery"
     },
     {
       "_key": 10,
@@ -174,7 +194,9 @@
         4,
         5
       ],
-      "_info": "이온 입자를 발사하는 증형 포대입니다."
+      "_info": "하전 입자를 발사하는 증형 포대입니다.",
+      "_slotUsage": 2,
+      "_spriteName": "ICO_PointDefenseE-Beamer"
     },
     {
       "_key": 11,
@@ -190,7 +212,9 @@
         4,
         5
       ],
-      "_info": "이온 입자를 발사하는 대형 포대입니다."
+      "_info": "하전 입자를 발사하는 대형 포대입니다.",
+      "_slotUsage": 4,
+      "_spriteName": "ICO_PointDefenseParticleBeam"
     },
     {
       "_key": 12,
@@ -201,7 +225,9 @@
       "_validSetList": [
         0
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AdamantaneArmor"
     },
     {
       "_key": 13,
@@ -212,7 +238,9 @@
       "_validSetList": [
         1
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "nuICO_BoronCarbideArmorll"
     },
     {
       "_key": 14,
@@ -223,7 +251,9 @@
       "_validSetList": [
         2
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_CompositeArmor"
     },
     {
       "_key": 15,
@@ -234,7 +264,9 @@
       "_validSetList": [
         3
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_ExoticArmor"
     },
     {
       "_key": 16,
@@ -245,7 +277,9 @@
       "_validSetList": [
         4
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_FoamedMetalArmor"
     },
     {
       "_key": 17,
@@ -256,7 +290,9 @@
       "_validSetList": [
         5
       ],
-      "_info": "장갑입니다."
+      "_info": "장갑입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_TitaniumArmor"
     },
     {
       "_key": 18,
@@ -267,7 +303,9 @@
       "_validSetList": [
         0
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AdvancedPulsarDrive"
     },
     {
       "_key": 19,
@@ -278,7 +316,9 @@
       "_validSetList": [
         1
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AmplitronDrive"
     },
     {
       "_key": 20,
@@ -289,7 +329,9 @@
       "_validSetList": [
         2
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_CavityDrive"
     },
     {
       "_key": 21,
@@ -300,7 +342,9 @@
       "_validSetList": [
         3
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_DustyPlasmaDrive"
     },
     {
       "_key": 22,
@@ -311,7 +355,9 @@
       "_validSetList": [
         4
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_FissionSpinnerDrive"
     },
     {
       "_key": 23,
@@ -322,7 +368,9 @@
       "_validSetList": [
         5
       ],
-      "_info": "추진기입니다."
+      "_info": "추진기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_ZetaDeuteronDrive"
     },
     {
       "_key": 24,
@@ -333,7 +381,9 @@
       "_validSetList": [
         0
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AluminumFinRadiator"
     },
     {
       "_key": 25,
@@ -344,7 +394,9 @@
       "_validSetList": [
         1
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_DiamondoidSpikeRadiator"
     },
     {
       "_key": 26,
@@ -355,7 +407,9 @@
       "_validSetList": [
         2
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_ExoticTendrilRadiator"
     },
     {
       "_key": 27,
@@ -366,7 +420,9 @@
       "_validSetList": [
         3
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_IonicDustRadiator"
     },
     {
       "_key": 28,
@@ -377,7 +433,9 @@
       "_validSetList": [
         4
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_NanotubeFilamentRadiator"
     },
     {
       "_key": 29,
@@ -388,7 +446,9 @@
       "_validSetList": [
         5
       ],
-      "_info": "방열기입니다."
+      "_info": "방열기입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_TitaniumArrayRadiator"
     },
     {
       "_key": 30,
@@ -399,7 +459,9 @@
       "_validSetList": [
         0
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AlienHybridConfinementFusionReactor"
     },
     {
       "_key": 31,
@@ -410,7 +472,9 @@
       "_validSetList": [
         1
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AntimatterBeamCoreReactor"
     },
     {
       "_key": 32,
@@ -421,7 +485,9 @@
       "_validSetList": [
         2
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_DustyPlasmaReactor"
     },
     {
       "_key": 33,
@@ -432,7 +498,9 @@
       "_validSetList": [
         3
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_FissionFragmentReactor"
     },
     {
       "_key": 34,
@@ -443,7 +511,9 @@
       "_validSetList": [
         4
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AntimatterGasCoreReactor"
     },
     {
       "_key": 35,
@@ -454,7 +524,9 @@
       "_validSetList": [
         5
       ],
-      "_info": "반응로입니다."
+      "_info": "반응로입니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_AntimatterSolidCoreReactor"
     }
   ]
 }

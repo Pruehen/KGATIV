@@ -14,7 +14,7 @@ public class ShipMenuUIViewModel
     string _opticsDmg;
     string _particleDmg;
     string _plasmaDmg;
-
+    int _slotCount;
     public string Name
     {
         get { return _name; }
@@ -133,6 +133,16 @@ public class ShipMenuUIViewModel
             if (_plasmaDmg == value) return;
             _plasmaDmg = value;
             OnPropertyChanged(nameof(PlasmaDmg));
+        }
+    }
+    public int SlotCount
+    {
+        get { return _slotCount; }
+        set
+        {
+            if (_slotCount == value) return;
+            _slotCount = value;
+            OnPropertyChanged(nameof(SlotCount));
         }
     }
 

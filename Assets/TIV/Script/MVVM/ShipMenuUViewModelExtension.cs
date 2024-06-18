@@ -7,7 +7,7 @@ namespace ViewModel.Extensions
             kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnRefreshViewModel);//콜백 호출
         }
 
-        public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, string[] data)//콜백
+        public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, string[] data, int slotCount)//콜백
         {
             vm.Name = data[0];
             vm.Class = data[1];
@@ -21,6 +21,7 @@ namespace ViewModel.Extensions
             vm.OpticsDmg = data[9];
             vm.ParticleDmg = data[10];
             vm.PlasmaDmg = data[11];
+            vm.SlotCount = slotCount;
         }
 
 

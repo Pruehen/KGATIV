@@ -1,4 +1,5 @@
-using System;
+using EnumTypes;
+using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class ShipMenuUIManager : MonoBehaviour
 {
     [SerializeField] UIManager UIManager;
 
-    [Header("함선 메뉴 관리")]
+    [Header("함선 선택 관리")]
     [SerializeField] Camera Camera_MainCam;
     [SerializeField] Transform Transform_ShipDummyParent;
     [SerializeField] Button Btn_SelectShip_4F1;
@@ -19,7 +20,17 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] Button Btn_SelectShip_5T1;
     Transform _transform_CamViewTarget = null;
 
-    [Header("함선 데이터 필드")]
+    [Header("함선 메뉴 관리")]
+    [SerializeField] Button Btn_Info;    
+    [SerializeField] Button Btn_CombatSlot;
+    [SerializeField] Button Btn_UtilSlot;
+    [SerializeField] GameObject Wdw_Info;
+    [SerializeField] GameObject Wdw_CombatSlot;
+    [SerializeField] GameObject Wdw_UtilSlot;
+    [SerializeField] GameObject Wdw_EquipList;
+    [SerializeField] GameObject Wdw_EquipInfo;
+
+    [Header("함선 정보 필드")]
     [SerializeField] TextMeshProUGUI TMP_Name;
     [SerializeField] TextMeshProUGUI TMP_Class;
     [SerializeField] TextMeshProUGUI TMP_Star;
@@ -32,6 +43,22 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_OpticsDmg;
     [SerializeField] TextMeshProUGUI TMP_ParticleDmg;
     [SerializeField] TextMeshProUGUI TMP_PlasmaDmg;
+
+    [Header("함선 장비 필드")]
+    [SerializeField] Button Btn_EquipWeapon;
+    [SerializeField] Button Btn_EquipArmor;
+    [SerializeField] GameObject[] EquipSlotArray;
+
+    [Header("함선 부품 필드")]
+    [SerializeField] Button Btn_EquipEngine;
+    [SerializeField] Button Btn_EquipReactor;
+    [SerializeField] Button Btn_EquipRadiator;
+
+    [Header("장비 리스트 필드")]
+    [SerializeField] RectTransform RectTransform_SCV_Content;
+    List<EquipIcon> _equipIconList;
+    int _activeIconCount;
+    EquipType _viewEquipType;
 
     ShipMenuUIViewModel _vm;
 
@@ -94,6 +121,9 @@ public class ShipMenuUIManager : MonoBehaviour
             case nameof(_vm.PlasmaDmg):
                 TMP_PlasmaDmg.text = _vm.PlasmaDmg;
                 break;
+            case nameof(_vm.SlotCount):
+                SetActive_EquipSlotCount(_vm.SlotCount);
+                break;
         }
     }
 
@@ -105,8 +135,26 @@ public class ShipMenuUIManager : MonoBehaviour
         Btn_SelectShip_4B1.onClick.AddListener(() => SelectShip("4B1", 3));
         Btn_SelectShip_5T1.onClick.AddListener(() => SelectShip("5T1", 4));
 
+        Btn_Info.onClick.AddListener(() => SelectWdw(Wdw_Info));
+        Btn_CombatSlot.onClick.AddListener(() => SelectWdw(Wdw_CombatSlot));
+        Btn_UtilSlot.onClick.AddListener(() => SelectWdw(Wdw_UtilSlot));
+
+        Btn_EquipWeapon.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Weapon));
+        Btn_EquipArmor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Armor));
+        Btn_EquipRadiator.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Radiator));
+        Btn_EquipReactor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Reactor));
+        Btn_EquipEngine.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Thruster));
+
         UIManager.OnShipMenuWdwOn += () => SelectShip("4F1", 0);
+        UIManager.OnShipMenuWdwOn += () => SelectWdw(Wdw_Info);
         UIManager.OnShipMenuWdwOff += () => SelectShip("null", -1);
+
+        _equipIconList = new List<EquipIcon>();
+        for (int i = 0; i < RectTransform_SCV_Content.childCount; i++)
+        {
+            _equipIconList.Add(RectTransform_SCV_Content.GetChild(i).GetComponent<EquipIcon>());
+        }
+        _activeIconCount = 0;
     }
     //public void RegisterValueChangeCallback(Action<string[]> valueChangeCallback)
     //{
@@ -125,6 +173,98 @@ public class ShipMenuUIManager : MonoBehaviour
         if(shipKey >= 0)
         {
             _vm.RefreshVielModel(shipKey);
+        }
+    }
+    public void SelectWdw(GameObject wdw)
+    {
+        if(wdw == Wdw_Info)
+        {
+            Wdw_Info.SetActive(true);
+            Wdw_CombatSlot.SetActive(false);
+            Wdw_UtilSlot.SetActive(false);
+            Wdw_EquipList.SetActive(false);
+            Wdw_EquipInfo.SetActive(false);
+        }
+        else if(wdw == Wdw_CombatSlot)
+        {
+            Wdw_Info.SetActive(false);
+            Wdw_CombatSlot.SetActive(true);
+            Wdw_UtilSlot.SetActive(false);
+            Wdw_EquipList.SetActive(false);
+            Wdw_EquipInfo.SetActive(false);
+        }
+        else if(wdw == Wdw_UtilSlot)
+        {
+            Wdw_Info.SetActive(false);
+            Wdw_CombatSlot.SetActive(false);
+            Wdw_UtilSlot.SetActive(true);
+            Wdw_EquipList.SetActive(false);
+            Wdw_EquipInfo.SetActive(false);
+        }
+    }
+    public void SetActiveEquipListWdw(bool value, EquipType equipType)
+    {
+        Wdw_EquipList.SetActive(value);
+        if (value == true)
+        {
+            _viewEquipType = equipType;
+            SetEquipIconList(equipType);
+        }                    
+    }
+    public void SetActiveEquipInfoWdw(bool value, string equipDataKey)
+    {
+        Wdw_EquipInfo.SetActive(value);
+    }
+
+
+    void SetEquipIconList(EquipType equipType)
+    {
+        for (int i = 0; i < _activeIconCount; i++)
+        {
+            _equipIconList[i].gameObject.SetActive(false);            
+        }
+        _activeIconCount = 0;
+
+        foreach (var item in JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache._dic)
+        {
+            UserHaveEquipData data = item.Value;
+            EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
+            if (table._type == equipType)
+            {
+                EquipIcon icon = _equipIconList[_activeIconCount];
+                icon.gameObject.SetActive(true);
+                _activeIconCount++;
+
+                Sprite sprite = Resources.Load<Sprite>("Sprites/ShipBuilderIcon/Sprites/" + table._spriteName);
+                if (sprite != null)
+                {
+                    icon.SetSprite(sprite);
+                }
+                icon.SetIsEquipedLabel(data._equipedShipKey >= 0);
+                icon.SetListener(() => SetActiveEquipInfoWdw(true, data._itemUniqueKey));
+            }
+        }
+        Vector2 sizeDelta = RectTransform_SCV_Content.sizeDelta;
+        sizeDelta.y = 1200 + Mathf.Max(((_activeIconCount/5)-6) * 150, 0);
+        RectTransform_SCV_Content.sizeDelta = sizeDelta;
+
+        Vector2 pos = RectTransform_SCV_Content.anchoredPosition;
+        pos.y = 0;
+        RectTransform_SCV_Content.anchoredPosition = pos;
+    }
+
+    void SetActive_EquipSlotCount(int count)
+    {
+        for (int i = 0; i < EquipSlotArray.Length; i++)
+        {
+            if (i < count)
+            {
+                EquipSlotArray[i].SetActive(true);
+            }
+            else
+            {
+                EquipSlotArray[i].SetActive(false);
+            }
         }
     }
 

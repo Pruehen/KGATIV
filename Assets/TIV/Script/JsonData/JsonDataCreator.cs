@@ -94,8 +94,9 @@ public class EquipTable
     public List<SetType> _validSetList = new List<SetType>();
     public string _info;
     public int _slotUsage;
+    public string _spriteName;
 
-    public EquipTable(int key, EquipType type, int star, string name, int weaponSkillKey, List<SetType> validSetList, string info, int slotUsage)
+    public EquipTable(int key, EquipType type, int star, string name, int weaponSkillKey, List<SetType> validSetList, string info, int slotUsage, string spriteName)
     {
         _key = key;
         _type = type;
@@ -105,6 +106,7 @@ public class EquipTable
         _validSetList = validSetList;
         _info = info;
         _slotUsage = slotUsage;
+        _spriteName = spriteName;
     }
 }
 public class EquipTableList
@@ -381,23 +383,30 @@ public class UserHaveShipData
         _combatSlotItemKeyList = new List<string>();
     }
 
-    public bool Equip(EquipSlotType slotType, string newkey)
+    public bool Equip(EquipSlotType slotType, string userEquipKey)
     {
+        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(userEquipKey);
+        if(equipData._equipedShipKey >= 0)
+        {
+            UserHaveShipData shipData = JsonDataManager.DataLode_UserHaveShipData(equipData._equipedShipKey);
+            shipData.Unequip(slotType, userEquipKey);
+        }
+
         switch (slotType)
         {
             case EquipSlotType.Thruster:
-                _thrusterSlotItemKey = newkey;
+                _thrusterSlotItemKey = userEquipKey;
                 return true;                
             case EquipSlotType.Reactor:
-                _reactorSlotItemKey = newkey;
+                _reactorSlotItemKey = userEquipKey;
                 return true;
             case EquipSlotType.Radiator:
-                _radiatorSlotItemKey = newkey;
+                _radiatorSlotItemKey = userEquipKey;
                 return true;
             case EquipSlotType.Combat:
-                if(CanEquip_Combat(newkey))
+                if(CanEquip_Combat(userEquipKey))
                 {
-                    _combatSlotItemKeyList.Add(newkey);
+                    _combatSlotItemKeyList.Add(userEquipKey);
                     return true;
                 }
                 else
@@ -407,8 +416,11 @@ public class UserHaveShipData
         }
         return false;
     }
-    public void Unequip(EquipSlotType slotType, string newkey)
+    public void Unequip(EquipSlotType slotType, string userEquipKey)
     {
+        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(userEquipKey);
+        equipData._equipedShipKey = -1;
+
         switch (slotType)
         {
             case EquipSlotType.Thruster:
@@ -421,9 +433,9 @@ public class UserHaveShipData
                 _radiatorSlotItemKey = string.Empty;
                 break;
             case EquipSlotType.Combat:
-                if(_combatSlotItemKeyList.Contains(newkey))
+                if(_combatSlotItemKeyList.Contains(userEquipKey))
                 {
-                    _combatSlotItemKeyList.Remove(newkey);
+                    _combatSlotItemKeyList.Remove(userEquipKey);
                 }
                 break;
         }
@@ -453,6 +465,35 @@ public class UserHaveShipData
             }
         }
         return maxSlot - totalOccupiedSlot;
+    }
+    /// <summary>
+    /// 현재 장비하고 있는 모든 장비를 string 키 리스트 형태로 반환
+    /// </summary>
+    /// <returns></returns>
+    public List<string> GetAllEquipedItemKey()
+    {
+        List<string> keyList = new List<string>();
+        if(_thrusterSlotItemKey != null && _thrusterSlotItemKey != string.Empty)
+        {
+            keyList.Add(_thrusterSlotItemKey);
+        }
+        if (_reactorSlotItemKey != null && _reactorSlotItemKey != string.Empty)
+        {
+            keyList.Add(_reactorSlotItemKey);
+        }
+        if (_radiatorSlotItemKey != null && _radiatorSlotItemKey != string.Empty)
+        {
+            keyList.Add(_radiatorSlotItemKey);
+        }
+        if(_combatSlotItemKeyList != null && _combatSlotItemKeyList.Count != 0)
+        {
+            foreach (string key in _combatSlotItemKeyList)
+            {
+                keyList.Add(key);
+            }
+        }
+
+        return keyList;
     }
 }
 public class UserHaveShipDataList
@@ -486,9 +527,10 @@ public class UserHaveEquipData
     public int _optimizedLevel;
     public EquipStateSet _mainState;
     public List<EquipStateSet> _subStateList;
+    public int _equipedShipKey;
 
     [JsonConstructor]
-    public UserHaveEquipData(string itemUniqueKey, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList)
+    public UserHaveEquipData(string itemUniqueKey, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList, int equipedShipKey)
     {
         _itemUniqueKey = itemUniqueKey;
         _equipTableKey = equipTableKey;
@@ -497,6 +539,7 @@ public class UserHaveEquipData
         _optimizedLevel = optimizedLevel;
         _mainState = mainState;
         _subStateList = subStateList;
+        _equipedShipKey = equipedShipKey;
     }
     /// <summary>
     /// 새로운 장비를 얻었을 때 사용하는 생성자
@@ -516,6 +559,7 @@ public class UserHaveEquipData
         _optimizedLevel = 0;
         _mainState = new EquipStateSet(mainStateType, 1);
         _subStateList = new List<EquipStateSet>();
+        _equipedShipKey = -1;
     }
     public class EquipStateSet
     {
@@ -530,6 +574,24 @@ public class UserHaveEquipData
         {
             _level += plusValue;
         }
+        public float GetValue()
+        {
+            return _level * JsonDataManager.DataLode_StateType_StateMultipleTable(_stateType)._multipleValue;
+        }
+    }
+    public List<EquipStateSet> GetAllEquipStateSet()
+    {
+        List<EquipStateSet> equipStateSetList = new List<EquipStateSet>();
+        equipStateSetList.Add(_mainState);
+
+        if(_subStateList != null && _subStateList.Count > 0)
+        {
+            foreach (EquipStateSet stateSet in _subStateList)
+            {
+                equipStateSetList.Add(stateSet);
+            }
+        }
+        return equipStateSetList;
     }
 
     /// <summary>
