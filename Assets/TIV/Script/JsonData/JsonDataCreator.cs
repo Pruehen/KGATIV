@@ -11,26 +11,60 @@ public class ShipTable
     public float _hp;
     public float _atk;
     public float _def;
-    public float _accuracy;
-    public float _evade;
     public string _name;
     public int _shipClass;
     public int _star;
     public int _maxCombatSlot;
 
-    public ShipTable(int key, float hp, float atk, float def, float accuracy, float evade, string name, int shipClass, int star, int maxCombatSlot)
+    public ShipTable(int key, float hp, float atk, float def, string name, int shipClass, int star, int maxCombatSlot)
     {
         _key = key;
         _hp = hp;
         _atk = atk;
         _def = def;
-        _accuracy = accuracy;
-        _evade = evade;
         _name = name;
         _shipClass = shipClass;
         _star = star;
         _maxCombatSlot = maxCombatSlot;
     }
+
+    float StateMultiple(int level)
+    {
+        return ((level - 1) * 0.13f) + 1;
+    }
+    public string GetName() { return _name; }
+    public string GetClass() 
+    {
+        switch (_shipClass)
+        {
+            case 0:
+                return "호위함";
+            case 1:
+                return "구축함";
+            case 2:
+                return "순양함";
+            case 3:
+                return "전함";
+            case 4:
+                return "타이탄";
+            default:
+                return "알 수 없음";
+        }
+    }
+    public string GetStar()
+    {
+        if (_star == 4)
+        {
+            return "****";
+        }
+        else
+        {
+            return "*****";
+        }
+    }
+    public float GetHp(int level) { return _hp * StateMultiple(level); }
+    public float GetAtk(int level) { return _atk * StateMultiple(level); }
+    public float GetDef(int level) { return _def * StateMultiple(level); }    
 }
 public class ShipTableList
 {
@@ -617,7 +651,7 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        EquipManager.RandomEquipDrop(SetType.Alpha, 1);
+        EquipManager.RandomEquipDrop(SetType.Alpha, 20);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수

@@ -2,7 +2,15 @@ namespace EnumTypes
 {
     public enum CombatStateType
     {
-        Hp, Atk, Def, Accuracy, Evade, CritRate, CritDmg, PhysicsDmg, OpticsDmg, ParticleDmg, PlasmaDmg
+        Hp, 
+        Atk, 
+        Def, 
+        CritRate, 
+        CritDmg, 
+        PhysicsDmg, 
+        OpticsDmg, 
+        ParticleDmg, 
+        PlasmaDmg
     }
     public enum IncreaseableStateType
     {
@@ -12,10 +20,6 @@ namespace EnumTypes
         AtkMultiple,
         Def,
         DefMultiple,
-        Accuracy,
-        AccuracyMultiple,
-        Evade,
-        EvadeMultiple,
         CritRate,
         CritDmg,
         PhysicsDmg,
@@ -111,18 +115,6 @@ namespace EnumTypes
                     break;
                 case IncreaseableStateType.DefMultiple:
                     text = $"방어력 + {value:F1}%";
-                    break;
-                case IncreaseableStateType.Accuracy:
-                    text = $"명중률 + {value:F0}";
-                    break;
-                case IncreaseableStateType.AccuracyMultiple:
-                    text = $"명중률 + {value:F1}%";
-                    break;
-                case IncreaseableStateType.Evade:
-                    text = $"회피율 + {value:F0}";
-                    break;
-                case IncreaseableStateType.EvadeMultiple:
-                    text = $"회피율 + {value:F1}%";
                     break;
                 case IncreaseableStateType.CritRate:
                     text = $"치명타 확률 + {value:F1}%";

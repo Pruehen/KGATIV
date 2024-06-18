@@ -71,6 +71,11 @@ public static class JsonDataManager
         UserHaveEquipDataDictionary dataDictionary = jsonCache.UserHaveEquipDataDictionaryCache;
         return dataDictionary._dic[key];
     }
+    public static UserHaveShipData DataLode_UserHaveShipData(int key)
+    {
+        UserHaveShipDataList dataList = jsonCache.UserHaveShipDataListCache;
+        return dataList.list[key];
+    }
     public static UserHaveItemData DataLode_UserHaveItemData(ItemType itemType)
     {
         UserHaveItemDataList dataList = jsonCache.UserHaveItemDataListCache;
