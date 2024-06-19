@@ -1,17 +1,19 @@
-using EnumTypes;
-using System.Collections.Generic;
-
 namespace ViewModel.Extensions
 {
     public static class EquipInfoUIManagerViewModelExtension
     {
-        public static void RefreshVielModel(this EquipInfoUIManagerViewModel vm, string equipUniqeKey)//요청 익스텐션
+        public static void RefreshViewModel(this EquipInfoUIManagerViewModel vm, string equipUniqeKey)//요청 익스텐션
         {            
             kjh.GameLogicManager.Instance.RefreshEquipInfo(equipUniqeKey, vm.OnRefreshViewModel);//콜백 호출
+        }
+        public static void CommandUpgrade(this EquipInfoUIManagerViewModel vm, string equipUniqeKey)
+        {
+            kjh.GameLogicManager.Instance.UpgradeEquip(equipUniqeKey, vm.OnRefreshViewModel);//콜백 호출
         }
 
         public static void OnRefreshViewModel(this EquipInfoUIManagerViewModel vm, UserHaveEquipData equipData)//콜백
         {
+            vm.UniqueKey = equipData._itemUniqueKey;
             vm.TableKey = equipData._equipTableKey;
             vm.Name = equipData.GetName();
             vm.Type = equipData.GetEquipType();

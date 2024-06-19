@@ -7,7 +7,9 @@ using ViewModel.Extensions;
 
 public class EquipInfoUIManager : MonoBehaviour
 {
-    [Header("장비 정보 필드")]
+    [SerializeField] UIManager UIManager;
+
+    [Header("장비 뷰 필드")]
     [SerializeField] TextMeshProUGUI TMP_Name;
     [SerializeField] TextMeshProUGUI TMP_Type;
     [SerializeField] TextMeshProUGUI TMP_MainStateType;
@@ -16,11 +18,11 @@ public class EquipInfoUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_StateField;
     [SerializeField] TextMeshProUGUI TMP_SetEffectField;
     [SerializeField] EquipIcon EquipIcon_ViewIcon;
-    [SerializeField] Button Btn_UnEquip;
-    [SerializeField] Button Btn_DetailInfo;
-    [SerializeField] Button Btn_Equip;
+    [SerializeField] Button Btn_Upgrade;
+    [SerializeField] GameObject Label_MaxLevel;
 
     EquipInfoUIManagerViewModel _vm;
+    string _uniqueKey;
 
     private void OnEnable()
     {
@@ -28,6 +30,7 @@ public class EquipInfoUIManager : MonoBehaviour
         {
             _vm = new EquipInfoUIManagerViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
+            Btn_Upgrade.onClick.AddListener(TryUpgrade);
             //_vm.RegisterEventsOnEnable();            
         }
     }
@@ -36,6 +39,7 @@ public class EquipInfoUIManager : MonoBehaviour
         if (_vm != null)
         {
             //_vm.UnRegisterEventsOnDisable();
+            Btn_Upgrade.onClick.RemoveListener(TryUpgrade);
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
         }
@@ -43,15 +47,27 @@ public class EquipInfoUIManager : MonoBehaviour
 
     public void ViewItemKey(string key)
     {
-        _vm.RefreshVielModel(key);
+        _vm.RefreshViewModel(key);
+    }
+
+    void TryUpgrade()
+    {
+        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(_uniqueKey);
+        UserHaveEquipData equipDataTemp = new UserHaveEquipData(equipData);
+        _vm.CommandUpgrade(_uniqueKey);
+
+        this.UIManager.PopupWdw_UpgradeResult(3, equipDataTemp, equipData);
     }
 
     void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {
+            case nameof(_vm.UniqueKey):
+                _uniqueKey = _vm.UniqueKey;
+                break;
             case nameof(_vm.TableKey):
-                EquipIcon_ViewIcon.SetSprite(_vm.TableKey);
+                EquipIcon_ViewIcon.SetSprite(_vm.TableKey);                
                 break;
             case nameof(_vm.Name):
                 TMP_Name.text = _vm.Name;
@@ -63,8 +79,18 @@ public class EquipInfoUIManager : MonoBehaviour
                 TMP_MainStateType.text = StateType_StateMultipleTable.GetStateText(_vm.MainStateType);
                 break;
             case nameof(_vm.Level):
-                TMP_MainStateValue.text = StateType_StateMultipleTable.GetStateText(_vm.MainStateType, _vm.Level)[1];
+                TMP_MainStateValue.text = $"+{StateType_StateMultipleTable.GetStateText(_vm.MainStateType, _vm.Level + 5)[1]}";
                 TMP_Level.text = $"+{_vm.Level}";
+                if(_vm.Level >= 20)
+                {
+                    Btn_Upgrade.gameObject.SetActive(false);
+                    Label_MaxLevel.SetActive(true);
+                }
+                else
+                {
+                    Btn_Upgrade.gameObject.SetActive(true);
+                    Label_MaxLevel.SetActive(false);
+                }
                 break;
             case nameof(_vm.SubStateList):
                 SetSubStateText(_vm.SubStateList);
@@ -78,7 +104,7 @@ public class EquipInfoUIManager : MonoBehaviour
         foreach (var item in equipStateSets)
         {
             string[] temp = StateType_StateMultipleTable.GetStateText(item._stateType, item._level);
-            text += $" - {temp[0]} {temp[1]}\n";
+            text += $" - {temp[0]} +{temp[1]}\n";
         }
         TMP_StateField.text = text;
     }

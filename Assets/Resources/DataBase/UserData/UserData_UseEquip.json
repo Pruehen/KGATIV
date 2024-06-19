@@ -1,261 +1,1301 @@
 {
   "_dic": {
-    "1718705373_0202": {
-      "_itemUniqueKey": "1718705373_0202",
-      "_equipTableKey": 2,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_11805": {
-      "_itemUniqueKey": "1718705373_11805",
-      "_equipTableKey": 18,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 5,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_2402": {
-      "_itemUniqueKey": "1718705373_2402",
-      "_equipTableKey": 4,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_33005": {
-      "_itemUniqueKey": "1718705373_33005",
-      "_equipTableKey": 30,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 5,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_4502": {
-      "_itemUniqueKey": "1718705373_4502",
-      "_equipTableKey": 5,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_5802": {
-      "_itemUniqueKey": "1718705373_5802",
-      "_equipTableKey": 8,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_62405": {
-      "_itemUniqueKey": "1718705373_62405",
-      "_equipTableKey": 24,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 5,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_73001": {
-      "_itemUniqueKey": "1718705373_73001",
-      "_equipTableKey": 30,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 1,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_81002": {
-      "_itemUniqueKey": "1718705373_81002",
-      "_equipTableKey": 10,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_91002": {
-      "_itemUniqueKey": "1718705373_91002",
-      "_equipTableKey": 10,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_10802": {
-      "_itemUniqueKey": "1718705373_10802",
-      "_equipTableKey": 8,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_11602": {
-      "_itemUniqueKey": "1718705373_11602",
-      "_equipTableKey": 6,
-      "_setType": 0,
-      "_level": 1,
-      "_optimizedLevel": 0,
-      "_mainState": {
-        "_stateType": 2,
-        "_level": 1
-      },
-      "_subStateList": [],
-      "_equipedShipKey": -1
-    },
-    "1718705373_121102": {
-      "_itemUniqueKey": "1718705373_121102",
+    "1718783138_01102": {
+      "_itemUniqueKey": "1718783138_01102",
       "_equipTableKey": 11,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 2,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_13502": {
-      "_itemUniqueKey": "1718705373_13502",
-      "_equipTableKey": 5,
+    "1718783138_11805": {
+      "_itemUniqueKey": "1718783138_11805",
+      "_equipTableKey": 18,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
-        "_stateType": 2,
-        "_level": 1
+        "_stateType": 5,
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_143001": {
-      "_itemUniqueKey": "1718705373_143001",
+    "1718783138_21204": {
+      "_itemUniqueKey": "1718783138_21204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_3002": {
+      "_itemUniqueKey": "1718783138_3002",
+      "_equipTableKey": 0,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_43001": {
+      "_itemUniqueKey": "1718783138_43001",
       "_equipTableKey": 30,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 1,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_15102": {
-      "_itemUniqueKey": "1718705373_15102",
-      "_equipTableKey": 1,
+    "1718783138_518010": {
+      "_itemUniqueKey": "1718783138_518010",
+      "_equipTableKey": 18,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_6802": {
+      "_itemUniqueKey": "1718783138_6802",
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 2,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_163007": {
-      "_itemUniqueKey": "1718705373_163007",
+    "1718783138_71204": {
+      "_itemUniqueKey": "1718783138_71204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_81204": {
+      "_itemUniqueKey": "1718783138_81204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_91102": {
+      "_itemUniqueKey": "1718783138_91102",
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_102401": {
+      "_itemUniqueKey": "1718783138_102401",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_112403": {
+      "_itemUniqueKey": "1718783138_112403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_1218011": {
+      "_itemUniqueKey": "1718783138_1218011",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_13302": {
+      "_itemUniqueKey": "1718783138_13302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_142403": {
+      "_itemUniqueKey": "1718783138_142403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_15602": {
+      "_itemUniqueKey": "1718783138_15602",
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_163005": {
+      "_itemUniqueKey": "1718783138_163005",
       "_equipTableKey": 30,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_1718011": {
+      "_itemUniqueKey": "1718783138_1718011",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_183003": {
+      "_itemUniqueKey": "1718783138_183003",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_19702": {
+      "_itemUniqueKey": "1718783138_19702",
+      "_equipTableKey": 7,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_201204": {
+      "_itemUniqueKey": "1718783138_201204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_21502": {
+      "_itemUniqueKey": "1718783138_21502",
+      "_equipTableKey": 5,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_223003": {
+      "_itemUniqueKey": "1718783138_223003",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_231102": {
+      "_itemUniqueKey": "1718783138_231102",
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_241805": {
+      "_itemUniqueKey": "1718783138_241805",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_25802": {
+      "_itemUniqueKey": "1718783138_25802",
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_262405": {
+      "_itemUniqueKey": "1718783138_262405",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_271204": {
+      "_itemUniqueKey": "1718783138_271204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_281204": {
+      "_itemUniqueKey": "1718783138_281204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_291801": {
+      "_itemUniqueKey": "1718783138_291801",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_301803": {
+      "_itemUniqueKey": "1718783138_301803",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_312403": {
+      "_itemUniqueKey": "1718783138_312403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_32102": {
+      "_itemUniqueKey": "1718783138_32102",
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_333005": {
+      "_itemUniqueKey": "1718783138_333005",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_341803": {
+      "_itemUniqueKey": "1718783138_341803",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_35302": {
+      "_itemUniqueKey": "1718783138_35302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_361204": {
+      "_itemUniqueKey": "1718783138_361204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_3718010": {
+      "_itemUniqueKey": "1718783138_3718010",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_38102": {
+      "_itemUniqueKey": "1718783138_38102",
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_393006": {
+      "_itemUniqueKey": "1718783138_393006",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 6,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_401803": {
+      "_itemUniqueKey": "1718783138_401803",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_411805": {
+      "_itemUniqueKey": "1718783138_411805",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_42902": {
+      "_itemUniqueKey": "1718783138_42902",
+      "_equipTableKey": 9,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_433003": {
+      "_itemUniqueKey": "1718783138_433003",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_441204": {
+      "_itemUniqueKey": "1718783138_441204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_451102": {
+      "_itemUniqueKey": "1718783138_451102",
+      "_equipTableKey": 11,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_461204": {
+      "_itemUniqueKey": "1718783138_461204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_471805": {
+      "_itemUniqueKey": "1718783138_471805",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_482401": {
+      "_itemUniqueKey": "1718783138_482401",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_491805": {
+      "_itemUniqueKey": "1718783138_491805",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_501803": {
+      "_itemUniqueKey": "1718783138_501803",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_512405": {
+      "_itemUniqueKey": "1718783138_512405",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_52302": {
+      "_itemUniqueKey": "1718783138_52302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_533001": {
+      "_itemUniqueKey": "1718783138_533001",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_542405": {
+      "_itemUniqueKey": "1718783138_542405",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_553001": {
+      "_itemUniqueKey": "1718783138_553001",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_5618011": {
+      "_itemUniqueKey": "1718783138_5618011",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_571805": {
+      "_itemUniqueKey": "1718783138_571805",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_581002": {
+      "_itemUniqueKey": "1718783138_581002",
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_593006": {
+      "_itemUniqueKey": "1718783138_593006",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 6,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_603007": {
+      "_itemUniqueKey": "1718783138_603007",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 7,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_171808": {
-      "_itemUniqueKey": "1718705373_171808",
+    "1718783138_61302": {
+      "_itemUniqueKey": "1718783138_61302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_62302": {
+      "_itemUniqueKey": "1718783138_62302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_63102": {
+      "_itemUniqueKey": "1718783138_63102",
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_6418011": {
+      "_itemUniqueKey": "1718783138_6418011",
       "_equipTableKey": 18,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_651002": {
+      "_itemUniqueKey": "1718783138_651002",
+      "_equipTableKey": 10,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_662405": {
+      "_itemUniqueKey": "1718783138_662405",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_673003": {
+      "_itemUniqueKey": "1718783138_673003",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_68502": {
+      "_itemUniqueKey": "1718783138_68502",
+      "_equipTableKey": 5,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_692403": {
+      "_itemUniqueKey": "1718783138_692403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_703006": {
+      "_itemUniqueKey": "1718783138_703006",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 6,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_712401": {
+      "_itemUniqueKey": "1718783138_712401",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_721204": {
+      "_itemUniqueKey": "1718783138_721204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_732403": {
+      "_itemUniqueKey": "1718783138_732403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_741204": {
+      "_itemUniqueKey": "1718783138_741204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_753003": {
+      "_itemUniqueKey": "1718783138_753003",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_761808": {
+      "_itemUniqueKey": "1718783138_761808",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 8,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_181102": {
-      "_itemUniqueKey": "1718705373_181102",
+    "1718783138_772405": {
+      "_itemUniqueKey": "1718783138_772405",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_78602": {
+      "_itemUniqueKey": "1718783138_78602",
+      "_equipTableKey": 6,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_79802": {
+      "_itemUniqueKey": "1718783138_79802",
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_801204": {
+      "_itemUniqueKey": "1718783138_801204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_81202": {
+      "_itemUniqueKey": "1718783138_81202",
+      "_equipTableKey": 2,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_823006": {
+      "_itemUniqueKey": "1718783138_823006",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 6,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_831204": {
+      "_itemUniqueKey": "1718783138_831204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_843001": {
+      "_itemUniqueKey": "1718783138_843001",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_851204": {
+      "_itemUniqueKey": "1718783138_851204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_862401": {
+      "_itemUniqueKey": "1718783138_862401",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_8718011": {
+      "_itemUniqueKey": "1718783138_8718011",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 11,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_88102": {
+      "_itemUniqueKey": "1718783138_88102",
+      "_equipTableKey": 1,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_892403": {
+      "_itemUniqueKey": "1718783138_892403",
+      "_equipTableKey": 24,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 3,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_9018010": {
+      "_itemUniqueKey": "1718783138_9018010",
+      "_equipTableKey": 18,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_911204": {
+      "_itemUniqueKey": "1718783138_911204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_921204": {
+      "_itemUniqueKey": "1718783138_921204",
+      "_equipTableKey": 12,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 4,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_931102": {
+      "_itemUniqueKey": "1718783138_931102",
       "_equipTableKey": 11,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 2,
-        "_level": 1
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1
     },
-    "1718705373_19502": {
-      "_itemUniqueKey": "1718705373_19502",
-      "_equipTableKey": 5,
+    "1718783138_9418010": {
+      "_itemUniqueKey": "1718783138_9418010",
+      "_equipTableKey": 18,
       "_setType": 0,
-      "_level": 1,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 10,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_95302": {
+      "_itemUniqueKey": "1718783138_95302",
+      "_equipTableKey": 3,
+      "_setType": 0,
+      "_level": 0,
       "_optimizedLevel": 0,
       "_mainState": {
         "_stateType": 2,
-        "_level": 1
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_963005": {
+      "_itemUniqueKey": "1718783138_963005",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 5,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_97802": {
+      "_itemUniqueKey": "1718783138_97802",
+      "_equipTableKey": 8,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 2,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_983007": {
+      "_itemUniqueKey": "1718783138_983007",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 7,
+        "_level": 5
+      },
+      "_subStateList": [],
+      "_equipedShipKey": -1
+    },
+    "1718783138_993001": {
+      "_itemUniqueKey": "1718783138_993001",
+      "_equipTableKey": 30,
+      "_setType": 0,
+      "_level": 0,
+      "_optimizedLevel": 0,
+      "_mainState": {
+        "_stateType": 1,
+        "_level": 5
       },
       "_subStateList": [],
       "_equipedShipKey": -1

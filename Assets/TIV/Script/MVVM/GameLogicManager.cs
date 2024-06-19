@@ -1,5 +1,7 @@
+using EnumTypes;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace kjh
 {
@@ -50,6 +52,27 @@ namespace kjh
         {
             UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
             callback.Invoke(equipData);
+        }
+        public void UpgradeEquip(string equipUniqeKey, Action<UserHaveEquipData> callback)
+        {
+            UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
+            equipData.LevelUp(1);
+            callback.Invoke(equipData);
+        }
+
+        public void RefreshUpgradeResult(UserHaveEquipData before, UserHaveEquipData affter, Action<int, int, int, IncreaseableStateType, List<UserHaveEquipData.EquipStateSet>> callback)
+        {
+            int tableKey = affter._equipTableKey;
+            int prelevel = before._level;
+            int affterLevel = affter._level;
+            IncreaseableStateType mainStateType = affter._mainState._stateType;
+            List<UserHaveEquipData.EquipStateSet> subStateList = new List<UserHaveEquipData.EquipStateSet>();
+            Debug.Log($"{before._subStateList.Count} , {affter._subStateList.Count}");
+            for (int i = before._subStateList.Count; i < affter._subStateList.Count; i++)
+            {
+                subStateList.Add(affter._subStateList[i]);
+            }
+            callback.Invoke(tableKey, prelevel, affterLevel, mainStateType, subStateList);
         }
     }
 }

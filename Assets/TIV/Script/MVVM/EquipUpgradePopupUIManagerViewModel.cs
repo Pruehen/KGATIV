@@ -1,30 +1,17 @@
+using EnumTypes;
 using System.Collections.Generic;
 using System.ComponentModel;
-using EnumTypes;
 using static UserHaveEquipData;
-public class EquipInfoUIManagerViewModel
+
+public class EquipUpgradePopupUIManagerViewModel
 {
-    string _uniqueKey;
     int _tableKey;
-    string _name;
-    EquipType _type;
-    IncreaseableStateType _mainStateType;    
-    int _level;
+    int _prelevel;
+    int _affterLevel;
+    IncreaseableStateType _mainStateType;     
 
     List<EquipStateSet> _subStateList = new List<EquipStateSet>();    
 
-    SetType _setType;
-
-    public string UniqueKey
-    {
-        get { return _uniqueKey; }
-        set
-        {
-            if (_uniqueKey == value) return;
-            _uniqueKey = value;
-            OnPropertyChanged(nameof(UniqueKey));
-        }
-    }
     public int TableKey
     {
         get { return _tableKey; }
@@ -35,23 +22,22 @@ public class EquipInfoUIManagerViewModel
             OnPropertyChanged(nameof(TableKey));
         }
     }
-    public string Name
+    public int Prelevel
     {
-        get { return _name; }
+        get { return _prelevel; }
         set
         {
-            if (_name == value) return;
-            _name = value;
-            OnPropertyChanged(nameof(Name));
+            _prelevel = value;
+            OnPropertyChanged(nameof(Prelevel));
         }
     }
-    public EquipType Type
+    public int AffterLevel
     {
-        get { return _type; }
+        get { return _affterLevel; }
         set
         {
-            _type = value;
-            OnPropertyChanged(nameof(Type));
+            _affterLevel = value;
+            OnPropertyChanged(nameof(AffterLevel));
         }
     }
     public IncreaseableStateType MainStateType
@@ -63,15 +49,6 @@ public class EquipInfoUIManagerViewModel
             OnPropertyChanged(nameof(MainStateType));
         }
     }
-    public int Level
-    {
-        get { return _level; }
-        set
-        {
-            _level = value;
-            OnPropertyChanged(nameof(Level));
-        }
-    }
     public List<EquipStateSet> SubStateList
     {
         get { return _subStateList; }
@@ -79,16 +56,6 @@ public class EquipInfoUIManagerViewModel
         {
             _subStateList = value;
             OnPropertyChanged(nameof(SubStateList));
-        }
-    }
-    public SetType SetType
-    {
-        get { return _setType; }
-        set
-        {
-            if (_setType == value) return;
-            _setType = value;
-            OnPropertyChanged(nameof(SetType));
         }
     }
 

@@ -51,10 +51,10 @@ public static class JsonDataManager
         EquipTableList equipTableList = jsonCache.EquipTableListCache;
         return equipTableList.list[key];
     }
-    public static EquipType_PossibleReinforcementOptionsListTable DataLode_EquipType_PROTable(int key)
+    public static EquipType_PossibleReinforcementOptionsListTable DataLode_EquipType_PROTable(EquipType key)
     {
         EquipType_PROListTableList equipTypeList = jsonCache.EquipType_MainableStateListTableListCache;
-        return equipTypeList.list[key];
+        return equipTypeList.list[(int)key];
     }
     public static ShipTable DataLode_ShipTable(int key)
     {

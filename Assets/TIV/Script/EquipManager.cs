@@ -32,11 +32,25 @@ public static class EquipManager
         foreach (EquipTable item in totalTable.list)
         {
             if(item._validSetList.Contains(setType))
-            {
-                validKeyList.Add(item._key);
+            {                
+                if(item._type == EquipType.Weapon)
+                {
+                    ListKeyAdd(validKeyList, item._key, 1);
+                }
+                else
+                {
+                    ListKeyAdd(validKeyList, item._key, 6);
+                }
             }
         }
         return validKeyList;
+    }
+    static void ListKeyAdd(List<int> targetList, int value, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            targetList.Add(value);
+        }
     }
 
     /// <summary>
@@ -68,7 +82,7 @@ public static class EquipManager
     static UserHaveEquipData CreateEquip(int equipTableKey, SetType setType, int createNum)
     {
         EquipTable equipTable = JsonDataManager.DataLode_EquipTable(equipTableKey);
-        EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable((int)equipTable._type);
+        EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable(equipTable._type);
         IncreaseableStateType mainState = stateTeble.GetRandomMainState();
 
         return new UserHaveEquipData(createNum, equipTableKey, setType, mainState);

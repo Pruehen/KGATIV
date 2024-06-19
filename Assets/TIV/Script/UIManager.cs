@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +27,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button[] Btn_EquipInfoOnArray;
     [SerializeField] Button[] Btn_EquipInfoOffArray;
 
+    [Header("장비 강화 결과창 조작")]
+    [SerializeField] GameObject Popup_UpgradeResult;
+    EquipUpgradePopupUIManager _equipUpgradePopupUIManager;
     //-----------------------------------------------------------
 
     private void Awake()
@@ -57,6 +62,8 @@ public class UIManager : MonoBehaviour
                 btn.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
             }
         }
+
+        _equipUpgradePopupUIManager = Popup_UpgradeResult.GetComponent<EquipUpgradePopupUIManager>();
     }
 
     public Action OnShipMenuWdwOn;
@@ -64,9 +71,9 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveWdw_ShipMenu(bool value)
     {
-        Wdw_ShipMenu.SetActive(value);
+        SetActiveWdw(Wdw_ShipMenu, value);
 
-        if(value)
+        if (value)
         {
             OnShipMenuWdwOn?.Invoke();
         }
@@ -76,19 +83,41 @@ public class UIManager : MonoBehaviour
         }
     }
     public void SetActiveWdw_EquipMenu(bool value)
-    {
-        Wdw_EquipMenu.SetActive(value);
+    {        
+        SetActiveWdw(Wdw_EquipMenu, value);
     }
     public void SetActiveWdw_GachaMenu(bool value)
     {
-        Wdw_GachaMenu.SetActive(value);
+        SetActiveWdw(Wdw_GachaMenu, value);
     }
     public void SetActiveWdw_EquipInfo(bool value)
-    {
-        Wdw_EquipInfo.SetActive(value);        
+    {        
+        SetActiveWdw(Wdw_EquipInfo, value);
     }
     public void SetEquipInfo_StringKey(string key)
     {
         _equipInfoUIManager.ViewItemKey(key);
+    }
+    public void PopupWdw_UpgradeResult(float time, UserHaveEquipData before, UserHaveEquipData affter)
+    {
+        PopupWdw(Popup_UpgradeResult, time);
+        _equipUpgradePopupUIManager.ViewResult(before, affter);
+    }
+
+
+    void PopupWdw(GameObject popUpWdw, float popUpTime)
+    {
+        SetActiveWdw(popUpWdw, true);
+        StartCoroutine(SetActiveWdw_Delay(popUpWdw, false, popUpTime));
+    }
+    IEnumerator SetActiveWdw_Delay(GameObject wdw, bool value, float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        SetActiveWdw(wdw, value);
+    }
+
+    void SetActiveWdw(GameObject wdw, bool value)
+    {
+        wdw.SetActive(value);
     }
 }

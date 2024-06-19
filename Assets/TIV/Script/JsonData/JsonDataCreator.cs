@@ -4,6 +4,8 @@ using System.IO;
 using System.Collections.Generic;
 using EnumTypes;
 using System;
+using System.Drawing.Drawing2D;
+using UnityEditor.SceneManagement;
 
 public class ShipTable
 {
@@ -244,43 +246,43 @@ public class StateType_StateMultipleTable
         switch (type)
         {
             case IncreaseableStateType.Hp:
-                _stateTextTemp[1] = $"+{value:F0}";
+                _stateTextTemp[1] = $"{value:F0}";
                 break;
             case IncreaseableStateType.HpMultiple:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.Atk:
-                _stateTextTemp[1] = $"+{value:F0}";
+                _stateTextTemp[1] = $"{value:F0}";
                 break;
             case IncreaseableStateType.AtkMultiple:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.Def:
-                _stateTextTemp[1] = $"+{value:F0}";
+                _stateTextTemp[1] = $"{value:F0}";
                 break;
             case IncreaseableStateType.DefMultiple:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.CritRate:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.CritDmg:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.PhysicsDmg:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.OpticsDmg:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.ParticleDmg:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             case IncreaseableStateType.PlasmaDmg:
-                _stateTextTemp[1] = $"+{value:F1}%";
+                _stateTextTemp[1] = $"{value:F1}%";
                 break;
             default:
-                _stateTextTemp[1] = $"+?";
+                _stateTextTemp[1] = $"???";
                 break;
         }
         return _stateTextTemp;
@@ -439,6 +441,17 @@ public class GachaItemTable
         int randomCode = _dropCodeList[UnityEngine.Random.Range(0, _dropCodeList.Count)];
         return randomCode;
     }
+}
+
+public class SetTypeTable
+{
+    SetType _setTypeKey;
+    SetEffectTable _2SetEffect;
+    SetEffectTable _6SetEffect;
+}
+public class SetEffectTable
+{
+
 }
 
 public class UserHaveShipData
@@ -642,6 +655,8 @@ public class UserHaveEquipData
         _mainState = mainState;
         _subStateList = subStateList;
         _equipedShipKey = equipedShipKey;
+
+        //_mainState.SetValue(_level + 5);
     }
     /// <summary>
     /// 새로운 장비를 얻었을 때 사용하는 생성자
@@ -657,11 +672,32 @@ public class UserHaveEquipData
         _itemUniqueKey = $"{unixTimeSeconds}_{createNum}{equipTableKey}{(int)setType}{(int)mainStateType}";
         _equipTableKey = equipTableKey;
         _setType = setType;
-        _level = 1;
+        _level = 0;
         _optimizedLevel = 0;
-        _mainState = new EquipStateSet(mainStateType, 1);
+        _mainState = new EquipStateSet(mainStateType, _level + 5);
         _subStateList = new List<EquipStateSet>();
         _equipedShipKey = -1;
+    }
+    /// <summary>
+    /// 깊은 복사를 수행하기 위한 생성자
+    /// </summary>
+    /// <param name="userHaveEquipData"></param>
+    public UserHaveEquipData(UserHaveEquipData userHaveEquipData)
+    {
+        _itemUniqueKey = "NULL";
+        _equipTableKey = userHaveEquipData._equipTableKey;
+        _setType = userHaveEquipData._setType;
+        _level = userHaveEquipData._level;
+        _optimizedLevel = userHaveEquipData._optimizedLevel;
+        _mainState = userHaveEquipData._mainState;
+        _subStateList = new List<EquipStateSet>();
+        foreach (var item in userHaveEquipData._subStateList)
+        {
+            _subStateList.Add(item);
+        }
+        _equipedShipKey = userHaveEquipData._equipedShipKey;
+
+        _mainState.SetValue(_level + 5);
     }
     public class EquipStateSet
     {
@@ -672,13 +708,17 @@ public class UserHaveEquipData
             _stateType = stateType;
             _level = level;
         }
-        public void StateUp(int plusValue)
+        public void SetValue(int value)
         {
-            _level += plusValue;
+            _level = value;
         }
         public float GetValue()
         {
             return _level * JsonDataManager.DataLode_StateType_StateMultipleTable(_stateType)._multipleValue;
+        }
+        public int GetLevel()
+        {
+            return _level;
         }
     }
     public List<EquipStateSet> GetAllEquipStateSet()
@@ -701,17 +741,24 @@ public class UserHaveEquipData
     /// </summary>
     /// <param name="plusLevel"></param>
     /// <param name="msg"></param>
-    public void LevelUp(int plusLevel, out string msg)
+    public void LevelUp(int plusLevel)
     {
         if(_level + plusLevel > 20 || plusLevel <= 0)
         {
-            msg = "잘못된 강화 수치";
+            Debug.Log("잘못된 강화 수치");
         }
         else
-        {
-            _level += plusLevel;
-            _mainState.StateUp(plusLevel);
-            msg = $"{plusLevel}+강화 성공";
+        {            
+            for (int i = 0; i < plusLevel; i++)
+            {
+                _level++;
+                if(_level%4 == 0)
+                {
+                    Optimize();
+                }
+            }
+            _mainState.SetValue(_level + 5);
+            Debug.Log("강화 성공");
         }
     }
     /// <summary>
@@ -719,24 +766,15 @@ public class UserHaveEquipData
     /// </summary>
     /// <param name="plusLevel"></param>
     /// <param name="msg"></param>
-    public void Optimize(int plusLevel, out string msg)
+    public void Optimize()
     {
-        if(_optimizedLevel + plusLevel > _level/4 || plusLevel <= 0)
-        {
-            msg = "잘못된 옵티마이즈 수치";
-        }
-        else
-        {
-            _optimizedLevel += plusLevel;
-            for (int i = 0; i < plusLevel; i++)
-            {
-                IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable((int)_equipTableKey).GetRandomSubState();
-                int stateLevel = UnityEngine.Random.Range(3, 6);
-                _subStateList.Add(new EquipStateSet(randomType, stateLevel));
-            }
+        _optimizedLevel++;
+        EquipTable table = JsonDataManager.DataLode_EquipTable(_equipTableKey);
+        IncreaseableStateType randomType = JsonDataManager.DataLode_EquipType_PROTable(table._type).GetRandomSubState();
+        int stateLevel = UnityEngine.Random.Range(3, 6);
+        _subStateList.Add(new EquipStateSet(randomType, stateLevel));
 
-            msg = $"옵티마이즈 {plusLevel}회 성공";
-        }
+        Debug.Log("옵티마이즈 성공");
     }
 
     public string GetName()
@@ -832,7 +870,7 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
+        //EquipManager.RandomEquipDrop(SetType.Alpha, 100);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
