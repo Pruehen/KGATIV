@@ -1,3 +1,5 @@
+using EnumTypes;
+
 namespace ViewModel.Extensions
 {
     public static class ShipMenuUIViewModelExtension
@@ -7,21 +9,21 @@ namespace ViewModel.Extensions
             kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnRefreshViewModel);//콜백 호출
         }
 
-        public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, string[] data, int slotCount)//콜백
+        public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, ShipData shipData)//콜백
         {
-            vm.Name = data[0];
-            vm.Class = data[1];
-            vm.Star = data[2];
-            vm.Hp = data[3];
-            vm.Atk = data[4];
-            vm.Def = data[5];
-            vm.CritRate = data[6];
-            vm.CritDmg = data[7];
-            vm.PhysicsDmg = data[8];
-            vm.OpticsDmg = data[9];
-            vm.ParticleDmg = data[10];
-            vm.PlasmaDmg = data[11];
-            vm.SlotCount = slotCount;
+            vm.Name = shipData.GetName();
+            vm.Class = shipData.GetShipClass();
+            vm.Star = shipData.GetShipStar();
+            vm.Hp = shipData.GetFinalState(CombatStateType.Hp);
+            vm.Atk = shipData.GetFinalState(CombatStateType.Atk);
+            vm.Def = shipData.GetFinalState(CombatStateType.Def);
+            vm.CritRate = shipData.GetFinalState(CombatStateType.CritRate);
+            vm.CritDmg = shipData.GetFinalState(CombatStateType.CritDmg);
+            vm.PhysicsDmg = shipData.GetFinalState(CombatStateType.PhysicsDmg);
+            vm.OpticsDmg = shipData.GetFinalState(CombatStateType.OpticsDmg);
+            vm.ParticleDmg = shipData.GetFinalState(CombatStateType.ParticleDmg);
+            vm.PlasmaDmg = shipData.GetFinalState(CombatStateType.PlasmaDmg);
+            vm.SlotCount = shipData.GetMaxSlot();
         }
 
 

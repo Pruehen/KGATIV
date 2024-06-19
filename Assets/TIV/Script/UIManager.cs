@@ -19,16 +19,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button Btn_GachaMenuOn;
     [SerializeField] Button Btn_GachaMenuOff;
 
-    //-----------------------------------------------------------
+    [Header("장비 정보창 조작")]
+    [SerializeField] GameObject Wdw_EquipInfo;
+    EquipInfoUIManager _equipInfoUIManager;
+    [SerializeField] Button[] Btn_EquipInfoOnArray;
+    [SerializeField] Button[] Btn_EquipInfoOffArray;
 
-    [Header("장비 메뉴 관리")]
-    [SerializeField] GameObject Prefab_EquipIconBtn;
+    //-----------------------------------------------------------
 
     private void Awake()
     {
         SetActiveWdw_ShipMenu(false);
         Btn_ShipMenuOn.onClick.AddListener(() => SetActiveWdw_ShipMenu(true));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_ShipMenu(false));
+        Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
 
         SetActiveWdw_EquipMenu(false);
         Btn_EquipMenuOn.onClick.AddListener(() => SetActiveWdw_EquipMenu(true));
@@ -37,6 +41,22 @@ public class UIManager : MonoBehaviour
         SetActiveWdw_GachaMenu(false);
         Btn_GachaMenuOn.onClick.AddListener(() => SetActiveWdw_GachaMenu(true));
         Btn_GachaMenuOff.onClick.AddListener(() => SetActiveWdw_GachaMenu(false));
+
+        _equipInfoUIManager = Wdw_EquipInfo.GetComponent<EquipInfoUIManager>();
+        if (Btn_EquipInfoOnArray != null && Btn_EquipInfoOnArray.Length > 0)
+        {
+            foreach (Button btn in Btn_EquipInfoOnArray)
+            {
+                btn.onClick.AddListener(() => SetActiveWdw_EquipInfo(true));
+            }
+        }
+        if (Btn_EquipInfoOffArray != null && Btn_EquipInfoOffArray.Length > 0)
+        {
+            foreach (Button btn in Btn_EquipInfoOffArray)
+            {
+                btn.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
+            }
+        }
     }
 
     public Action OnShipMenuWdwOn;
@@ -62,5 +82,13 @@ public class UIManager : MonoBehaviour
     public void SetActiveWdw_GachaMenu(bool value)
     {
         Wdw_GachaMenu.SetActive(value);
+    }
+    public void SetActiveWdw_EquipInfo(bool value)
+    {
+        Wdw_EquipInfo.SetActive(value);        
+    }
+    public void SetEquipInfo_StringKey(string key)
+    {
+        _equipInfoUIManager.ViewItemKey(key);
     }
 }

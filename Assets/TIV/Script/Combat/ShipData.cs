@@ -135,57 +135,57 @@ public class ShipData
     {
         return StateStaticBonusDic[stateType].CurrentState();
     }
-    public string GetFinalStateText(CombatStateType stateType)
-    {
-        float value = GetFinalState(stateType);
-        string text = string.Empty;
+    //public string GetFinalStateText(CombatStateType stateType)
+    //{
+    //    float value = GetFinalState(stateType);
+    //    string text = string.Empty;
 
-        switch (stateType)
-        {
-            case CombatStateType.Hp:
-                text = $"{value:F0}";
-                break;
-            case CombatStateType.Atk:
-                text = $"{value:F0}";
-                break;
-            case CombatStateType.Def:
-                text = $"{value:F0}";
-                break;
-            case CombatStateType.CritRate:
-                text = $"{value:F1}%";
-                break;
-            case CombatStateType.CritDmg:
-                text = $"{value:F1}%";
-                break;
-            case CombatStateType.PhysicsDmg:
-                text = $"{value:F1}%";
-                break;
-            case CombatStateType.OpticsDmg:
-                text = $"{value:F1}%";
-                break;
-            case CombatStateType.ParticleDmg:
-                text = $"{value:F1}%";
-                break;
-            case CombatStateType.PlasmaDmg:
-                text = $"{value:F1}%";
-                break;
-            default:
-                text = "알 수 없음";
-                break;
-        }
-        return text;
-    }
-    public string[] GetAllFinalStateText()
+    //    switch (stateType)
+    //    {
+    //        case CombatStateType.Hp:
+    //            text = $"{value:F0}";
+    //            break;
+    //        case CombatStateType.Atk:
+    //            text = $"{value:F0}";
+    //            break;
+    //        case CombatStateType.Def:
+    //            text = $"{value:F0}";
+    //            break;
+    //        case CombatStateType.CritRate:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        case CombatStateType.CritDmg:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        case CombatStateType.PhysicsDmg:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        case CombatStateType.OpticsDmg:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        case CombatStateType.ParticleDmg:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        case CombatStateType.PlasmaDmg:
+    //            text = $"{value:F1}%";
+    //            break;
+    //        default:
+    //            text = "알 수 없음";
+    //            break;
+    //    }
+    //    return text;
+    //}
+    public string GetName()
     {
-        string[] stringDataArray = new string[12];
-        stringDataArray[0] = _shipTable.GetName();
-        stringDataArray[1] = _shipTable.GetClass();
-        stringDataArray[2] = _shipTable.GetStar();
-        for (int i = 3; i < stringDataArray.Length; i++)
-        {
-            stringDataArray[i] = GetFinalStateText((CombatStateType)i-3);
-        }
-        return stringDataArray;
+        return _shipTable._name;
+    }
+    public int GetShipClass()
+    {
+        return _shipTable._shipClass;
+    }
+    public int GetShipStar()
+    {
+        return _shipTable._star;
     }
     public int GetMaxSlot()
     {

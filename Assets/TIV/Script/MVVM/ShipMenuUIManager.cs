@@ -28,7 +28,6 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] GameObject Wdw_CombatSlot;
     [SerializeField] GameObject Wdw_UtilSlot;
     [SerializeField] GameObject Wdw_EquipList;
-    [SerializeField] GameObject Wdw_EquipInfo;
 
     [Header("함선 정보 필드")]
     [SerializeField] TextMeshProUGUI TMP_Name;
@@ -89,37 +88,37 @@ public class ShipMenuUIManager : MonoBehaviour
                 TMP_Name.text = _vm.Name;
                 break;
             case nameof(_vm.Class):
-                TMP_Class.text = _vm.Class;
+                TMP_Class.text = ShipTable.GetClass(_vm.Class);
                 break;
             case nameof(_vm.Star):
-                TMP_Star.text = _vm.Star;
+                TMP_Star.text = ShipTable.GetStar(_vm.Star);
                 break;
             case nameof(_vm.Hp):
-                TMP_Hp.text = _vm.Hp;
+                TMP_Hp.text = $"{_vm.Hp:F0}";
                 break;
             case nameof(_vm.Atk):
-                TMP_Atk.text = _vm.Atk;
+                TMP_Atk.text = $"{_vm.Atk:F0}";
                 break;
             case nameof(_vm.Def):
-                TMP_Def.text = _vm.Def;
+                TMP_Def.text = $"{_vm.Def:F0}";
                 break;
             case nameof(_vm.CritRate):
-                TMP_CritRate.text = _vm.CritRate;
+                TMP_CritRate.text = $"{_vm.CritRate:F1}";
                 break;
             case nameof(_vm.CritDmg):
-                TMP_CritDmg.text = _vm.CritDmg;
+                TMP_CritDmg.text = $"{_vm.CritDmg:F1}";
                 break;
             case nameof(_vm.PhysicsDmg):
-                TMP_PhysicsDmg.text = _vm.PhysicsDmg;
+                TMP_PhysicsDmg.text = $"{_vm.PhysicsDmg:F1}";
                 break;
             case nameof(_vm.OpticsDmg):
-                TMP_OpticsDmg.text = _vm.OpticsDmg;
+                TMP_OpticsDmg.text = $"{_vm.OpticsDmg:F1}";
                 break;
             case nameof(_vm.ParticleDmg):
-                TMP_ParticleDmg.text = _vm.ParticleDmg;
+                TMP_ParticleDmg.text = $"{_vm.ParticleDmg:F1}";
                 break;
             case nameof(_vm.PlasmaDmg):
-                TMP_PlasmaDmg.text = _vm.PlasmaDmg;
+                TMP_PlasmaDmg.text = $"{_vm.PlasmaDmg:F1}";
                 break;
             case nameof(_vm.SlotCount):
                 SetActive_EquipSlotCount(_vm.SlotCount);
@@ -183,7 +182,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(false);
             Wdw_UtilSlot.SetActive(false);
             Wdw_EquipList.SetActive(false);
-            Wdw_EquipInfo.SetActive(false);
+            this.UIManager.SetActiveWdw_EquipInfo(false);
         }
         else if(wdw == Wdw_CombatSlot)
         {
@@ -191,7 +190,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(true);
             Wdw_UtilSlot.SetActive(false);
             Wdw_EquipList.SetActive(false);
-            Wdw_EquipInfo.SetActive(false);
+            this.UIManager.SetActiveWdw_EquipInfo(false);
         }
         else if(wdw == Wdw_UtilSlot)
         {
@@ -199,7 +198,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(false);
             Wdw_UtilSlot.SetActive(true);
             Wdw_EquipList.SetActive(false);
-            Wdw_EquipInfo.SetActive(false);
+            this.UIManager.SetActiveWdw_EquipInfo(false);
         }
     }
     public void SetActiveEquipListWdw(bool value, EquipType equipType)
@@ -211,9 +210,13 @@ public class ShipMenuUIManager : MonoBehaviour
             SetEquipIconList(equipType);
         }                    
     }
-    public void SetActiveEquipInfoWdw(bool value, string equipDataKey)
+    public void SetActiveEquipInfoWdw(bool value)
     {
-        Wdw_EquipInfo.SetActive(value);
+        this.UIManager.SetActiveWdw_EquipInfo(value);
+    }
+    public void SetEquipInfoData(string key)
+    {
+        this.UIManager.SetEquipInfo_StringKey(key);
     }
 
 
@@ -241,7 +244,10 @@ public class ShipMenuUIManager : MonoBehaviour
                     icon.SetSprite(sprite);
                 }
                 icon.SetIsEquipedLabel(data._equipedShipKey >= 0);
-                icon.SetListener(() => SetActiveEquipInfoWdw(true, data._itemUniqueKey));
+
+                icon.RemoveAllListeners();
+                icon.AddListener(() => SetActiveEquipInfoWdw(true));
+                icon.AddListener(() => SetEquipInfoData(data._itemUniqueKey));
             }
         }
         Vector2 sizeDelta = RectTransform_SCV_Content.sizeDelta;

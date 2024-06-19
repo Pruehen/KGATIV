@@ -3,17 +3,17 @@ using System.ComponentModel;
 public class ShipMenuUIViewModel
 {    
     string _name;
-    string _class;
-    string _star;
-    string _hp;
-    string _atk;
-    string _def;
-    string _critRate;
-    string _critDmg;
-    string _physicsDmg;
-    string _opticsDmg;
-    string _particleDmg;
-    string _plasmaDmg;
+    int _class;
+    int _star;
+    float _hp;
+    float _atk;
+    float _def;
+    float _critRate;
+    float _critDmg;
+    float _physicsDmg;
+    float _opticsDmg;
+    float _particleDmg;
+    float _plasmaDmg;
     int _slotCount;
     public string Name
     {
@@ -25,7 +25,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Name));
         }
     }
-    public string Class
+    public int Class
     {
         get { return _class; }
         set
@@ -35,7 +35,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Class));
         }
     }
-    public string Star
+    public int Star
     {
         get { return _star; }
         set
@@ -45,7 +45,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Star));
         }
     }
-    public string Hp
+    public float Hp
     {
         get { return _hp; }
         set
@@ -55,7 +55,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Hp));
         }
     }
-    public string Atk
+    public float Atk
     {
         get { return _atk; }
         set
@@ -65,7 +65,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Atk));
         }
     }
-    public string Def
+    public float Def
     {
         get { return _def; }
         set
@@ -75,7 +75,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Def));
         }
     }
-    public string CritRate
+    public float CritRate
     {
         get { return _critRate; }
         set
@@ -85,7 +85,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(CritRate));
         }
     }
-    public string CritDmg
+    public float CritDmg
     {
         get { return _critDmg; }
         set
@@ -95,7 +95,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(CritDmg));
         }
     }
-    public string PhysicsDmg
+    public float PhysicsDmg
     {
         get { return _physicsDmg; }
         set
@@ -105,7 +105,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(PhysicsDmg));
         }
     }
-    public string OpticsDmg
+    public float OpticsDmg
     {
         get { return _opticsDmg; }
         set
@@ -115,7 +115,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(OpticsDmg));
         }
     }
-    public string ParticleDmg
+    public float ParticleDmg
     {
         get { return _particleDmg; }
         set
@@ -125,7 +125,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(ParticleDmg));
         }
     }
-    public string PlasmaDmg
+    public float PlasmaDmg
     {
         get { return _plasmaDmg; }
         set

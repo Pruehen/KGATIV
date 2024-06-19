@@ -41,10 +41,15 @@ namespace kjh
             _levelUpCallback -= levelupCallback;
         }
 
-        public void RefreshShipInfo(int requestId, Action<string[], int> callback)
+        public void RefreshShipInfo(int requestId, Action<ShipData> callback)
         {
             ShipData shipData = _shipDatas[requestId];
-            callback.Invoke(shipData.GetAllFinalStateText(), shipData.GetMaxSlot());
+            callback.Invoke(shipData);
+        }
+        public void RefreshEquipInfo(string equipUniqeKey, Action<UserHaveEquipData> callback)
+        {
+            UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
+            callback.Invoke(equipData);
         }
     }
 }

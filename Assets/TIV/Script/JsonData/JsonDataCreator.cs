@@ -32,10 +32,9 @@ public class ShipTable
     {
         return ((level - 1) * 0.13f) + 1;
     }
-    public string GetName() { return _name; }
-    public string GetClass() 
+    public static string GetClass(int shipClass) 
     {
-        switch (_shipClass)
+        switch (shipClass)
         {
             case 0:
                 return "호위함";
@@ -51,9 +50,9 @@ public class ShipTable
                 return "알 수 없음";
         }
     }
-    public string GetStar()
+    public static string GetStar(int star)
     {
-        if (_star == 4)
+        if (star == 4)
         {
             return "****";
         }
@@ -80,7 +79,7 @@ public class ShipTableList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Ship/ShipTable.json";
+        return "/Resources/DataBase/Table/Ship/ShipTable.json";
     }
 }
 
@@ -108,6 +107,25 @@ public class EquipTable
         _slotUsage = slotUsage;
         _spriteName = spriteName;
     }
+
+    public static string GetEquipType(EquipType equipType)
+    {
+        switch (equipType) 
+        {
+            case EquipType.Weapon:
+                return "무기";
+            case EquipType.Armor:
+                return "장갑";
+            case EquipType.Radiator:
+                return "방열기";
+            case EquipType.Reactor:
+                return "반응로";
+            case EquipType.Thruster:
+                return "추진기";
+            default:
+                return "알 수 없음";
+        }
+    }
 }
 public class EquipTableList
 {
@@ -123,7 +141,7 @@ public class EquipTableList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Equip/EquipTeble.json";
+        return "/Resources/DataBase/Table/Equip/EquipTeble.json";
     }
 }
 
@@ -163,7 +181,7 @@ public class WeaponSkillTableList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Equip/WeaponSkillTable.json";
+        return "/Resources/DataBase/Table/Equip/WeaponSkillTable.json";
     }
 }
 public class EquipType_PossibleReinforcementOptionsListTable
@@ -204,7 +222,7 @@ public class EquipType_PROListTableList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Equip/EquipType_PROListTable.json";
+        return "/Resources/DataBase/Table/Equip/EquipType_PROListTable.json";
     }
 }
 
@@ -212,10 +230,92 @@ public class StateType_StateMultipleTable
 {
     public IncreaseableStateType _type;
     public float _multipleValue;
+    static string[] _stateTextTemp = new string[2];
     public StateType_StateMultipleTable(IncreaseableStateType type, float multipleValue)
     {
         _type = type;
         _multipleValue = multipleValue;
+    }
+    public static string[] GetStateText(IncreaseableStateType type, int level)
+    {
+        float value = level * JsonDataManager.DataLode_StateType_StateMultipleTable(type)._multipleValue;
+        _stateTextTemp[0] = GetStateText(type);
+
+        switch (type)
+        {
+            case IncreaseableStateType.Hp:
+                _stateTextTemp[1] = $"+{value:F0}";
+                break;
+            case IncreaseableStateType.HpMultiple:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.Atk:
+                _stateTextTemp[1] = $"+{value:F0}";
+                break;
+            case IncreaseableStateType.AtkMultiple:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.Def:
+                _stateTextTemp[1] = $"+{value:F0}";
+                break;
+            case IncreaseableStateType.DefMultiple:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.CritRate:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.CritDmg:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.PhysicsDmg:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.OpticsDmg:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.ParticleDmg:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            case IncreaseableStateType.PlasmaDmg:
+                _stateTextTemp[1] = $"+{value:F1}%";
+                break;
+            default:
+                _stateTextTemp[1] = $"+?";
+                break;
+        }
+        return _stateTextTemp;
+    }
+    public static string GetStateText(IncreaseableStateType type)
+    {        
+        switch (type)
+        {
+            case IncreaseableStateType.Hp:
+                return "체력";                                
+            case IncreaseableStateType.HpMultiple:
+                return "체력";
+            case IncreaseableStateType.Atk:
+                return "공격력";
+            case IncreaseableStateType.AtkMultiple:
+                return "공격력";
+            case IncreaseableStateType.Def:
+                return "방어력";
+            case IncreaseableStateType.DefMultiple:
+                return "방어력";
+            case IncreaseableStateType.CritRate:
+                return "치명타 확률";
+            case IncreaseableStateType.CritDmg:
+                return "치명타 피해";
+            case IncreaseableStateType.PhysicsDmg:
+                return "물리 피해 보너스";
+            case IncreaseableStateType.OpticsDmg:
+                return "광학 피해 보너스";
+            case IncreaseableStateType.ParticleDmg:
+                return "입자 피해 보너스";
+            case IncreaseableStateType.PlasmaDmg:
+                return "플라즈마 피해 보너스";
+            default:
+                return "알 수 없음";
+        }        
     }
 }
 public class StateType_StateMultipleTableList
@@ -232,7 +332,7 @@ public class StateType_StateMultipleTableList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Value/StateType_StateMultipleTable.json";
+        return "/Resources/DataBase/Table/Value/StateType_StateMultipleTable.json";
     }
 }
 public class GachaTable
@@ -252,7 +352,7 @@ public class GachaTable
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/Table/Value/GachaTable.json";
+        return "/Resources/DataBase/Table/Value/GachaTable.json";
     }
 
     public void TryGacha(int count)
@@ -514,7 +614,7 @@ public class UserHaveShipDataList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/UserData/UserData_UseShip.json";
+        return "/Resources/DataBase/UserData/UserData_UseShip.json";
     }
 }
 
@@ -528,6 +628,8 @@ public class UserHaveEquipData
     public EquipStateSet _mainState;
     public List<EquipStateSet> _subStateList;
     public int _equipedShipKey;
+
+    EquipTable _equipTable;
 
     [JsonConstructor]
     public UserHaveEquipData(string itemUniqueKey, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList, int equipedShipKey)
@@ -636,6 +738,23 @@ public class UserHaveEquipData
             msg = $"옵티마이즈 {plusLevel}회 성공";
         }
     }
+
+    public string GetName()
+    {
+        if(_equipTable == null)
+        {
+            _equipTable = JsonDataManager.DataLode_EquipTable(this._equipTableKey);
+        }
+        return _equipTable._name;
+    }
+    public EquipType GetEquipType()
+    {
+        if (_equipTable == null)
+        {
+            _equipTable = JsonDataManager.DataLode_EquipTable(this._equipTableKey);
+        }
+        return _equipTable._type;
+    }
 }
 public class UserHaveEquipDataDictionary
 {    
@@ -651,7 +770,7 @@ public class UserHaveEquipDataDictionary
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/UserData/UserData_UseEquip.json";
+        return "/Resources/DataBase/UserData/UserData_UseEquip.json";
     }
 }
 public class UserHaveItemData
@@ -694,14 +813,14 @@ public class UserHaveItemDataList
     }
     public static string FilePath()
     {
-        return "/TIV/DataBase/UserData/UserData_Item.json";
+        return "/Resources/DataBase/UserData/UserData_Item.json";
     }
 }
 
 public class JsonDataCreator : MonoBehaviour
 {
     string saveDataFileName = GachaTable.FilePath();
-    string saveFolderPath = "/TIV/DataBase/Table/Value";
+    string saveFolderPath = "/Resources/DataBase/Table/Value";
 
     public GachaTable saveData;
 
@@ -713,7 +832,7 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        EquipManager.RandomEquipDrop(SetType.Alpha, 20);
+        //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
