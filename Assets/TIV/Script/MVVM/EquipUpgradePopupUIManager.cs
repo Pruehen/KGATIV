@@ -75,7 +75,7 @@ public class EquipUpgradePopupUIManager : MonoBehaviour
         string subStateText = string.Empty;
         foreach (var item in _addedSubStateList)
         {
-            subStateText += $"<color=#FFFF00>眠啊 可记!</color>    {GetStateName(item._stateType)} +{GetStateValue(item._stateType, item.GetLevel())}";
+            subStateText += $"<color=#FFFF00>眠啊 可记!</color>    {GetStateName(item._stateType)} +{GetStateValue(item._stateType, item.GetLevel())}\n";
         }
         TMP_AddedSubState.text = subStateText;
     }

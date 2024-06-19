@@ -56,7 +56,7 @@ namespace kjh
         public void UpgradeEquip(string equipUniqeKey, Action<UserHaveEquipData> callback)
         {
             UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
-            equipData.LevelUp(1);
+            equipData.LevelUp(20);
             callback.Invoke(equipData);
         }
 
