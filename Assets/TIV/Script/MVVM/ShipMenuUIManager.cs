@@ -10,6 +10,10 @@ public class ShipMenuUIManager : MonoBehaviour
 {
     [SerializeField] UIManager UIManager;
 
+    [Header("상단 바")]
+    [SerializeField] TextMeshProUGUI TMP_Credit;
+    [SerializeField] TextMeshProUGUI TMP_SuperCredit;
+
     [Header("함선 선택 관리")]
     [SerializeField] Camera Camera_MainCam;
     [SerializeField] Transform Transform_ShipDummyParent;
@@ -74,6 +78,7 @@ public class ShipMenuUIManager : MonoBehaviour
         {
             _vm = new ShipMenuUIViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
+            _vm.RefreshUserItemData();
             //_vm.RegisterEventsOnEnable();            
         }
     }
@@ -152,6 +157,12 @@ public class ShipMenuUIManager : MonoBehaviour
             case nameof(_vm.EquipedRadiatorKey):
                 SetEquipIcon(_vm.EquipedRadiatorKey, Icon_Radiator);
                 break;
+            case nameof(_vm.Credit):
+                TMP_Credit.text = $"{_vm.Credit}";
+                break;
+            case nameof(_vm.SuperCredit):
+                TMP_SuperCredit.text = $"{_vm.SuperCredit}";
+                break;
         }
     }
     void SetEquipIcon(string equipUniqueKey, EquipIcon icon)
@@ -208,7 +219,7 @@ public class ShipMenuUIManager : MonoBehaviour
         {
             _equipIconList.Add(RectTransform_SCV_Content.GetChild(i).GetComponent<EquipIcon>());
         }
-        _activeIconCount = 0;
+        _activeIconCount = 0;        
     }
 
     public void SelectShip(string name, int shipKey)
@@ -217,7 +228,7 @@ public class ShipMenuUIManager : MonoBehaviour
         _transform_CamViewTarget = Transform_ShipDummyParent.Find(name); 
         if(shipKey >= 0)
         {
-            _vm.RefreshVielModel(shipKey);
+            _vm.RefreshShipData(shipKey);
         }
     }
     public void SelectWdw(GameObject wdw)

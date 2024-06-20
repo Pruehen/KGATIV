@@ -4,19 +4,24 @@ namespace ViewModel.Extensions
 {
     public static class ShipMenuUIViewModelExtension
     {
-        public static void RefreshVielModel(this ShipMenuUIViewModel vm, int shipKey)//요청 익스텐션
+        public static void RefreshShipData(this ShipMenuUIViewModel vm, int shipKey)//요청 익스텐션
         {            
-            kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnRefreshViewModel);//콜백 호출
+            kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnChangeShipData);//콜백 호출
         }
         public static void CommandEquip(this ShipMenuUIViewModel vm, string equipUniqeKey, int shipKey)
         {
-            kjh.GameLogicManager.Instance.ShipEquipItem(equipUniqeKey, shipKey, vm.OnRefreshViewModel);//콜백 호출
+            kjh.GameLogicManager.Instance.ShipEquipItem(equipUniqeKey, shipKey, vm.OnChangeShipData);//콜백 호출
         }
         public static void CommandUnEquip(this ShipMenuUIViewModel vm, string equipUniqeKey)
         {
-            kjh.GameLogicManager.Instance.ShipUnEquipItem(equipUniqeKey, vm.OnRefreshViewModel);//콜백 호출
+            kjh.GameLogicManager.Instance.ShipUnEquipItem(equipUniqeKey, vm.OnChangeShipData);//콜백 호출
         }
-        public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, ShipData shipData)//콜백
+        public static void RefreshUserItemData(this ShipMenuUIViewModel vm)//요청 익스텐션
+        {
+            kjh.GameLogicManager.Instance.RefreshUserItem(vm.OnChangeUserItemData);//콜백 호출
+        }
+
+        public static void OnChangeShipData(this ShipMenuUIViewModel vm, ShipData shipData)//콜백
         {
             vm.Name = shipData.GetName();
             vm.Class = shipData.GetShipClass();
@@ -37,7 +42,11 @@ namespace ViewModel.Extensions
             vm.EquipedReactorKey = shipData.GetEquipedReactor();
             vm.EquipedRadiatorKey = shipData.GetEquipedRadiator();
         }
-
+        public static void OnChangeUserItemData(this ShipMenuUIViewModel vm, long credit, long superCredit)//콜백
+        {
+            vm.Credit = credit;
+            vm.SuperCredit = superCredit;
+        }
 
         //public static void RegisterEventsOnEnable(this ShipMenuUIViewModel vm)
         //{

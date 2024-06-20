@@ -49,6 +49,13 @@ namespace kjh
             shipData.AllDataUpdate();
             callback.Invoke(shipData);
         }
+        public void RefreshUserItem(Action<long, long> callback)
+        {
+            long credit = JsonDataManager.DataLode_UserHaveItemData(ItemType.Credit)._value;
+            long superCredit = JsonDataManager.DataLode_UserHaveItemData(ItemType.SuperCredit)._value;
+            callback.Invoke(credit, superCredit);
+        }
+
         public void ShipEquipItem(string equipUniqeKey, int shipKey, Action<ShipData> callback)
         {            
             UserHaveShipData shipDataOrigin = JsonDataManager.DataLode_UserHaveShipData(shipKey);

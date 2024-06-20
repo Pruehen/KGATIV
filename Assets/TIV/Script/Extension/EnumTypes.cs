@@ -54,10 +54,8 @@ namespace EnumTypes
     }
     public enum ItemType
     {
-        EnergyCredit,
+        Credit,
         SuperCredit,
-        MetaMaterial,
-        ReserchSample,
         Fuel
     }
     public enum GachaItemType

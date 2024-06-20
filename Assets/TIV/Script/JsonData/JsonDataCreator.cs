@@ -881,19 +881,19 @@ public class UserHaveEquipDataDictionary
 public class UserHaveItemData
 {
     public ItemType _key;
-    public int _value;
+    public long _value;
 
-    public UserHaveItemData(ItemType key, int value)
+    public UserHaveItemData(ItemType key, long value)
     {
         _key = key;
         _value = value;        
     }
 
-    public void AddItem(int value)
+    public void AddItem(long value)
     {
         _value += value;
     }
-    public bool TryUseItem(int value)
+    public bool TryUseItem(long value)
     {
         if(_value - value < 0)
             return false;

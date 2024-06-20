@@ -59,7 +59,7 @@
       "_projectileVelocity": 0.0,
       "_halfDistance": 1000.0,
       "_canIntercept": true
-    }
+    },
     {
       "_key": 6,
       "_weaponProjectileType": 2,
@@ -69,7 +69,7 @@
       "_projectileVelocity": 2100.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
-    }
+    },
     {
       "_key": 7,
       "_weaponProjectileType": 2,
@@ -79,7 +79,7 @@
       "_projectileVelocity": 2700.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
-    }
+    },
     {
       "_key": 8,
       "_weaponProjectileType": 2,
@@ -89,7 +89,7 @@
       "_projectileVelocity": 3300.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
-    }
+    },
     {
       "_key": 9,
       "_weaponProjectileType": 3,
@@ -99,7 +99,7 @@
       "_projectileVelocity": 0.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
-    }
+    },
     {
       "_key": 10,
       "_weaponProjectileType": 3,
@@ -109,7 +109,7 @@
       "_projectileVelocity": 0.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
-    }
+    },
     {
       "_key": 11,
       "_weaponProjectileType": 3,
