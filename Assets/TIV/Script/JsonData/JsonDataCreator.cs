@@ -4,8 +4,6 @@ using System.IO;
 using System.Collections.Generic;
 using EnumTypes;
 using System;
-using System.Drawing.Drawing2D;
-using UnityEditor.SceneManagement;
 
 public class ShipTable
 {
@@ -526,7 +524,7 @@ public class UserHaveShipData
                 }
                 else
                 {                    
-                    Debug.Log("전투 장비 슬롯이 가득 찼습니다.");
+                    Debug.Log("수용량을 초과하거나 장비를 더 이상 장착할 수 없습니다");
                     return false;
                 }
         }        
@@ -535,7 +533,7 @@ public class UserHaveShipData
     {
         if (userEquipKey == null || userEquipKey == string.Empty)
         {
-            Debug.LogError("장착 해제할 장비의 키가 없습니다.");
+            //Debug.LogError("장착 해제할 장비의 키가 없습니다.");
             return;
         }
 
@@ -572,7 +570,7 @@ public class UserHaveShipData
         EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
         int itemOccupiedSlot = table._slotUsage;
 
-        return (slotAvailability >= itemOccupiedSlot);
+        return (slotAvailability >= itemOccupiedSlot && _combatSlotItemKeyList.Count < 5);
     }
     int GetSlotAvailability()
     {

@@ -43,7 +43,11 @@
       "_thrusterSlotItemKey": "",
       "_reactorSlotItemKey": "",
       "_radiatorSlotItemKey": "",
-      "_combatSlotItemKeyList": []
+      "_combatSlotItemKeyList": [
+        "1718783138_01102",
+        "1718783138_3002",
+        "1718783138_6802"
+      ]
     }
   ]
 }
