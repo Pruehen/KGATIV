@@ -15,7 +15,7 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_SuperCredit;
 
     [Header("함선 선택 관리")]
-    [SerializeField] Camera Camera_MainCam;
+    [SerializeField] Camera Camera_RotateCam;
     [SerializeField] Transform Transform_ShipDummyParent;
     [SerializeField] Button Btn_SelectShip_4F1;
     [SerializeField] Button Btn_SelectShip_4D1;
@@ -389,6 +389,7 @@ public class ShipMenuUIManager : MonoBehaviour
     {
         if (_transform_CamViewTarget != null)
         {
+            Camera_RotateCam.gameObject.SetActive(true);
             // 현재 프레임의 회전 각도 갱신
             currentAngle += 10 * Time.deltaTime;
             if (currentAngle >= 360.0f)
@@ -409,9 +410,13 @@ public class ShipMenuUIManager : MonoBehaviour
             // 타겟 위치를 기준으로 오프셋 적용
             Vector3 targetPos = _transform_CamViewTarget.position + offSet;
 
-            //Camera_MainCam.transform.position = Vector3.Lerp(Camera_MainCam.transform.position, targetPos, Time.deltaTime * 5);
-            Camera_MainCam.transform.position = targetPos;
-            Camera_MainCam.transform.LookAt(_transform_CamViewTarget);
+            //Camera_RotateCam.transform.position = Vector3.Lerp(Camera_RotateCam.transform.position, targetPos, Time.deltaTime * 5);
+            Camera_RotateCam.transform.position = targetPos;
+            Camera_RotateCam.transform.LookAt(_transform_CamViewTarget);
+        }
+        else
+        {
+            Camera_RotateCam.gameObject.SetActive(false);
         }
     }
 }

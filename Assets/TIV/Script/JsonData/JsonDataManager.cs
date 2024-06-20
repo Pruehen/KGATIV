@@ -79,9 +79,9 @@ public static class JsonDataManager
         StateType_StateMultipleTableList tableList = jsonCache.StateType_StateMultipleTableListCache;
         return tableList.list[(int)key];
     }
-    public static SetEffectTable DataLode_SetEffectTable(SetType key)
+    public static EquipSetTable DataLode_SetEffectTable(SetType key)
     {
-        SetEffectTableList tableList = jsonCache.SetEffectTableListCache;
+        EquipSetTableList tableList = jsonCache.EquipSetTableListCache;
         return tableList.list[(int)key];
     }
     public static UserHaveEquipData DataLode_UserHaveEquipData(string key)
@@ -165,16 +165,28 @@ public class JsonCache
             return _stateType_StateMultipleTableListCache;
         }
     }
-    SetEffectTableList _setEffectTableList;
-    public SetEffectTableList SetEffectTableListCache
+    EquipSetTableList _equipSetTableList;
+    public EquipSetTableList EquipSetTableListCache
     {
         get
         {
-            if (_setEffectTableList == null)
+            if (_equipSetTableList == null)
             {
-                _setEffectTableList = JsonDataManager.DataTableListLoad<SetEffectTableList>(SetEffectTableList.FilePath());
+                _equipSetTableList = JsonDataManager.DataTableListLoad<EquipSetTableList>(EquipSetTableList.FilePath());
             }
-            return _setEffectTableList;
+            return _equipSetTableList;
+        }
+    }
+    BuffValueTableDictionary _buffValueTableDictionaryCache;
+    public BuffValueTableDictionary BuffValueTableDictionaryCache
+    {
+        get
+        {
+            if (_buffValueTableDictionaryCache == null)
+            {
+                _buffValueTableDictionaryCache = JsonDataManager.DataTableListLoad<BuffValueTableDictionary>(BuffValueTableDictionary.FilePath());
+            }
+            return _buffValueTableDictionaryCache;
         }
     }
 

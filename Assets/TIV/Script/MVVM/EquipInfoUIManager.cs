@@ -119,7 +119,7 @@ public class EquipInfoUIManager : MonoBehaviour
     }
     void Set_SetEffectText(SetType setType)
     {
-        SetEffectTable table = JsonDataManager.DataLode_SetEffectTable(setType);
+        EquipSetTable table = JsonDataManager.DataLode_SetEffectTable(setType);
         TMP_SetEffectField.text = $"{table._setEffectName}\n{table._setEffectText}";
     }
 }

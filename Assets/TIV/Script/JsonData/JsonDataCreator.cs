@@ -144,39 +144,56 @@ public class EquipTableList
         return "/Resources/DataBase/Table/Equip/EquipTeble.json";
     }
 }
-public class SetEffectTable
+public class EquipSetTable
 {
     public SetType _setTypeKey;
     public string _setEffectName;
     public string _setEffectText;
-    public List<float> _2SetEffectValueList = new List<float>();
-    public List<float> _6SetEffectValueList = new List<float>();
+    public string _Set2EffectKey;
+    public string _Set6EffectKey;
 
     [JsonConstructor]
-    public SetEffectTable(SetType setTypeKey, string setEffectName, string setEffectText, List<float> _2SetEffectValueList, List<float> _6SetEffectValueList)
+    public EquipSetTable(SetType setTypeKey, string setEffectName, string setEffectText,  string set2EffectKey, string set6EffectKey)
     {
         _setTypeKey = setTypeKey;
         _setEffectName = setEffectName;
         _setEffectText = setEffectText;
-        this._2SetEffectValueList = _2SetEffectValueList;
-        this._6SetEffectValueList = _6SetEffectValueList;
+        _Set2EffectKey = set2EffectKey;
+        _Set6EffectKey = set6EffectKey;
     }
 }
-public class SetEffectTableList
+public class EquipSetTableList
 {
-    public List<SetEffectTable> list = new List<SetEffectTable>();
+    public List<EquipSetTable> list = new List<EquipSetTable>();
     [JsonConstructor]
-    public SetEffectTableList(List<SetEffectTable> list)
+    public EquipSetTableList(List<EquipSetTable> list)
     {
         this.list = list;
     }
-    public SetEffectTableList()
+    public EquipSetTableList()
     {
-        list = new List<SetEffectTable>();
+        list = new List<EquipSetTable>();
     }
     public static string FilePath()
     {
-        return "/Resources/DataBase/Table/Equip/SetEffectTable.json";
+        return "/Resources/DataBase/Table/Equip/EquipSetTable.json";
+    }
+}
+public class BuffValueTableDictionary
+{
+    public Dictionary<string, List<float>> _dic = new Dictionary<string, List<float>>();
+    [JsonConstructor]
+    public BuffValueTableDictionary(Dictionary<string, List<float>> dic)
+    {
+        _dic = dic;
+    }
+    public BuffValueTableDictionary()
+    {
+        _dic = new Dictionary<string, List<float>>();
+    }
+    public static string FilePath()
+    {
+        return "/Resources/DataBase/Table/Value/BuffValueTable.json";
     }
 }
 
@@ -937,11 +954,7 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        EquipManager.RandomEquipDrop(SetType.Beta, 20);
-        EquipManager.RandomEquipDrop(SetType.Gamma, 20);
-        EquipManager.RandomEquipDrop(SetType.Delta, 20);
-        EquipManager.RandomEquipDrop(SetType.Epsilon, 20);
-        EquipManager.RandomEquipDrop(SetType.Zeta, 20);
+        //EquipManager.RandomEquipDrop(SetType.Beta, 20);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
