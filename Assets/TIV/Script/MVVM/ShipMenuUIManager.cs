@@ -55,6 +55,8 @@ public class ShipMenuUIManager : MonoBehaviour
 
     [Header("장비 리스트 필드")]
     [SerializeField] RectTransform RectTransform_SCV_Content;
+    [SerializeField] Button Btn_EquipSelected;
+    [SerializeField] Button Btn_UnEquipSelected;
     List<EquipIcon> _equipIconList;
     int _activeIconCount;
     EquipType _viewEquipType;
@@ -144,6 +146,9 @@ public class ShipMenuUIManager : MonoBehaviour
         Btn_EquipReactor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Reactor));
         Btn_EquipEngine.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Thruster));
 
+        //Btn_EquipSelected.onClick.AddListener();
+        //Btn_UnEquipSelected.onClick.AddListener();
+
         UIManager.OnShipMenuWdwOn += () => SelectShip("4F1", 0);
         UIManager.OnShipMenuWdwOn += () => SelectWdw(Wdw_Info);
         UIManager.OnShipMenuWdwOff += () => SelectShip("null", -1);
@@ -155,16 +160,6 @@ public class ShipMenuUIManager : MonoBehaviour
         }
         _activeIconCount = 0;
     }
-    //public void RegisterValueChangeCallback(Action<string[]> valueChangeCallback)
-    //{
-    //    _valueChangeCallback += valueChangeCallback;
-    //}
-
-    //public void UnRegisterValueChangeCallback(Action<string[]> valueChangeCallback)
-    //{
-    //    _valueChangeCallback -= valueChangeCallback;
-    //}
-
 
     public void SelectShip(string name, int shipKey)
     {
@@ -218,8 +213,6 @@ public class ShipMenuUIManager : MonoBehaviour
     {
         this.UIManager.SetEquipInfo_StringKey(key);
     }
-
-
     void SetEquipIconList(EquipType equipType)
     {
         for (int i = 0; i < _activeIconCount; i++)
@@ -273,6 +266,28 @@ public class ShipMenuUIManager : MonoBehaviour
             }
         }
     }
+    public void SetActive_EquipSelectedBtns(string selectedEquipUniqueKey)
+    {
+        if(selectedEquipUniqueKey == null || selectedEquipUniqueKey == string.Empty)//장비를 선택하지 않은 경우
+        {
+            Btn_EquipSelected.gameObject.SetActive(false);
+            Btn_UnEquipSelected.gameObject.SetActive(false);
+            return;
+        }
+
+        UserHaveEquipData data = JsonDataManager.DataLode_UserHaveEquipData(selectedEquipUniqueKey);
+        if(data._equipedShipKey == -1)//선택한 장비가 장착되어있지 않은 경우
+        {
+            Btn_EquipSelected.gameObject.SetActive(true);
+            Btn_UnEquipSelected.gameObject.SetActive(false);
+        }
+        else//선택한 장비가 이미 장착되어있는 경우
+        {
+            Btn_EquipSelected.gameObject.SetActive(true);
+            Btn_UnEquipSelected.gameObject.SetActive(true);
+        }
+    }
+
 
     private void LateUpdate()
     {
