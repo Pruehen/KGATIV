@@ -19,6 +19,7 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] Button Btn_SelectShip_4B1;
     [SerializeField] Button Btn_SelectShip_5T1;
     Transform _transform_CamViewTarget = null;
+    int _selectedShip = -1;
 
     [Header("함선 메뉴 관리")]
     [SerializeField] Button Btn_Info;    
@@ -52,6 +53,9 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] Button Btn_EquipEngine;
     [SerializeField] Button Btn_EquipReactor;
     [SerializeField] Button Btn_EquipRadiator;
+    [SerializeField] EquipIcon Icon_Engine;
+    [SerializeField] EquipIcon Icon_Reactor;
+    [SerializeField] EquipIcon Icon_Radiator;
 
     [Header("장비 리스트 필드")]
     [SerializeField] RectTransform RectTransform_SCV_Content;
@@ -125,9 +129,31 @@ public class ShipMenuUIManager : MonoBehaviour
             case nameof(_vm.SlotCount):
                 SetActive_EquipSlotCount(_vm.SlotCount);
                 break;
+            case nameof(_vm.EquipedCombatKeyList):
+                break;
+            case nameof(_vm.EquipedEngineKey):
+                IconSpriteSet(_vm.EquipedEngineKey, Icon_Engine);
+                break;
+            case nameof(_vm.EquipedReactorKey):
+                IconSpriteSet(_vm.EquipedReactorKey, Icon_Reactor);
+                break;
+            case nameof(_vm.EquipedRadiatorKey):
+                IconSpriteSet(_vm.EquipedRadiatorKey, Icon_Radiator);
+                break;
         }
     }
-
+    void IconSpriteSet(string key, EquipIcon icon)
+    {
+        if (key == null || key == string.Empty)
+        {
+            icon.SetSprite(-1);
+        }
+        else
+        {
+            int equipTableKey = JsonDataManager.DataLode_UserHaveEquipData(key)._equipTableKey;
+            icon.SetSprite(equipTableKey);
+        }
+    }
     private void Awake()
     {
         Btn_SelectShip_4F1.onClick.AddListener(() => SelectShip("4F1", 0));
@@ -146,8 +172,8 @@ public class ShipMenuUIManager : MonoBehaviour
         Btn_EquipReactor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Reactor));
         Btn_EquipEngine.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Thruster));
 
-        //Btn_EquipSelected.onClick.AddListener();
-        //Btn_UnEquipSelected.onClick.AddListener();
+        Btn_EquipSelected.onClick.AddListener(TryEquip_OnBtn_EquipSelectedClick);
+        Btn_UnEquipSelected.onClick.AddListener(UnEquip_OnBtn_UnEquipSelectedClick);
 
         UIManager.OnShipMenuWdwOn += () => SelectShip("4F1", 0);
         UIManager.OnShipMenuWdwOn += () => SelectWdw(Wdw_Info);
@@ -163,6 +189,7 @@ public class ShipMenuUIManager : MonoBehaviour
 
     public void SelectShip(string name, int shipKey)
     {
+        _selectedShip = shipKey;
         _transform_CamViewTarget = Transform_ShipDummyParent.Find(name); 
         if(shipKey >= 0)
         {
@@ -177,7 +204,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(false);
             Wdw_UtilSlot.SetActive(false);
             Wdw_EquipList.SetActive(false);
-            this.UIManager.SetActiveWdw_EquipInfo(false);
+            SetActiveEquipInfoWdw(false);
         }
         else if(wdw == Wdw_CombatSlot)
         {
@@ -185,7 +212,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(true);
             Wdw_UtilSlot.SetActive(false);
             Wdw_EquipList.SetActive(false);
-            this.UIManager.SetActiveWdw_EquipInfo(false);
+            SetActiveEquipInfoWdw(false);
         }
         else if(wdw == Wdw_UtilSlot)
         {
@@ -193,7 +220,7 @@ public class ShipMenuUIManager : MonoBehaviour
             Wdw_CombatSlot.SetActive(false);
             Wdw_UtilSlot.SetActive(true);
             Wdw_EquipList.SetActive(false);
-            this.UIManager.SetActiveWdw_EquipInfo(false);
+            SetActiveEquipInfoWdw(false);
         }
     }
     public void SetActiveEquipListWdw(bool value, EquipType equipType)
@@ -203,18 +230,27 @@ public class ShipMenuUIManager : MonoBehaviour
         {
             _viewEquipType = equipType;
             SetEquipIconList(equipType);
+
+            string equipedItemKey = JsonDataManager.DataLode_UserHaveShipData(_selectedShip).GetUtilEquipedItemKey(equipType);
+            if (equipedItemKey != null && equipedItemKey != string.Empty)
+            {
+                SetActiveEquipInfoWdw(true);
+                SetEquipInfoData(equipedItemKey);
+            }
         }                    
     }
-    public void SetActiveEquipInfoWdw(bool value)
+    void SetActiveEquipInfoWdw(bool value)
     {
         this.UIManager.SetActiveWdw_EquipInfo(value);
     }
-    public void SetEquipInfoData(string key)
+    void SetEquipInfoData(string key)
     {
         this.UIManager.SetEquipInfo_StringKey(key);
-    }
+        SetActive_EquipSelectedBtns(key);
+    }    
     void SetEquipIconList(EquipType equipType)
     {
+        _viewEquipType = equipType;
         for (int i = 0; i < _activeIconCount; i++)
         {
             _equipIconList[i].gameObject.SetActive(false);            
@@ -266,7 +302,7 @@ public class ShipMenuUIManager : MonoBehaviour
             }
         }
     }
-    public void SetActive_EquipSelectedBtns(string selectedEquipUniqueKey)
+    void SetActive_EquipSelectedBtns(string selectedEquipUniqueKey)
     {
         if(selectedEquipUniqueKey == null || selectedEquipUniqueKey == string.Empty)//장비를 선택하지 않은 경우
         {
@@ -287,7 +323,20 @@ public class ShipMenuUIManager : MonoBehaviour
             Btn_UnEquipSelected.gameObject.SetActive(true);
         }
     }
-
+    void TryEquip_OnBtn_EquipSelectedClick()
+    {
+        string key = this.UIManager.GetEquipInfo_StringKey();
+        _vm.CommandEquip(key, _selectedShip);
+        SetEquipIconList(_viewEquipType);
+        SetActive_EquipSelectedBtns(key);
+    }
+    void UnEquip_OnBtn_UnEquipSelectedClick()
+    {
+        string key = this.UIManager.GetEquipInfo_StringKey();
+        _vm.CommandUnEquip(key);
+        SetEquipIconList(_viewEquipType);
+        SetActive_EquipSelectedBtns(key);
+    }
 
     private void LateUpdate()
     {

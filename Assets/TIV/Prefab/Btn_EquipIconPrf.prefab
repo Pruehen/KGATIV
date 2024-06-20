@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 1349025947885300413}
   - component: {fileID: 6153029396881992108}
   m_Layer: 5
-  m_Name: EquipIconPrf
+  m_Name: Btn_EquipIconPrf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -424,6 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5306f6a75396fd44b725bf8a301a343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button: {fileID: 1349025947885300413}
+  button: {fileID: 1349025947885300413}
   IsEquipedLabel: {fileID: 6618483933712837462}
   Image: {fileID: 8523082651176982671}

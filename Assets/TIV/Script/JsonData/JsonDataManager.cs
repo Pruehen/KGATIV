@@ -181,6 +181,7 @@ public class JsonCache
             if (_userHaveEquipDataDictionaryCache == null)
             {
                 _userHaveEquipDataDictionaryCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataDictionary>(UserHaveEquipDataDictionary.FilePath());
+                _userHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
             }
             return _userHaveEquipDataDictionaryCache;
         }
@@ -197,6 +198,4 @@ public class JsonCache
             return _userHaveShipDataListCache;
         }
     }
-
-
 }

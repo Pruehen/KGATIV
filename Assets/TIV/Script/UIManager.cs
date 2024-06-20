@@ -98,6 +98,11 @@ public class UIManager : MonoBehaviour
     {
         _equipInfoUIManager.ViewItemKey(key);
     }
+    public string GetEquipInfo_StringKey()
+    {
+        return _equipInfoUIManager.UniqueKey;
+    }
+
     public void PopupWdw_UpgradeResult(float time, UserHaveEquipData before, UserHaveEquipData affter)
     {
         PopupWdw(Popup_UpgradeResult, time);

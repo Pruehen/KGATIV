@@ -29,7 +29,7 @@ public class State
     /// <param name="value"></param>
     public void ChangePercentageState(float value)
     {
-        _stateMultiplier += value;
+        _stateMultiplier += value * 0.01f;
     }
     public float CurrentState()
     {
@@ -59,7 +59,7 @@ public class ShipData
 
         AllDataUpdate();
     }
-    void AllDataUpdate()
+    public void AllDataUpdate()
     {
         int level = _shipData._level;
 
@@ -135,46 +135,6 @@ public class ShipData
     {
         return StateStaticBonusDic[stateType].CurrentState();
     }
-    //public string GetFinalStateText(CombatStateType stateType)
-    //{
-    //    float value = GetFinalState(stateType);
-    //    string text = string.Empty;
-
-    //    switch (stateType)
-    //    {
-    //        case CombatStateType.Hp:
-    //            text = $"{value:F0}";
-    //            break;
-    //        case CombatStateType.Atk:
-    //            text = $"{value:F0}";
-    //            break;
-    //        case CombatStateType.Def:
-    //            text = $"{value:F0}";
-    //            break;
-    //        case CombatStateType.CritRate:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        case CombatStateType.CritDmg:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        case CombatStateType.PhysicsDmg:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        case CombatStateType.OpticsDmg:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        case CombatStateType.ParticleDmg:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        case CombatStateType.PlasmaDmg:
-    //            text = $"{value:F1}%";
-    //            break;
-    //        default:
-    //            text = "알 수 없음";
-    //            break;
-    //    }
-    //    return text;
-    //}
     public string GetName()
     {
         return _shipTable._name;
@@ -190,5 +150,21 @@ public class ShipData
     public int GetMaxSlot()
     {
         return _shipTable._maxCombatSlot;
+    }
+    public List<string> GetEquipedCombatItemList()
+    {
+        return _shipData._combatSlotItemKeyList;
+    }
+    public string GetEquipedEngine()
+    {
+        return _shipData._thrusterSlotItemKey;
+    }
+    public string GetEquipedReactor()
+    {
+        return _shipData._reactorSlotItemKey;
+    }
+    public string GetEquipedRadiator()
+    {
+        return _shipData._radiatorSlotItemKey;
     }
 }

@@ -46,8 +46,39 @@ namespace kjh
         public void RefreshShipInfo(int requestId, Action<ShipData> callback)
         {
             ShipData shipData = _shipDatas[requestId];
+            shipData.AllDataUpdate();
             callback.Invoke(shipData);
         }
+        public void ShipEquipItem(string equipUniqeKey, int shipKey, Action<ShipData> callback)
+        {            
+            UserHaveShipData shipDataOrigin = JsonDataManager.DataLode_UserHaveShipData(shipKey);
+
+            shipDataOrigin.Equip(equipUniqeKey);
+
+            //JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
+
+            ShipData shipData = _shipDatas[shipKey];
+            shipData.AllDataUpdate();
+            callback.Invoke(shipData);
+        }
+        public void ShipUnEquipItem(string equipUniqeKey, Action<ShipData> callback)
+        {
+            int shipKey = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey)._equipedShipKey;
+
+            JsonDataManager.DataLode_UserHaveShipData(shipKey).Unequip(equipUniqeKey);
+
+            //JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
+
+            ShipData shipData = _shipDatas[shipKey];
+            shipData.AllDataUpdate();
+            callback.Invoke(shipData);
+        }
+
+
         public void RefreshEquipInfo(string equipUniqeKey, Action<UserHaveEquipData> callback)
         {
             UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
@@ -60,6 +91,7 @@ namespace kjh
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
             callback.Invoke(equipData);
         }
+
 
         public void RefreshUpgradeResult(UserHaveEquipData before, UserHaveEquipData affter, Action<int, int, int, IncreaseableStateType, List<UserHaveEquipData.EquipStateSet>> callback)
         {

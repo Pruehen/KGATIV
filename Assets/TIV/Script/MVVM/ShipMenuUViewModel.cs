@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 
 public class ShipMenuUIViewModel
@@ -15,6 +16,11 @@ public class ShipMenuUIViewModel
     float _particleDmg;
     float _plasmaDmg;
     int _slotCount;
+    List<string> _equipedCombatKeyList;
+    string _equipedEngineKey;
+    string _equipedReactorKey;
+    string _equipedRadiatorKey;
+
     public string Name
     {
         get { return _name; }
@@ -143,6 +149,45 @@ public class ShipMenuUIViewModel
             if (_slotCount == value) return;
             _slotCount = value;
             OnPropertyChanged(nameof(SlotCount));
+        }
+    }
+    public List<string> EquipedCombatKeyList
+    {
+        get { return _equipedCombatKeyList; }
+        set
+        {            
+            _equipedCombatKeyList = value;
+            OnPropertyChanged(nameof(EquipedCombatKeyList));            
+        }
+    }
+    public string EquipedEngineKey
+    {
+        get { return _equipedEngineKey; }
+        set
+        {
+            if (_equipedEngineKey == value) return;
+            _equipedEngineKey = value;
+            OnPropertyChanged(nameof(EquipedEngineKey));
+        }
+    }
+    public string EquipedReactorKey
+    {
+        get { return _equipedReactorKey; }
+        set
+        {
+            if (_equipedReactorKey == value) return;
+            _equipedReactorKey = value;
+            OnPropertyChanged(nameof(EquipedReactorKey));
+        }
+    }
+    public string EquipedRadiatorKey
+    {
+        get { return _equipedRadiatorKey; }
+        set
+        {
+            if (_equipedRadiatorKey == value) return;
+            _equipedRadiatorKey = value;
+            OnPropertyChanged(nameof(EquipedRadiatorKey));
         }
     }
 

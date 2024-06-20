@@ -8,7 +8,14 @@ namespace ViewModel.Extensions
         {            
             kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnRefreshViewModel);//콜백 호출
         }
-
+        public static void CommandEquip(this ShipMenuUIViewModel vm, string equipUniqeKey, int shipKey)
+        {
+            kjh.GameLogicManager.Instance.ShipEquipItem(equipUniqeKey, shipKey, vm.OnRefreshViewModel);//콜백 호출
+        }
+        public static void CommandUnEquip(this ShipMenuUIViewModel vm, string equipUniqeKey)
+        {
+            kjh.GameLogicManager.Instance.ShipUnEquipItem(equipUniqeKey, vm.OnRefreshViewModel);//콜백 호출
+        }
         public static void OnRefreshViewModel(this ShipMenuUIViewModel vm, ShipData shipData)//콜백
         {
             vm.Name = shipData.GetName();
@@ -24,6 +31,11 @@ namespace ViewModel.Extensions
             vm.ParticleDmg = shipData.GetFinalState(CombatStateType.ParticleDmg);
             vm.PlasmaDmg = shipData.GetFinalState(CombatStateType.PlasmaDmg);
             vm.SlotCount = shipData.GetMaxSlot();
+
+            vm.EquipedCombatKeyList = shipData.GetEquipedCombatItemList();
+            vm.EquipedEngineKey = shipData.GetEquipedEngine();
+            vm.EquipedReactorKey = shipData.GetEquipedReactor();
+            vm.EquipedRadiatorKey = shipData.GetEquipedRadiator();
         }
 
 

@@ -23,6 +23,11 @@ public class EquipInfoUIManager : MonoBehaviour
 
     EquipInfoUIManagerViewModel _vm;
     string _uniqueKey;
+    public string UniqueKey
+    {
+        get { return _uniqueKey; }
+        set { _uniqueKey = value; }
+    }
 
     private void OnEnable()
     {

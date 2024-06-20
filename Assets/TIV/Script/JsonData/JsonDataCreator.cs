@@ -459,13 +459,6 @@ public class UserHaveShipData
     public int _shipTablekey;
     public int _level;
     public bool _isHave;
-    public enum EquipSlotType
-    {
-        Thruster,
-        Reactor,
-        Radiator,
-        Combat
-    }
     public string _thrusterSlotItemKey;
     public string _reactorSlotItemKey;
     public string _radiatorSlotItemKey;
@@ -496,60 +489,78 @@ public class UserHaveShipData
         _combatSlotItemKeyList = new List<string>();
     }
 
-    public bool Equip(EquipSlotType slotType, string userEquipKey)
+    public bool Equip(string userEquipKey)
     {
         UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(userEquipKey);
-        if(equipData._equipedShipKey >= 0)
+        if(equipData._equipedShipKey >= 0)//장착하려는 아이템이 이미 함선에 장착되어 있을 경우
         {
             UserHaveShipData shipData = JsonDataManager.DataLode_UserHaveShipData(equipData._equipedShipKey);
-            shipData.Unequip(slotType, userEquipKey);
+            shipData.Unequip(userEquipKey);
         }
-
-        switch (slotType)
+        
+        switch (equipData.GetEquipType())
         {
-            case EquipSlotType.Thruster:
+            case EquipType.Thruster:
+                Unequip(_thrusterSlotItemKey);
                 _thrusterSlotItemKey = userEquipKey;
+                equipData.Equip(_shipTablekey);
                 return true;                
-            case EquipSlotType.Reactor:
+
+            case EquipType.Reactor:
+                Unequip(_reactorSlotItemKey);
                 _reactorSlotItemKey = userEquipKey;
+                equipData.Equip(_shipTablekey);
                 return true;
-            case EquipSlotType.Radiator:
+
+            case EquipType.Radiator:
+                Unequip(_radiatorSlotItemKey);
                 _radiatorSlotItemKey = userEquipKey;
+                equipData.Equip(_shipTablekey);
                 return true;
-            case EquipSlotType.Combat:
+            default:
                 if(CanEquip_Combat(userEquipKey))
                 {
                     _combatSlotItemKeyList.Add(userEquipKey);
+                    equipData.Equip(_shipTablekey);
                     return true;
                 }
                 else
-                {
+                {                    
+                    Debug.Log("전투 장비 슬롯이 가득 찼습니다.");
                     return false;
                 }
-        }
-        return false;
+        }        
     }
-    public void Unequip(EquipSlotType slotType, string userEquipKey)
+    public void Unequip(string userEquipKey)
     {
-        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(userEquipKey);
-        equipData._equipedShipKey = -1;
-
-        switch (slotType)
+        if (userEquipKey == null || userEquipKey == string.Empty)
         {
-            case EquipSlotType.Thruster:
+            Debug.LogError("장착 해제할 장비의 키가 없습니다.");
+            return;
+        }
+
+        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(userEquipKey);        
+
+        switch (equipData.GetEquipType())
+        {
+            case EquipType.Thruster:
                 _thrusterSlotItemKey = string.Empty;
+                equipData.UnEquip();
                 break;
-            case EquipSlotType.Reactor:
+            case EquipType.Reactor:
                 _reactorSlotItemKey = string.Empty;
+                equipData.UnEquip();
                 break;
-            case EquipSlotType.Radiator:
+            case EquipType.Radiator:
                 _radiatorSlotItemKey = string.Empty;
+                equipData.UnEquip();
                 break;
-            case EquipSlotType.Combat:
+            default:
                 if(_combatSlotItemKeyList.Contains(userEquipKey))
                 {
                     _combatSlotItemKeyList.Remove(userEquipKey);
                 }
+                equipData.UnEquip();
                 break;
         }
     }
@@ -607,6 +618,20 @@ public class UserHaveShipData
         }
 
         return keyList;
+    }
+    public string GetUtilEquipedItemKey(EquipType equipType)
+    {
+        switch (equipType)
+        {
+            case EquipType.Thruster:
+                return _thrusterSlotItemKey;                
+            case EquipType.Reactor:
+                return _reactorSlotItemKey;
+            case EquipType.Radiator:
+                return _radiatorSlotItemKey;
+            default:
+                return null;
+        }
     }
 }
 public class UserHaveShipDataList
@@ -793,6 +818,14 @@ public class UserHaveEquipData
         }
         return _equipTable._type;
     }
+    public void Equip(int shipKey)
+    {
+        _equipedShipKey = shipKey;
+    }
+    public void UnEquip()
+    {
+        _equipedShipKey = -1;
+    }
 }
 public class UserHaveEquipDataDictionary
 {    
@@ -800,11 +833,23 @@ public class UserHaveEquipDataDictionary
     [JsonConstructor]
     public UserHaveEquipDataDictionary(Dictionary<string, UserHaveEquipData> dic)
     {
-        _dic = dic;
+        _dic = dic;        
     }
     public UserHaveEquipDataDictionary()
     {
-        _dic = new Dictionary<string, UserHaveEquipData>();
+        _dic = new Dictionary<string, UserHaveEquipData>();        
+    }
+    public void AllDicItemUpdate_EquipedShipKey()
+    {
+        UserHaveShipDataList shipDataList = JsonDataManager.jsonCache.UserHaveShipDataListCache;
+
+        foreach (UserHaveShipData shipData in shipDataList.list)
+        {
+            foreach (string equipedKey in shipData.GetAllEquipedItemKey())
+            {
+                _dic[equipedKey]._equipedShipKey = shipData._shipTablekey;
+            }
+        }
     }
     public static string FilePath()
     {
