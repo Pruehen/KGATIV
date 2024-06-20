@@ -79,6 +79,11 @@ public static class JsonDataManager
         StateType_StateMultipleTableList tableList = jsonCache.StateType_StateMultipleTableListCache;
         return tableList.list[(int)key];
     }
+    public static SetEffectTable DataLode_SetEffectTable(SetType key)
+    {
+        SetEffectTableList tableList = jsonCache.SetEffectTableListCache;
+        return tableList.list[(int)key];
+    }
     public static UserHaveEquipData DataLode_UserHaveEquipData(string key)
     {
         UserHaveEquipDataDictionary dataDictionary = jsonCache.UserHaveEquipDataDictionaryCache;
@@ -158,6 +163,18 @@ public class JsonCache
                 _stateType_StateMultipleTableListCache = JsonDataManager.DataTableListLoad<StateType_StateMultipleTableList>(StateType_StateMultipleTableList.FilePath());
             }
             return _stateType_StateMultipleTableListCache;
+        }
+    }
+    SetEffectTableList _setEffectTableList;
+    public SetEffectTableList SetEffectTableListCache
+    {
+        get
+        {
+            if (_setEffectTableList == null)
+            {
+                _setEffectTableList = JsonDataManager.DataTableListLoad<SetEffectTableList>(SetEffectTableList.FilePath());
+            }
+            return _setEffectTableList;
         }
     }
 

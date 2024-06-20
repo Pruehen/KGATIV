@@ -1,0 +1,75 @@
+{
+  "list": [
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 알파",
+      "_setEffectText": "    2세트 효과 : 물리 피해 보너스 +18%\n    6세트 효과 : 자신의 체력이 90% 이상일 경우, 물리 피해 보너스 48%만큼 증가",
+      "_2SetEffectValueList": [
+        18.0
+      ],
+      "_6SetEffectValueList": [
+        90.0,
+        48.0
+      ]
+    },
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 베타",
+      "_setEffectText": "    2세트 효과 : 광학 피해 보너스 +18%\n    6세트 효과 : 모든 무기의 쿨타임 30%만큼 감소, 방어력 +48%",
+      "_2SetEffectValueList": [
+        18.0
+      ],
+      "_6SetEffectValueList": [
+        30.0,
+        48.0
+      ]
+    },
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 감마",
+      "_setEffectText": "    2세트 효과 : 입자 피해 보너스 +18%\n    6세트 효과 : 입자 피해를 가한 적의 방어력을 10초동안 60%만큼 감소, 중첩되지 않음",
+      "_2SetEffectValueList": [
+        18.0
+      ],
+      "_6SetEffectValueList": [
+        10.0,
+        60.0
+      ]
+    },
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 델타",
+      "_setEffectText": "    2세트 효과 : 플라즈마 피해 보너스 +18%\n    6세트 효과 : 무기 발사 시마다 플라즈마 피해 15초동안 8%만큼 증가. 최대 10중첩 가능",
+      "_2SetEffectValueList": [
+        18.0
+      ],
+      "_6SetEffectValueList": [
+        15.0,
+        8.0
+      ]
+    },
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 엡실론",
+      "_setEffectText": "    2세트 효과 : 방어력 +24%\n    6세트 효과 : 모든 적의 공격력 20% 감소, 중첩되지 않음",
+      "_2SetEffectValueList": [
+        24.0
+      ],
+      "_6SetEffectValueList": [
+        20.0
+      ]
+    },
+    {
+      "_setTypeKey": 0,
+      "_setEffectName": "전술 알고리즘 제타",
+      "_setEffectText": "    2세트 효과 : 공격력 +24%\n    6세트 효과 : 치명타 확률 +12%, 치명타 피해 +24%",
+      "_2SetEffectValueList": [
+        24.0
+      ],
+      "_6SetEffectValueList": [
+        12.0,
+        24.0
+      ]
+    }
+  ]
+}

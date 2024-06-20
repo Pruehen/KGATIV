@@ -86,7 +86,6 @@ public class EquipInfoUIManagerViewModel
         get { return _setType; }
         set
         {
-            if (_setType == value) return;
             _setType = value;
             OnPropertyChanged(nameof(SetType));
         }

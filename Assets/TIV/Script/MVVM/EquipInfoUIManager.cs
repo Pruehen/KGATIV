@@ -1,3 +1,4 @@
+using EnumTypes;
 using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
@@ -61,7 +62,7 @@ public class EquipInfoUIManager : MonoBehaviour
         UserHaveEquipData equipDataTemp = new UserHaveEquipData(equipData);
         _vm.CommandUpgrade(_uniqueKey);
 
-        this.UIManager.PopupWdw_UpgradeResult(3, equipDataTemp, equipData);
+        this.UIManager.PopupWdw_UpgradeResult(2, equipDataTemp, equipData);
     }
 
     void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -100,6 +101,9 @@ public class EquipInfoUIManager : MonoBehaviour
             case nameof(_vm.SubStateList):
                 SetSubStateText(_vm.SubStateList);
                 break;
+            case nameof(_vm.SetType):
+                Set_SetEffectText(_vm.SetType);
+                break;
         }
     }
 
@@ -112,5 +116,10 @@ public class EquipInfoUIManager : MonoBehaviour
             text += $" - {temp[0]} +{temp[1]}\n";
         }
         TMP_StateField.text = text;
+    }
+    void Set_SetEffectText(SetType setType)
+    {
+        SetEffectTable table = JsonDataManager.DataLode_SetEffectTable(setType);
+        TMP_SetEffectField.text = $"{table._setEffectName}\n{table._setEffectText}";
     }
 }

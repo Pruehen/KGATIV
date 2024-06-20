@@ -144,6 +144,41 @@ public class EquipTableList
         return "/Resources/DataBase/Table/Equip/EquipTeble.json";
     }
 }
+public class SetEffectTable
+{
+    public SetType _setTypeKey;
+    public string _setEffectName;
+    public string _setEffectText;
+    public List<float> _2SetEffectValueList = new List<float>();
+    public List<float> _6SetEffectValueList = new List<float>();
+
+    [JsonConstructor]
+    public SetEffectTable(SetType setTypeKey, string setEffectName, string setEffectText, List<float> _2SetEffectValueList, List<float> _6SetEffectValueList)
+    {
+        _setTypeKey = setTypeKey;
+        _setEffectName = setEffectName;
+        _setEffectText = setEffectText;
+        this._2SetEffectValueList = _2SetEffectValueList;
+        this._6SetEffectValueList = _6SetEffectValueList;
+    }
+}
+public class SetEffectTableList
+{
+    public List<SetEffectTable> list = new List<SetEffectTable>();
+    [JsonConstructor]
+    public SetEffectTableList(List<SetEffectTable> list)
+    {
+        this.list = list;
+    }
+    public SetEffectTableList()
+    {
+        list = new List<SetEffectTable>();
+    }
+    public static string FilePath()
+    {
+        return "/Resources/DataBase/Table/Equip/SetEffectTable.json";
+    }
+}
 
 public class WeaponSkillTable
 {
@@ -439,17 +474,6 @@ public class GachaItemTable
         int randomCode = _dropCodeList[UnityEngine.Random.Range(0, _dropCodeList.Count)];
         return randomCode;
     }
-}
-
-public class SetTypeTable
-{
-    SetType _setTypeKey;
-    SetEffectTable _2SetEffect;
-    SetEffectTable _6SetEffect;
-}
-public class SetEffectTable
-{
-
 }
 
 public class UserHaveShipData
@@ -913,7 +937,11 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        //EquipManager.RandomEquipDrop(SetType.Alpha, 100);
+        EquipManager.RandomEquipDrop(SetType.Beta, 20);
+        EquipManager.RandomEquipDrop(SetType.Gamma, 20);
+        EquipManager.RandomEquipDrop(SetType.Delta, 20);
+        EquipManager.RandomEquipDrop(SetType.Epsilon, 20);
+        EquipManager.RandomEquipDrop(SetType.Zeta, 20);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
