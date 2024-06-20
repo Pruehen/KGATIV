@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using EnumTypes;
 using System;
+using System.Threading.Tasks;
 
 public static class JsonDataManager
 {
@@ -35,15 +36,27 @@ public static class JsonDataManager
             return new T();
         }
     }
-    public static void DataSave<T>(T jsonCacheData, string saveDataFileName)
+    public static void DataSaveCommand<T>(T jsonCacheData, string saveDataFileName)
+    {
+        Task task = DataSaveAsync(jsonCacheData, saveDataFileName);
+
+        task.ContinueWith(t =>
+        {
+            if (t.IsFaulted)
+            {
+                Debug.LogError($"데이터 저장 중 오류 발생: {t.Exception}");
+            }
+        });
+    }
+    static async Task DataSaveAsync<T>(T jsonCacheData, string saveDataFileName)
     {
         string filePath = Application.dataPath + saveDataFileName;
 
         string data = JsonConvert.SerializeObject(jsonCacheData, Formatting.Indented);
 
-        File.WriteAllText(filePath, data);
+        await File.WriteAllTextAsync(filePath, data);
 
-        Debug.Log($"데이터 저장 완료 : {typeof(T).Name}");
+        Debug.Log($"<color=#FFFF00>데이터 저장 완료</color> : {typeof(T).Name}");
     }
 
     public static EquipTable DataLode_EquipTable(int key)

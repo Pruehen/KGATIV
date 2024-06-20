@@ -57,6 +57,7 @@ namespace kjh
         {
             UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
             equipData.LevelUp(20);
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
             callback.Invoke(equipData);
         }
 

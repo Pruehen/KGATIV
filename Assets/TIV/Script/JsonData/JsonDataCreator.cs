@@ -408,8 +408,8 @@ public class GachaTable
                 }
             }
         }
-        JsonDataManager.DataSave(JsonDataManager.jsonCache.UserHaveItemDataListCache, UserHaveItemDataList.FilePath());
-        JsonDataManager.DataSave(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveItemDataListCache, UserHaveItemDataList.FilePath());
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
     }
 }
 public class GachaCodeTable

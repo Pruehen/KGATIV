@@ -71,7 +71,7 @@ public static class EquipManager
             data._dic.Add(newItem._itemUniqueKey, newItem);
         }
 
-        JsonDataManager.DataSave<UserHaveEquipDataDictionary>(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
     }
     /// <summary>
     /// 해당 키 아이템의 메인 스탯을 정한 후 생성해주는 메서드
