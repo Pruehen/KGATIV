@@ -658,6 +658,26 @@ public class UserHaveShipData
 
         return keyList;
     }
+    public List<WeaponSkillTable> GetAllWeaponSkill()
+    {
+        List<WeaponSkillTable> keyList = new List<WeaponSkillTable>();
+        if (_combatSlotItemKeyList != null && _combatSlotItemKeyList.Count != 0)
+        {
+            foreach (string key in _combatSlotItemKeyList)
+            {
+                UserHaveEquipData data = JsonDataManager.DataLode_UserHaveEquipData(key);
+                EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
+                int weaponKey = table._weaponSkillKey;
+                if (weaponKey >= 0)
+                {
+                    WeaponSkillTable skillTable = JsonDataManager.DataLode_WeaponSkillTableList(weaponKey);
+                    keyList.Add(skillTable);
+                }
+            }
+        }
+
+        return keyList;
+    }
     public string GetUtilEquipedItemKey(EquipType equipType)
     {
         switch (equipType)
@@ -954,7 +974,7 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        //EquipManager.RandomEquipDrop(SetType.Beta, 20);
+        //EquipManager.RandomEquipDrop(SetType.Alpha, 100);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수

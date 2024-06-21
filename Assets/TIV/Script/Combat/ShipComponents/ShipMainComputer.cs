@@ -1,26 +1,37 @@
 using UnityEngine;
 
 public class ShipMainComputer : MonoBehaviour
-{
-    ShipEngine shipEngine;
+{    
+    ShipEngine _Engine;
+    ShipFCS _FCS;
     [SerializeField] Vector3 TargetPos;
 
-    private void Awake()
+    bool _isInit = false;
+    public void Init()
     {
-        TryGetComponent(out shipEngine);
+        TryGetComponent(out _Engine);
+        _isInit = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_isInit == false) return;
+
         SetMoveTargetPos(TargetPos);
     }
 
     public void SetMoveTargetPos(Vector3 pos)
     {
-        if(shipEngine != null)
+        if(_Engine != null)
         {
-            shipEngine.SetMoveTargetPos(pos);
+            _Engine.SetMoveTargetPos(pos);
         }
+    }
+
+    
+    void SetTarget()
+    {        
+        //_FCS.SetTarget(target);        
     }
 }

@@ -7,9 +7,9 @@ public class ShipEngine : MonoBehaviour
     Rigidbody _rigidbody;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Init()
     {
-        TryGetComponent(out _rigidbody);
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()

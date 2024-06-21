@@ -8,6 +8,7 @@ public class ShipCombatData : MonoBehaviour
 
     [Header("플레이어 함선일 경우, 해당 함선의 키")]
     [SerializeField] int shipTableKey = -1;
+    public int GetShipTableKey() { return shipTableKey; }
 
     [Header("적 함선일 경우, 체력, 공격력, 방어력")]
     [SerializeField] float hp;

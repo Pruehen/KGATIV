@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 public class ShipMenuUIViewModel
-{    
+{
     string _name;
     int _class;
     int _star;

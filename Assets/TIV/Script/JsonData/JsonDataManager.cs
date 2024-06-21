@@ -69,6 +69,11 @@ public static class JsonDataManager
         EquipType_PROListTableList equipTypeList = jsonCache.EquipType_MainableStateListTableListCache;
         return equipTypeList.list[(int)key];
     }
+    public static WeaponSkillTable DataLode_WeaponSkillTableList(int key)
+    {
+        WeaponSkillTableList weaponTableList = jsonCache.WeaponSkillTableListCache;
+        return weaponTableList.list[key];
+    }
     public static ShipTable DataLode_ShipTable(int key)
     {
         ShipTableList tableList = jsonCache.ShipTableListCache;
@@ -126,6 +131,18 @@ public class JsonCache
                 _equipType_MainableStateListTableListCache = JsonDataManager.DataTableListLoad<EquipType_PROListTableList>(EquipType_PROListTableList.FilePath());
             }
             return _equipType_MainableStateListTableListCache;
+        }
+    }
+    WeaponSkillTableList _weaponSkillTableListCache;
+    public WeaponSkillTableList WeaponSkillTableListCache
+    {
+        get
+        {
+            if (_weaponSkillTableListCache == null)
+            {
+                _weaponSkillTableListCache = JsonDataManager.DataTableListLoad<WeaponSkillTableList>(WeaponSkillTableList.FilePath());
+            }
+            return _weaponSkillTableListCache;
         }
     }
     ShipTableList _shipTableListCache;
