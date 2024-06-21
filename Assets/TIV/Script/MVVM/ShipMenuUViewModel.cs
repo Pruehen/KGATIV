@@ -29,7 +29,6 @@ public class ShipMenuUIViewModel
         get { return _name; }
         set
         {
-            if (_name == value) return;
             _name = value;
             OnPropertyChanged(nameof(Name));
         }
@@ -39,7 +38,6 @@ public class ShipMenuUIViewModel
         get { return _class; }
         set
         {
-            if (_class == value) return;
             _class = value;
             OnPropertyChanged(nameof(Class));
         }
@@ -49,7 +47,6 @@ public class ShipMenuUIViewModel
         get { return _star; }
         set
         {
-            if (_star == value) return;
             _star = value;
             OnPropertyChanged(nameof(Star));
         }
@@ -59,7 +56,6 @@ public class ShipMenuUIViewModel
         get { return _hp; }
         set
         {
-            if (_hp == value) return;
             _hp = value;
             OnPropertyChanged(nameof(Hp));
         }
@@ -69,7 +65,6 @@ public class ShipMenuUIViewModel
         get { return _atk; }
         set
         {
-            if (_atk == value) return;
             _atk = value;
             OnPropertyChanged(nameof(Atk));
         }
@@ -79,7 +74,6 @@ public class ShipMenuUIViewModel
         get { return _def; }
         set
         {
-            if (_def == value) return;
             _def = value;
             OnPropertyChanged(nameof(Def));
         }
@@ -89,7 +83,6 @@ public class ShipMenuUIViewModel
         get { return _critRate; }
         set
         {
-            if (_critRate == value) return;
             _critRate = value;
             OnPropertyChanged(nameof(CritRate));
         }
@@ -99,7 +92,6 @@ public class ShipMenuUIViewModel
         get { return _critDmg; }
         set
         {
-            if (_critDmg == value) return;
             _critDmg = value;
             OnPropertyChanged(nameof(CritDmg));
         }
@@ -109,7 +101,6 @@ public class ShipMenuUIViewModel
         get { return _physicsDmg; }
         set
         {
-            if (_physicsDmg == value) return;
             _physicsDmg = value;
             OnPropertyChanged(nameof(PhysicsDmg));
         }
@@ -119,7 +110,6 @@ public class ShipMenuUIViewModel
         get { return _opticsDmg; }
         set
         {
-            if (_opticsDmg == value) return;
             _opticsDmg = value;
             OnPropertyChanged(nameof(OpticsDmg));
         }
@@ -129,7 +119,6 @@ public class ShipMenuUIViewModel
         get { return _particleDmg; }
         set
         {
-            if (_particleDmg == value) return;
             _particleDmg = value;
             OnPropertyChanged(nameof(ParticleDmg));
         }
@@ -139,7 +128,6 @@ public class ShipMenuUIViewModel
         get { return _plasmaDmg; }
         set
         {
-            if (_plasmaDmg == value) return;
             _plasmaDmg = value;
             OnPropertyChanged(nameof(PlasmaDmg));
         }
@@ -149,7 +137,6 @@ public class ShipMenuUIViewModel
         get { return _slotCount; }
         set
         {
-            if (_slotCount == value) return;
             _slotCount = value;
             OnPropertyChanged(nameof(SlotCount));
         }
@@ -168,7 +155,6 @@ public class ShipMenuUIViewModel
         get { return _equipedEngineKey; }
         set
         {
-            if (_equipedEngineKey == value) return;
             _equipedEngineKey = value;
             OnPropertyChanged(nameof(EquipedEngineKey));
         }
@@ -178,7 +164,6 @@ public class ShipMenuUIViewModel
         get { return _equipedReactorKey; }
         set
         {
-            if (_equipedReactorKey == value) return;
             _equipedReactorKey = value;
             OnPropertyChanged(nameof(EquipedReactorKey));
         }
@@ -188,7 +173,6 @@ public class ShipMenuUIViewModel
         get { return _equipedRadiatorKey; }
         set
         {
-            if (_equipedRadiatorKey == value) return;
             _equipedRadiatorKey = value;
             OnPropertyChanged(nameof(EquipedRadiatorKey));
         }

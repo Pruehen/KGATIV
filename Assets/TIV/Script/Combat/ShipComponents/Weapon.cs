@@ -3,12 +3,14 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     WeaponSkillTable table;
+    ShipCombatData CombatData;
 
     ITargetable _target;    
     float _collDownValue;
     public void Init(WeaponSkillTable table)
     {
-        this.table = table;        
+        this.table = table;
+        CombatData = this.GetComponent<ShipCombatData>();
         SetCollDownValue();
     }
 
@@ -28,13 +30,27 @@ public class Weapon : MonoBehaviour
 
         if (_collDownValue < 0)
         {
-            SetCollDownValue();
-            Fire();
+            if (_target != null && Vector3.Distance(this.transform.position, _target.GetPosition()) < table._maxRange)
+            {
+                SetCollDownValue();
+                Fire();
+            }
         }
     }
 
     void Fire()
     {
+        Vector3 originPos = this.transform.position;
+        Vector3 aimPos = _target.GetPosition();        
+        float projectileVelocity = table._projectileVelocity;        
 
+        for (int i = 0; i < 4; i++)
+        {
+            float eta = (aimPos - originPos).magnitude / projectileVelocity;
+            aimPos = _target.GetPosition() + _target.GetVelocity() * eta;
+        }
+
+        Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf()).GetComponent<Projectile>();
+        projectile.Init(originPos, aimPos, projectileVelocity, Vector3.Distance(originPos, aimPos) * 0.9f, CombatData.GetDmg(table), table._weaponProjectileType);
     }
 }

@@ -54,8 +54,11 @@ public class ShipFCS : MonoBehaviour
         }
     }
 
-    public void SetTarget(ITargetable mainTarget, ITargetable subTarget)
+    public void SetMainTarget(ITargetable mainTarget)
     {
-        
+        foreach (Weapon weapon in _usingWeaponList)
+        {
+            weapon.SetTarget(mainTarget);
+        }
     }
 }

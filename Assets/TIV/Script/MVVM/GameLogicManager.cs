@@ -12,8 +12,10 @@ namespace kjh
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
         static Dictionary<int, ShipMaster> _activeShipList = new Dictionary<int, ShipMaster>();
         Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
+        Action<int, WeaponProjectileType, Vector3> _onDmgedCallBack;
 
         private Action<int, int> _levelUpCallback;
+        
 
         public static GameLogicManager Instance
         {
@@ -84,6 +86,23 @@ namespace kjh
             }
             callback.Invoke(_activeShipList);
         }
+        //=====================================================================================
+        public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3> callback)
+        {
+            _onDmgedCallBack += callback;
+        }
+
+        public void UnRegister_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3> callback)
+        {
+            _onDmgedCallBack -= callback;
+        }
+
+        public void OnDameged(float viewDmg, WeaponProjectileType type, Vector3 position)
+        {
+            _onDmgedCallBack.Invoke((int)viewDmg, type, position);
+        }
+
+        //======================================================================================
 
         public void RefreshShipInfo(int requestId, Action<ShipData> callback)
         {

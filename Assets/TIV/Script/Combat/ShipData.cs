@@ -79,6 +79,12 @@ public class ShipData
         StateStaticBonusDic.Add(CombatStateType.Hp, new State(hp));
         StateStaticBonusDic.Add(CombatStateType.Atk, new State(atk));
         StateStaticBonusDic.Add(CombatStateType.Def, new State(def));
+        StateStaticBonusDic.Add(CombatStateType.CritRate, new State(0));
+        StateStaticBonusDic.Add(CombatStateType.CritDmg, new State(0));
+        StateStaticBonusDic.Add(CombatStateType.PhysicsDmg, new State(0));
+        StateStaticBonusDic.Add(CombatStateType.OpticsDmg, new State(0));
+        StateStaticBonusDic.Add(CombatStateType.ParticleDmg, new State(0));
+        StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State(0));
     }
     public void AllDataUpdate()
     {
@@ -89,10 +95,10 @@ public class ShipData
         StateStaticBonusDic[CombatStateType.Def].Init(_shipTable.GetDef(level));
         StateStaticBonusDic[CombatStateType.CritRate].Init(5);
         StateStaticBonusDic[CombatStateType.CritDmg].Init(50);
-        StateStaticBonusDic[CombatStateType.PhysicsDmg].Init();
-        StateStaticBonusDic[CombatStateType.OpticsDmg].Init();
-        StateStaticBonusDic[CombatStateType.ParticleDmg].Init();
-        StateStaticBonusDic[CombatStateType.PlasmaDmg].Init();
+        StateStaticBonusDic[CombatStateType.PhysicsDmg].Init(0);
+        StateStaticBonusDic[CombatStateType.OpticsDmg].Init(0);
+        StateStaticBonusDic[CombatStateType.ParticleDmg].Init(0);
+        StateStaticBonusDic[CombatStateType.PlasmaDmg].Init(0);
 
         List<string> equipedItemKeyList = _shipData.GetAllEquipedItemKey();
         if (equipedItemKeyList != null && equipedItemKeyList.Count != 0)
