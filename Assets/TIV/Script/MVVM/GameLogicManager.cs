@@ -10,6 +10,9 @@ namespace kjh
         private static GameLogicManager _instance = null;        
 
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
+        static Dictionary<int, ShipMaster> _activeShipList = new Dictionary<int, ShipMaster>();
+        Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
+
         private Action<int, int> _levelUpCallback;
 
         public static GameLogicManager Instance
@@ -32,6 +35,10 @@ namespace kjh
             _shipDatas.Add(3, new ShipData(JsonDataManager.DataLode_UserHaveShipData(3)));
             _shipDatas.Add(4, new ShipData(JsonDataManager.DataLode_UserHaveShipData(4)));
         }
+        public static ShipData GetShipData(int key)
+        {
+            return _shipDatas[key];
+        }
 
         public void RegisterLevelUpCallback(Action<int, int> levelupCallback)
         {
@@ -41,6 +48,41 @@ namespace kjh
         public void UnRegisterLevelUpCallback(Action<int, int> levelupCallback)
         {
             _levelUpCallback -= levelupCallback;
+        }
+
+        //===============================================================================================
+
+        public void Register_shipListChangeCallBack(Action<Dictionary<int, ShipMaster>> callback)
+        {
+            _shipListChangeCallBack += callback;
+        }
+
+        public void UnRegister_shipListChangeCallBack(Action<Dictionary<int, ShipMaster>> callback)
+        {
+            _shipListChangeCallBack -= callback;
+        }
+        public void AddActiveShip(ShipMaster shipMaster)
+        {
+            if(_activeShipList == null)
+            {
+                _activeShipList = new Dictionary<int, ShipMaster>();
+            }
+
+            _activeShipList.Add(shipMaster.GetInstanceID(), shipMaster);
+            _shipListChangeCallBack?.Invoke(_activeShipList);
+        }
+        public void RemoveActiveShip(ShipMaster shipMaster)
+        {
+            _activeShipList.Remove(shipMaster.GetInstanceID());
+            _shipListChangeCallBack.Invoke(_activeShipList);
+        }
+        public void RefreshActiveShip(Action<Dictionary<int, ShipMaster>> callback)
+        {            
+            if(_activeShipList == null)
+            {
+                _activeShipList = new Dictionary<int, ShipMaster>();
+            }
+            callback.Invoke(_activeShipList);
         }
 
         public void RefreshShipInfo(int requestId, Action<ShipData> callback)

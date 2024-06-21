@@ -9,6 +9,10 @@ public class State
     {
         Init();
     }
+    public State(float state)
+    {
+        Init(state, 1);
+    }
     public void Init(float curState = 0, float stateMultiplier = 1)
     {
         _curState = curState;
@@ -42,6 +46,10 @@ public class ShipData
     ShipTable _shipTable;
     UserHaveShipData _shipData;
 
+    /// <summary>
+    /// 유저 함선 생성자
+    /// </summary>
+    /// <param name="shipData"></param>
     public ShipData(UserHaveShipData shipData)
     {
         _shipData = shipData;
@@ -58,6 +66,19 @@ public class ShipData
         StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State());
 
         AllDataUpdate();
+    }
+
+    /// <summary>
+    /// 적 함선 생성자
+    /// </summary>
+    /// <param name="hp"></param>
+    /// <param name="atk"></param>
+    /// <param name="def"></param>
+    public ShipData(float hp, float atk, float def)
+    {
+        StateStaticBonusDic.Add(CombatStateType.Hp, new State(hp));
+        StateStaticBonusDic.Add(CombatStateType.Atk, new State(atk));
+        StateStaticBonusDic.Add(CombatStateType.Def, new State(def));
     }
     public void AllDataUpdate()
     {

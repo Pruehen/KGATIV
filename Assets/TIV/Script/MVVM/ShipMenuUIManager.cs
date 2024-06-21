@@ -176,7 +176,7 @@ public class ShipMenuUIManager : MonoBehaviour
         {            
             int equipTableKey = JsonDataManager.DataLode_UserHaveEquipData(equipUniqueKey)._equipTableKey;
             icon.SetSprite(equipTableKey);
-            icon.AddListener(() => SetActiveEquipListWdw(true, JsonDataManager.DataLode_EquipTable(equipTableKey)._type));
+            icon.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, JsonDataManager.DataLode_EquipTable(equipTableKey)._type));
             icon.AddListener(() => SetEquipInfoData_SelectedEquip(equipUniqueKey));
         }
     }
@@ -192,19 +192,21 @@ public class ShipMenuUIManager : MonoBehaviour
         Btn_CombatSlot.onClick.AddListener(() => SelectWdw(Wdw_CombatSlot));
         Btn_UtilSlot.onClick.AddListener(() => SelectWdw(Wdw_UtilSlot));
 
-        Btn_EquipWeapon.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Weapon));
-        Btn_EquipArmor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Armor));
+        Btn_EquipWeapon.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Weapon));
+        Btn_EquipWeapon.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(string.Empty));
+        Btn_EquipArmor.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Armor));
+        Btn_EquipArmor.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(string.Empty));
         _equipedCombatItemIconList = new List<EquipIcon>();
         foreach (GameObject item in CombatEquipedSlotArray)
         {
             _equipedCombatItemIconList.Add(item.transform.GetChild(0).GetComponent<EquipIcon>());
         }
 
-        Btn_EquipRadiator.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Radiator));
+        Btn_EquipRadiator.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Radiator));
         Btn_EquipRadiator.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(EquipType.Radiator));
-        Btn_EquipReactor.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Reactor));
+        Btn_EquipReactor.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Reactor));
         Btn_EquipReactor.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(EquipType.Reactor));
-        Btn_EquipEngine.onClick.AddListener(() => SetActiveEquipListWdw(true, EquipType.Thruster));
+        Btn_EquipEngine.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Thruster));
         Btn_EquipEngine.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(EquipType.Thruster));
 
         Btn_EquipSelected.onClick.AddListener(TryEquip_OnBtn_EquipSelectedClick);
@@ -258,26 +260,30 @@ public class ShipMenuUIManager : MonoBehaviour
             SetActiveEquipInfoWdw(false);
         }
     }
-    public void SetActiveEquipListWdw(bool value, EquipType equipType)
+    public void SetActiveEquipListWdw_ViewIconTypeSet(bool value, EquipType equipType)
     {
         Wdw_EquipList.SetActive(value);
         if (value == true)
         {
             _viewEquipType = equipType;
-            SetEquipIconList(equipType);
+            SetAllEquipIconsData_MatchType(equipType);
         }                    
     }
     void SetEquipInfoData_SelectedEquip(EquipType equipType)
     {
         string equipedItemKey = JsonDataManager.DataLode_UserHaveShipData(_selectedShip).GetUtilEquipedItemKey(equipType);
-        if (equipedItemKey != null && equipedItemKey != string.Empty)
-        {
-            SetEquipInfoData_SelectedEquip(equipedItemKey);
-        }
+        SetEquipInfoData_SelectedEquip(equipedItemKey);
     }
     void SetEquipInfoData_SelectedEquip(string selectedEquipKey)
     {
-        SetActiveEquipInfoWdw(true);
+        if (selectedEquipKey != null && selectedEquipKey != string.Empty)
+        {
+            SetActiveEquipInfoWdw(true);
+        }
+        else
+        {
+            SetActiveEquipInfoWdw(false);
+        }
         SetEquipInfoData(selectedEquipKey);
     }
     void SetActiveEquipInfoWdw(bool value)
@@ -286,10 +292,13 @@ public class ShipMenuUIManager : MonoBehaviour
     }
     void SetEquipInfoData(string key)
     {
-        this.UIManager.SetEquipInfo_StringKey(key);
+        if (key != null && key != string.Empty)
+        {
+            this.UIManager.SetEquipInfo_StringKey(key);
+        }
         SetActive_EquipSelectedBtns(key);
     }    
-    void SetEquipIconList(EquipType equipType)
+    void SetAllEquipIconsData_MatchType(EquipType equipType)//장비 장착 버튼 세팅
     {
         _viewEquipType = equipType;
         for (int i = 0; i < _activeIconCount; i++)
@@ -368,14 +377,14 @@ public class ShipMenuUIManager : MonoBehaviour
     {
         string key = this.UIManager.GetEquipInfo_StringKey();
         _vm.CommandEquip(key, _selectedShip);
-        SetEquipIconList(_viewEquipType);
+        SetAllEquipIconsData_MatchType(_viewEquipType);
         SetActive_EquipSelectedBtns(key);
     }
     void UnEquip_OnBtn_UnEquipSelectedClick()
     {
         string key = this.UIManager.GetEquipInfo_StringKey();
         _vm.CommandUnEquip(key);
-        SetEquipIconList(_viewEquipType);
+        SetAllEquipIconsData_MatchType(_viewEquipType);
         SetActive_EquipSelectedBtns(key);
     }
 
@@ -410,7 +419,7 @@ public class ShipMenuUIManager : MonoBehaviour
             // 타겟 위치를 기준으로 오프셋 적용
             Vector3 targetPos = _transform_CamViewTarget.position + offSet;
 
-            //Camera_RotateCam.transform.position = Vector3.Lerp(Camera_RotateCam.transform.position, targetPos, Time.deltaTime * 5);
+            //Camera_RotateCam.transform.position = Vector3.Lerp(Camera_RotateCam.transform.position, TargetPos, Time.deltaTime * 5);
             Camera_RotateCam.transform.position = targetPos;
             Camera_RotateCam.transform.LookAt(_transform_CamViewTarget);
         }
