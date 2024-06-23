@@ -6,7 +6,7 @@
       "_dmg": 56.0,
       "_collTime": 2.0,
       "_maxRange": 1200.0,
-      "_projectileVelocity": 600.0,
+      "_projectileVelocity": 300.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -16,7 +16,7 @@
       "_dmg": 210.0,
       "_collTime": 4.0,
       "_maxRange": 1600.0,
-      "_projectileVelocity": 800.0,
+      "_projectileVelocity": 400.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -26,7 +26,7 @@
       "_dmg": 756.0,
       "_collTime": 8.0,
       "_maxRange": 2000.0,
-      "_projectileVelocity": 1000.0,
+      "_projectileVelocity": 500.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
