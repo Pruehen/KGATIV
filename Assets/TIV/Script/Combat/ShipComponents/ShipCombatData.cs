@@ -34,8 +34,8 @@ public class ShipCombatData : MonoBehaviour
     }
 
     public void Hit(float originDmg, WeaponProjectileType type)
-    {        
-        float calcedDmg = originDmg * (1 / Mathf.Exp(-Mathf.Log(0.5f) / 1500 * _shipData.GetFinalState(CombatStateType.Def)));
+    {
+        float calcedDmg = originDmg * 1000 / (1000 + _shipData.GetFinalState(CombatStateType.Def));
         _curHp -= calcedDmg;
         kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position);
 
@@ -82,7 +82,7 @@ public class ShipCombatData : MonoBehaviour
         }
 
         float finalDmg = atk * dmgBonus * critDmgBonus * UnityEngine.Random.Range(0.9f, 1.1f);
-        return finalDmg * (1 + (table._dmg * 0.01f));
+        return finalDmg * table._dmg * 0.01f;
     }
 
     Action _onDead;

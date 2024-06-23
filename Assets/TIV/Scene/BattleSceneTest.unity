@@ -4224,9 +4224,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865435683}
     m_Modifications:
+    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
+      propertyPath: TargetPos.z
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
       value: ASS1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
+      propertyPath: usingWeaponList_Key.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.data[3]
@@ -29946,7 +29954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2400, y: 1080}
