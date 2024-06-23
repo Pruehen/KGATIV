@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011918013, g: 0.02964343, b: 0.042490747, a: 1}
+  m_IndirectSpecularColor: {r: 0.011917973, g: 0.029989384, b: 0.042229313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4224,21 +4224,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865435683}
     m_Modifications:
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.z
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
       value: ASS1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: usingWeaponList_Key.Array.size
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.data[3]
