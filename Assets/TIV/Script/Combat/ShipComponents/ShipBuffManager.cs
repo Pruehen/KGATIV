@@ -108,8 +108,12 @@ public class ShipBuffManager : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// 감마4 세트 디버프가 적용되어있지 않을 경우 1, 적용되어 있을 경우 감소된 방어력 비율을 반환함
+    /// </summary>
+    /// <returns></returns>
     public float BuffCheck_G4Set_OnHit_ValidDefRatio()
-    {
+    {        
         return _isActive_G4SetDebuff ? 1 - (_g4setTable._buffValueList[1] * 0.01f) : 1;
     }
 

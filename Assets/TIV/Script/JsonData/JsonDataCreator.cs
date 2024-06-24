@@ -1002,9 +1002,9 @@ public class JsonDataCreator : MonoBehaviour
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
         //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
         //EquipManager.RandomEquipDrop(SetType.Beta, 20);
-        //EquipManager.RandomEquipDrop(SetType.Gamma, 20);
+        EquipManager.RandomEquipDrop(SetType.Gamma, 40);
         //EquipManager.RandomEquipDrop(SetType.Delta, 20);
-        
+
         //foreach (EquipSetTable table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
         //{
         //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set1Key, new BuffTable(table._set1Key, "버프 설명", new List<float>() { 18 }));
