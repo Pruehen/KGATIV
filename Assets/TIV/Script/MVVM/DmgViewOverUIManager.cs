@@ -34,7 +34,7 @@ public class DmgViewOverUIManager : MonoBehaviour
                 
                 DmgViewOverUI text = ObjectPoolManager.Instance.DequeueObject(Prefab_Text_DmgView).GetComponent<DmgViewOverUI>();
                 text.transform.SetParent(this.transform);
-                text.Init(_vm.NewDmg, _vm.Type, 1, _vm.Position);
+                text.Init(_vm.NewDmg, _vm.Type, 1, _vm.Position, _vm.IsCrit);
                 break;
         }
     }

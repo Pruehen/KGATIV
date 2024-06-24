@@ -34,7 +34,7 @@ public class DmgViewOverUI : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
-    public void Init(int dmg, WeaponProjectileType type, float lifeTime, Vector3 originPos)
+    public void Init(int dmg, WeaponProjectileType type, float lifeTime, Vector3 originPos, bool isCrit)
     {
         _activeTime = 0;
         _lifeTime = lifeTime;
@@ -58,6 +58,15 @@ public class DmgViewOverUI : MonoBehaviour
             default:
                 break;
         }
+
+        if(isCrit)
+        {
+            TMP_DmgText.fontSize = 60;
+        }
+        else
+        {
+            TMP_DmgText.fontSize = 40;
+        }
     }
 
     private void Update()
@@ -67,7 +76,8 @@ public class DmgViewOverUI : MonoBehaviour
         Vector2 position = screenPoint - screenSize * 0.5f;
         //position *= screenAdjustFactor;
         _rectTransform.anchoredPosition = position + new Vector2(0, _activeTime * 50);
-        
+        TMP_DmgText.fontSize = Mathf.Lerp(TMP_DmgText.fontSize, 20, Time.deltaTime * 5);
+
         _activeTime += Time.deltaTime;
         if(_activeTime > _lifeTime )
         {

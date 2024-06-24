@@ -58,7 +58,12 @@ public class UsingShipOverUI : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(true);
+            this.gameObject.SetActive(true);            
         }
+    }
+
+    public void SetHpbarRatio(float ratio)
+    {
+        hpBar.fillAmount = ratio;
     }
 }

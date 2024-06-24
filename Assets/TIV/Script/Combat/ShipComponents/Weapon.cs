@@ -51,6 +51,8 @@ public class Weapon : MonoBehaviour
         }
 
         Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(table._projectileNameKey)).GetComponent<Projectile>();
-        projectile.Init(originPos, aimPos, table, CombatData.GetDmg(table));
+        bool isCrit;
+        float dmg = CombatData.GetDmg(table, out isCrit);
+        projectile.Init(originPos, aimPos, table, dmg, isCrit);
     }
 }

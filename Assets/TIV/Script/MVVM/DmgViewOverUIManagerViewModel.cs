@@ -7,6 +7,7 @@ public class DmgViewOverUIManagerViewModel
     int _newDmg;
     WeaponProjectileType _type;
     Vector3 _position;
+    bool _isCrit;
 
     public int NewDmg
     {
@@ -41,6 +42,18 @@ public class DmgViewOverUIManagerViewModel
         set
         {
             _position = value;
+        }
+    }
+
+    public bool IsCrit
+    {
+        get
+        {
+            return _isCrit;
+        }
+        set
+        {
+            _isCrit = value;
         }
     }
 

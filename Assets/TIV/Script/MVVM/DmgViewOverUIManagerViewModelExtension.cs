@@ -16,11 +16,12 @@ namespace ViewModel.Extensions
             kjh.GameLogicManager.Instance.UnRegister_onDmgedCallBack(vm.OnRefreshViewModel);
         }
 
-        public static void OnRefreshViewModel(this DmgViewOverUIManagerViewModel vm, int value, WeaponProjectileType type, Vector3 position)//콜백
+        public static void OnRefreshViewModel(this DmgViewOverUIManagerViewModel vm, int value, WeaponProjectileType type, Vector3 position, bool isCrit)//콜백
         {
             vm.Type = type;
-            vm.NewDmg = value;            
+            vm.IsCrit = isCrit;     
             vm.Position = position;
+            vm.NewDmg = value;
         }
     }
 }

@@ -14,7 +14,8 @@ public class Projectile : MonoBehaviour
     bool _isInit;
     float _halfDistance;
     Vector3 _initPos;
-    public void Init(Vector3 initPos, Vector3 targetPos, WeaponSkillTable table, float dmg)
+    bool _isCrit;
+    public void Init(Vector3 initPos, Vector3 targetPos, WeaponSkillTable table, float dmg, bool isCrit)
     {
         _Collider = GetComponent<SphereCollider>();
         _Collider.enabled = false;
@@ -34,6 +35,7 @@ public class Projectile : MonoBehaviour
         _isInit = true;
         _halfDistance = table._halfDistance;
         _initPos = this.transform.position;
+        _isCrit = isCrit;
 
         Destroy(this.gameObject, 10);
     }
@@ -51,16 +53,16 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent<ITargetable>(out ITargetable target))
-        {            
-            if(_halfDistance >= 0)
-            {
-                _dmg *= 1 / Mathf.Exp((-Mathf.Log(0.5f) / _halfDistance) * Vector3.Distance(this.transform.position, _initPos));
-            }
-            target.Hit(_dmg, _type);
-
-            childEffects.SetParent(null);
+        if (collision.gameObject.TryGetComponent(out ITargetable target))
+        {
             Vector3 hitPos = collision.contacts[0].point;
+            if (_halfDistance >= 0)
+            {
+                _dmg *= 1 / Mathf.Exp((-Mathf.Log(0.5f) / _halfDistance) * Vector3.Distance(hitPos, _initPos));
+            }
+            target.Hit(_dmg, _type, _isCrit);
+
+            childEffects.SetParent(null);            
             childEffects.position = hitPos;
             if (hitEffect != null)
             {

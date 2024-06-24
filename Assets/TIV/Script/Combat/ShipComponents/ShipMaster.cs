@@ -12,7 +12,7 @@ public interface ITargetable
     /// <returns></returns>
     public bool IFF(bool id);
     public bool GetID();
-    public void Hit(float dmg, WeaponProjectileType type);
+    public void Hit(float dmg, WeaponProjectileType type, bool isCrit);
 }
 
 [RequireComponent(typeof(ShipCombatData))]
@@ -53,9 +53,9 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         return (CombatData.GetShipTableKey() >= 0);
     }
-    public void Hit(float dmg, WeaponProjectileType type)
+    public void Hit(float dmg, WeaponProjectileType type, bool isCrit)
     {
-        CombatData.Hit(dmg, type);
+        CombatData.Hit(dmg, type, isCrit);
     }
 
     private void Awake()

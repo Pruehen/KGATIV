@@ -17,6 +17,10 @@ public class UsingShipOverUIManagerViewModel
             OnPropertyChanged(nameof(ActiveShipDic));
         }
     }
+    public void OnPropertyChanged_ActiveShipDic()
+    {
+        OnPropertyChanged(nameof(ActiveShipDic));
+    }
 
     #region PropChanged
     public event PropertyChangedEventHandler PropertyChanged;

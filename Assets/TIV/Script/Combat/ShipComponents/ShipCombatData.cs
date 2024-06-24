@@ -33,18 +33,18 @@ public class ShipCombatData : MonoBehaviour
         _onDead += callBack;
     }
 
-    public void Hit(float originDmg, WeaponProjectileType type)
+    public void Hit(float originDmg, WeaponProjectileType type, bool isCrit)
     {
         float calcedDmg = originDmg * 1000 / (1000 + _shipData.GetFinalState(CombatStateType.Def));
         _curHp -= calcedDmg;
-        kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position);
+        kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position, isCrit);
 
         if(_curHp <= 0)
         {
             _onDead?.Invoke();
         }
     }
-    public float GetDmg(WeaponSkillTable table)
+    public float GetDmg(WeaponSkillTable table, out bool isCrit)
     {
         float atk = _shipData.GetFinalState(CombatStateType.Atk);
         float dmgBonus;
@@ -75,14 +75,20 @@ public class ShipCombatData : MonoBehaviour
         if(critRate >= random)
         {
             critDmgBonus = 1 + (critDmg * 0.01f);
+            isCrit = true;
         }
         else
         {
             critDmgBonus = 1;
+            isCrit = false;
         }
 
         float finalDmg = atk * dmgBonus * critDmgBonus * UnityEngine.Random.Range(0.9f, 1.1f);
         return finalDmg * table._dmg * 0.01f;
+    }
+    public float GetHpRatio()
+    {
+        return _curHp / _shipData.GetFinalState(CombatStateType.Hp);
     }
 
     Action _onDead;

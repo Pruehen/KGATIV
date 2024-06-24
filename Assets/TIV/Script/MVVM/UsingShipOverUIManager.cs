@@ -18,6 +18,7 @@ public class UsingShipOverUIManager : MonoBehaviour
             _vm = new UsingShipOverUIManagerViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.Register_shipListChangeCallBack();
+            _vm.Register_onDmgedCallBack();
             _vm.RefreshViewModel();
         }
     }
@@ -25,6 +26,7 @@ public class UsingShipOverUIManager : MonoBehaviour
     {
         if (_vm != null)
         {
+            _vm.UnRegister_onDmgedCallBack();
             _vm.UnRegister_shipListChangeCallBack();
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
@@ -39,7 +41,9 @@ public class UsingShipOverUIManager : MonoBehaviour
                 _iconUsingCount = 0;
                 foreach (var item in _vm.ActiveShipDic)
                 {
-                    GetUIIcon().SetTargetObject(item.Value);
+                    UsingShipOverUI iconTemp = GetUIIcon();
+                    iconTemp.SetTargetObject(item.Value);
+                    iconTemp.SetHpbarRatio(item.Value.CombatData.GetHpRatio());
                 }
                 break;
         }

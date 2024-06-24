@@ -1,4 +1,6 @@
+using EnumTypes;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ViewModel.Extensions
 {
@@ -18,18 +20,25 @@ namespace ViewModel.Extensions
         {            
             kjh.GameLogicManager.Instance.RefreshActiveShip(vm.OnRefreshViewModel);//콜백 호출
         }
-        //public static void CommandAddShip(this UsingShipOverUIManagerViewModel vm, ShipMaster shipMaster)//요청 익스텐션
-        //{
-        //    kjh.GameLogicManager.Instance.AddActiveShip(shipMaster);//콜백 호출
-        //}
-        //public static void CommandRemoveShip(this UsingShipOverUIManagerViewModel vm, ShipMaster shipMaster)//요청 익스텐션
-        //{
-        //    kjh.GameLogicManager.Instance.RemoveActiveShip(shipMaster);//콜백 호출
-        //}
 
         public static void OnRefreshViewModel(this UsingShipOverUIManagerViewModel vm, Dictionary<int, ShipMaster> dic)//콜백
         {
             vm.ActiveShipDic = dic;
+        }
+
+        public static void Register_onDmgedCallBack(this UsingShipOverUIManagerViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.Register_onDmgedCallBack(vm.OnRefreshViewModel);
+        }
+
+        public static void UnRegister_onDmgedCallBack(this UsingShipOverUIManagerViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.UnRegister_onDmgedCallBack(vm.OnRefreshViewModel);
+        }
+
+        public static void OnRefreshViewModel(this UsingShipOverUIManagerViewModel vm)//콜백
+        {
+            vm.OnPropertyChanged_ActiveShipDic();
         }
     }
 }

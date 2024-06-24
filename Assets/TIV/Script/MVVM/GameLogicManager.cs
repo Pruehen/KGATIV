@@ -12,7 +12,8 @@ namespace kjh
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
         static Dictionary<int, ShipMaster> _activeShipList = new Dictionary<int, ShipMaster>();
         Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
-        Action<int, WeaponProjectileType, Vector3> _onDmgedCallBack;
+        Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
+        Action _onDmgedCallBack_NoData;
 
         private Action<int, int> _levelUpCallback;
         
@@ -87,19 +88,29 @@ namespace kjh
             callback.Invoke(_activeShipList);
         }
         //=====================================================================================
-        public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3> callback)
+        public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
         {
             _onDmgedCallBack += callback;
         }
 
-        public void UnRegister_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3> callback)
+        public void UnRegister_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
         {
             _onDmgedCallBack -= callback;
         }
-
-        public void OnDameged(float viewDmg, WeaponProjectileType type, Vector3 position)
+        public void Register_onDmgedCallBack(Action callback)
         {
-            _onDmgedCallBack.Invoke((int)viewDmg, type, position);
+            _onDmgedCallBack_NoData += callback;
+        }
+
+        public void UnRegister_onDmgedCallBack(Action callback)
+        {
+            _onDmgedCallBack_NoData -= callback;
+        }
+
+        public void OnDameged(float viewDmg, WeaponProjectileType type, Vector3 position, bool isCrit)
+        {
+            _onDmgedCallBack_NoData.Invoke();
+            _onDmgedCallBack.Invoke((int)viewDmg, type, position, isCrit);
         }
 
         //======================================================================================
