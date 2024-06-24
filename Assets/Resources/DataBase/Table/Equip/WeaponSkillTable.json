@@ -6,7 +6,7 @@
       "_dmg": 56.0,
       "_collTime": 2.0,
       "_maxRange": 1200.0,
-      "_projectileVelocity": 1200.0,
+      "_projectileVelocity": 300.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -16,7 +16,7 @@
       "_dmg": 210.0,
       "_collTime": 4.0,
       "_maxRange": 1600.0,
-      "_projectileVelocity": 1600.0,
+      "_projectileVelocity": 400.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -26,7 +26,7 @@
       "_dmg": 756.0,
       "_collTime": 8.0,
       "_maxRange": 2000.0,
-      "_projectileVelocity": 2000.0,
+      "_projectileVelocity": 500.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -36,7 +36,7 @@
       "_dmg": 64.0,
       "_collTime": 1.0,
       "_maxRange": 600.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 200.0,
       "_canIntercept": true
     },
@@ -46,7 +46,7 @@
       "_dmg": 160.0,
       "_collTime": 2.0,
       "_maxRange": 800.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 400.0,
       "_canIntercept": true
     },
@@ -56,7 +56,7 @@
       "_dmg": 384.0,
       "_collTime": 4.0,
       "_maxRange": 1000.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 1000.0,
       "_canIntercept": true
     },
@@ -66,7 +66,7 @@
       "_dmg": 24.0,
       "_collTime": 1.5,
       "_maxRange": 700.0,
-      "_projectileVelocity": 2100.0,
+      "_projectileVelocity": 700.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -76,7 +76,7 @@
       "_dmg": 105.0,
       "_collTime": 3.0,
       "_maxRange": 900.0,
-      "_projectileVelocity": 2700.0,
+      "_projectileVelocity": 900.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -86,7 +86,7 @@
       "_dmg": 432.0,
       "_collTime": 6.0,
       "_maxRange": 1100.0,
-      "_projectileVelocity": 3300.0,
+      "_projectileVelocity": 1100.0,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -96,7 +96,7 @@
       "_dmg": 40.0,
       "_collTime": 2.0,
       "_maxRange": 500.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -106,7 +106,7 @@
       "_dmg": 200.0,
       "_collTime": 2.0,
       "_maxRange": 650.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 0.0,
       "_canIntercept": false
     },
@@ -116,7 +116,7 @@
       "_dmg": 960.0,
       "_collTime": 2.0,
       "_maxRange": 800.0,
-      "_projectileVelocity": 0.0,
+      "_projectileVelocity": 10000,
       "_halfDistance": 0.0,
       "_canIntercept": false
     }
