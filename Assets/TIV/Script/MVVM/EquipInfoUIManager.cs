@@ -138,7 +138,7 @@ public class EquipInfoUIManager : MonoBehaviour
         else
         {
             WeaponSkillTable skillTable = JsonDataManager.DataLode_WeaponSkillTableList(tableKey);
-            string skillText = string.Format(skillTable._info, skillTable._dmg, skillTable._maxRange, skillTable._halfDistance);
+            string skillText = string.Format(skillTable._info, skillTable._dmg, skillTable._maxRange, skillTable._collTime, skillTable._halfDistance);
             TMP_EffectField.text = $"{table._info}\n\n{skillText}";
         }
     }

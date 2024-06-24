@@ -12,7 +12,9 @@ public class Projectile : MonoBehaviour
     float _dmg;
     WeaponProjectileType _type;
     bool _isInit;
-    public void Init(Vector3 initPos, Vector3 targetPos, float velocity, float safeDistance, float dmg, WeaponProjectileType type)
+    float _halfDistance;
+    Vector3 _initPos;
+    public void Init(Vector3 initPos, Vector3 targetPos, WeaponSkillTable table, float dmg)
     {
         _Collider = GetComponent<SphereCollider>();
         _Collider.enabled = false;
@@ -21,15 +23,17 @@ public class Projectile : MonoBehaviour
         this.transform.LookAt(targetPos);
 
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.velocity = this.transform.forward * velocity;
+        _rigidbody.velocity = this.transform.forward * table._projectileVelocity;
 
         _cumulativeDistance = 0;
-        _safeDistance = safeDistance;
+        _safeDistance = Vector3.Distance(initPos, targetPos) * 0.9f;
 
         _dmg = dmg;
-        _type = type;
+        _type = table._weaponProjectileType;
 
         _isInit = true;
+        _halfDistance = table._halfDistance;
+        _initPos = this.transform.position;
 
         Destroy(this.gameObject, 10);
     }
@@ -48,7 +52,11 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent<ITargetable>(out ITargetable target))
-        {
+        {            
+            if(_halfDistance >= 0)
+            {
+                _dmg *= 1 / Mathf.Exp((-Mathf.Log(0.5f) / _halfDistance) * Vector3.Distance(this.transform.position, _initPos));
+            }
             target.Hit(_dmg, _type);
 
             childEffects.SetParent(null);

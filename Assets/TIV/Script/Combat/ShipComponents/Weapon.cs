@@ -6,11 +6,11 @@ public class Weapon : MonoBehaviour
     ShipCombatData CombatData;
 
     ITargetable _target;    
-    float _collDownValue;
+    float _collDownValue;    
     public void Init(WeaponSkillTable table)
     {
         this.table = table;
-        CombatData = this.GetComponent<ShipCombatData>();
+        CombatData = this.GetComponent<ShipCombatData>();        
         SetCollDownValue();
     }
 
@@ -51,6 +51,6 @@ public class Weapon : MonoBehaviour
         }
 
         Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(table._projectileNameKey)).GetComponent<Projectile>();
-        projectile.Init(originPos, aimPos, projectileVelocity, Vector3.Distance(originPos, aimPos) * 0.9f, CombatData.GetDmg(table), table._weaponProjectileType);
+        projectile.Init(originPos, aimPos, table, CombatData.GetDmg(table));
     }
 }

@@ -30,10 +30,18 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
     public Vector3 GetPosition()
     {
+        if(this == null || transform == null)
+        {
+            return Vector3.zero;
+        }
         return this.transform.position;
     }
     public Vector3 GetVelocity()
     {
+        if (this == null || transform == null)
+        {
+            return Vector3.zero;
+        }
         return rigidbody.velocity;
     }
     public bool IFF(bool id)

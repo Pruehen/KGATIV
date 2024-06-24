@@ -43,12 +43,12 @@ namespace EnumTypes
         레이저_소형,
         레이저_중형,
         레이저_대형,
-        입자_소형,
-        입자_중형,
-        입자_대형,
         플라즈마_소형,
         플라즈마_중형,
         플라즈마_대형,
+        입자_소형,
+        입자_중형,
+        입자_대형
     }
 
     public enum WeaponProjectileType
