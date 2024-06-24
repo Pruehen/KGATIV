@@ -64,8 +64,6 @@ namespace EnumTypes
         Beta,
         Gamma,
         Delta,
-        Epsilon,
-        Zeta
     }
     public enum ItemType
     {

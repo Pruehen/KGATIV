@@ -208,7 +208,8 @@ public class WeaponSkillTable
     public float _halfDistance;
     public bool _canIntercept;
     public string _projectileNameKey;
-    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept, string projectileNameKey)
+    public string _info;
+    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept, string projectileNameKey, string info)
     {
         _key = key;
         _weaponProjectileType = weaponProjectileType;
@@ -219,6 +220,7 @@ public class WeaponSkillTable
         _halfDistance = halfDistance;
         _canIntercept = canIntercept;
         _projectileNameKey = projectileNameKey;
+        _info = info;
     }
 }
 public class WeaponSkillTableList
@@ -757,7 +759,14 @@ public class UserHaveEquipData
 
         _itemUniqueKey = $"{unixTimeSeconds}_{createNum}{equipTableKey}{(int)setType}{(int)mainStateType}";
         _equipTableKey = equipTableKey;
-        _setType = setType;
+        if (setType >= 0)
+        {
+            _setType = setType;
+        }
+        else
+        {
+            _setType = (SetType)(-1);
+        }
         _level = 0;
         _optimizedLevel = 0;
         _mainState = new EquipStateSet(mainStateType, _level + 5);
@@ -976,7 +985,10 @@ public class JsonDataCreator : MonoBehaviour
     void SetData()
     {
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        //EquipManager.RandomEquipDrop(SetType.Alpha, 100);
+        //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
+        //EquipManager.RandomEquipDrop(SetType.Beta, 20);
+        //EquipManager.RandomEquipDrop(SetType.Gamma, 20);
+        //EquipManager.RandomEquipDrop(SetType.Delta, 20);
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수

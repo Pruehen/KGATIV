@@ -9,7 +9,8 @@
       "_projectileVelocity": 300.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Shell_S"
+      "_projectileNameKey": "Shell_S",
+      "_info": "소구경 실탄을 발사해서 <color=#FFFF00>{0}%</color>의 물리 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 1,
@@ -20,7 +21,8 @@
       "_projectileVelocity": 400.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Shell_M"
+      "_projectileNameKey": "Shell_M",
+      "_info": "중구경 실탄을 발사해서 <color=#FFFF00>{0}%</color>의 물리 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 2,
@@ -31,7 +33,8 @@
       "_projectileVelocity": 500.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Shell_L"
+      "_projectileNameKey": "Shell_L",
+      "_info": "대구경 실탄을 발사해서 <color=#FFFF00>{0}%</color>의 물리 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 3,
@@ -42,7 +45,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 200.0,
       "_canIntercept": true,
-      "_projectileNameKey": "LASAR_S"
+      "_projectileNameKey": "LASAR_S",
+      "_info": "적외선 레이저을 발사해서 <color=#FFFF00>{0}%</color>의 광학 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km\n반감 거리 {2}km\n실탄 투사체 요격 가능</color>"
     },
     {
       "_key": 4,
@@ -53,7 +57,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 400.0,
       "_canIntercept": true,
-      "_projectileNameKey": "LASAR_M"
+      "_projectileNameKey": "LASAR_M",
+      "_info": "녹색 레이저을 발사해서 <color=#FFFF00>{0}%</color>의 광학 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km\n반감 거리 {2}km\n실탄 투사체 요격 가능</color>"
     },
     {
       "_key": 5,
@@ -64,7 +69,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 1000.0,
       "_canIntercept": true,
-      "_projectileNameKey": "LASAR_L"
+      "_projectileNameKey": "LASAR_L",
+      "_info": "자외선 레이저을 발사해서 <color=#FFFF00>{0}%</color>의 광학 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km\n반감 거리 {2}km\n실탄 투사체 요격 가능</color>"
     },
     {
       "_key": 6,
@@ -75,7 +81,8 @@
       "_projectileVelocity": 700.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Plasma_S"
+      "_projectileNameKey": "Plasma_S",
+      "_info": "소형 플라즈마 구체를 발사해서 <color=#FFFF00>{0}%</color>의 플라즈마 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 7,
@@ -86,7 +93,8 @@
       "_projectileVelocity": 900.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Plasma_M"
+      "_projectileNameKey": "Plasma_M",
+      "_info": "중형 플라즈마 구체를 발사해서 <color=#FFFF00>{0}%</color>의 플라즈마 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 8,
@@ -97,7 +105,8 @@
       "_projectileVelocity": 1100.0,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "Plasma_L"
+      "_projectileNameKey": "Plasma_L",
+      "_info": "대형 플라즈마 구체를 발사해서 <color=#FFFF00>{0}%</color>의 플라즈마 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 9,
@@ -108,7 +117,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "PAC_S"
+      "_projectileNameKey": "PAC_S",
+      "_info": "소량의 하전 입자를 발사해서 <color=#FFFF00>{0}%</color>의 입자 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 10,
@@ -119,7 +129,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "PAC_M"
+      "_projectileNameKey": "PAC_M",
+      "_info": "하전 입자를 발사해서 <color=#FFFF00>{0}%</color>의 입자 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     },
     {
       "_key": 11,
@@ -130,7 +141,8 @@
       "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
       "_canIntercept": false,
-      "_projectileNameKey": "PAC_L"
+      "_projectileNameKey": "PAC_L",
+      "_info": "대량의 하전 입자를 발사해서 <color=#FFFF00>{0}%</color>의 입자 피해를 가합니다.\n<color=#FFFF00>사거리 {1}km</color>"
     }
   ]
 }

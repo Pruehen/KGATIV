@@ -160,17 +160,56 @@
       "_key": 12,
       "_type": 1,
       "_star": 5,
-      "_name": "복합 장갑",
+      "_name": "알파 장갑",
       "_weaponSkillKey": -1,
       "_validSetList": [
         0
       ],
-      "_info": "장갑입니다. 적의 공격을 효과적으로 방어할 수 있습니다.",
+      "_info": "복합 적층 장갑입니다. 적의 공격을 효과적으로 방어할 수 있습니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AdamantaneArmor"
     },
     {
       "_key": 13,
+      "_type": 1,
+      "_star": 5,
+      "_name": "베타 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        1
+      ],
+      "_info": "복합 적층 장갑입니다. 적의 공격을 효과적으로 방어할 수 있습니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_BoronCarbideArmor"
+    },
+    {
+      "_key": 14,
+      "_type": 1,
+      "_star": 5,
+      "_name": "감마 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        2
+      ],
+      "_info": "복합 적층 장갑입니다. 적의 공격을 효과적으로 방어할 수 있습니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_CompositeArmor"
+    },
+    {
+      "_key": 15,
+      "_type": 1,
+      "_star": 5,
+      "_name": "델타 장갑",
+      "_weaponSkillKey": -1,
+      "_validSetList": [
+        3
+      ],
+      "_info": "복합 적층 장갑입니다. 적의 공격을 효과적으로 방어할 수 있습니다.",
+      "_slotUsage": 1,
+      "_spriteName": "ICO_SiliconCarbideArmor"
+    },
+    {
+      "_key": 16,
       "_type": 2,
       "_star": 5,
       "_name": "알파 추진기",
@@ -178,12 +217,12 @@
       "_validSetList": [
         0
       ],
-      "_info": "추진기입니다.",
+      "_info": "토치 추진기입니다. 함선의 기동에 필요합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AdvancedPulsarDrive"
     },
     {
-      "_key": 14,
+      "_key": 17,
       "_type": 2,
       "_star": 5,
       "_name": "베타 추진기",
@@ -191,12 +230,12 @@
       "_validSetList": [
         1
       ],
-      "_info": "추진기입니다.",
+      "_info": "토치 추진기입니다. 함선의 기동에 필요합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AmplitronDrive"
     },
     {
-      "_key": 15,
+      "_key": 18,
       "_type": 2,
       "_star": 5,
       "_name": "감마 추진기",
@@ -204,12 +243,12 @@
       "_validSetList": [
         2
       ],
-      "_info": "추진기입니다.",
+      "_info": "토치 추진기입니다. 함선의 기동에 필요합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_CavityDrive"
     },
     {
-      "_key": 16,
+      "_key": 19,
       "_type": 2,
       "_star": 5,
       "_name": "델타 추진기",
@@ -217,12 +256,12 @@
       "_validSetList": [
         3
       ],
-      "_info": "추진기입니다.",
+      "_info": "토치 추진기입니다. 함선의 기동에 필요합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_DustyPlasmaDrive"
     },
     {
-      "_key": 17,
+      "_key": 20,
       "_type": 4,
       "_star": 5,
       "_name": "알파 방열기",
@@ -230,12 +269,12 @@
       "_validSetList": [
         0
       ],
-      "_info": "방열기입니다.",
+      "_info": "경합금 방열기입니다. 함선의 폐열을 방출합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AluminumFinRadiator"
     },
     {
-      "_key": 18,
+      "_key": 21,
       "_type": 4,
       "_star": 5,
       "_name": "베타 방열기",
@@ -243,12 +282,12 @@
       "_validSetList": [
         1
       ],
-      "_info": "방열기입니다.",
+      "_info": "경합금 방열기입니다. 함선의 폐열을 방출합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_DiamondoidSpikeRadiator"
     },
     {
-      "_key": 19,
+      "_key": 22,
       "_type": 4,
       "_star": 5,
       "_name": "감마 방열기",
@@ -256,12 +295,12 @@
       "_validSetList": [
         2
       ],
-      "_info": "방열기입니다.",
+      "_info": "경합금 방열기입니다. 함선의 폐열을 방출합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_ExoticTendrilRadiator"
     },
     {
-      "_key": 20,
+      "_key": 23,
       "_type": 4,
       "_star": 5,
       "_name": "델타 방열기",
@@ -269,12 +308,12 @@
       "_validSetList": [
         3
       ],
-      "_info": "방열기입니다.",
+      "_info": "경합금 방열기입니다. 함선의 폐열을 방출합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_IonicDustRadiator"
     },
     {
-      "_key": 21,
+      "_key": 24,
       "_type": 3,
       "_star": 5,
       "_name": "알파 반응로",
@@ -282,12 +321,12 @@
       "_validSetList": [
         0
       ],
-      "_info": "반응로입니다.",
+      "_info": "핵융합 반응로입니다. 함선 전체의 에너지를 공급합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AlienHybridConfinementFusionReactor"
     },
     {
-      "_key": 22,
+      "_key": 25,
       "_type": 3,
       "_star": 5,
       "_name": "베타 반응로",
@@ -295,12 +334,12 @@
       "_validSetList": [
         1
       ],
-      "_info": "반응로입니다.",
+      "_info": "핵융합 반응로입니다. 함선 전체의 에너지를 공급합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_AntimatterBeamCoreReactor"
     },
     {
-      "_key": 23,
+      "_key": 26,
       "_type": 3,
       "_star": 5,
       "_name": "감마 반응로",
@@ -308,12 +347,12 @@
       "_validSetList": [
         2
       ],
-      "_info": "반응로입니다.",
+      "_info": "핵융합 반응로입니다. 함선 전체의 에너지를 공급합니다.",
       "_slotUsage": 1,
-      "_spriteName": "ICO_DustyPlasmaReactor"
+      "_spriteName": "ICO_AntimatterGasCoreReactor"
     },
     {
-      "_key": 24,
+      "_key": 27,
       "_type": 3,
       "_star": 5,
       "_name": "델타 반응로",
@@ -321,7 +360,7 @@
       "_validSetList": [
         3
       ],
-      "_info": "반응로입니다.",
+      "_info": "핵융합 반응로입니다. 함선 전체의 에너지를 공급합니다.",
       "_slotUsage": 1,
       "_spriteName": "ICO_FissionFragmentReactor"
     }

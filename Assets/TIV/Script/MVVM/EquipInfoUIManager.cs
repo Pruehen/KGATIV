@@ -17,7 +17,7 @@ public class EquipInfoUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_MainStateValue;
     [SerializeField] TextMeshProUGUI TMP_Level;
     [SerializeField] TextMeshProUGUI TMP_StateField;
-    [SerializeField] TextMeshProUGUI TMP_SetEffectField;
+    [SerializeField] TextMeshProUGUI TMP_EffectField;
     [SerializeField] EquipIcon EquipIcon_ViewIcon;
     [SerializeField] Button Btn_Upgrade;
     [SerializeField] GameObject Label_MaxLevel;
@@ -102,7 +102,7 @@ public class EquipInfoUIManager : MonoBehaviour
                 SetSubStateText(_vm.SubStateList);
                 break;
             case nameof(_vm.SetType):
-                Set_SetEffectText(_vm.SetType);
+                Set_EffectText(_vm.SetType, _vm.TableKey);
                 break;
         }
     }
@@ -117,9 +117,19 @@ public class EquipInfoUIManager : MonoBehaviour
         }
         TMP_StateField.text = text;
     }
-    void Set_SetEffectText(SetType setType)
+    void Set_EffectText(SetType setType, int tableKey)
     {
-        EquipSetTable table = JsonDataManager.DataLode_SetEffectTable(setType);
-        TMP_SetEffectField.text = $"{table._setEffectName}\n{table._setEffectText}";
+        EquipTable table = JsonDataManager.DataLode_EquipTable(tableKey);
+        if (setType >= 0)
+        {
+            EquipSetTable setTable = JsonDataManager.DataLode_SetEffectTable(setType);
+            TMP_EffectField.text = $"{table._info}\n\n{setTable._setEffectName}\n{setTable._setEffectText}";
+        }
+        else
+        {
+            WeaponSkillTable skillTable = JsonDataManager.DataLode_WeaponSkillTableList(tableKey);
+            string skillText = string.Format(skillTable._info, skillTable._dmg, skillTable._maxRange, skillTable._halfDistance);
+            TMP_EffectField.text = $"{table._info}\n\n{skillText}";
+        }
     }
 }

@@ -1,40 +1,41 @@
 {
   "_dic": {
-    "SetBuff_Alpha_2": [
+    "SetBuff_Alpha_1": [
       18.0
     ],
-    "SetBuff_Alpha_6": [
-      18.0
+    "SetBuff_Alpha_2": [
+      18
+    ],
+    "SetBuff_Alpha_4": [
+      90,
+      36
+    ],
+    "SetBuff_Beta_1": [
+      24
     ],
     "SetBuff_Beta_2": [
       18.0
     ],
-    "SetBuff_Beta_6": [
-      18.0
+    "SetBuff_Beta_4": [
+      30
+    ],
+    "SetBuff_Gamma_1": [
+      24
     ],
     "SetBuff_Gamma_2": [
-      18.0
+      18
     ],
-    "SetBuff_Gamma_6": [
-      18.0
+    "SetBuff_Gamma_4": [
+      12, 60
+    ],
+    "SetBuff_Delta_1": [
+      12.0
     ],
     "SetBuff_Delta_2": [
       18.0
     ],
-    "SetBuff_Delta_6": [
-      18.0
-    ],
-    "SetBuff_Epsilon_2": [
-      18.0
-    ],
-    "SetBuff_Epsilon_6": [
-      18.0
-    ],
-    "SetBuff_Zeta_2": [
-      18.0
-    ],
-    "SetBuff_Zeta_6": [
-      18.0
+    "SetBuff_Delta_4": [
+      12, 8, 6
     ]
   }
 }

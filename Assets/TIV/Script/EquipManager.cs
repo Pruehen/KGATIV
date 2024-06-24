@@ -32,15 +32,16 @@ public static class EquipManager
         foreach (EquipTable item in totalTable.list)
         {
             if(item._validSetList.Contains(setType))
-            {                
-                if(item._type == EquipType.Weapon)
-                {
-                    ListKeyAdd(validKeyList, item._key, 1);
-                }
-                else
-                {
-                    ListKeyAdd(validKeyList, item._key, 6);
-                }
+            {
+                //if(item._type == EquipType.Weapon)
+                //{
+                //    ListKeyAdd(validKeyList, item._key, 1);
+                //}
+                //else
+                //{
+                //    ListKeyAdd(validKeyList, item._key, 6);
+                //}
+                ListKeyAdd(validKeyList, item._key, 1);
             }
         }
         return validKeyList;
@@ -85,7 +86,14 @@ public static class EquipManager
         EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable(equipTable._type);
         IncreaseableStateType mainState = stateTeble.GetRandomMainState();
 
-        return new UserHaveEquipData(createNum, equipTableKey, setType, mainState);
+        if(equipTable._weaponSkillKey == -1)//무기 스킬이 없는 경우, 세트 효과 부여
+        {
+            return new UserHaveEquipData(createNum, equipTableKey, setType, mainState);
+        }
+        else//무기 스킬이 있는 경우, 세트 효과 제거
+        {
+            return new UserHaveEquipData(createNum, equipTableKey, (SetType)(-1), mainState);
+        }        
     }
 
     public static List<string> PrintEquipData(UserHaveEquipData equip)

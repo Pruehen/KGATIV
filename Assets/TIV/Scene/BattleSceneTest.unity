@@ -30815,7 +30815,7 @@ MonoBehaviour:
   TMP_MainStateValue: {fileID: 382187103}
   TMP_Level: {fileID: 2101953742}
   TMP_StateField: {fileID: 1989075436}
-  TMP_SetEffectField: {fileID: 1978662941}
+  TMP_EffectField: {fileID: 1978662941}
   EquipIcon_ViewIcon: {fileID: 1833009598}
   Btn_Upgrade: {fileID: 1109807989}
   Label_MaxLevel: {fileID: 1114413808}
@@ -66492,7 +66492,7 @@ GameObject:
   - component: {fileID: 1978662942}
   - component: {fileID: 1978662941}
   m_Layer: 5
-  m_Name: Text_SetEffect
+  m_Name: Text_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
