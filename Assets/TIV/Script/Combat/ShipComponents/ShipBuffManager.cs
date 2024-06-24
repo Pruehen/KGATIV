@@ -130,12 +130,18 @@ public class ShipBuffManager : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public void BuffCheck_D4Set_OnFire(WeaponProjectileType type)
+    public void BuffCheck_D4Set_OnFire()
     {
-        if(_shipData.IsValid_D4Set && type == WeaponProjectileType.Plasma)//세트 효과를 가진 객체가 플라즈마 무기를 발사했을 때
+        if (_shipData.IsValid_D4Set == false)
+            return;
+
+        if(true)//세트 효과를 가진 객체가 무기를 발사했을 때
         {
             _d4BuffCheckerQueue.Enqueue(true);//버프 스택 인큐
-            _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, _d4setTable._buffValueList[1]);
+            if (_d4BuffCheckerQueue.Count <= _d4setTable._buffValueList[2])//6중첩 이하일 경우
+            {
+                _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, _d4setTable._buffValueList[1]);//버프 스택 증가
+            }
             StartCoroutine(BuffCheckCoroutine_D4Set(_d4setTable._buffValueList[0]));//버프 지속시간 후 디큐 코루틴
         }
         //int buffStack = Mathf.Min(_d4BuffCheckerQueue.Count, (int)(_d4setTable._buffValueList[2]));
@@ -144,8 +150,11 @@ public class ShipBuffManager : MonoBehaviour
 
     IEnumerator BuffCheckCoroutine_D4Set(float time)
     {
-        yield return new WaitForSeconds(time);
-        _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, -_d4setTable._buffValueList[1]);
+        yield return new WaitForSeconds(time);        
         _d4BuffCheckerQueue.Dequeue();
+        if (_d4BuffCheckerQueue.Count < _d4setTable._buffValueList[2])//5중첩 이하일 경우
+        {
+            _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, -_d4setTable._buffValueList[1]);//버프 스택 감소
+        }
     }
 }

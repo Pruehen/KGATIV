@@ -74,7 +74,7 @@
     },
     {
       "_key": 6,
-      "_weaponProjectileType": 2,
+      "_weaponProjectileType": 3,
       "_dmg": 24.0,
       "_collTime": 1.5,
       "_maxRange": 700.0,
@@ -86,7 +86,7 @@
     },
     {
       "_key": 7,
-      "_weaponProjectileType": 2,
+      "_weaponProjectileType": 3,
       "_dmg": 105.0,
       "_collTime": 3.0,
       "_maxRange": 900.0,
@@ -98,7 +98,7 @@
     },
     {
       "_key": 8,
-      "_weaponProjectileType": 2,
+      "_weaponProjectileType": 3,
       "_dmg": 432.0,
       "_collTime": 6.0,
       "_maxRange": 1100.0,
@@ -110,7 +110,7 @@
     },
     {
       "_key": 9,
-      "_weaponProjectileType": 3,
+      "_weaponProjectileType": 2,
       "_dmg": 40.0,
       "_collTime": 2.0,
       "_maxRange": 500.0,
@@ -122,7 +122,7 @@
     },
     {
       "_key": 10,
-      "_weaponProjectileType": 3,
+      "_weaponProjectileType": 2,
       "_dmg": 200.0,
       "_collTime": 4.0,
       "_maxRange": 650.0,
@@ -134,7 +134,7 @@
     },
     {
       "_key": 11,
-      "_weaponProjectileType": 3,
+      "_weaponProjectileType": 2,
       "_dmg": 960.0,
       "_collTime": 8.0,
       "_maxRange": 800.0,
