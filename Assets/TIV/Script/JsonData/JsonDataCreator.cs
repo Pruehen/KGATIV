@@ -1002,7 +1002,7 @@ public class JsonDataCreator : MonoBehaviour
         //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
         //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
         //EquipManager.RandomEquipDrop(SetType.Beta, 20);
-        EquipManager.RandomEquipDrop(SetType.Gamma, 40);
+        //EquipManager.RandomEquipDrop(SetType.Gamma, 40);
         //EquipManager.RandomEquipDrop(SetType.Delta, 20);
 
         //foreach (EquipSetTable table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
