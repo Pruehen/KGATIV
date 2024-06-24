@@ -1,9 +1,20 @@
 using EnumTypes;
+using System;
 
 namespace ViewModel.Extensions
 {
     public static class ShipMenuUIViewModelExtension
     {
+        public static void Register_OnShipDataChange(this ShipMenuUIViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.Register_OnShipDataChange(vm.OnChangeShipData);
+        }
+
+        public static void UnRegister_OnShipDataChange(this ShipMenuUIViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.UnRegister_OnShipDataChange(vm.OnChangeShipData);
+        }
+
         public static void RefreshShipData(this ShipMenuUIViewModel vm, int shipKey)//요청 익스텐션
         {            
             kjh.GameLogicManager.Instance.RefreshShipInfo(shipKey, vm.OnChangeShipData);//콜백 호출

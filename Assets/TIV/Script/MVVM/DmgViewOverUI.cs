@@ -61,7 +61,7 @@ public class DmgViewOverUI : MonoBehaviour
 
         if(isCrit)
         {
-            TMP_DmgText.fontSize = 60;
+            TMP_DmgText.fontSize = 100;
         }
         else
         {

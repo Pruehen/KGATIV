@@ -1,4 +1,5 @@
 using EnumTypes;
+using System.Collections.Generic;
 using UnityEngine;
 
 public interface ITargetable
@@ -12,7 +13,7 @@ public interface ITargetable
     /// <returns></returns>
     public bool IFF(bool id);
     public bool GetID();
-    public void Hit(float dmg, WeaponProjectileType type, bool isCrit);
+    public void Hit(float dmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey);
 }
 
 [RequireComponent(typeof(ShipCombatData))]
@@ -20,6 +21,7 @@ public interface ITargetable
 [RequireComponent(typeof(ShipEngine))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(ShipFCS))]
+[RequireComponent(typeof(ShipBuffManager))]
 public class ShipMaster : MonoBehaviour, ITargetable
 {
     public Rigidbody rigidbody { get; private set; }    
@@ -27,6 +29,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipMainComputer MainComputer { get; private set; }
     public ShipEngine Engine { get; private set; }    
     public ShipFCS FCS { get; private set; }
+    public ShipBuffManager BuffManager { get; private set; }
 
     public Vector3 GetPosition()
     {
@@ -53,9 +56,9 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         return (CombatData.GetShipTableKey() >= 0);
     }
-    public void Hit(float dmg, WeaponProjectileType type, bool isCrit)
+    public void Hit(float dmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey)
     {
-        CombatData.Hit(dmg, type, isCrit);
+        CombatData.Hit(dmg, type, isCrit, hasDebuffKey);
     }
 
     private void Awake()
@@ -66,6 +69,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
         MainComputer = GetComponent<ShipMainComputer>();
         Engine = GetComponent<ShipEngine>();        
         FCS = GetComponent<ShipFCS>();
+        BuffManager = GetComponent<ShipBuffManager>();
 
         kjh.GameLogicManager.Instance.AddActiveShip(this);
 

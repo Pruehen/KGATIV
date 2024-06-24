@@ -4224,6 +4224,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 865435683}
     m_Modifications:
+    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
+      propertyPath: hp
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: TargetPos.z
       value: 200
@@ -4234,7 +4238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.data[0]

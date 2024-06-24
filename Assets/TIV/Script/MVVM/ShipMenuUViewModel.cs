@@ -29,6 +29,7 @@ public class ShipMenuUIViewModel
         get { return _name; }
         set
         {
+            if (_name == value) return;
             _name = value;
             OnPropertyChanged(nameof(Name));
         }
@@ -56,6 +57,7 @@ public class ShipMenuUIViewModel
         get { return _hp; }
         set
         {
+            if (_hp == value) return;
             _hp = value;
             OnPropertyChanged(nameof(Hp));
         }
@@ -65,6 +67,7 @@ public class ShipMenuUIViewModel
         get { return _atk; }
         set
         {
+            if (_atk == value) return;
             _atk = value;
             OnPropertyChanged(nameof(Atk));
         }
@@ -74,6 +77,7 @@ public class ShipMenuUIViewModel
         get { return _def; }
         set
         {
+            if (_def == value) return;
             _def = value;
             OnPropertyChanged(nameof(Def));
         }

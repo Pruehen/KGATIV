@@ -1,10 +1,12 @@
 using EnumTypes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipCombatData : MonoBehaviour
 {
-    ShipData _shipData;
+    public ShipData ShipData { get; private set; }
+    public ShipBuffManager BuffManager { get; private set; }
 
     [Header("플레이어 함선일 경우, 해당 함선의 키")]
     [SerializeField] int shipTableKey = -1;
@@ -20,22 +22,32 @@ public class ShipCombatData : MonoBehaviour
     {
         if (shipTableKey >= 0)
         {
-            _shipData = kjh.GameLogicManager.GetShipData(shipTableKey);
+            this.ShipData = kjh.GameLogicManager.GetShipData(shipTableKey);
         }
         else
         {
-            _shipData = new ShipData(hp, atk, def);            
+            this.ShipData = new ShipData(hp, atk, def);            
         }
-        _curHp = _shipData.GetFinalState(CombatStateType.Hp);
+        _curHp = ShipData.GetFinalState(CombatStateType.Hp);
+
+        this.BuffManager = GetComponent<ShipBuffManager>();
+        this.BuffManager.Init(ShipData);
     }
     public void Register_OnDead(Action callBack)
     {
         _onDead += callBack;
     }
-
-    public void Hit(float originDmg, WeaponProjectileType type, bool isCrit)
+    public void Register_OnAllStaticDataUpdate(Action callBack)
     {
-        float calcedDmg = originDmg * 1000 / (1000 + _shipData.GetFinalState(CombatStateType.Def));
+        ShipData.OnAllStaticDataUpdate += callBack;
+    }
+
+    public void Hit(float originDmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey)
+    {
+        BuffManager.BuffCheck_G4Set_OnHit_TryAddDebuff(type, hasDebuffKey);
+        float validDef = ShipData.GetFinalState(CombatStateType.Def) * BuffManager.BuffCheck_G4Set_OnHit_ValidDefRatio();
+
+        float calcedDmg = originDmg * (1000 / (1000 + validDef));
         _curHp -= calcedDmg;
         kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position, isCrit);
 
@@ -46,21 +58,21 @@ public class ShipCombatData : MonoBehaviour
     }
     public float GetDmg(WeaponSkillTable table, out bool isCrit)
     {
-        float atk = _shipData.GetFinalState(CombatStateType.Atk);
+        float atk = ShipData.GetFinalState(CombatStateType.Atk);
         float dmgBonus;
         switch (table._weaponProjectileType)
         {
             case WeaponProjectileType.Physics:
-                dmgBonus = _shipData.GetFinalState(CombatStateType.PhysicsDmg);
+                dmgBonus = ShipData.GetFinalState(CombatStateType.PhysicsDmg);
                 break;
             case WeaponProjectileType.Optics:
-                dmgBonus = _shipData.GetFinalState(CombatStateType.OpticsDmg);
+                dmgBonus = ShipData.GetFinalState(CombatStateType.OpticsDmg);
                 break;
             case WeaponProjectileType.Particle:
-                dmgBonus = _shipData.GetFinalState(CombatStateType.ParticleDmg);
+                dmgBonus = ShipData.GetFinalState(CombatStateType.ParticleDmg);
                 break;
             case WeaponProjectileType.Plasma:
-                dmgBonus = _shipData.GetFinalState(CombatStateType.PlasmaDmg);
+                dmgBonus = ShipData.GetFinalState(CombatStateType.PlasmaDmg);
                 break;
             default:
                 dmgBonus = 0;
@@ -68,8 +80,8 @@ public class ShipCombatData : MonoBehaviour
         }
         dmgBonus = 1 + (dmgBonus * 0.01f);
 
-        float critRate = _shipData.GetFinalState(CombatStateType.CritRate);
-        float critDmg = _shipData.GetFinalState(CombatStateType.CritDmg);
+        float critRate = ShipData.GetFinalState(CombatStateType.CritRate);
+        float critDmg = ShipData.GetFinalState(CombatStateType.CritDmg);
         float random = UnityEngine.Random.Range(0, 100);
         float critDmgBonus;
         if(critRate >= random)
@@ -88,7 +100,7 @@ public class ShipCombatData : MonoBehaviour
     }
     public float GetHpRatio()
     {
-        return _curHp / _shipData.GetFinalState(CombatStateType.Hp);
+        return _curHp / ShipData.GetFinalState(CombatStateType.Hp);
     }
 
     Action _onDead;

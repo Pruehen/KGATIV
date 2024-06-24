@@ -79,6 +79,7 @@ public class ShipMenuUIManager : MonoBehaviour
             _vm = new ShipMenuUIViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.RefreshUserItemData();
+            _vm.Register_OnShipDataChange();
             //_vm.RegisterEventsOnEnable();            
         }
     }
@@ -87,6 +88,7 @@ public class ShipMenuUIManager : MonoBehaviour
         if (_vm != null)
         {
             //_vm.UnRegisterEventsOnDisable();
+            _vm.UnRegister_OnShipDataChange();
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
         }

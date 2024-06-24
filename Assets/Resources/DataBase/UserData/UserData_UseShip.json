@@ -2,12 +2,14 @@
   "list": [
     {
       "_shipTablekey": 0,
-      "_level": 1,
+      "_level": 90,
       "_isHave": true,
       "_thrusterSlotItemKey": "",
       "_reactorSlotItemKey": "",
       "_radiatorSlotItemKey": "",
-      "_combatSlotItemKeyList": []
+      "_combatSlotItemKeyList": [
+        "1719194457_52-12"
+      ]
     },
     {
       "_shipTablekey": 1,
@@ -43,8 +45,7 @@
       "_thrusterSlotItemKey": "",
       "_reactorSlotItemKey": "",
       "_radiatorSlotItemKey": "",
-      "_combatSlotItemKeyList": [
-      ]
+      "_combatSlotItemKeyList": []
     }
   ]
 }

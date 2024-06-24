@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -15,8 +16,8 @@ public class Weapon : MonoBehaviour
     }
 
     void SetCollDownValue()
-    {
-        _collDownValue = table._collTime * Random.Range(0.95f, 1.05f);
+    {        
+        _collDownValue = CombatData.BuffManager.BuffCheck_B4Set_OnSetCollDownValue(table._collTime * Random.Range(0.95f, 1.05f));
     }
     public void SetTarget(ITargetable target)
     {
@@ -53,6 +54,13 @@ public class Weapon : MonoBehaviour
         Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(table._projectileNameKey)).GetComponent<Projectile>();
         bool isCrit;
         float dmg = CombatData.GetDmg(table, out isCrit);
-        projectile.Init(originPos, aimPos, table, dmg, isCrit);
+
+        List<string> hasDebuffkey = new List<string>();
+
+        if(CombatData.BuffManager.BuffCheck_G4Set_OnFire(out string debuffKey))
+        {
+            hasDebuffkey.Add(debuffKey);
+        }
+        projectile.Init(originPos, aimPos, table, dmg, isCrit, hasDebuffkey);
     }
 }

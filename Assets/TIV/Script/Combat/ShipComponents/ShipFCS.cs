@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ShipFCS : MonoBehaviour
 {
+    ShipCombatData CombatData;
     List<Weapon> _usingWeaponList;
 
     [Header("적 함선일 경우, 사용할 무기 키")]
@@ -12,6 +13,7 @@ public class ShipFCS : MonoBehaviour
     public void Init(int shipKey)
     {
         _curShipKey = shipKey;
+        CombatData = GetComponent<ShipCombatData>();
         _usingWeaponList = new List<Weapon>();
 
         if (shipKey >= 0)
@@ -34,8 +36,10 @@ public class ShipFCS : MonoBehaviour
                 _usingWeaponList.Add(weapon);
             }
         }
+
+        CombatData.Register_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);//장비 갱신을 위한 이벤트 연결
     }
-    public void UpdateUsingWeapon_OnEquipChange()
+    public void UpdateUsingWeapon_OnEquipChange()//장비가 변경되었을 경우, 자신에게 장착된 장비를 갱신하는 메서드
     {
         if (_curShipKey >= 0)
         {

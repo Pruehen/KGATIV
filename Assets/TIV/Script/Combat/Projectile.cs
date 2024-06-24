@@ -1,4 +1,5 @@
 using EnumTypes;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -15,7 +16,9 @@ public class Projectile : MonoBehaviour
     float _halfDistance;
     Vector3 _initPos;
     bool _isCrit;
-    public void Init(Vector3 initPos, Vector3 targetPos, WeaponSkillTable table, float dmg, bool isCrit)
+    List<string> _hasDebuffKey;
+
+    public void Init(Vector3 initPos, Vector3 targetPos, WeaponSkillTable table, float dmg, bool isCrit, List<string> hasDebuffKey)
     {
         _Collider = GetComponent<SphereCollider>();
         _Collider.enabled = false;
@@ -37,6 +40,15 @@ public class Projectile : MonoBehaviour
         _initPos = this.transform.position;
         _isCrit = isCrit;
 
+        if (hasDebuffKey.Count > 0)
+        {
+            _hasDebuffKey = new List<string>();
+            foreach (string s in hasDebuffKey)
+            {
+                _hasDebuffKey.Add(s);
+            }
+        }
+
         Destroy(this.gameObject, 10);
     }
 
@@ -56,11 +68,11 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out ITargetable target))
         {
             Vector3 hitPos = collision.contacts[0].point;
-            if (_halfDistance >= 0)
+            if (_halfDistance > 0)
             {
                 _dmg *= 1 / Mathf.Exp((-Mathf.Log(0.5f) / _halfDistance) * Vector3.Distance(hitPos, _initPos));
             }
-            target.Hit(_dmg, _type, _isCrit);
+            target.Hit(_dmg, _type, _isCrit, _hasDebuffKey);
 
             childEffects.SetParent(null);            
             childEffects.position = hitPos;

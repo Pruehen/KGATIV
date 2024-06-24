@@ -14,6 +14,8 @@ namespace kjh
         Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
+        Action<ShipData> _onShipDataChange;
+        int _selectedShipID;
 
         private Action<int, int> _levelUpCallback;
         
@@ -114,13 +116,31 @@ namespace kjh
         }
 
         //======================================================================================
+        public void Register_OnShipDataChange(Action<ShipData> callback)
+        {
+            _onShipDataChange += callback;
+        }
 
+        public void UnRegister_OnShipDataChange(Action<ShipData> callback)
+        {
+            _onShipDataChange -= callback;
+        }
         public void RefreshShipInfo(int requestId, Action<ShipData> callback)
         {
+            Debug.Log($"선택 함선 {requestId}");
+            _selectedShipID = requestId;
             ShipData shipData = _shipDatas[requestId];
-            shipData.AllDataUpdate();
+            shipData.AllStaticDataUpdate();            
             callback.Invoke(shipData);
         }
+        public void OnShipDataChenge(int requestId)
+        {
+            if (_selectedShipID == requestId)
+            {
+                Debug.Log("데이터 갱신");
+                _onShipDataChange?.Invoke(_shipDatas[requestId]);
+            }
+       }
         public void RefreshUserItem(Action<long, long> callback)
         {
             long credit = JsonDataManager.DataLode_UserHaveItemData(ItemType.Credit)._value;
@@ -139,7 +159,7 @@ namespace kjh
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
             ShipData shipData = _shipDatas[shipKey];
-            shipData.AllDataUpdate();
+            shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
         }
         public void ShipUnEquipItem(string equipUniqeKey, Action<ShipData> callback)
@@ -153,7 +173,7 @@ namespace kjh
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
             ShipData shipData = _shipDatas[shipKey];
-            shipData.AllDataUpdate();
+            shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
         }
 
