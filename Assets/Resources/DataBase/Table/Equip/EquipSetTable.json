@@ -3,30 +3,30 @@
     {
       "_setTypeKey": 0,
       "_setEffectName": "전술 알고리즘 알파",
-      "_setEffectText": "    1세트 : 공격력 +18%\n    2세트 : 물리 피해 보너스 +18%\n    4세트 : 자신의 체력이 90% 이상일 경우, 물리 피해 보너스 36%만큼 증가",
-      "_Set2EffectKey": "SetBuff_Alpha_2",
-      "_Set6EffectKey": "SetBuff_Alpha_6"
+      "_set1Key": "SetBuff_Alpha_1",
+      "_set2Key": "SetBuff_Alpha_2",
+      "_set4Key": "SetBuff_Alpha_4"
     },
     {
       "_setTypeKey": 1,
       "_setEffectName": "전술 알고리즘 베타",
-      "_setEffectText": "    1세트 : 방어력 +24%\n    2세트 : 광학 피해 보너스 +18%\n    4세트 : 모든 무기의 쿨타임 30%만큼 감소",
-      "_Set2EffectKey": "SetBuff_Beta_2",
-      "_Set6EffectKey": "SetBuff_Beta_6"
+      "_set1Key": "SetBuff_Beta_1",
+      "_set2Key": "SetBuff_Beta_2",
+      "_set4Key": "SetBuff_Beta_4"
     },
     {
       "_setTypeKey": 2,
       "_setEffectName": "전술 알고리즘 감마",
-      "_setEffectText": "    1세트 : 치명타 피해 +24%\n    2세트 : 입자 피해 보너스 +18%\n    4세트 : 입자 피해를 가한 적의 방어력을 10초동안 60%만큼 감소, 중첩되지 않음",
-      "_Set2EffectKey": "SetBuff_Gamma_2",
-      "_Set6EffectKey": "SetBuff_Gamma_6"
+      "_set1Key": "SetBuff_Gamma_1",
+      "_set2Key": "SetBuff_Gamma_2",
+      "_set4Key": "SetBuff_Gamma_4"
     },
     {
       "_setTypeKey": 3,
       "_setEffectName": "전술 알고리즘 델타",
-      "_setEffectText": "    1세트 : 치명타 확률 +12%\n    2세트 : 플라즈마 피해 보너스 +18%\n    4세트 : 무기 발사 시마다 플라즈마 피해 12초동안 8%만큼 증가. 최대 6중첩 가능",
-      "_Set2EffectKey": "SetBuff_Delta_2",
-      "_Set6EffectKey": "SetBuff_Delta_6"
+      "_set1Key": "SetBuff_Delta_1",
+      "_set2Key": "SetBuff_Delta_2",
+      "_set4Key": "SetBuff_Delta_4"
     }
   ]
 }

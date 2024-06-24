@@ -89,6 +89,11 @@ public static class JsonDataManager
         EquipSetTableList tableList = jsonCache.EquipSetTableListCache;
         return tableList.list[(int)key];
     }
+    public static BuffTable DataLode_BuffTable(string key)
+    {
+        BuffTableDictionary tableDic = jsonCache.BuffTableDictionaryCache;
+        return tableDic._dic[key];
+    }
     public static UserHaveEquipData DataLode_UserHaveEquipData(string key)
     {
         UserHaveEquipDataDictionary dataDictionary = jsonCache.UserHaveEquipDataDictionaryCache;
@@ -194,16 +199,16 @@ public class JsonCache
             return _equipSetTableList;
         }
     }
-    BuffValueTableDictionary _buffValueTableDictionaryCache;
-    public BuffValueTableDictionary BuffValueTableDictionaryCache
+    BuffTableDictionary _buffTableDictionaryCache;
+    public BuffTableDictionary BuffTableDictionaryCache
     {
         get
         {
-            if (_buffValueTableDictionaryCache == null)
+            if (_buffTableDictionaryCache == null)
             {
-                _buffValueTableDictionaryCache = JsonDataManager.DataTableListLoad<BuffValueTableDictionary>(BuffValueTableDictionary.FilePath());
+                _buffTableDictionaryCache = JsonDataManager.DataTableListLoad<BuffTableDictionary>(BuffTableDictionary.FilePath());
             }
-            return _buffValueTableDictionaryCache;
+            return _buffTableDictionaryCache;
         }
     }
 

@@ -148,18 +148,18 @@ public class EquipSetTable
 {
     public SetType _setTypeKey;
     public string _setEffectName;
-    public string _setEffectText;
-    public string _Set2EffectKey;
-    public string _Set6EffectKey;
+    public string _set1Key;
+    public string _set2Key;
+    public string _set4Key;
 
     [JsonConstructor]
-    public EquipSetTable(SetType setTypeKey, string setEffectName, string setEffectText,  string set2EffectKey, string set6EffectKey)
+    public EquipSetTable(SetType setTypeKey, string setEffectName, string set1Key, string set2Key, string set4Key)
     {
         _setTypeKey = setTypeKey;
         _setEffectName = setEffectName;
-        _setEffectText = setEffectText;
-        _Set2EffectKey = set2EffectKey;
-        _Set6EffectKey = set6EffectKey;
+        _set1Key = set1Key;
+        _set2Key = set2Key;
+        _set4Key = set4Key;
     }
 }
 public class EquipSetTableList
@@ -179,21 +179,36 @@ public class EquipSetTableList
         return "/Resources/DataBase/Table/Equip/EquipSetTable.json";
     }
 }
-public class BuffValueTableDictionary
-{
-    public Dictionary<string, List<float>> _dic = new Dictionary<string, List<float>>();
+public class BuffTable
+{    
+    public string _buffKey;
+    public string _buffInfo;
+    public List<float> _buffValueList = new List<float>();
+
     [JsonConstructor]
-    public BuffValueTableDictionary(Dictionary<string, List<float>> dic)
+    public BuffTable(string buffKey, string buffInfo, List<float> buffValueList)
+    {
+        _buffKey = buffKey;
+        _buffInfo = buffInfo;
+        _buffValueList = buffValueList;
+    }
+}
+
+public class BuffTableDictionary
+{
+    public Dictionary<string, BuffTable> _dic = new Dictionary<string, BuffTable>();
+    [JsonConstructor]
+    public BuffTableDictionary(Dictionary<string, BuffTable> dic)
     {
         _dic = dic;
     }
-    public BuffValueTableDictionary()
+    public BuffTableDictionary()
     {
-        _dic = new Dictionary<string, List<float>>();
+        _dic = new Dictionary<string, BuffTable>();
     }
     public static string FilePath()
     {
-        return "/Resources/DataBase/Table/Value/BuffValueTable.json";
+        return "/Resources/DataBase/Table/Value/BuffTable.json";
     }
 }
 
@@ -989,6 +1004,15 @@ public class JsonDataCreator : MonoBehaviour
         //EquipManager.RandomEquipDrop(SetType.Beta, 20);
         //EquipManager.RandomEquipDrop(SetType.Gamma, 20);
         //EquipManager.RandomEquipDrop(SetType.Delta, 20);
+        
+        //foreach (EquipSetTable table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
+        //{
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set1Key, new BuffTable(table._set1Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set2Key, new BuffTable(table._set2Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set4Key, new BuffTable(table._set4Key, "버프 설명", new List<float>() { 18 }));
+        //}
+
+        //JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.BuffTableDictionaryCache, BuffTableDictionary.FilePath());
     }
 
     void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수

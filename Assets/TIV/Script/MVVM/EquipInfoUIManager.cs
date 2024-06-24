@@ -1,6 +1,7 @@
 using EnumTypes;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -123,7 +124,16 @@ public class EquipInfoUIManager : MonoBehaviour
         if (setType >= 0)
         {
             EquipSetTable setTable = JsonDataManager.DataLode_SetEffectTable(setType);
-            TMP_EffectField.text = $"{table._info}\n\n{setTable._setEffectName}\n{setTable._setEffectText}";
+
+            BuffTable set1Table = JsonDataManager.DataLode_BuffTable(setTable._set1Key);
+            BuffTable set2Table = JsonDataManager.DataLode_BuffTable(setTable._set2Key);
+            BuffTable set4Table = JsonDataManager.DataLode_BuffTable(setTable._set4Key);
+
+            string set1Text = string.Format(set1Table._buffInfo, set1Table._buffValueList.Cast<object>().ToArray());
+            string set2Text = string.Format(set2Table._buffInfo, set2Table._buffValueList.Cast<object>().ToArray());
+            string set4Text = string.Format(set4Table._buffInfo, set4Table._buffValueList.Cast<object>().ToArray());
+
+            TMP_EffectField.text = $"{table._info}\n\n{setTable._setEffectName}\n    1세트 효과: {set1Text}\n    2세트 효과: {set2Text}\n    4세트 효과: {set4Text}";
         }
         else
         {

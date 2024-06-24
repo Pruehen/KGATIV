@@ -1,0 +1,91 @@
+{
+  "_dic": {
+    "SetBuff_Alpha_1": {
+      "_buffKey": "SetBuff_Alpha_1",
+      "_buffInfo": "공격력 +{0}%",
+      "_buffValueList": [
+        18.0
+      ]
+    },
+    "SetBuff_Alpha_2": {
+      "_buffKey": "SetBuff_Alpha_2",
+      "_buffInfo": "물리 피해 보너스 +{0}%",
+      "_buffValueList": [
+        18.0
+      ]
+    },
+    "SetBuff_Alpha_4": {
+      "_buffKey": "SetBuff_Alpha_4",
+      "_buffInfo": "자신의 체력이 {0}% 이상일 경우, 물리 피해 보너스 +{1}%",
+      "_buffValueList": [
+        90, 36
+      ]
+    },
+    "SetBuff_Beta_1": {
+      "_buffKey": "SetBuff_Beta_1",
+      "_buffInfo": "방어력 +{0}%",
+      "_buffValueList": [
+        24.0
+      ]
+    },
+    "SetBuff_Beta_2": {
+      "_buffKey": "SetBuff_Beta_2",
+      "_buffInfo": "광학 피해 보너스 +{0}%",
+      "_buffValueList": [
+        18.0
+      ]
+    },
+    "SetBuff_Beta_4": {
+      "_buffKey": "SetBuff_Beta_4",
+      "_buffInfo": "모든 무기의 쿨타임 {0}% 감소",
+      "_buffValueList": [
+        30
+      ]
+    },
+    "SetBuff_Gamma_1": {
+      "_buffKey": "SetBuff_Gamma_1",
+      "_buffInfo": "치명타 피해 +{0}%",
+      "_buffValueList": [
+        24
+      ]
+    },
+    "SetBuff_Gamma_2": {
+      "_buffKey": "SetBuff_Gamma_2",
+      "_buffInfo": "입자 피해 보너스 +{0}%",
+      "_buffValueList": [
+        18.0
+      ]
+    },
+    "SetBuff_Gamma_4": {
+      "_buffKey": "SetBuff_Gamma_4",
+      "_buffInfo": "자신이 입자 피해를 가한 적의 방어력을 {0}초동안 {1}% 감소. 중첩되지 않음.",
+      "_buffValueList": [
+        12,
+        60
+      ]
+    },
+    "SetBuff_Delta_1": {
+      "_buffKey": "SetBuff_Delta_1",
+      "_buffInfo": "치명타 확률 +{0}%",
+      "_buffValueList": [
+        12.0
+      ]
+    },
+    "SetBuff_Delta_2": {
+      "_buffKey": "SetBuff_Delta_2",
+      "_buffInfo": "플라즈마 피해 보너스 +{0}%",
+      "_buffValueList": [
+        18.0
+      ]
+    },
+    "SetBuff_Delta_4": {
+      "_buffKey": "SetBuff_Delta_4",
+      "_buffInfo": "자신이 무기를 발사할 때마다 {0}초동안 플라즈마 피해 +{1}%만큼 증가. 최대 {2}중첩",
+      "_buffValueList": [
+        12,
+        8,
+        6
+      ]
+    }
+  }
+}
