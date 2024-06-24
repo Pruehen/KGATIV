@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011917973, g: 0.029989384, b: 0.042229313, a: 1}
+  m_IndirectSpecularColor: {r: 0.011918013, g: 0.02964343, b: 0.042490747, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4226,7 +4226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: TargetPos.z
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
@@ -4234,11 +4234,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.size
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
+      propertyPath: usingWeaponList_Key.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
+      propertyPath: usingWeaponList_Key.Array.data[2]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: usingWeaponList_Key.Array.data[3]
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_RootOrder
@@ -71695,12 +71703,56 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
       propertyPath: Prefab_ProjectilesList.Array.size
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
       propertyPath: Prefab_ProjectilesList.Array.data[0]
       value: 
       objectReference: {fileID: 6724581860587844757, guid: e3cbd6ed682803a438e3fcee1bd2ed80, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 12f270310f950fd459cbae407d2f4765, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[2]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: d1a047cc1527a53419d5d5475cee1177, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[3]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 35e4d1b15b4d51a489300c618b40ba32, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[4]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 62c3601eba6370d47b8fe87a5dcab87b, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[5]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: efc9ebbbfd5ad9d4287fde7e4d2893df, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[6]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 5911577ee3b94d242815e2184e1ff710, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[7]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 7f8653369836b8c47ac496e76a2c006e, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[8]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 158789fc511c8be4c957fe1bad6d3b17, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[9]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: a41ee0be9bd23ed40ab38b02c4df3fac, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[10]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 4126a5ea22637e448ae33b3e8ba098a5, type: 3}
+    - target: {fileID: 8496620405591653064, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
+      propertyPath: Prefab_ProjectilesList.Array.data[11]
+      value: 
+      objectReference: {fileID: 6724581860587844757, guid: 1d153980f7f63cf4fa5fc39161f237ef, type: 3}
     - target: {fileID: 8496620405591653067, guid: 6bb505307bbfee042a7fc2bac254be8a, type: 3}
       propertyPath: m_RootOrder
       value: 9

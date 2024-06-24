@@ -207,7 +207,8 @@ public class WeaponSkillTable
     public float _projectileVelocity;
     public float _halfDistance;
     public bool _canIntercept;
-    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept)
+    public string _projectileNameKey;
+    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept, string projectileNameKey)
     {
         _key = key;
         _weaponProjectileType = weaponProjectileType;
@@ -217,6 +218,7 @@ public class WeaponSkillTable
         _projectileVelocity = projectileVelocity;
         _halfDistance = halfDistance;
         _canIntercept = canIntercept;
+        _projectileNameKey = projectileNameKey;
     }
 }
 public class WeaponSkillTableList

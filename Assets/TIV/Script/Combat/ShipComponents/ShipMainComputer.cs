@@ -47,7 +47,7 @@ public class ShipMainComputer : MonoBehaviour
             List<ITargetable> targets = SearchForTargets();
             bool thisID = _Master.GetID();
 
-            if (_isInterceptMode == false)//공격 모드
+            if (_isInterceptMode == false)//공격 모드. 가장 가까운 타겟을 메인 타겟으로 설정함.
             {
                 float distanceTemp = float.MaxValue;
                 ITargetable targetTemp = null;

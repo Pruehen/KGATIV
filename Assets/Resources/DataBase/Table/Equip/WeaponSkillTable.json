@@ -8,7 +8,8 @@
       "_maxRange": 1200.0,
       "_projectileVelocity": 300.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Shell_S"
     },
     {
       "_key": 1,
@@ -18,7 +19,8 @@
       "_maxRange": 1600.0,
       "_projectileVelocity": 400.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Shell_M"
     },
     {
       "_key": 2,
@@ -28,7 +30,8 @@
       "_maxRange": 2000.0,
       "_projectileVelocity": 500.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Shell_L"
     },
     {
       "_key": 3,
@@ -36,9 +39,10 @@
       "_dmg": 64.0,
       "_collTime": 1.0,
       "_maxRange": 600.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 200.0,
-      "_canIntercept": true
+      "_canIntercept": true,
+      "_projectileNameKey": "LASAR_S"
     },
     {
       "_key": 4,
@@ -46,9 +50,10 @@
       "_dmg": 160.0,
       "_collTime": 2.0,
       "_maxRange": 800.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 400.0,
-      "_canIntercept": true
+      "_canIntercept": true,
+      "_projectileNameKey": "LASAR_M"
     },
     {
       "_key": 5,
@@ -56,9 +61,10 @@
       "_dmg": 384.0,
       "_collTime": 4.0,
       "_maxRange": 1000.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 1000.0,
-      "_canIntercept": true
+      "_canIntercept": true,
+      "_projectileNameKey": "LASAR_L"
     },
     {
       "_key": 6,
@@ -68,7 +74,8 @@
       "_maxRange": 700.0,
       "_projectileVelocity": 700.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Plasma_S"
     },
     {
       "_key": 7,
@@ -78,7 +85,8 @@
       "_maxRange": 900.0,
       "_projectileVelocity": 900.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Plasma_M"
     },
     {
       "_key": 8,
@@ -88,7 +96,8 @@
       "_maxRange": 1100.0,
       "_projectileVelocity": 1100.0,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "Plasma_L"
     },
     {
       "_key": 9,
@@ -96,9 +105,10 @@
       "_dmg": 40.0,
       "_collTime": 2.0,
       "_maxRange": 500.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "PAC_S"
     },
     {
       "_key": 10,
@@ -106,9 +116,10 @@
       "_dmg": 200.0,
       "_collTime": 2.0,
       "_maxRange": 650.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "PAC_M"
     },
     {
       "_key": 11,
@@ -116,9 +127,10 @@
       "_dmg": 960.0,
       "_collTime": 2.0,
       "_maxRange": 800.0,
-      "_projectileVelocity": 10000,
+      "_projectileVelocity": 6000,
       "_halfDistance": 0.0,
-      "_canIntercept": false
+      "_canIntercept": false,
+      "_projectileNameKey": "PAC_L"
     }
   ]
 }

@@ -50,7 +50,7 @@ public class Weapon : MonoBehaviour
             aimPos = _target.GetPosition() + _target.GetVelocity() * eta;
         }
 
-        Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf()).GetComponent<Projectile>();
+        Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(table._projectileNameKey)).GetComponent<Projectile>();
         projectile.Init(originPos, aimPos, projectileVelocity, Vector3.Distance(originPos, aimPos) * 0.9f, CombatData.GetDmg(table), table._weaponProjectileType);
     }
 }

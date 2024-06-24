@@ -47,14 +47,17 @@ public class Projectile : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.TryGetComponent<ITargetable>(out ITargetable target))
+        if (collision.gameObject.TryGetComponent<ITargetable>(out ITargetable target))
         {
             target.Hit(_dmg, _type);
 
             childEffects.SetParent(null);
             Vector3 hitPos = collision.contacts[0].point;
             childEffects.position = hitPos;
-            hitEffect.Play();
+            if (hitEffect != null)
+            {
+                hitEffect.Play();
+            }
             Destroy(childEffects.gameObject, 4);
             Destroy(this.gameObject);
         }
