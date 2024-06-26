@@ -61,11 +61,11 @@ public class DmgViewOverUI : MonoBehaviour
 
         if(isCrit)
         {
-            TMP_DmgText.fontSize = 100;
+            TMP_DmgText.fontSize = 120;
         }
         else
         {
-            TMP_DmgText.fontSize = 40;
+            TMP_DmgText.fontSize = 60;
         }
     }
 
@@ -76,7 +76,7 @@ public class DmgViewOverUI : MonoBehaviour
         Vector2 position = screenPoint - screenSize * 0.5f;
         //position *= screenAdjustFactor;
         _rectTransform.anchoredPosition = position + new Vector2(0, _activeTime * 50);
-        TMP_DmgText.fontSize = Mathf.Lerp(TMP_DmgText.fontSize, 20, Time.deltaTime * 5);
+        TMP_DmgText.fontSize = Mathf.Lerp(TMP_DmgText.fontSize, 40, Time.deltaTime * 5);
 
         _activeTime += Time.deltaTime;
         if(_activeTime > _lifeTime )

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3662339830238096752}
   - component: {fileID: 1621038602054271039}
   - component: {fileID: 6824092344873962813}
+  - component: {fileID: 6471774661150200329}
   m_Layer: 0
   m_Name: ASF1
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67618465f70e3d74ba5d22b08e082add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipName: Sentinel
 --- !u!114 &544536306987245995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +143,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingWeaponList_Key: 00000000000000000000000003000000
+--- !u!114 &6471774661150200329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595366713290060529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b2c447cd4e2714b8776b36f86a26fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &130227165862727509
 PrefabInstance:
   m_ObjectHideFlags: 0

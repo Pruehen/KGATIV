@@ -3,21 +3,27 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    WeaponSkillTable table;
+    public WeaponSkillTable Table { get; private set; }
     ShipCombatData CombatData;
 
     ITargetable _target;    
-    float _collDownValue;    
+    float _collDownValue;
+    float _curMaxCool;
     public void Init(WeaponSkillTable table)
     {
-        this.table = table;
+        this.Table = table;
         CombatData = this.GetComponent<ShipCombatData>();        
         SetCollDownValue();
     }
 
     void SetCollDownValue()
     {        
-        _collDownValue = CombatData.BuffManager.BuffCheck_B4Set_OnSetCollDownValue(table._collTime * Random.Range(0.95f, 1.05f));
+        _collDownValue = CombatData.BuffManager.BuffCheck_B4Set_OnSetCollDownValue(Table._collTime * Random.Range(0.95f, 1.05f));
+        _curMaxCool = _collDownValue;
+    }
+    public float GetCoolDownRatio()
+    {
+        return _collDownValue / _curMaxCool;
     }
     public void SetTarget(ITargetable target)
     {
@@ -31,7 +37,7 @@ public class Weapon : MonoBehaviour
 
         if (_collDownValue < 0)
         {
-            if (_target != null && Vector3.Distance(this.transform.position, _target.GetPosition()) < table._maxRange)
+            if (_target != null && Vector3.Distance(this.transform.position, _target.GetPosition()) < Table._maxRange)
             {
                 SetCollDownValue();
                 Fire();
@@ -43,7 +49,7 @@ public class Weapon : MonoBehaviour
     {
         Vector3 originPos = this.transform.position;
         Vector3 aimPos = _target.GetPosition();        
-        float projectileVelocity = table._projectileVelocity;        
+        float projectileVelocity = Table._projectileVelocity;        
 
         for (int i = 0; i < 4; i++)
         {
@@ -51,9 +57,9 @@ public class Weapon : MonoBehaviour
             aimPos = _target.GetPosition() + _target.GetVelocity() * eta;
         }
 
-        Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(table._projectileNameKey)).GetComponent<Projectile>();
+        Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(Table._projectileNameKey)).GetComponent<Projectile>();
         bool isCrit;
-        float dmg = CombatData.GetDmg(table, out isCrit);
+        float dmg = CombatData.GetDmg(Table, out isCrit);
 
         List<string> hasDebuffkey = new List<string>();
 
@@ -62,6 +68,6 @@ public class Weapon : MonoBehaviour
             hasDebuffkey.Add(debuffKey);
         }
         CombatData.BuffManager.BuffCheck_D4Set_OnFire();
-        projectile.Init(originPos, aimPos, table, dmg, isCrit, hasDebuffkey);
+        projectile.Init(originPos, aimPos, Table, dmg, isCrit, hasDebuffkey);
     }
 }

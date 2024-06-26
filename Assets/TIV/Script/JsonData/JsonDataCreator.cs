@@ -224,7 +224,8 @@ public class WeaponSkillTable
     public bool _canIntercept;
     public string _projectileNameKey;
     public string _info;
-    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept, string projectileNameKey, string info)
+    public string _spriteName;
+    public WeaponSkillTable(int key, WeaponProjectileType weaponProjectileType, float dmg, float collTime, float maxRange, float projectileVelocity, float halfDistance, bool canIntercept, string projectileNameKey, string info, string spriteName)
     {
         _key = key;
         _weaponProjectileType = weaponProjectileType;
@@ -236,6 +237,7 @@ public class WeaponSkillTable
         _canIntercept = canIntercept;
         _projectileNameKey = projectileNameKey;
         _info = info;
+        _spriteName = spriteName;
     }
 }
 public class WeaponSkillTableList
@@ -1005,11 +1007,11 @@ public class JsonDataCreator : MonoBehaviour
         //EquipManager.RandomEquipDrop(SetType.Gamma, 40);
         //EquipManager.RandomEquipDrop(SetType.Delta, 20);
 
-        //foreach (EquipSetTable table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
+        //foreach (EquipSetTable Table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
         //{
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set1Key, new BuffTable(table._set1Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set2Key, new BuffTable(table._set2Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(table._set4Key, new BuffTable(table._set4Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set1Key, new BuffTable(Table._set1Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set2Key, new BuffTable(Table._set2Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set4Key, new BuffTable(Table._set4Key, "버프 설명", new List<float>() { 18 }));
         //}
 
         //JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.BuffTableDictionaryCache, BuffTableDictionary.FilePath());

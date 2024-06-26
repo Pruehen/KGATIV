@@ -1,7 +1,6 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class MainCameraOrbit : MonoBehaviour
+public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
 {
     [SerializeField] Transform target; // 회전할 중심점
     [SerializeField] float rotationSpeed = 15.0f; // 회전 속도
@@ -65,13 +64,19 @@ public class MainCameraOrbit : MonoBehaviour
 
         Vector3 targetPos = ((target == null) ? Vector3.zero : target.position);
         // 카메라 위치 계산
-        Vector3 position = rotation * new Vector3(0, 0, -distance) + targetPos;
+        Vector3 newPos = rotation * new Vector3(0, 0, -distance) + targetPos;
 
         // 카메라 위치와 회전 적용
-        transform.position = position;
+        transform.position = newPos;
+        //transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 2);
         transform.LookAt(targetPos);
 
         deltaPitch *= inertia;
         deltaYaw *= inertia;
+    }
+
+    public void SetCameraTarget(Transform target)
+    {
+        this.target = target;
     }
 }

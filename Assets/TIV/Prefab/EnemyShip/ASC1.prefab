@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67618465f70e3d74ba5d22b08e082add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipName: Nebula
 --- !u!114 &544536306987245995
 MonoBehaviour:
   m_ObjectHideFlags: 0

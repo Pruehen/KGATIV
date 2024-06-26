@@ -24,6 +24,8 @@ public interface ITargetable
 [RequireComponent(typeof(ShipBuffManager))]
 public class ShipMaster : MonoBehaviour, ITargetable
 {
+    [SerializeField] string _shipName;
+    public string ShipName { get; private set; }
     public Rigidbody rigidbody { get; private set; }    
     public ShipCombatData CombatData { get; private set; }
     public ShipMainComputer MainComputer { get; private set; }
@@ -77,7 +79,17 @@ public class ShipMaster : MonoBehaviour, ITargetable
         CombatData.Register_OnDead(Destroy_OnDead);
         MainComputer.Init();
         Engine.Init();
-        FCS.Init(CombatData.GetShipTableKey());
+
+        int shipKey = CombatData.GetShipTableKey();
+        FCS.Init(shipKey);
+        if (shipKey >= 0)
+        {
+            ShipName = JsonDataManager.DataLode_ShipTable(shipKey)._name;
+        }
+        else
+        {
+            ShipName = _shipName;
+        }
     }
 
     void Destroy_OnDead()

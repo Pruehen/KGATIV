@@ -5,6 +5,8 @@ public class ShipFCS : MonoBehaviour
 {
     ShipCombatData CombatData;
     List<Weapon> _usingWeaponList;
+    public List<Weapon> UsingWeaponList() { return _usingWeaponList; }
+
 
     [Header("적 함선일 경우, 사용할 무기 키")]
     [SerializeField] List<EnumTypes.WeaponSkillKeyCode> usingWeaponList_Key;
