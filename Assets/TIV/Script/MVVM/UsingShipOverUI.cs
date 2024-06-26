@@ -135,7 +135,7 @@ public class UsingShipOverUI : MonoBehaviour
     {
         if(_isViewData)
         {
-            for (int i = 0; i < _weaponCount; i++)
+            for (int i = 0; i < Image_Array_WeaponCool.Length && i < _weaponList.Count; i++)
             {
                 Image_Array_WeaponCool[i].fillAmount = _weaponList[i].GetCoolDownRatio();
             }
