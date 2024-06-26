@@ -26,7 +26,7 @@ public class ShipCombatData : MonoBehaviour
         }
         else
         {
-            this.ShipData = new ShipData(hp, atk, def);            
+            this.ShipData = new ShipData(hp, atk, def, JsonDataManager.DataLode_UserData().GetValue_StageState());            
         }
         _curHp = ShipData.GetFinalState(CombatStateType.Hp);
 
@@ -100,6 +100,9 @@ public class ShipCombatData : MonoBehaviour
     }
     public float GetHpRatio()
     {
+        if (ShipData == null)
+            return 1;
+
         return _curHp / ShipData.GetFinalState(CombatStateType.Hp);
     }
 

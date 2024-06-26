@@ -7,6 +7,8 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
     [SerializeField] float distance = 600f; // 카메라와 중심점 사이의 거리
     [SerializeField] float inertia = 0.97f;
 
+    Vector3 _centerPosTemp;
+
     float yaw = 0.0f;
     float pitch = 0.0f;
 
@@ -62,7 +64,8 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
         // 회전 쿼터니언 생성
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
 
-        Vector3 targetPos = ((target == null) ? Vector3.zero : target.position);
+        Vector3 targetPos = ((target == null) ? _centerPosTemp : target.position);
+        _centerPosTemp = targetPos;
         // 카메라 위치 계산
         Vector3 newPos = rotation * new Vector3(0, 0, -distance) + targetPos;
 

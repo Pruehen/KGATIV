@@ -33,7 +33,6 @@ public class UsingShipOverUIViewModel
         }
         set
         {
-            if(_usingWeaponList == value) return;
             _usingWeaponList = value;
             OnPropertyChanged(nameof(WeaponList));
         }
@@ -46,7 +45,6 @@ public class UsingShipOverUIViewModel
         }
         set
         {
-            if (_isViewData == value) return;
             _isViewData = value;
             OnPropertyChanged(nameof(IsViewData));
         }
@@ -60,7 +58,6 @@ public class UsingShipOverUIViewModel
         }
         set
         {
-            if (_weaponCount == value) return;
             _weaponCount = value;
             OnPropertyChanged(nameof(WeaponCount));
         }

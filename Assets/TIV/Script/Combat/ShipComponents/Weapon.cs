@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
 
     void SetCollDownValue()
     {        
-        _collDownValue = CombatData.BuffManager.BuffCheck_B4Set_OnSetCollDownValue(Table._collTime * Random.Range(0.95f, 1.05f));
+        _collDownValue = CombatData.BuffManager.BuffCheck_B4Set_OnSetCollDownValue(Table._collTime * Random.Range(0.9f, 1.1f));
         _curMaxCool = _collDownValue;
     }
     public float GetCoolDownRatio()

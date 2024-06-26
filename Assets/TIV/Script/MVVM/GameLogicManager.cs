@@ -10,7 +10,7 @@ namespace kjh
         private static GameLogicManager _instance = null;        
 
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
-        static Dictionary<int, ShipMaster> _activeShipList = new Dictionary<int, ShipMaster>();
+        static Dictionary<int, ShipMaster> _activeShipDic = new Dictionary<int, ShipMaster>();
         Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
@@ -68,26 +68,26 @@ namespace kjh
         }
         public void AddActiveShip(ShipMaster shipMaster)
         {
-            if(_activeShipList == null)
+            if(_activeShipDic == null)
             {
-                _activeShipList = new Dictionary<int, ShipMaster>();
+                _activeShipDic = new Dictionary<int, ShipMaster>();
             }
 
-            _activeShipList.Add(shipMaster.GetInstanceID(), shipMaster);
-            _shipListChangeCallBack?.Invoke(_activeShipList);
+            _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
+            _shipListChangeCallBack?.Invoke(_activeShipDic);
         }
         public void RemoveActiveShip(ShipMaster shipMaster)
         {
-            _activeShipList.Remove(shipMaster.GetInstanceID());
-            _shipListChangeCallBack.Invoke(_activeShipList);
+            _activeShipDic.Remove(shipMaster.GetInstanceID());
+            _shipListChangeCallBack.Invoke(_activeShipDic);
         }
         public void RefreshActiveShip(Action<Dictionary<int, ShipMaster>> callback)
         {            
-            if(_activeShipList == null)
+            if(_activeShipDic == null)
             {
-                _activeShipList = new Dictionary<int, ShipMaster>();
+                _activeShipDic = new Dictionary<int, ShipMaster>();
             }
-            callback.Invoke(_activeShipList);
+            callback.Invoke(_activeShipDic);
         }
         //=====================================================================================
         public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
@@ -141,10 +141,11 @@ namespace kjh
                 _onShipDataChange?.Invoke(_shipDatas[requestId]);
             }
        }
-        public void RefreshUserItem(Action<long, long> callback)
+        public void RefreshUserItem(Action<long, int> callback)
         {
-            long credit = JsonDataManager.DataLode_UserHaveItemData(ItemType.Credit)._value;
-            long superCredit = JsonDataManager.DataLode_UserHaveItemData(ItemType.SuperCredit)._value;
+            UserData userData = JsonDataManager.DataLode_UserData();
+            long credit = userData.Credit;
+            int superCredit = userData.SuperCredit;
             callback.Invoke(credit, superCredit);
         }
 

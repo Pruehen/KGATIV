@@ -39,6 +39,10 @@ public class UsingShipOverUIManager : MonoBehaviour
         {
             case nameof(_vm.ActiveShipDic):
                 _iconUsingCount = 0;
+                foreach (var item in usingShipOverUIList)
+                {
+                    item.SetTargetObject(null);
+                }
                 foreach (var item in _vm.ActiveShipDic)
                 {
                     UsingShipOverUI iconTemp = GetUIIcon();

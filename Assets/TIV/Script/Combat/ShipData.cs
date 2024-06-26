@@ -97,11 +97,11 @@ public class ShipData
     /// <param name="hp"></param>
     /// <param name="atk"></param>
     /// <param name="def"></param>
-    public ShipData(float hp, float atk, float def)
+    public ShipData(float hp, float atk, float def, float multipleValue)
     {
-        StateStaticBonusDic.Add(CombatStateType.Hp, new State(hp));
-        StateStaticBonusDic.Add(CombatStateType.Atk, new State(atk));
-        StateStaticBonusDic.Add(CombatStateType.Def, new State(def));
+        StateStaticBonusDic.Add(CombatStateType.Hp, new State(hp * multipleValue));
+        StateStaticBonusDic.Add(CombatStateType.Atk, new State(atk * multipleValue));
+        StateStaticBonusDic.Add(CombatStateType.Def, new State(def * multipleValue));
         StateStaticBonusDic.Add(CombatStateType.CritRate, new State(0));
         StateStaticBonusDic.Add(CombatStateType.CritDmg, new State(0));
         StateStaticBonusDic.Add(CombatStateType.PhysicsDmg, new State(0));

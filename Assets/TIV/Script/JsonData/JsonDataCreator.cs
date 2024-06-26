@@ -462,8 +462,8 @@ public class GachaTable
         {
             if (dropCode >= 1000)
             {
-                UserHaveItemData item = JsonDataManager.DataLode_UserHaveItemData((ItemType)(_gachaCodeTable[dropCode]._itemTableCode));
-                item.AddItem(_gachaCodeTable[dropCode]._count);
+                UserData userData = JsonDataManager.DataLode_UserData();
+                //item.AddItem(_gachaCodeTable[dropCode]._count);
             }
             else
             {
@@ -479,7 +479,7 @@ public class GachaTable
                 }
             }
         }
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveItemDataListCache, UserHaveItemDataList.FilePath());
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
     }
 }
@@ -943,47 +943,167 @@ public class UserHaveEquipDataDictionary
         return "/Resources/DataBase/UserData/UserData_UseEquip.json";
     }
 }
-public class UserHaveItemData
+
+public class UserData
 {
-    public ItemType _key;
-    public long _value;
+    [JsonProperty] public long Credit { get; private set; }
+    [JsonProperty] public int SuperCredit { get; private set; }
+    [JsonProperty] public int Fuel { get; private set; }
+    [JsonProperty] public int CurPrmStage { get; private set; }
+    [JsonProperty] public int CurSecStage { get; private set; }
 
-    public UserHaveItemData(ItemType key, long value)
+    [JsonConstructor]
+    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage)
     {
-        _key = key;
-        _value = value;        
+        Credit = credit;
+        SuperCredit = superCredit;
+        Fuel = fuel;
+        CurPrmStage = curPrmStage;
+        CurSecStage = curSecStage;
+    }
+    public UserData()
+    {
+        Credit = 0;
+        SuperCredit = 0;
+        Fuel = 240;
+        CurPrmStage = 1;
+        CurSecStage = 1;
+    }    
+    public static string FilePath()
+    {
+        return "/Resources/DataBase/UserData/UserData.json";
     }
 
-    public void AddItem(long value)
+    /// <summary>
+    /// 크레딧 획득 메서드
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddCredit(long value)
     {
-        _value += value;
+        Credit += value;
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
-    public bool TryUseItem(long value)
+    /// <summary>
+    /// 크레딧 사용 메서드. 충분하면 사용 후 true 반환, 아니면 false 반환
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public bool TryUseCredit(long value)
     {
-        if(_value - value < 0)
+        if(Credit < value)
+        {
             return false;
+        }
         else
         {
-            _value -= value;
+            Credit -= value;
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
             return true;
         }
     }
-}
-public class UserHaveItemDataList
-{
-    public List<UserHaveItemData> list = new List<UserHaveItemData>();
-    [JsonConstructor]
-    public UserHaveItemDataList(List<UserHaveItemData> list)
+    /// <summary>
+    /// 슈퍼크레딧 획득 메서드
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddSuperCredit(int value)
     {
-        this.list = list;
+        SuperCredit += value;
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
-    public UserHaveItemDataList()
+    /// <summary>
+    /// 슈퍼 크레딧 사용 메서드. 충분하면 사용 후 true 반환, 아니면 false 반환
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public bool TryUseSuperCredit(int value)
     {
-        list = new List<UserHaveItemData>();
+        if (SuperCredit < value)
+        {
+            return false;
+        }
+        else
+        {
+            SuperCredit -= value;
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            return true;
+        }
     }
-    public static string FilePath()
+    /// <summary>
+    /// 연료의 자연 충전 메서드. 6분에 1회씩 호출해야 함.
+    /// </summary>
+    /// <returns></returns>
+    public bool TryAddFuel_Nature()
     {
-        return "/Resources/DataBase/UserData/UserData_Item.json";
+        if(Fuel >= 240)
+        {
+            return false;
+        }
+        else
+        {
+            Fuel++;
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            return true;
+        }
+    }
+    /// <summary>
+    /// 아이템 사용에 의한 연료 충전 메서드
+    /// </summary>
+    /// <param name="value"></param>
+    public void AddFuel_OnUseItem(int value)
+    {
+        Fuel += value;
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
+    /// <summary>
+    /// 연료 사용 시도 메서드. 연료가 충분하면 연료를 소모하고 true 반환. 아니면 false 반환
+    /// </summary>
+    /// <param name="value"></param>
+    public bool TryUseFuel(int value)
+    {
+        if (Fuel < value)
+        {
+            return false;
+        }
+        else
+        {
+            Fuel -= value;
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            return true;
+        }
+    }
+
+    /// <summary>
+    /// 스테이지 증가 메서드. 서브 스테이지가 10을 넘어갈 경우, 1로 변경 후 메인 스테이지를 1 증가.
+    /// </summary>
+    public void StageUp()
+    {
+        CurSecStage++;
+
+        if(CurSecStage >= 11)
+        {
+            CurSecStage = 1;
+            CurPrmStage++;
+        }
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
+    /// <summary>
+    /// 스테이지 감소 메서드. 보스 스테이지에서 패배했을 경우에만 호출.
+    /// </summary>
+    public void StageDown_OnBossStageDefeat()
+    {
+        CurPrmStage = 9;
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
+
+    /// <summary>
+    /// 스테이지 승수 반환. 스테이지에 비례.
+    /// </summary>
+    /// <returns></returns>
+    public float GetValue_StageState()
+    {
+        float value = (CurPrmStage + CurSecStage * 0.05f) * ((100 + CurPrmStage) / 100);
+        Debug.Log($"현재 승수 : {value}");
+        return value;
     }
 }
 

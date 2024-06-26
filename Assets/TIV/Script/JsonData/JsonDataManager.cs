@@ -104,10 +104,9 @@ public static class JsonDataManager
         UserHaveShipDataList dataList = jsonCache.UserHaveShipDataListCache;
         return dataList.list[key];
     }
-    public static UserHaveItemData DataLode_UserHaveItemData(ItemType itemType)
+    public static UserData DataLode_UserData()
     {
-        UserHaveItemDataList dataList = jsonCache.UserHaveItemDataListCache;
-        return dataList.list[(int)itemType];
+        return jsonCache.UserDataCache;
     }
     //public static T DataLode<T, TList>()
 }
@@ -212,16 +211,16 @@ public class JsonCache
         }
     }
 
-    UserHaveItemDataList _userHaveItemDataListCache;
-    public UserHaveItemDataList UserHaveItemDataListCache
+    UserData _userData;
+    public UserData UserDataCache
     {
         get
         {
-            if (_userHaveItemDataListCache == null)
+            if (_userData == null)
             {
-                _userHaveItemDataListCache = JsonDataManager.DataTableListLoad<UserHaveItemDataList>(UserHaveItemDataList.FilePath());
+                _userData = JsonDataManager.DataTableListLoad<UserData>(UserData.FilePath());
             }
-            return _userHaveItemDataListCache;
+            return _userData;
         }
     }
     UserHaveEquipDataDictionary _userHaveEquipDataDictionaryCache;
@@ -248,5 +247,20 @@ public class JsonCache
             }
             return _userHaveShipDataListCache;
         }
+    }
+
+    public void Lode()
+    {
+        _equipTableListCache = EquipTableListCache;
+        _equipType_MainableStateListTableListCache = EquipType_MainableStateListTableListCache;
+        _weaponSkillTableListCache = WeaponSkillTableListCache;
+        _shipTableListCache = ShipTableListCache;
+        _gachaTableCache = GachaTableCache;
+        _stateType_StateMultipleTableListCache = StateType_StateMultipleTableListCache;
+        _equipSetTableList = EquipSetTableListCache;
+        _buffTableDictionaryCache = BuffTableDictionaryCache;
+        _userData = UserDataCache;
+        _userHaveEquipDataDictionaryCache = UserHaveEquipDataDictionaryCache;
+        _userHaveShipDataListCache = UserHaveShipDataListCache;
     }
 }

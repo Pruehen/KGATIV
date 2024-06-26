@@ -1,6 +1,7 @@
 using EnumTypes;
 using TMPro;
 using UnityEngine;
+using UI.Extension;
 
 public class DmgViewOverUI : MonoBehaviour
 {
@@ -11,23 +12,7 @@ public class DmgViewOverUI : MonoBehaviour
     float _lifeTime;
     Vector3 _originPos;
 
-    public Camera GetHighestPriorityCamera()
-    {
-        Camera[] allCameras = Camera.allCameras;
-        Camera highestPriorityCamera = null;
-        float maxDepth = float.MinValue;
 
-        foreach (Camera cam in allCameras)
-        {
-            if (cam.depth > maxDepth)
-            {
-                maxDepth = cam.depth;
-                highestPriorityCamera = cam;
-            }
-        }
-
-        return highestPriorityCamera;
-    }
 
     private void Awake()
     {
@@ -70,12 +55,9 @@ public class DmgViewOverUI : MonoBehaviour
     }
 
     private void Update()
-    {
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GetHighestPriorityCamera(), _originPos);
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
-        Vector2 position = screenPoint - screenSize * 0.5f;
-        //position *= screenAdjustFactor;
-        _rectTransform.anchoredPosition = position + new Vector2(0, _activeTime * 50);
+    {        
+        _rectTransform.SetUIPos_WorldToScreenPos(_originPos);
+        _rectTransform.anchoredPosition += new Vector2(0, _activeTime * 40);
         TMP_DmgText.fontSize = Mathf.Lerp(TMP_DmgText.fontSize, 40, Time.deltaTime * 5);
 
         _activeTime += Time.deltaTime;

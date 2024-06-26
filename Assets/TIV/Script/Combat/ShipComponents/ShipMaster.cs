@@ -1,4 +1,5 @@
 using EnumTypes;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,7 +74,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
         FCS = GetComponent<ShipFCS>();
         BuffManager = GetComponent<ShipBuffManager>();
 
-        kjh.GameLogicManager.Instance.AddActiveShip(this);
+        kjh.GameLogicManager.Instance.AddActiveShip(this);        
 
         CombatData.Init();
         CombatData.Register_OnDead(Destroy_OnDead);
@@ -94,8 +95,17 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
     void Destroy_OnDead()
     {
+        _onDead?.Invoke(this);
         Debug.Log("»ç¸Á Ã³¸®");
         Debug.Log("Æø¹ß ÀÌÆåÆ® ½ÇÇà");
+        kjh.GameLogicManager.Instance.RemoveActiveShip(this);
         Destroy(this.gameObject);
+    }
+
+    Action<ShipMaster> _onDead;
+
+    public void Register_OnDead(Action<ShipMaster> callBack)
+    {
+        _onDead += callBack;
     }
 }

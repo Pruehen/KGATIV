@@ -22,7 +22,7 @@ public class ShipMenuUIViewModel
     string _equipedRadiatorKey;
 
     long _credit;
-    long _superCredit;
+    int _superCredit;
 
     public string Name
     {
@@ -191,7 +191,7 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(Credit));
         }
     }
-    public long SuperCredit
+    public int SuperCredit
     {
         get { return _superCredit; }
         set

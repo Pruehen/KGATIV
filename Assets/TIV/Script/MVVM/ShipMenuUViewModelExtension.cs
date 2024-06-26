@@ -53,7 +53,7 @@ namespace ViewModel.Extensions
             vm.EquipedReactorKey = shipData.GetEquipedReactor();
             vm.EquipedRadiatorKey = shipData.GetEquipedRadiator();
         }
-        public static void OnChangeUserItemData(this ShipMenuUIViewModel vm, long credit, long superCredit)//콜백
+        public static void OnChangeUserItemData(this ShipMenuUIViewModel vm, long credit, int superCredit)//콜백
         {
             vm.Credit = credit;
             vm.SuperCredit = superCredit;

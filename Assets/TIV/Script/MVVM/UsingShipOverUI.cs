@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using ViewModel.Extensions;
+using UI.Extension;
 
 //[RequireComponent(typeof(Button))]
 [RequireComponent(typeof(EventTrigger))]
@@ -99,25 +100,6 @@ public class UsingShipOverUI : MonoBehaviour
         }
     }
 
-
-    public Camera GetHighestPriorityCamera()
-    {
-        Camera[] allCameras = Camera.allCameras;
-        Camera highestPriorityCamera = null;
-        float maxDepth = float.MinValue;
-
-        foreach (Camera cam in allCameras)
-        {
-            if (cam.depth > maxDepth)
-            {
-                maxDepth = cam.depth;
-                highestPriorityCamera = cam;
-            }
-        }
-
-        return highestPriorityCamera;
-    }
-
     private void Update()
     {
         if(targetObject != null)
@@ -147,11 +129,7 @@ public class UsingShipOverUI : MonoBehaviour
 
     void SetPosition_OnUpdate()
     {
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(GetHighestPriorityCamera(), targetObject.transform.position);
-        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
-        Vector2 position = screenPoint - screenSize * 0.5f;
-        //position *= screenAdjustFactor;
-        rectTransform.anchoredPosition = position;
+        rectTransform.SetUIPos_WorldToScreenPos(targetObject.transform.position);
     }
     void UpdateCoolImage_OnUpdate()
     {
