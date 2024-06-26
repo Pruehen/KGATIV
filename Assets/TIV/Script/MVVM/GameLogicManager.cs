@@ -1,6 +1,7 @@
 using EnumTypes;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace kjh
@@ -11,7 +12,9 @@ namespace kjh
 
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
         static Dictionary<int, ShipMaster> _activeShipDic = new Dictionary<int, ShipMaster>();
-        Action<Dictionary<int, ShipMaster>> _shipListChangeCallBack;
+        Action<ShipMaster, bool> _shipListChangeCallBack;
+        private TaskCompletionSource<bool> _callbackRegisteredTcs;
+
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
         Action<ShipData> _onShipDataChange;
@@ -27,22 +30,22 @@ namespace kjh
                 if (_instance == null)
                 {
                     _instance = new GameLogicManager();
-                    TempInitPlayerList();
+                    //TempInitPlayerList();
                 }
                 return _instance;
             }
         }
-        public static void TempInitPlayerList()
-        {
-            _shipDatas.Add(0, new ShipData(JsonDataManager.DataLode_UserHaveShipData(0)));
-            _shipDatas.Add(1, new ShipData(JsonDataManager.DataLode_UserHaveShipData(1)));
-            _shipDatas.Add(2, new ShipData(JsonDataManager.DataLode_UserHaveShipData(2)));
-            _shipDatas.Add(3, new ShipData(JsonDataManager.DataLode_UserHaveShipData(3)));
-            _shipDatas.Add(4, new ShipData(JsonDataManager.DataLode_UserHaveShipData(4)));
-        }
         public static ShipData GetShipData(int key)
         {
-            return _shipDatas[key];
+            if (_shipDatas.ContainsKey(key))
+            {
+                return _shipDatas[key];
+            }
+            else
+            {
+                _shipDatas.Add(key, new ShipData(JsonDataManager.DataLode_UserHaveShipData(key)));
+                return _shipDatas[key];
+            }
         }
 
         public void RegisterLevelUpCallback(Action<int, int> levelupCallback)
@@ -57,16 +60,17 @@ namespace kjh
 
         //===============================================================================================
 
-        public void Register_shipListChangeCallBack(Action<Dictionary<int, ShipMaster>> callback)
+        public void Register_shipListChangeCallBack(Action<ShipMaster, bool> callback)
         {
             _shipListChangeCallBack += callback;
+            _callbackRegisteredTcs?.TrySetResult(true);
         }
 
-        public void UnRegister_shipListChangeCallBack(Action<Dictionary<int, ShipMaster>> callback)
+        public void UnRegister_shipListChangeCallBack(Action<ShipMaster, bool> callback)
         {
             _shipListChangeCallBack -= callback;
         }
-        public void AddActiveShip(ShipMaster shipMaster)
+        public async void AddActiveShip(ShipMaster shipMaster)
         {
             if(_activeShipDic == null)
             {
@@ -74,20 +78,27 @@ namespace kjh
             }
 
             _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
-            _shipListChangeCallBack?.Invoke(_activeShipDic);
+
+            if (_shipListChangeCallBack == null)
+            {
+                await WaitForCallbackRegistration();
+            }
+            _shipListChangeCallBack.Invoke(shipMaster, true);
         }
+        async Task WaitForCallbackRegistration()
+        {
+            if (_callbackRegisteredTcs == null || _callbackRegisteredTcs.Task.IsCompleted)
+            {
+                _callbackRegisteredTcs = new TaskCompletionSource<bool>();
+            }
+
+            await _callbackRegisteredTcs.Task;
+        }
+
         public void RemoveActiveShip(ShipMaster shipMaster)
         {
             _activeShipDic.Remove(shipMaster.GetInstanceID());
-            _shipListChangeCallBack.Invoke(_activeShipDic);
-        }
-        public void RefreshActiveShip(Action<Dictionary<int, ShipMaster>> callback)
-        {            
-            if(_activeShipDic == null)
-            {
-                _activeShipDic = new Dictionary<int, ShipMaster>();
-            }
-            callback.Invoke(_activeShipDic);
+            _shipListChangeCallBack.Invoke(shipMaster, false);
         }
         //=====================================================================================
         public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
@@ -111,8 +122,8 @@ namespace kjh
 
         public void OnDameged(float viewDmg, WeaponProjectileType type, Vector3 position, bool isCrit)
         {
-            _onDmgedCallBack_NoData.Invoke();
-            _onDmgedCallBack.Invoke((int)viewDmg, type, position, isCrit);
+            _onDmgedCallBack_NoData?.Invoke();
+            _onDmgedCallBack?.Invoke((int)viewDmg, type, position, isCrit);
         }
 
         //======================================================================================

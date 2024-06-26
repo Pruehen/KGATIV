@@ -4,6 +4,7 @@ using System.ComponentModel;
 public class UsingShipOverUIViewModel
 {
     ShipMaster _targetShipMaster;
+    float _hpRatio;
     List<Weapon> _usingWeaponList;
     int _weaponCount;
     bool _isViewData;
@@ -15,14 +16,27 @@ public class UsingShipOverUIViewModel
             return _targetShipMaster; 
         }
         set
-        {
-            if(_targetShipMaster == value) return;
+        {            
             _targetShipMaster = value;
 
+            IsViewData = false;
+            _hpRatio = 1;
             WeaponList = _targetShipMaster.FCS.UsingWeaponList();
             WeaponCount = WeaponList.Count;
 
             OnPropertyChanged(nameof(TargetShipMaster));
+        }
+    }
+    public float HPRatio
+    {
+        get
+        {
+            return _hpRatio;
+        }
+        set
+        {
+            _hpRatio = value;
+            OnPropertyChanged(nameof(HPRatio));
         }
     }
     public List<Weapon> WeaponList

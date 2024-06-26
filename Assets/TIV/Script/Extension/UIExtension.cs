@@ -11,9 +11,9 @@ namespace UI.Extension
 
             Vector2 screenSize = new Vector2(Screen.width, Screen.height);
             Vector3 screenPosition = cam.WorldToScreenPoint(originPos);
-            bool isOutsideOfCamera = (screenPosition.z < 0 ||
-                                        screenPosition.x < 0 || screenPosition.x > screenSize.x ||
-                                        screenPosition.y < 0 || screenPosition.y > screenSize.y);
+            bool isOutsideOfCamera = (screenPosition.z < 0);// ||
+                                        //screenPosition.x < 0 || screenPosition.x > screenSize.x ||
+                                        //screenPosition.y < 0 || screenPosition.y > screenSize.y);
 
             if (isOutsideOfCamera)
             {

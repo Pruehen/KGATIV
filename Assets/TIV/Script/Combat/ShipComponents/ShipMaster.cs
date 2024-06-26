@@ -72,9 +72,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
         MainComputer = GetComponent<ShipMainComputer>();
         Engine = GetComponent<ShipEngine>();        
         FCS = GetComponent<ShipFCS>();
-        BuffManager = GetComponent<ShipBuffManager>();
-
-        kjh.GameLogicManager.Instance.AddActiveShip(this);        
+        BuffManager = GetComponent<ShipBuffManager>();             
 
         CombatData.Init();
         CombatData.Register_OnDead(Destroy_OnDead);
@@ -91,6 +89,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
         {
             ShipName = _shipName;
         }
+
+        kjh.GameLogicManager.Instance.AddActiveShip(this);
     }
 
     void Destroy_OnDead()

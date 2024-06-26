@@ -1,25 +1,33 @@
-using System.Collections.Generic;
 using System.ComponentModel;
 
 public class UsingShipOverUIManagerViewModel
 {
-    Dictionary<int, ShipMaster> _activeShipDicRef;
+    ShipMaster _changedShipMaster;
+    bool _isAdded;
 
-    public Dictionary<int, ShipMaster> ActiveShipDic
+    public ShipMaster ChangedShipMaster
     {
         get 
         {
-            return _activeShipDicRef; 
+            return _changedShipMaster; 
         }
         set
         {
-            _activeShipDicRef = value;
-            OnPropertyChanged(nameof(ActiveShipDic));
+            _changedShipMaster = value;
+            OnPropertyChanged(nameof(ChangedShipMaster));
         }
     }
-    public void OnPropertyChanged_ActiveShipDic()
+    public bool IsAdded
     {
-        OnPropertyChanged(nameof(ActiveShipDic));
+        get
+        {
+            return _isAdded;
+        }
+        set
+        {
+            _isAdded = value;
+            OnPropertyChanged(nameof(IsAdded));
+        }
     }
 
     #region PropChanged

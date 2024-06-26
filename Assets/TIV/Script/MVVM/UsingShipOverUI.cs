@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using ViewModel.Extensions;
 using UI.Extension;
 
 //[RequireComponent(typeof(Button))]
@@ -37,29 +36,15 @@ public class UsingShipOverUI : MonoBehaviour
 
         button.onClick.AddListener(SelectTargetObject_OnClick);
     }
-    private void OnEnable()
-    {
-        if (_vm == null)
-        {
-            _vm = new UsingShipOverUIViewModel();
-            _vm.PropertyChanged += OnPropertyChanged;            
-            _vm.RefreshViewModel();
-            GameObject_RightViewUI.SetActive(false);
-        }
-    }
-    private void OnDisable()
-    {
-        if (_vm != null)
-        {
-            _vm.PropertyChanged -= OnPropertyChanged;
-            _vm = null;
-        }
-    }
+
     void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         switch (e.PropertyName)
         {
             case nameof(_vm.TargetShipMaster):
+                break;
+            case nameof(_vm.HPRatio):
+                SetHpbarRatio_OnUpdate(_vm.HPRatio);
                 break;
             case nameof(_vm.WeaponList)://장착 무기 리스트가 변경되었을 경우, 무기 아이콘 이미지를 교체해줌
                 _weaponList = _vm.WeaponList;
@@ -106,25 +91,30 @@ public class UsingShipOverUI : MonoBehaviour
         {
             SetPosition_OnUpdate();
             UpdateCoolImage_OnUpdate();
+            SetHpbarRatio_OnUpdate(targetObject.CombatData.GetHpRatio());
         }
         else
         {
-            SetTargetObject(null);
+            if (_vm != null)
+            {
+                _vm.PropertyChanged -= OnPropertyChanged;
+                _vm = null;
+            }
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
         }
     }
 
-    public void SetTargetObject(ShipMaster target)
+    public void SetViewTargetObject(ShipMaster target)
     {
-        targetObject = target;
+        targetObject = target;        
 
-        if(target == null)
+        if (_vm == null)
         {
-            this.gameObject.SetActive(false);
+            _vm = new UsingShipOverUIViewModel();
+            _vm.PropertyChanged += OnPropertyChanged;                       
         }
-        else
-        {
-            this.gameObject.SetActive(true);            
-        }
+        GameObject_RightViewUI.SetActive(false);
+        _vm.TargetShipMaster = targetObject;
     }
 
     void SetPosition_OnUpdate()
@@ -146,8 +136,7 @@ public class UsingShipOverUI : MonoBehaviour
     {
         if(targetObject != null)
         {
-            MainCameraOrbit.Instance.SetCameraTarget(targetObject.transform);
-            _vm.TargetShipMaster = targetObject;
+            MainCameraOrbit.Instance.SetCameraTarget(targetObject.transform);            
             _vm.IsViewData = true;
         }
     }
@@ -156,7 +145,7 @@ public class UsingShipOverUI : MonoBehaviour
         _vm.IsViewData = false;
     }
 
-    public void SetHpbarRatio(float ratio)
+    void SetHpbarRatio_OnUpdate(float ratio)
     {
         Image_HpBar.fillAmount = ratio;
     }

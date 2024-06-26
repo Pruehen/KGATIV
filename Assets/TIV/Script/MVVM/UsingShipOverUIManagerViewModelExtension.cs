@@ -16,29 +16,10 @@ namespace ViewModel.Extensions
             kjh.GameLogicManager.Instance.UnRegister_shipListChangeCallBack(vm.OnRefreshViewModel);
         }
 
-        public static void RefreshViewModel(this UsingShipOverUIManagerViewModel vm)//요청 익스텐션
-        {            
-            kjh.GameLogicManager.Instance.RefreshActiveShip(vm.OnRefreshViewModel);//콜백 호출
-        }
-
-        public static void OnRefreshViewModel(this UsingShipOverUIManagerViewModel vm, Dictionary<int, ShipMaster> dic)//콜백
+        public static void OnRefreshViewModel(this UsingShipOverUIManagerViewModel vm, ShipMaster shipMaster, bool isAdd)//콜백
         {
-            vm.ActiveShipDic = dic;
-        }
-
-        public static void Register_onDmgedCallBack(this UsingShipOverUIManagerViewModel vm)
-        {
-            kjh.GameLogicManager.Instance.Register_onDmgedCallBack(vm.OnRefreshViewModel);
-        }
-
-        public static void UnRegister_onDmgedCallBack(this UsingShipOverUIManagerViewModel vm)
-        {
-            kjh.GameLogicManager.Instance.UnRegister_onDmgedCallBack(vm.OnRefreshViewModel);
-        }
-
-        public static void OnRefreshViewModel(this UsingShipOverUIManagerViewModel vm)//콜백
-        {
-            vm.OnPropertyChanged_ActiveShipDic();
+            vm.IsAdded = isAdd;
+            vm.ChangedShipMaster = shipMaster;            
         }
     }
 }
