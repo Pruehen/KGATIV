@@ -38,6 +38,7 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_Name;
     [SerializeField] TextMeshProUGUI TMP_Class;
     [SerializeField] TextMeshProUGUI TMP_Star;
+    [SerializeField] TextMeshProUGUI TMP_Level;
     [SerializeField] TextMeshProUGUI TMP_Hp;
     [SerializeField] TextMeshProUGUI TMP_Atk;
     [SerializeField] TextMeshProUGUI TMP_Def;
@@ -48,10 +49,20 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_ParticleDmg;
     [SerializeField] TextMeshProUGUI TMP_PlasmaDmg;
 
+    [Header("레벨업 관련 UI")]
+    [SerializeField] TextMeshProUGUI TMP_CreditLevelUpNeed;
+    [SerializeField] TextMeshProUGUI TMP_LevelUpCount;
+    [SerializeField] Button Btn_ShipLevelUp;
+    [SerializeField] Button Btn_p1;
+    [SerializeField] Button Btn_p10;
+    [SerializeField] Button Btn_m1;
+    [SerializeField] Button Btn_m10;
+
     [Header("함선 장비 필드")]
     [SerializeField] Button Btn_EquipWeapon;
     [SerializeField] Button Btn_EquipArmor;
     [SerializeField] GameObject[] CombatEquipedSlotArray;
+    [SerializeField] TextMeshProUGUI TMP_Cost;
     List<EquipIcon> _equipedCombatItemIconList;
 
     [Header("함선 부품 필드")]
@@ -80,6 +91,7 @@ public class ShipMenuUIManager : MonoBehaviour
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.RefreshUserItemData();
             _vm.Register_OnShipDataChange();
+            _vm.Register_OnLevelUpInfoCallBack();
             //_vm.RegisterEventsOnEnable();            
         }
     }
@@ -88,6 +100,7 @@ public class ShipMenuUIManager : MonoBehaviour
         if (_vm != null)
         {
             //_vm.UnRegisterEventsOnDisable();
+            _vm.UnRegister_OnLevelUpInfoCallBack();
             _vm.UnRegister_OnShipDataChange();
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
@@ -106,6 +119,23 @@ public class ShipMenuUIManager : MonoBehaviour
                 break;
             case nameof(_vm.Star):
                 TMP_Star.text = ShipTable.GetStar(_vm.Star);
+                break;
+            case nameof(_vm.Level):
+                TMP_Level.text = $"LV.{_vm.Level}";
+                break;
+            case nameof(_vm.LevelUpCount):
+                TMP_LevelUpCount.text = $"레벨업 +{_vm.LevelUpCount}";
+                break;
+            case nameof(_vm.NeedCreditLevelUp):
+                if(JsonDataManager.DataLode_UserData().Credit >= _vm.NeedCreditLevelUp)
+                {
+                    TMP_CreditLevelUpNeed.color = Color.white;
+                }
+                else
+                {
+                    TMP_CreditLevelUpNeed.color = Color.red;
+                }
+                TMP_CreditLevelUpNeed.text = $"{_vm.NeedCreditLevelUp}";
                 break;
             case nameof(_vm.Hp):
                 TMP_Hp.text = $"{_vm.Hp:F0}";
@@ -134,8 +164,11 @@ public class ShipMenuUIManager : MonoBehaviour
             case nameof(_vm.PlasmaDmg):
                 TMP_PlasmaDmg.text = $"{_vm.PlasmaDmg:F1}%";
                 break;
-            case nameof(_vm.SlotCount):
-                //SetActive_EquipSlotCount(_vm.SlotCount);
+            case nameof(_vm.MaxSlotCount):
+                TMP_Cost.text = $"{_vm.UseSlotCount} / {_vm.MaxSlotCount}";
+                break;
+            case nameof(_vm.UseSlotCount):
+                TMP_Cost.text = $"{_vm.UseSlotCount} / {_vm.MaxSlotCount}";
                 break;
             case nameof(_vm.EquipedCombatKeyList):
                 for (int i = 0; i < _equipedCombatItemIconList.Count; i++)//12번 순회.
@@ -194,6 +227,12 @@ public class ShipMenuUIManager : MonoBehaviour
         Btn_CombatSlot.onClick.AddListener(() => SelectWdw(Wdw_CombatSlot));
         Btn_UtilSlot.onClick.AddListener(() => SelectWdw(Wdw_UtilSlot));
 
+        Btn_ShipLevelUp.onClick.AddListener(Command_LevelUp);
+        Btn_p1.onClick.AddListener(() => Command_ChangeLevelUpCount(1));
+        Btn_p10.onClick.AddListener(() => Command_ChangeLevelUpCount(10));
+        Btn_m1.onClick.AddListener(() => Command_ChangeLevelUpCount(-1));
+        Btn_m10.onClick.AddListener(() => Command_ChangeLevelUpCount(-10));
+
         Btn_EquipWeapon.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Weapon));
         Btn_EquipWeapon.onClick.AddListener(() => SetEquipInfoData_SelectedEquip(string.Empty));
         Btn_EquipArmor.onClick.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, EquipType.Armor));
@@ -233,8 +272,18 @@ public class ShipMenuUIManager : MonoBehaviour
         if(shipKey >= 0)
         {
             _vm.RefreshShipData(shipKey);
+            _vm.Command_SetShipData_LevelUpInfo(shipKey);
         }
     }
+    void Command_ChangeLevelUpCount(int value)
+    {
+        _vm.Command_ChangeLevelUpCount(value);
+    }
+    void Command_LevelUp()
+    {
+        _vm.Command_LevelUp();
+    }
+
     public void SelectWdw(GameObject wdw)
     {
         if(wdw == Wdw_Info)

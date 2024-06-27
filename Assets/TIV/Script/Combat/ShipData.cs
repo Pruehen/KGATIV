@@ -332,9 +332,17 @@ public class ShipData
     {
         return _shipTable._star;
     }
+    public int GetLevel()
+    {
+        return _shipData._level;
+    }
     public int GetMaxSlot()
     {
         return _shipTable._maxCombatSlot;
+    }
+    public int GetUseSlot()
+    {
+        return _shipData.GetUseSlotCount();
     }
     public List<string> GetEquipedCombatItemList()
     {

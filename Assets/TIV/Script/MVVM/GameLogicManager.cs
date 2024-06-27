@@ -18,9 +18,7 @@ namespace kjh
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
         Action<ShipData> _onShipDataChange;
-        int _selectedShipID;
-
-        private Action<int, int> _levelUpCallback;
+        int _selectedShipID;        
         
 
         public static GameLogicManager Instance
@@ -46,16 +44,6 @@ namespace kjh
                 _shipDatas.Add(key, new ShipData(JsonDataManager.DataLode_UserHaveShipData(key)));
                 return _shipDatas[key];
             }
-        }
-
-        public void RegisterLevelUpCallback(Action<int, int> levelupCallback)
-        {
-            _levelUpCallback += levelupCallback;
-        }
-
-        public void UnRegisterLevelUpCallback(Action<int, int> levelupCallback)
-        {
-            _levelUpCallback -= levelupCallback;
         }
 
         //===============================================================================================

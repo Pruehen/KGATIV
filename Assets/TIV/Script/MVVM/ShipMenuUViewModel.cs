@@ -6,6 +6,9 @@ public class ShipMenuUIViewModel
     string _name;
     int _class;
     int _star;
+    int _level;
+    int _levelUpCount;
+    int _needCreditLevelUp;
     float _hp;
     float _atk;
     float _def;
@@ -15,7 +18,8 @@ public class ShipMenuUIViewModel
     float _opticsDmg;
     float _particleDmg;
     float _plasmaDmg;
-    int _slotCount;
+    int _maxSlotCount;
+    int _useSlotCount;
     List<string> _equipedCombatKeyList;
     string _equipedEngineKey;
     string _equipedReactorKey;
@@ -60,6 +64,36 @@ public class ShipMenuUIViewModel
             if (_hp == value) return;
             _hp = value;
             OnPropertyChanged(nameof(Hp));
+        }
+    }
+    public int Level
+    {
+        get { return _level; }
+        set
+        {
+            if (_level == value) return;
+            _level = value;
+            OnPropertyChanged(nameof(Level));
+        }
+    }
+    public int LevelUpCount
+    {
+        get { return _levelUpCount; }
+        set
+        {
+            if (_levelUpCount == value) return;
+            _levelUpCount = value;
+            OnPropertyChanged(nameof(LevelUpCount));
+        }
+    }
+    public int NeedCreditLevelUp
+    {
+        get { return _needCreditLevelUp; }
+        set
+        {
+            if (_needCreditLevelUp == value) return;
+            _needCreditLevelUp = value;
+            OnPropertyChanged(nameof(NeedCreditLevelUp));
         }
     }
     public float Atk
@@ -136,13 +170,22 @@ public class ShipMenuUIViewModel
             OnPropertyChanged(nameof(PlasmaDmg));
         }
     }
-    public int SlotCount
+    public int MaxSlotCount
     {
-        get { return _slotCount; }
+        get { return _maxSlotCount; }
         set
         {
-            _slotCount = value;
-            OnPropertyChanged(nameof(SlotCount));
+            _maxSlotCount = value;
+            OnPropertyChanged(nameof(MaxSlotCount));
+        }
+    }
+    public int UseSlotCount
+    {
+        get { return _useSlotCount; }
+        set
+        {
+            _useSlotCount = value;
+            OnPropertyChanged(nameof(UseSlotCount));
         }
     }
     public List<string> EquipedCombatKeyList

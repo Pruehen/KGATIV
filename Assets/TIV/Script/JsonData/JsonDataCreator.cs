@@ -626,7 +626,8 @@ public class UserHaveShipData
     }
     bool CanEquip_Combat(string newkey)
     {
-        int slotAvailability = GetSlotAvailability();
+        ShipTable shipTable = JsonDataManager.DataLode_ShipTable(_shipTablekey);
+        int slotAvailability = shipTable._maxCombatSlot - GetUseSlotCount();
 
         UserHaveEquipData data = JsonDataManager.DataLode_UserHaveEquipData(newkey);
         EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
@@ -634,21 +635,20 @@ public class UserHaveShipData
 
         return (slotAvailability >= itemOccupiedSlot && _combatSlotItemKeyList.Count < 5);
     }
-    int GetSlotAvailability()
+    public int GetUseSlotCount()
     {
         ShipTable shipTable = JsonDataManager.DataLode_ShipTable(_shipTablekey);
-        int maxSlot = shipTable._maxCombatSlot;
-        int totalOccupiedSlot = 0;
+        int useSlot = 0;
         if (_combatSlotItemKeyList != null || _combatSlotItemKeyList.Count > 0)
         {
             foreach (string item in _combatSlotItemKeyList)
             {
                 UserHaveEquipData data = JsonDataManager.DataLode_UserHaveEquipData(item);
                 EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
-                totalOccupiedSlot += table._slotUsage;
+                useSlot += table._slotUsage;
             }
         }
-        return maxSlot - totalOccupiedSlot;
+        return useSlot;
     }
     /// <summary>
     /// 현재 장비하고 있는 모든 장비를 string 키 리스트 형태로 반환
@@ -713,6 +713,25 @@ public class UserHaveShipData
                 return null;
         }
     }
+
+    public void LevelUp(int addLevel)
+    {
+        if(addLevel <= 0)//추가 레벨이 0 이하일 경우
+        {
+            Debug.Log("0레벨 이하로 레벨업을 할 수 없습니다.");
+        }
+        else if(_level + addLevel > MaxLevel())//레벨 합이 최대 레벨을 초과할 경우
+        {
+            Debug.Log("100레벨을 초과해서 레벨업을 할 수 없습니다.");
+        }
+        else
+        {
+            _level += addLevel;
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
+        }
+    }
+
+    public static int MaxLevel() { return 100; }
 }
 public class UserHaveShipDataList
 {

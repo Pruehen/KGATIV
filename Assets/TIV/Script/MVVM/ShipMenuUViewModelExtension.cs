@@ -1,4 +1,5 @@
 using EnumTypes;
+using kjh;
 using System;
 
 namespace ViewModel.Extensions
@@ -37,6 +38,7 @@ namespace ViewModel.Extensions
             vm.Name = shipData.GetName();
             vm.Class = shipData.GetShipClass();
             vm.Star = shipData.GetShipStar();
+            vm.Level = shipData.GetLevel();
             vm.Hp = shipData.GetFinalState(CombatStateType.Hp);
             vm.Atk = shipData.GetFinalState(CombatStateType.Atk);
             vm.Def = shipData.GetFinalState(CombatStateType.Def);
@@ -46,8 +48,8 @@ namespace ViewModel.Extensions
             vm.OpticsDmg = shipData.GetFinalState(CombatStateType.OpticsDmg);
             vm.ParticleDmg = shipData.GetFinalState(CombatStateType.ParticleDmg);
             vm.PlasmaDmg = shipData.GetFinalState(CombatStateType.PlasmaDmg);
-            vm.SlotCount = shipData.GetMaxSlot();
-
+            vm.MaxSlotCount = shipData.GetMaxSlot();
+            vm.UseSlotCount = shipData.GetUseSlot();
             vm.EquipedCombatKeyList = shipData.GetEquipedCombatItemList();
             vm.EquipedEngineKey = shipData.GetEquipedEngine();
             vm.EquipedReactorKey = shipData.GetEquipedReactor();
@@ -59,19 +61,35 @@ namespace ViewModel.Extensions
             vm.SuperCredit = superCredit;
         }
 
-        //public static void RegisterEventsOnEnable(this ShipMenuUIViewModel vm)
-        //{
-        //    ShipMenuUIManager.Instance.RegisterLevelUpCallback(vm.OnResponseLevelUp);
-        //}
-        //public static void UnRegisterEventsOnDisable(this ShipMenuUIViewModel vm)
-        //{
-        //    GameLogicManager.Inst.UnRegisterLevelUpCallback(vm.OnResponseLevelUp);
-        //}
-        //public static void OnResponseLevelUp(this ShipMenuUIViewModel vm, int userId, int level)
-        //{
-        //    if (vm.UserId != userId) return;
+        //레벨업 관련 커맨드, 콜백===================================================================
+        public static void Register_OnLevelUpInfoCallBack(this ShipMenuUIViewModel vm)
+        {
+            ShipLevelUpLogicManager.Instance.Register_OnLevelUpInfoCallBack(vm.OnChange_LevelUpInfo);
+        }
+        public static void UnRegister_OnLevelUpInfoCallBack(this ShipMenuUIViewModel vm)
+        {
+            ShipLevelUpLogicManager.Instance.UnRegister_OnLevelUpInfoCallBack(vm.OnChange_LevelUpInfo);
+        }
 
-        //    vm.Level = level;
-        //}
+
+        public static void Command_SetShipData_LevelUpInfo(this ShipMenuUIViewModel vm, int shipKey)
+        {
+            ShipLevelUpLogicManager.Instance.SetShipData(shipKey);
+        }
+        public static void Command_ChangeLevelUpCount(this ShipMenuUIViewModel vm, int changedLevelUpCount)
+        {
+            ShipLevelUpLogicManager.Instance.ChangeLevelUpCount(changedLevelUpCount);
+        }
+        public static void Command_LevelUp(this ShipMenuUIViewModel vm)
+        {
+            ShipLevelUpLogicManager.Instance.LevelUp();
+        }
+
+        public static void OnChange_LevelUpInfo(this ShipMenuUIViewModel vm, int levelUpCount, int shipLevel, int needCredit)
+        {
+            vm.Level = shipLevel;
+            vm.LevelUpCount = levelUpCount;
+            vm.NeedCreditLevelUp = needCredit;
+        }
     }
 }
