@@ -50,6 +50,7 @@ public class ShipFCS : MonoBehaviour
             {
                 Destroy(item);
             }
+            _usingWeaponList.Clear();
 
             List<WeaponSkillTable> usingWeaponListTemp = JsonDataManager.DataLode_UserHaveShipData(_curShipKey).GetAllWeaponSkill();
             foreach (WeaponSkillTable item in usingWeaponListTemp)
@@ -61,14 +62,14 @@ public class ShipFCS : MonoBehaviour
         }
     }
 
-    public void SetMainTarget(ITargetable mainTarget)//모든 무기를 타게팅함
+    public void SetMainTarget(SortedDictionary<float, ITargetable> mainTarget)//모든 무기를 타게팅함
     {
         foreach (Weapon weapon in _usingWeaponList)
         {
             weapon.SetTarget(mainTarget);
         }
     }
-    public void SetInterceptTarget(ITargetable interceptTarget)//요격 가능한 무기를 대상으로 타게팅함.
+    public void SetInterceptTarget(SortedDictionary<float, ITargetable> interceptTarget)//요격 가능한 무기를 대상으로 타게팅함.
     {
         foreach (Weapon weapon in _usingWeaponList)
         {

@@ -6,7 +6,6 @@ public class UsingShipOverUIViewModel
     ShipMaster _targetShipMaster;
     float _hpRatio;
     List<Weapon> _usingWeaponList;
-    int _weaponCount;
     bool _isViewData;
 
     public ShipMaster TargetShipMaster
@@ -21,8 +20,7 @@ public class UsingShipOverUIViewModel
 
             IsViewData = false;
             _hpRatio = 1;
-            WeaponList = _targetShipMaster.FCS.UsingWeaponList();
-            WeaponCount = WeaponList.Count;
+            WeaponList = _targetShipMaster.FCS.UsingWeaponList();            
 
             OnPropertyChanged(nameof(TargetShipMaster));
         }
@@ -60,20 +58,7 @@ public class UsingShipOverUIViewModel
         set
         {
             _isViewData = value;
-            OnPropertyChanged(nameof(IsViewData));
-        }
-    }
-
-    public int WeaponCount
-    {
-        get
-        {
-            return _weaponCount;
-        }
-        set
-        {
-            _weaponCount = value;
-            OnPropertyChanged(nameof(WeaponCount));
+            OnPropertyChanged(nameof(IsViewData));            
         }
     }
 

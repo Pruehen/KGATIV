@@ -26,7 +26,6 @@ public class UsingShipOverUI : MonoBehaviour
     UsingShipOverUIViewModel _vm;
     List<Weapon> _weaponList;
     bool _isViewData;
-    int _weaponCount;
 
     private void Awake()
     {
@@ -48,15 +47,23 @@ public class UsingShipOverUI : MonoBehaviour
                 break;
             case nameof(_vm.WeaponList)://장착 무기 리스트가 변경되었을 경우, 무기 아이콘 이미지를 교체해줌
                 _weaponList = _vm.WeaponList;
-                for (int i = 0; i < _weaponList.Count; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    string key = _weaponList[i].Table._spriteName;
+                    if (_weaponList.Count > i)
+                    {
+                        string key = _weaponList[i].Table._spriteName;
 
-                    Image_Array_WeaponCoolCover[i].sprite = LodeSprite(key);
-                    Image_Array_WeaponCool[i].sprite = LodeSprite(key);
+                        Image_Array_WeaponCoolCover[i].gameObject.SetActive(true);
+                        Image_Array_WeaponCool[i].gameObject.SetActive(true);
 
-                    if (i == 4)
-                        break;
+                        Image_Array_WeaponCoolCover[i].sprite = LodeSprite(key);
+                        Image_Array_WeaponCool[i].sprite = LodeSprite(key);
+                    }
+                    else
+                    {
+                        Image_Array_WeaponCoolCover[i].gameObject.SetActive(false);
+                        Image_Array_WeaponCool[i].gameObject.SetActive(false);
+                    }
                 }
                 break;
             case nameof(_vm.IsViewData):
@@ -67,21 +74,7 @@ public class UsingShipOverUI : MonoBehaviour
                 {
                     Text_ShipName.text = targetObject.ShipName;                    
                 }
-                break;
-            case nameof(_vm.WeaponCount)://현재 착용중인 무기 수량에 따라 무기 아이콘을 onoff해줌
-                _weaponCount = _vm.WeaponCount;
-                for (int i = 0; i < 5; i++)
-                {
-                    if (_weaponCount > i)
-                    {
-                        Image_Array_WeaponCoolCover[i].gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        Image_Array_WeaponCoolCover[i].gameObject.SetActive(false);
-                    }
-                }
-                break;            
+                break;         
         }
     }
 
@@ -127,7 +120,7 @@ public class UsingShipOverUI : MonoBehaviour
         {
             for (int i = 0; i < Image_Array_WeaponCool.Length && i < _weaponList.Count; i++)
             {
-                Image_Array_WeaponCool[i].fillAmount = _weaponList[i].GetCoolDownRatio();
+                Image_Array_WeaponCool[i].fillAmount = 1 - _weaponList[i].GetCoolDownRatio();
             }
         }
     }
@@ -136,7 +129,8 @@ public class UsingShipOverUI : MonoBehaviour
     {
         if(targetObject != null)
         {
-            MainCameraOrbit.Instance.SetCameraTarget(targetObject.transform);            
+            MainCameraOrbit.Instance.SetCameraTarget(targetObject.transform);
+            _vm.TargetShipMaster = targetObject;
             _vm.IsViewData = true;
         }
     }

@@ -51,7 +51,7 @@ public class ShipCombatData : MonoBehaviour
         BuffManager.BuffCheck_G4Set_OnHit_TryAddDebuff(type, hasDebuffKey);
         float validDef = ShipData.GetFinalState(CombatStateType.Def) * BuffManager.BuffCheck_G4Set_OnHit_ValidDefRatio();
 
-        float calcedDmg = originDmg * (1000 / (1000 + validDef));
+        float calcedDmg = originDmg * ((700 / (1000 + validDef) + 0.3f));
         _curHp -= calcedDmg;
         kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position, isCrit);
 

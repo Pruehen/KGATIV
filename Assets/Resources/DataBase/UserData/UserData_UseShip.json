@@ -4,14 +4,14 @@
       "_shipTablekey": 0,
       "_level": 1000,
       "_isHave": true,
-      "_thrusterSlotItemKey": "1719194457_11718",
-      "_reactorSlotItemKey": "1719194457_132517",
-      "_radiatorSlotItemKey": "1719194457_182111",
+      "_thrusterSlotItemKey": "1719221210_1318210",
+      "_reactorSlotItemKey": "1719221386_152626",
+      "_radiatorSlotItemKey": "1719221386_82223",
       "_combatSlotItemKeyList": [
+        "1719221210_01424",
+        "1719194457_89-12",
         "1719194457_03-12",
-        "1719194457_144-12",
-        "1719194457_31314",
-        "1719194457_179-12"
+        "1719194457_010-12"
       ]
     },
     {

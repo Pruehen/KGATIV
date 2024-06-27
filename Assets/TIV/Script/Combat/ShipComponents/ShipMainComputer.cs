@@ -39,49 +39,48 @@ public class ShipMainComputer : MonoBehaviour
     }
     
     IEnumerator SearchTarget()
-    {        
-        while(true)
+    {
+        SortedDictionary<float, ITargetable> priorityQueue_MainTarget = new SortedDictionary<float, ITargetable>();
+        SortedDictionary<float, ITargetable> priorityQueue_InterceptTarget = new SortedDictionary<float, ITargetable>();
+
+        while (true)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
 
             List<ITargetable> targets = SearchForTargets();
             bool thisID = _Master.GetID();
 
-            float distanceTemp = float.MaxValue;
-            ITargetable targetTemp = null;
+            priorityQueue_MainTarget.Clear();
+            priorityQueue_InterceptTarget.Clear();
+
             Vector3 originPos = this.transform.position;
+
             foreach (ITargetable target in targets)//공격 모드. 가장 가까운 적 함선을 메인 타겟으로 설정함. 투사체는 타게팅하지 않음.
             {
                 if (target.GetVelocity().sqrMagnitude >= 10000) continue;
 
-                float distance = Vector3.Distance(originPos, target.GetPosition());
-                if (distance < distanceTemp && target.IFF(thisID) == false)
+                float distance = Vector3.SqrMagnitude(originPos - target.GetPosition());
+                if (target.IFF(thisID) == false)
                 {
-                    distanceTemp = distance;
-                    targetTemp = target;
+                    priorityQueue_MainTarget.TryAdd(distance, target);
                 }
             }
-            _FCS.SetMainTarget(targetTemp);
 
-            if(true)//요격 모드. 가장 가까운 투사체를 메인 타겟으로 설정함.
+            _FCS.SetMainTarget(priorityQueue_MainTarget);
+
+            if (true)//요격 모드. 가장 가까운 투사체를 메인 타겟으로 설정함.
             {
-                distanceTemp = float.MaxValue;
-                targetTemp = null;                
                 foreach (ITargetable target in targets)
                 {
                     if (target.GetVelocity().sqrMagnitude < 10000) continue;
 
-                    float distance = Vector3.Distance(originPos, target.GetPosition());
-                    if (distance < distanceTemp && target.IFF(thisID) == false)
+                    float distance = Vector3.SqrMagnitude(originPos - target.GetPosition());
+                    if (target.IFF(thisID) == false)
                     {
-                        distanceTemp = distance;
-                        targetTemp = target;
+                        priorityQueue_InterceptTarget.TryAdd(distance, target);
                     }
                 }
-                if (targetTemp != null)
-                {
-                    _FCS.SetInterceptTarget(targetTemp);
-                }
+                _FCS.SetInterceptTarget(priorityQueue_InterceptTarget);
             }
         }     
     }
