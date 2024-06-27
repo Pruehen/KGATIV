@@ -2,21 +2,21 @@
   "list": [
     {
       "_shipTablekey": 0,
-      "_level": 100,
+      "_level": 1000,
       "_isHave": true,
-      "_thrusterSlotItemKey": "1719194457_31608",
-      "_reactorSlotItemKey": "1719194457_162406",
-      "_radiatorSlotItemKey": "1719194457_02003",
+      "_thrusterSlotItemKey": "1719194457_11718",
+      "_reactorSlotItemKey": "1719194457_132517",
+      "_radiatorSlotItemKey": "1719194457_182111",
       "_combatSlotItemKeyList": [
-        "1719194457_121204",
-        "1719194457_41-12",
         "1719194457_03-12",
-        "1719194457_140-12"
+        "1719194457_144-12",
+        "1719194457_31314",
+        "1719194457_179-12"
       ]
     },
     {
       "_shipTablekey": 1,
-      "_level": 1,
+      "_level": 993,
       "_isHave": true,
       "_thrusterSlotItemKey": "",
       "_reactorSlotItemKey": "",

@@ -722,7 +722,7 @@ public class UserHaveShipData
         }
         else if(_level + addLevel > MaxLevel())//레벨 합이 최대 레벨을 초과할 경우
         {
-            Debug.Log("100레벨을 초과해서 레벨업을 할 수 없습니다.");
+            Debug.Log("최대 레벨을 초과해서 레벨업을 할 수 없습니다.");
         }
         else
         {
@@ -731,7 +731,7 @@ public class UserHaveShipData
         }
     }
 
-    public static int MaxLevel() { return 100; }
+    public static int MaxLevel() { return 1000; }
 }
 public class UserHaveShipDataList
 {

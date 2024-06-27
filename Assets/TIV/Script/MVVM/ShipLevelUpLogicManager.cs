@@ -62,7 +62,7 @@ namespace kjh
         void SetNeedCredit(int curShipLevel, int levelUpCount)
         {
             ShipTable table = JsonDataManager.DataLode_ShipTable(controlShipData._shipTablekey);
-            float multiple = 10 * table._maxCombatSlot * table._maxCombatSlot * table._star + 137;
+            float multiple = table._maxCombatSlot * table._maxCombatSlot * table._star * table._star + 37;
             int creditTemp = 0;
 
             for (int i = 0; i < levelUpCount; i++)
@@ -83,6 +83,7 @@ namespace kjh
                 InitLevelUpCount();
                 SetNeedCredit(controlShipData._level, _levelUpCount);
                 OnLevelUpInfoCallBack?.Invoke(_levelUpCount, controlShipData._level, _needCreditLevelUp);
+                kjh.GameLogicManager.Instance.OnShipDataChenge();
             }            
         }
     }

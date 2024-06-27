@@ -139,7 +139,14 @@ namespace kjh
                 Debug.Log("데이터 갱신");
                 _onShipDataChange?.Invoke(GetShipData(requestId));
             }
-       }
+        }
+        public void OnShipDataChenge()
+        {
+            Debug.Log("데이터 갱신");
+            ShipData data = GetShipData(_selectedShipID);
+            data.AllStaticDataUpdate();
+            _onShipDataChange?.Invoke(data);
+        }
 
         public void ShipEquipItem(string equipUniqeKey, int shipKey, Action<ShipData> callback)
         {            
