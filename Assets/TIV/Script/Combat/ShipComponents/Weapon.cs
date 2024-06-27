@@ -6,13 +6,16 @@ public class Weapon : MonoBehaviour
     public WeaponSkillTable Table { get; private set; }
     ShipCombatData CombatData;
 
-    ITargetable _target;    
+    ITargetable _target;
+    Vector3 _LastTargetPos;
     float _collDownValue;
     float _curMaxCool;
+    float _fireRoundSize;
     public void Init(WeaponSkillTable table)
     {
         this.Table = table;
-        CombatData = this.GetComponent<ShipCombatData>();        
+        CombatData = this.GetComponent<ShipCombatData>();
+        _fireRoundSize = this.GetComponent<SphereCollider>().radius;
         SetCollDownValue();
     }
 
@@ -37,7 +40,13 @@ public class Weapon : MonoBehaviour
 
         if (_collDownValue < 0)
         {
-            if (_target != null && Vector3.Distance(this.transform.position, _target.GetPosition()) < Table._maxRange)
+            if(_target == null) { return; }
+
+            if(_target.GetPosition() != Vector3.zero)
+            {
+                _LastTargetPos = _target.GetPosition();
+            }
+            if (Vector3.Distance(this.transform.position, _LastTargetPos) < Table._maxRange)
             {
                 SetCollDownValue();
                 Fire();
@@ -47,14 +56,14 @@ public class Weapon : MonoBehaviour
 
     void Fire()
     {
-        Vector3 originPos = this.transform.position;
-        Vector3 aimPos = _target.GetPosition();        
+        Vector3 originPos = this.transform.position + Random.onUnitSphere * _fireRoundSize;
+        Vector3 aimPos = _LastTargetPos;        
         float projectileVelocity = Table._projectileVelocity;        
 
         for (int i = 0; i < 4; i++)
         {
             float eta = (aimPos - originPos).magnitude / projectileVelocity;
-            aimPos = _target.GetPosition() + _target.GetVelocity() * eta;
+            aimPos = _LastTargetPos + _target.GetVelocity() * eta;
         }
 
         Projectile projectile = Instantiate(PrefabManager.Instance.GetProjectilePrf(Table._projectileNameKey)).GetComponent<Projectile>();

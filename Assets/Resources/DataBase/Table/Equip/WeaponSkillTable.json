@@ -56,7 +56,7 @@
       "_key": 4,
       "_weaponProjectileType": 1,
       "_dmg": 160.0,
-      "_collTime": 0.1,
+      "_collTime": 1,
       "_maxRange": 800.0,
       "_projectileVelocity": 6000,
       "_halfDistance": 400.0,

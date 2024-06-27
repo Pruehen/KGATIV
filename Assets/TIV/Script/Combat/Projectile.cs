@@ -5,12 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Transform childEffects;
-    [SerializeField] ParticleSystem hitEffect;    
+    [SerializeField] ParticleSystem hitEffect;
+    //SphereCollider _Collider;
     protected Rigidbody _rigidbody;
-    float _cumulativeDistance = 0f;    
+    //float _cumulativeDistance = 0f;
+    //float _safeDistance;
     float _dmg;
     WeaponProjectileType _type;
-    bool _isInit;
+    //bool _isActiveSafety;
     float _halfDistance;
     Vector3 _initPos;
     bool _isCrit;
@@ -20,18 +22,26 @@ public class Projectile : MonoBehaviour
     {
         this.gameObject.layer = projectileLayer;
 
+        //_Collider = GetComponent<SphereCollider>();
+
         this.transform.position = initPos;
         this.transform.LookAt(targetPos);
 
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.velocity = this.transform.forward * table._projectileVelocity;
 
-        _cumulativeDistance = 0;        
+        //_cumulativeDistance = 0;
+        //float toTargetDistance = Vector3.Distance(initPos, targetPos);
+        //if (table._projectileVelocity * 0.5f < toTargetDistance)//비행 시간이 0.5초 이상일 경우
+        //{
+        //    _safeDistance = toTargetDistance * 0.9f;
+        //    _Collider.enabled = false;
+        //    _isActiveSafety = true;
+        //}
 
         _dmg = dmg;
         _type = table._weaponProjectileType;
 
-        _isInit = true;
         _halfDistance = table._halfDistance;
         _initPos = this.transform.position;
         _isCrit = isCrit;
@@ -48,6 +58,18 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject, 10);
     }
 
+    //private void FixedUpdate()
+    //{
+    //    if (_isActiveSafety)
+    //    {
+    //        _cumulativeDistance += (_rigidbody.velocity * Time.fixedDeltaTime).magnitude;
+    //        if (_safeDistance <= _cumulativeDistance)
+    //        {
+    //            _Collider.enabled = true;
+    //            _isActiveSafety = false;
+    //        }
+    //    }
+    //}
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out ITargetable target))
