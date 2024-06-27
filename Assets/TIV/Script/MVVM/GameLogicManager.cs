@@ -128,7 +128,7 @@ namespace kjh
         {
             Debug.Log($"선택 함선 {requestId}");
             _selectedShipID = requestId;
-            ShipData shipData = _shipDatas[requestId];
+            ShipData shipData = GetShipData(requestId);
             shipData.AllStaticDataUpdate();            
             callback.Invoke(shipData);
         }
@@ -137,16 +137,9 @@ namespace kjh
             if (_selectedShipID == requestId)
             {
                 Debug.Log("데이터 갱신");
-                _onShipDataChange?.Invoke(_shipDatas[requestId]);
+                _onShipDataChange?.Invoke(GetShipData(requestId));
             }
        }
-        public void RefreshUserItem(Action<long, int> callback)
-        {
-            UserData userData = JsonDataManager.DataLode_UserData();
-            long credit = userData.Credit;
-            int superCredit = userData.SuperCredit;
-            callback.Invoke(credit, superCredit);
-        }
 
         public void ShipEquipItem(string equipUniqeKey, int shipKey, Action<ShipData> callback)
         {            
@@ -158,7 +151,7 @@ namespace kjh
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
-            ShipData shipData = _shipDatas[shipKey];
+            ShipData shipData = GetShipData(shipKey);
             shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
         }
@@ -172,7 +165,7 @@ namespace kjh
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
-            ShipData shipData = _shipDatas[shipKey];
+            ShipData shipData = GetShipData(shipKey);
             shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
         }

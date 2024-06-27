@@ -1,6 +1,5 @@
 using EnumTypes;
 using kjh;
-using System;
 
 namespace ViewModel.Extensions
 {
@@ -28,10 +27,6 @@ namespace ViewModel.Extensions
         {
             kjh.GameLogicManager.Instance.ShipUnEquipItem(equipUniqeKey, vm.OnChangeShipData);//콜백 호출
         }
-        public static void RefreshUserItemData(this ShipMenuUIViewModel vm)//요청 익스텐션
-        {
-            kjh.GameLogicManager.Instance.RefreshUserItem(vm.OnChangeUserItemData);//콜백 호출
-        }
 
         public static void OnChangeShipData(this ShipMenuUIViewModel vm, ShipData shipData)//콜백
         {
@@ -54,11 +49,6 @@ namespace ViewModel.Extensions
             vm.EquipedEngineKey = shipData.GetEquipedEngine();
             vm.EquipedReactorKey = shipData.GetEquipedReactor();
             vm.EquipedRadiatorKey = shipData.GetEquipedRadiator();
-        }
-        public static void OnChangeUserItemData(this ShipMenuUIViewModel vm, long credit, int superCredit)//콜백
-        {
-            vm.Credit = credit;
-            vm.SuperCredit = superCredit;
         }
 
         //레벨업 관련 커맨드, 콜백===================================================================

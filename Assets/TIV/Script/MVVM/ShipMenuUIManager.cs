@@ -10,10 +10,6 @@ public class ShipMenuUIManager : MonoBehaviour
 {
     [SerializeField] UIManager UIManager;
 
-    [Header("상단 바")]
-    [SerializeField] TextMeshProUGUI TMP_Credit;
-    [SerializeField] TextMeshProUGUI TMP_SuperCredit;
-
     [Header("함선 선택 관리")]
     [SerializeField] Camera Camera_RotateCam;
     [SerializeField] Transform Transform_ShipDummyParent;
@@ -88,8 +84,7 @@ public class ShipMenuUIManager : MonoBehaviour
         if (_vm == null)
         {
             _vm = new ShipMenuUIViewModel();
-            _vm.PropertyChanged += OnPropertyChanged;
-            _vm.RefreshUserItemData();
+            _vm.PropertyChanged += OnPropertyChanged;           
             _vm.Register_OnShipDataChange();
             _vm.Register_OnLevelUpInfoCallBack();
             //_vm.RegisterEventsOnEnable();            
@@ -122,6 +117,26 @@ public class ShipMenuUIManager : MonoBehaviour
                 break;
             case nameof(_vm.Level):
                 TMP_Level.text = $"LV.{_vm.Level}";
+                if(_vm.Level >= UserHaveShipData.MaxLevel())
+                {
+                    TMP_CreditLevelUpNeed.gameObject.SetActive(false);
+                    TMP_LevelUpCount.gameObject.SetActive(false);
+                    Btn_ShipLevelUp.gameObject.SetActive(false);
+                    Btn_p1.gameObject.SetActive(false);
+                    Btn_p10.gameObject.SetActive(false);
+                    Btn_m1.gameObject.SetActive(false);
+                    Btn_m10.gameObject.SetActive(false);
+                }
+                else
+                {
+                    TMP_CreditLevelUpNeed.gameObject.SetActive(true);
+                    TMP_LevelUpCount.gameObject.SetActive(true);
+                    Btn_ShipLevelUp.gameObject.SetActive(true);
+                    Btn_p1.gameObject.SetActive(true);
+                    Btn_p10.gameObject.SetActive(true);
+                    Btn_m1.gameObject.SetActive(true);
+                    Btn_m10.gameObject.SetActive(true);
+                }
                 break;
             case nameof(_vm.LevelUpCount):
                 TMP_LevelUpCount.text = $"레벨업 +{_vm.LevelUpCount}";
@@ -191,12 +206,6 @@ public class ShipMenuUIManager : MonoBehaviour
                 break;
             case nameof(_vm.EquipedRadiatorKey):
                 SetEquipIcon(_vm.EquipedRadiatorKey, Icon_Radiator);
-                break;
-            case nameof(_vm.Credit):
-                TMP_Credit.text = $"{_vm.Credit}";
-                break;
-            case nameof(_vm.SuperCredit):
-                TMP_SuperCredit.text = $"{_vm.SuperCredit}";
                 break;
         }
     }

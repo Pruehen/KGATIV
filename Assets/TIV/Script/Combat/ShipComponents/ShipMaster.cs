@@ -26,6 +26,7 @@ public interface ITargetable
 public class ShipMaster : MonoBehaviour, ITargetable
 {
     [SerializeField] string _shipName;
+    [SerializeField] long _dropCredit;
     public string ShipName { get; private set; }
     public Rigidbody rigidbody { get; private set; }    
     public ShipCombatData CombatData { get; private set; }
@@ -98,6 +99,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
         _onDead?.Invoke(this);
         Debug.Log("»ç¸Á Ã³¸®");
         Debug.Log("Æø¹ß ÀÌÆåÆ® ½ÇÇà");
+        UserData userDataTemp = JsonDataManager.DataLode_UserData();
+        userDataTemp.AddCredit((long)(userDataTemp.GetValue_StageState() * _dropCredit));
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);
         Destroy(this.gameObject);
     }

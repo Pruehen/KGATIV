@@ -830,6 +830,8 @@ public class UserHaveEquipData
 
         _mainState.SetValue(_level + 5);
     }
+    public static int MaxLevel() { return 20; }
+
     public class EquipStateSet
     {
         public IncreaseableStateType _stateType;
@@ -971,6 +973,8 @@ public class UserData
     [JsonProperty] public int CurPrmStage { get; private set; }
     [JsonProperty] public int CurSecStage { get; private set; }
 
+    public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
+
     [JsonConstructor]
     public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage)
     {
@@ -987,7 +991,23 @@ public class UserData
         Fuel = 240;
         CurPrmStage = 1;
         CurSecStage = 1;
-    }    
+    }
+    //MVVM 관련 코드==============================
+    Action<UserData> _onRefreshViewModel_CallBack;
+    public void Register_OnRefreshViewModel(Action<UserData> callBack)
+    {
+        _onRefreshViewModel_CallBack += callBack;
+    }
+    public void UnRegister_OnRefreshViewModel(Action<UserData> callBack)
+    {
+        _onRefreshViewModel_CallBack -= callBack;
+    }
+    public void RefreshViewModel()
+    {
+        _onRefreshViewModel_CallBack?.Invoke(this);
+    }
+
+
     public static string FilePath()
     {
         return "/Resources/DataBase/UserData/UserData.json";
@@ -1000,7 +1020,7 @@ public class UserData
     public void AddCredit(long value)
     {
         Credit += value;
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+        RefreshViewModel();
     }
     /// <summary>
     /// 크레딧 사용 메서드. 충분하면 사용 후 true 반환, 아니면 false 반환
@@ -1016,6 +1036,7 @@ public class UserData
         else
         {
             Credit -= value;
+            RefreshViewModel();
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
             return true;
         }
@@ -1027,6 +1048,7 @@ public class UserData
     public void AddSuperCredit(int value)
     {
         SuperCredit += value;
+        RefreshViewModel();
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
     /// <summary>
@@ -1043,6 +1065,7 @@ public class UserData
         else
         {
             SuperCredit -= value;
+            RefreshViewModel();
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
             return true;
         }
@@ -1060,6 +1083,7 @@ public class UserData
         else
         {
             Fuel++;
+            RefreshViewModel();
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
             return true;
         }
@@ -1071,6 +1095,7 @@ public class UserData
     public void AddFuel_OnUseItem(int value)
     {
         Fuel += value;
+        RefreshViewModel();
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
     /// <summary>
@@ -1086,6 +1111,7 @@ public class UserData
         else
         {
             Fuel -= value;
+            RefreshViewModel();
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
             return true;
         }
@@ -1103,6 +1129,7 @@ public class UserData
             CurSecStage = 1;
             CurPrmStage++;
         }
+        RefreshViewModel();
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
     /// <summary>
@@ -1111,6 +1138,7 @@ public class UserData
     public void StageDown_OnBossStageDefeat()
     {
         CurPrmStage = 9;
+        RefreshViewModel();
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
 
@@ -1121,6 +1149,7 @@ public class UserData
     public float GetValue_StageState()
     {
         float value = (CurPrmStage + CurSecStage * 0.05f) * ((100 + CurPrmStage) / 100);
+        if (CurSecStage == 10) value *= 2;
         Debug.Log($"현재 승수 : {value}");
         return value;
     }

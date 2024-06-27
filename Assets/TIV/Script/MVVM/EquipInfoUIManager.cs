@@ -20,8 +20,17 @@ public class EquipInfoUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_StateField;
     [SerializeField] TextMeshProUGUI TMP_EffectField;
     [SerializeField] EquipIcon EquipIcon_ViewIcon;
-    [SerializeField] Button Btn_Upgrade;
+
+    [Header("업그레이드 UI 필드")]    
     [SerializeField] GameObject Label_MaxLevel;
+    [SerializeField] TextMeshProUGUI TMP_CreditLevelUpNeed;
+    [SerializeField] TextMeshProUGUI TMP_LevelUpCount;
+    [SerializeField] Button Btn_Upgrade;
+    [SerializeField] Button Btn_p1;
+    [SerializeField] Button Btn_p10;
+    [SerializeField] Button Btn_m1;
+    [SerializeField] Button Btn_m10;
+
 
     EquipInfoUIManagerViewModel _vm;
     string _uniqueKey;
@@ -31,26 +40,37 @@ public class EquipInfoUIManager : MonoBehaviour
         set { _uniqueKey = value; }
     }
 
-    private void OnEnable()
+    private void Awake()
     {
-        if (_vm == null)
-        {
-            _vm = new EquipInfoUIManagerViewModel();
-            _vm.PropertyChanged += OnPropertyChanged;
-            Btn_Upgrade.onClick.AddListener(TryUpgrade);
-            //_vm.RegisterEventsOnEnable();            
-        }
+        Btn_Upgrade.onClick.AddListener(TryUpgrade);
+        Btn_p1.onClick.AddListener(() => Command_ChangeLevelUpCount(1));
+        Btn_p10.onClick.AddListener(() => Command_ChangeLevelUpCount(10));
+        Btn_m1.onClick.AddListener(() => Command_ChangeLevelUpCount(-1));
+        Btn_m10.onClick.AddListener(() => Command_ChangeLevelUpCount(-10));
+
+        _vm = new EquipInfoUIManagerViewModel();
+        _vm.PropertyChanged += OnPropertyChanged;
+        _vm.Register_OnUpgradeInfoCallBack();
     }
-    private void OnDisable()
-    {
-        if (_vm != null)
-        {
-            //_vm.UnRegisterEventsOnDisable();
-            Btn_Upgrade.onClick.RemoveListener(TryUpgrade);
-            _vm.PropertyChanged -= OnPropertyChanged;
-            _vm = null;
-        }
-    }
+
+    //private void OnEnable()
+    //{
+    //    if (_vm == null)
+    //    {
+    //        _vm = new EquipInfoUIManagerViewModel();
+    //        _vm.PropertyChanged += OnPropertyChanged;
+    //        _vm.Register_OnUpgradeInfoCallBack();
+    //    }
+    //}
+    //private void OnDisable()
+    //{
+    //    if (_vm != null)
+    //    {
+    //        _vm.UnRegister_OnUpgradeInfoCallBack();
+    //        _vm.PropertyChanged -= OnPropertyChanged;
+    //        _vm = null;
+    //    }
+    //}
 
     public void ViewItemKey(string key)
     {
@@ -61,9 +81,13 @@ public class EquipInfoUIManager : MonoBehaviour
     {
         UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(_uniqueKey);
         UserHaveEquipData equipDataTemp = new UserHaveEquipData(equipData);
-        _vm.CommandUpgrade(_uniqueKey);
+        _vm.CommandUpgrade();
 
         this.UIManager.PopupWdw_UpgradeResult(2, equipDataTemp, equipData);
+    }
+    void Command_ChangeLevelUpCount(int value)
+    {
+        _vm.Command_ChangeLevelUpCount(value);
     }
 
     void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -88,16 +112,42 @@ public class EquipInfoUIManager : MonoBehaviour
             case nameof(_vm.Level):
                 TMP_MainStateValue.text = $"+{StateType_StateMultipleTable.GetStateText(_vm.MainStateType, _vm.Level + 5)[1]}";
                 TMP_Level.text = $"+{_vm.Level}";
-                if(_vm.Level >= 20)
+                if(_vm.Level >= UserHaveEquipData.MaxLevel())
                 {
-                    Btn_Upgrade.gameObject.SetActive(false);
+                    TMP_CreditLevelUpNeed.gameObject.SetActive(false);
+                    Btn_Upgrade.gameObject.SetActive(false);                    
+                    Btn_p1.gameObject.SetActive(false);
+                    Btn_p10.gameObject.SetActive(false);
+                    Btn_m1.gameObject.SetActive(false);
+                    Btn_m10.gameObject.SetActive(false);
+
                     Label_MaxLevel.SetActive(true);
                 }
                 else
                 {
+                    TMP_CreditLevelUpNeed.gameObject.SetActive(true);
                     Btn_Upgrade.gameObject.SetActive(true);
+                    Btn_p1.gameObject.SetActive(true);
+                    Btn_p10.gameObject.SetActive(true);
+                    Btn_m1.gameObject.SetActive(true);
+                    Btn_m10.gameObject.SetActive(true);
+
                     Label_MaxLevel.SetActive(false);
                 }
+                break;
+            case nameof(_vm.LevelUpCount):
+                TMP_LevelUpCount.text = $"강화 +{_vm.LevelUpCount}";
+                break;
+            case nameof(_vm.NeedCreditLevelUp):
+                if (JsonDataManager.DataLode_UserData().Credit >= _vm.NeedCreditLevelUp)
+                {
+                    TMP_CreditLevelUpNeed.color = Color.white;
+                }
+                else
+                {
+                    TMP_CreditLevelUpNeed.color = Color.red;
+                }
+                TMP_CreditLevelUpNeed.text = $"{_vm.NeedCreditLevelUp}";
                 break;
             case nameof(_vm.SubStateList):
                 SetSubStateText(_vm.SubStateList);

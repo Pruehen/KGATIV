@@ -10,6 +10,8 @@ public class EquipInfoUIManagerViewModel
     EquipType _type;
     IncreaseableStateType _mainStateType;    
     int _level;
+    int _levelUpCount;
+    int _needCreditLevelUp;
 
     List<EquipStateSet> _subStateList = new List<EquipStateSet>();    
 
@@ -70,6 +72,24 @@ public class EquipInfoUIManagerViewModel
         {
             _level = value;
             OnPropertyChanged(nameof(Level));
+        }
+    }
+    public int LevelUpCount
+    {
+        get { return _levelUpCount; }
+        set
+        {
+            _levelUpCount = value;
+            OnPropertyChanged(nameof(LevelUpCount));
+        }
+    }
+    public int NeedCreditLevelUp
+    {
+        get { return _needCreditLevelUp; }
+        set
+        {
+            _needCreditLevelUp = value;
+            OnPropertyChanged(nameof(NeedCreditLevelUp));
         }
     }
     public List<EquipStateSet> SubStateList

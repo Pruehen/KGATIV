@@ -25,9 +25,6 @@ public class ShipMenuUIViewModel
     string _equipedReactorKey;
     string _equipedRadiatorKey;
 
-    long _credit;
-    int _superCredit;
-
     public string Name
     {
         get { return _name; }
@@ -222,26 +219,6 @@ public class ShipMenuUIViewModel
         {
             _equipedRadiatorKey = value;
             OnPropertyChanged(nameof(EquipedRadiatorKey));
-        }
-    }
-    public long Credit
-    {
-        get { return _credit; }
-        set
-        {
-            if (_credit == value) return;
-            _credit = value;
-            OnPropertyChanged(nameof(Credit));
-        }
-    }
-    public int SuperCredit
-    {
-        get { return _superCredit; }
-        set
-        {
-            if (_superCredit == value) return;
-            _superCredit = value;
-            OnPropertyChanged(nameof(SuperCredit));
         }
     }
 
