@@ -1031,6 +1031,7 @@ public class UserData
     {
         if(Credit < value)
         {
+            UIManager.Instance.PopUpWdw_WarningPopUpUI("크레딧이 부족합니다.", 2);
             return false;
         }
         else
@@ -1060,6 +1061,7 @@ public class UserData
     {
         if (SuperCredit < value)
         {
+            UIManager.Instance.PopUpWdw_WarningPopUpUI("슈퍼 크레딧이 부족합니다.", 2);
             return false;
         }
         else
@@ -1106,6 +1108,7 @@ public class UserData
     {
         if (Fuel < value)
         {
+            UIManager.Instance.PopUpWdw_WarningPopUpUI("연료가 부족합니다.", 2);
             return false;
         }
         else

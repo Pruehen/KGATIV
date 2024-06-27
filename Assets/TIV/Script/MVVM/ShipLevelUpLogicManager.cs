@@ -76,14 +76,14 @@ namespace kjh
         /// 레벨업 버튼을 눌렀을 때 호출하도록 연결
         /// </summary>
         public void LevelUp()
-        {            
-            controlShipData.LevelUp(_levelUpCount);
-            //크레딧 소모 로직 작성
-            Debug.Log($"소모 크레딧 {_needCreditLevelUp}");
-
-            InitLevelUpCount();
-            SetNeedCredit(controlShipData._level, _levelUpCount);
-            OnLevelUpInfoCallBack?.Invoke(_levelUpCount, controlShipData._level, _needCreditLevelUp);
+        {                        
+            if(JsonDataManager.DataLode_UserData().TryUseCredit(_needCreditLevelUp))
+            {
+                controlShipData.LevelUp(_levelUpCount);
+                InitLevelUpCount();
+                SetNeedCredit(controlShipData._level, _levelUpCount);
+                OnLevelUpInfoCallBack?.Invoke(_levelUpCount, controlShipData._level, _needCreditLevelUp);
+            }            
         }
     }
 }

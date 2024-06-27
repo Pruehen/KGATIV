@@ -76,14 +76,14 @@ namespace kjh
         /// </summary>
         public void UpgradeEquip(Action<UserHaveEquipData> callback)
         {
-            _equipData.LevelUp(_levelUpCount);
-            //农饭调 家葛 肺流 累己
-            Debug.Log($"家葛 农饭调 {_needCreditLevelUp}");
-
-            InitLevelUpCount();
-            SetNeedCredit(_equipData._level, _levelUpCount);
-            callback.Invoke(_equipData);
-            _onUpgradeInfoCallBack?.Invoke(_levelUpCount, _needCreditLevelUp);
+            if (JsonDataManager.DataLode_UserData().TryUseCredit(_needCreditLevelUp))
+            {
+                _equipData.LevelUp(_levelUpCount);
+                InitLevelUpCount();
+                SetNeedCredit(_equipData._level, _levelUpCount);
+                callback.Invoke(_equipData);
+                _onUpgradeInfoCallBack?.Invoke(_levelUpCount, _needCreditLevelUp);
+            }           
         }
     }
 }

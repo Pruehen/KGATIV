@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : SceneSingleton<UIManager>
 {
     [Header("함선 메뉴 조작")]
     [SerializeField] GameObject Wdw_ShipMenu;
@@ -30,6 +29,9 @@ public class UIManager : MonoBehaviour
     [Header("장비 강화 결과창 조작")]
     [SerializeField] GameObject Popup_UpgradeResult;
     EquipUpgradePopupUIManager _equipUpgradePopupUIManager;
+
+    [Header("경고 팝업창")]
+    [SerializeField] WarningPopUpUI PopUp_WarningPopUpUI;
     //-----------------------------------------------------------
 
     private void Awake()
@@ -108,7 +110,10 @@ public class UIManager : MonoBehaviour
         PopupWdw(Popup_UpgradeResult, time);
         _equipUpgradePopupUIManager.ViewResult(before, affter);
     }
-
+    public void PopUpWdw_WarningPopUpUI(string msg, float time)
+    {
+        PopUp_WarningPopUpUI.SetWarningPopUp(msg, time);
+    }
 
     void PopupWdw(GameObject popUpWdw, float popUpTime)
     {
