@@ -51,8 +51,8 @@ public class ShipData
     UserHaveShipData _shipData;
     int _id;
 
-    public Action OnAllStaticDataUpdate;
-    public Action OnBuffDataUpdate;
+    public Action OnAllStaticDataUpdate { get; set; }
+    public Action OnBuffDataUpdate { get; set; }
     public bool IsValid_A4Set { get; private set; }
     public bool IsValid_B4Set { get; private set; }
     public bool IsValid_G4Set { get; private set; }

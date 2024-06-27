@@ -41,6 +41,10 @@ public class ShipCombatData : MonoBehaviour
     {
         ShipData.OnAllStaticDataUpdate += callBack;
     }
+    public void UnRegister_OnAllStaticDataUpdate(Action callBack)
+    {
+        ShipData.OnAllStaticDataUpdate -= callBack;
+    }
 
     public void Hit(float originDmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey)
     {

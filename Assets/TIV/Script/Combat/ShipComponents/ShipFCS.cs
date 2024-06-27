@@ -40,6 +40,7 @@ public class ShipFCS : MonoBehaviour
         }
 
         CombatData.Register_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);//장비 갱신을 위한 이벤트 연결
+        CombatData.Register_OnDead(OnDead);
     }
     public void UpdateUsingWeapon_OnEquipChange()//장비가 변경되었을 경우, 자신에게 장착된 장비를 갱신하는 메서드
     {
@@ -66,5 +67,10 @@ public class ShipFCS : MonoBehaviour
         {
             weapon.SetTarget(mainTarget);
         }
+    }
+
+    void OnDead()
+    {
+        CombatData.UnRegister_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);
     }
 }
