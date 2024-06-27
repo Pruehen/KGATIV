@@ -13,6 +13,10 @@ public interface ITargetable
     /// <param name="id"></param>
     /// <returns></returns>
     public bool IFF(bool id);
+    /// <summary>
+    /// 아군일 경우 true, 적일 경우 false 반환
+    /// </summary>
+    /// <returns></returns>
     public bool GetID();
     public void Hit(float dmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey);
 }

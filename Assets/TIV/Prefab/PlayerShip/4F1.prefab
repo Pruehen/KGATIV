@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: -5034700735639752997}
   - component: {fileID: -8312381463327512345}
   - component: {fileID: 8744903142435521381}
-  m_Layer: 0
+  - component: {fileID: 1214281580676126521}
+  m_Layer: 6
   m_Name: 4F1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67618465f70e3d74ba5d22b08e082add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipName: 
+  _dropCredit: 0
 --- !u!114 &2067524997977256174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +144,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a19761dc1d698eb4191a8ba5ca67b026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usingWeaponList_Key: 
+--- !u!114 &1214281580676126521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153682822628254354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b2c447cd4e2714b8776b36f86a26fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &197084782816650179
@@ -202,6 +218,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_FR_ALT_Front
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9037d46abbc72f446b9f74ac72d15c2a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781609873673875618, guid: 9037d46abbc72f446b9f74ac72d15c2a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9037d46abbc72f446b9f74ac72d15c2a, type: 3}
 --- !u!4 &375653566416061480 stripped
@@ -260,9 +284,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6881921247606494915, guid: 0641750deea633b40b80d165f4674cf5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0641750deea633b40b80d165f4674cf5, type: 3}
       propertyPath: m_Name
       value: Earth_LC_Single_Radiator
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0641750deea633b40b80d165f4674cf5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0641750deea633b40b80d165f4674cf5, type: 3}
@@ -326,10 +358,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_FR_ALT_Head
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66c577fb2fe216b479010f5c8adf2b24, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3565001629575476537, guid: 66c577fb2fe216b479010f5c8adf2b24, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 53faf141551cc1a4b8f9f038c4459b6b, type: 2}
+    - target: {fileID: 4185444074773726081, guid: 66c577fb2fe216b479010f5c8adf2b24, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66c577fb2fe216b479010f5c8adf2b24, type: 3}
 --- !u!4 &2257826609764686687 stripped
@@ -396,6 +436,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_FR_ALT_Middle_A
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a906982c22d2c949adf7a7098838806, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2782571732972389778, guid: 5a906982c22d2c949adf7a7098838806, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a906982c22d2c949adf7a7098838806, type: 3}
 --- !u!4 &1760494566185863443 stripped
@@ -458,9 +506,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 24fe1d9a9ab360c4a965052930a42345, type: 2}
+    - target: {fileID: 9393324832493815, guid: f737375e3db06fc4b8fdd1e017d051fb, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f737375e3db06fc4b8fdd1e017d051fb, type: 3}
       propertyPath: m_Name
       value: Earth_FR_ALT_Tail
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f737375e3db06fc4b8fdd1e017d051fb, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f737375e3db06fc4b8fdd1e017d051fb, type: 3}
@@ -524,9 +580,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3054988541846298676, guid: f61ce5ef4ccde894da4b50f2ff46b781, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f61ce5ef4ccde894da4b50f2ff46b781, type: 3}
       propertyPath: m_Name
       value: Earth_FR_ALT_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f61ce5ef4ccde894da4b50f2ff46b781, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f61ce5ef4ccde894da4b50f2ff46b781, type: 3}
@@ -542,6 +606,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6553829603715373661}
     m_Modifications:
+    - target: {fileID: 200836925256132487, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 350542297269625974, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372992277414234719, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4994783853191436203, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -606,6 +682,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_Spikes_Radiator
       objectReference: {fileID: 0}
+    - target: {fileID: 5628050240077909265, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946369694479154430, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
 --- !u!4 &14673090961629038 stripped
@@ -620,6 +704,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6553829603715373661}
     m_Modifications:
+    - target: {fileID: -8710036498268191296, guid: 3199dbbeddfba644a865107820cf3eed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3199dbbeddfba644a865107820cf3eed, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -671,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3199dbbeddfba644a865107820cf3eed, type: 3}
       propertyPath: m_Name
       value: Earth_FR_ALT_Middle_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3199dbbeddfba644a865107820cf3eed, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3199dbbeddfba644a865107820cf3eed, type: 3}
@@ -734,10 +826,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_FR_ALT_Rads
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae2c3356491b9b448903ff07c5c3660c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6713966096398487372, guid: ae2c3356491b9b448903ff07c5c3660c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5c1a42e826af2f547869d3b3661c55a2, type: 2}
+    - target: {fileID: 6920047772922844373, guid: ae2c3356491b9b448903ff07c5c3660c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae2c3356491b9b448903ff07c5c3660c, type: 3}
 --- !u!4 &6153743172128024124 stripped
@@ -800,9 +900,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f74d1a58fc4bca04ba365cdab420c048, type: 2}
+    - target: {fileID: -8212246685461802774, guid: 9a4b6328a2d5a484391ed424df58f041, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9a4b6328a2d5a484391ed424df58f041, type: 3}
       propertyPath: m_Name
       value: Earth_FR_ALT_DeLevalx1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9a4b6328a2d5a484391ed424df58f041, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4b6328a2d5a484391ed424df58f041, type: 3}
@@ -866,9 +974,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 94cc350a5fcce4d4d8de51c6fd12c0a7, type: 2}
+    - target: {fileID: -4707511061778864348, guid: 9cf8d533b11a85c41a00cef3701a1eae, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9cf8d533b11a85c41a00cef3701a1eae, type: 3}
       propertyPath: m_Name
       value: Earth_FR_ALT_Middle_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9cf8d533b11a85c41a00cef3701a1eae, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf8d533b11a85c41a00cef3701a1eae, type: 3}

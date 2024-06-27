@@ -47,13 +47,30 @@ public class ShipMainComputer : MonoBehaviour
             List<ITargetable> targets = SearchForTargets();
             bool thisID = _Master.GetID();
 
-            if (_isInterceptMode == false)//공격 모드. 가장 가까운 타겟을 메인 타겟으로 설정함.
+            float distanceTemp = float.MaxValue;
+            ITargetable targetTemp = null;
+            Vector3 originPos = this.transform.position;
+            foreach (ITargetable target in targets)//공격 모드. 가장 가까운 적 함선을 메인 타겟으로 설정함. 투사체는 타게팅하지 않음.
             {
-                float distanceTemp = float.MaxValue;
-                ITargetable targetTemp = null;
-                Vector3 originPos = this.transform.position;
+                if (target.GetVelocity().sqrMagnitude >= 10000) continue;
+
+                float distance = Vector3.Distance(originPos, target.GetPosition());
+                if (distance < distanceTemp && target.IFF(thisID) == false)
+                {
+                    distanceTemp = distance;
+                    targetTemp = target;
+                }
+            }
+            _FCS.SetMainTarget(targetTemp);
+
+            if(true)//요격 모드. 가장 가까운 투사체를 메인 타겟으로 설정함.
+            {
+                distanceTemp = float.MaxValue;
+                targetTemp = null;                
                 foreach (ITargetable target in targets)
                 {
+                    if (target.GetVelocity().sqrMagnitude < 10000) continue;
+
                     float distance = Vector3.Distance(originPos, target.GetPosition());
                     if (distance < distanceTemp && target.IFF(thisID) == false)
                     {
@@ -61,11 +78,10 @@ public class ShipMainComputer : MonoBehaviour
                         targetTemp = target;
                     }
                 }
-                _FCS.SetMainTarget(targetTemp);
-            }
-            else//요격 모드
-            {
-
+                if (targetTemp != null)
+                {
+                    _FCS.SetInterceptTarget(targetTemp);
+                }
             }
         }     
     }

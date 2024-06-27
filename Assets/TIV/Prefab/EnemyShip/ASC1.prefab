@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1621038602054271039}
   - component: {fileID: 6824092344873962813}
   - component: {fileID: 6471774661150200329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ASC1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipName: Nebula
+  _dropCredit: 0
 --- !u!114 &544536306987245995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,10 +209,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hydra_CR_Sides
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 145c516303545564ba47c3523015aefd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6382632213319987531, guid: 145c516303545564ba47c3523015aefd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5cc44cb58bf9c564a9f4e9d29ec167e8, type: 2}
+    - target: {fileID: 8230731903012451008, guid: 145c516303545564ba47c3523015aefd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 145c516303545564ba47c3523015aefd, type: 3}
 --- !u!4 &61855084442465991 stripped
@@ -274,9 +283,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1022492379372223018, guid: 57c84e37353272e4bad12a52ef0dc1cd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 57c84e37353272e4bad12a52ef0dc1cd, type: 3}
       propertyPath: m_Name
       value: Hydra_CR_Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 57c84e37353272e4bad12a52ef0dc1cd, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57c84e37353272e4bad12a52ef0dc1cd, type: 3}
@@ -336,9 +353,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -617087311348094671, guid: 19f7dc67dadf33342a6dcac24e280342, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 19f7dc67dadf33342a6dcac24e280342, type: 3}
       propertyPath: m_Name
       value: Alien_CR_Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 19f7dc67dadf33342a6dcac24e280342, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4220547781016085253, guid: 19f7dc67dadf33342a6dcac24e280342, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -402,9 +427,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3517998776233560626, guid: 881e7868d84cc9147b51ea532e609783, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 881e7868d84cc9147b51ea532e609783, type: 3}
       propertyPath: m_Name
       value: Hydra_CR_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 881e7868d84cc9147b51ea532e609783, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2001842876159370836, guid: 881e7868d84cc9147b51ea532e609783, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -468,9 +501,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2520655237920758370, guid: 834e6d43f79b52c44a5dcb74fd798686, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 834e6d43f79b52c44a5dcb74fd798686, type: 3}
       propertyPath: m_Name
       value: Hydra_CR_Central
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 834e6d43f79b52c44a5dcb74fd798686, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2457400221949857581, guid: 834e6d43f79b52c44a5dcb74fd798686, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -534,9 +575,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6516217048806947748, guid: ad10ccf84b57ddc4899e584c0594929d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ad10ccf84b57ddc4899e584c0594929d, type: 3}
       propertyPath: m_Name
       value: Alien_Thruster_Cruiserx6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ad10ccf84b57ddc4899e584c0594929d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8039050221155775834, guid: ad10ccf84b57ddc4899e584c0594929d, type: 3}
       propertyPath: m_Materials.Array.data[0]

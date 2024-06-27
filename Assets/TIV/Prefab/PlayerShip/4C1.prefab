@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: -1395579430711581975}
   - component: {fileID: 3835031867464057329}
   - component: {fileID: -3037552880019553648}
-  m_Layer: 0
+  - component: {fileID: 6824092344873962813}
+  - component: {fileID: 6471774661150200329}
+  m_Layer: 6
   m_Name: 4C1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,6 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67618465f70e3d74ba5d22b08e082add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shipName: 
+  _dropCredit: 0
 --- !u!114 &-1395579430711581975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +131,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93c51eef0200b2747809b3e5271cecce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6824092344873962813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595366713290060529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19761dc1d698eb4191a8ba5ca67b026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usingWeaponList_Key: 
+--- !u!114 &6471774661150200329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4595366713290060529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b2c447cd4e2714b8776b36f86a26fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1053464899892408614
@@ -183,6 +212,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 185e05b0903457e47a283b7716f4cadf, type: 3}
       propertyPath: m_Name
       value: Earth_CR_ALT_Details
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 185e05b0903457e47a283b7716f4cadf, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916493046620700420, guid: 185e05b0903457e47a283b7716f4cadf, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5181012989671010661, guid: 185e05b0903457e47a283b7716f4cadf, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -254,6 +291,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_CR_ALT_Front_A
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 54ba76ee3273d1140b124af9a5133379, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4732589448054680537, guid: 54ba76ee3273d1140b124af9a5133379, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ba76ee3273d1140b124af9a5133379, type: 3}
 --- !u!4 &3421506328597454032 stripped
@@ -316,9 +361,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9c64c17ae3a86454184792cd24bb9b3e, type: 2}
+    - target: {fileID: -2510227798374466570, guid: 0b5dad9a76eaf4644a96e4a32655dd35, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0b5dad9a76eaf4644a96e4a32655dd35, type: 3}
       propertyPath: m_Name
       value: Earth_CR_ALT_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b5dad9a76eaf4644a96e4a32655dd35, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b5dad9a76eaf4644a96e4a32655dd35, type: 3}
@@ -382,10 +435,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_CR_ALT_Middle_A
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec30916bab54b3745adf6e1e1eab82bd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1509422467864826422, guid: ec30916bab54b3745adf6e1e1eab82bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d9cf6926681740a4785083fd6caa50b0, type: 2}
+    - target: {fileID: 6883403753504964250, guid: ec30916bab54b3745adf6e1e1eab82bd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec30916bab54b3745adf6e1e1eab82bd, type: 3}
 --- !u!4 &4067293224955313682 stripped
@@ -444,9 +505,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2630585548560469747, guid: c08150686314fd44fab25aa2311605b6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c08150686314fd44fab25aa2311605b6, type: 3}
       propertyPath: m_Name
       value: Earth_CR_ALT_Middle_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c08150686314fd44fab25aa2311605b6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6907640654039170246, guid: c08150686314fd44fab25aa2311605b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -514,10 +583,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_CR_ALT_Front_B
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b2a89fc80f0b744185e6b137c5efca5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1060216561194211149, guid: 9b2a89fc80f0b744185e6b137c5efca5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4e2acd3a55ba4fa48b53329fbb69f088, type: 2}
+    - target: {fileID: 8595743990914670003, guid: 9b2a89fc80f0b744185e6b137c5efca5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b2a89fc80f0b744185e6b137c5efca5, type: 3}
 --- !u!4 &4817187416917140917 stripped
@@ -576,9 +653,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6409956785987876374, guid: 5f71ee58bbc9b4c42ada6a225b0bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f71ee58bbc9b4c42ada6a225b0bcbf8, type: 3}
       propertyPath: m_Name
       value: Earth_CR_ALT_Rads
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f71ee58bbc9b4c42ada6a225b0bcbf8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8016006634859485895, guid: 5f71ee58bbc9b4c42ada6a225b0bcbf8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -650,6 +735,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_CR_ALT_Middle_C
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 573792377a4276148b0dfd5f4942dc6a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637367063922555008, guid: 573792377a4276148b0dfd5f4942dc6a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 573792377a4276148b0dfd5f4942dc6a, type: 3}
 --- !u!4 &5269305614560780770 stripped
@@ -664,6 +757,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8446308181999618622}
     m_Modifications:
+    - target: {fileID: 200836925256132487, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 350542297269625974, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2372992277414234719, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4994783853191436203, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -728,6 +833,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_Spikes_Radiator
       objectReference: {fileID: 0}
+    - target: {fileID: 5628050240077909265, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8946369694479154430, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aeb31f14bd1edf64dba92ec465a58bb3, type: 3}
 --- !u!4 &1559500508205793989 stripped
@@ -790,10 +903,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_CR_ALT_DeLavalx3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 258abab3179fd1c41a0969e2f9a4c552, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1839362536017601217, guid: 258abab3179fd1c41a0969e2f9a4c552, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2463cbc20c812e348ad8b7fa40935b07, type: 2}
+    - target: {fileID: 8370939198220271597, guid: 258abab3179fd1c41a0969e2f9a4c552, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 258abab3179fd1c41a0969e2f9a4c552, type: 3}
 --- !u!4 &6843120109553715640 stripped

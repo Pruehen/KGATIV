@@ -68,6 +68,6 @@ public class Weapon : MonoBehaviour
             hasDebuffkey.Add(debuffKey);
         }
         CombatData.BuffManager.BuffCheck_D4Set_OnFire();
-        projectile.Init(originPos, aimPos, Table, dmg, isCrit, hasDebuffkey);
+        projectile.Init(originPos, aimPos, Table, dmg, isCrit, hasDebuffkey, this.gameObject.layer);
     }
 }

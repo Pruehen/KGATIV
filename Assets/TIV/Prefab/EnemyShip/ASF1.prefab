@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1621038602054271039}
   - component: {fileID: 6824092344873962813}
   - component: {fileID: 6471774661150200329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ASF1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipName: Sentinel
+  _dropCredit: 0
 --- !u!114 &544536306987245995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,9 +207,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1897367088066480552, guid: 054eea07755c072439ccb6d558ed126b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 054eea07755c072439ccb6d558ed126b, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Crew
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 054eea07755c072439ccb6d558ed126b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3178518652415804054, guid: 054eea07755c072439ccb6d558ed126b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -272,6 +281,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1754731224908780982, guid: c73edc7741b025547989427262987b35, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 595873458912385448, guid: c73edc7741b025547989427262987b35, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -279,6 +292,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c73edc7741b025547989427262987b35, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Wings
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c73edc7741b025547989427262987b35, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c73edc7741b025547989427262987b35, type: 3}
@@ -346,6 +363,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alien_Corvette_Bridge_A
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bdc0a9d9170a01d4d82a3058581dad78, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463704862837407108, guid: bdc0a9d9170a01d4d82a3058581dad78, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdc0a9d9170a01d4d82a3058581dad78, type: 3}
 --- !u!4 &1774858956539061254 stripped
@@ -404,6 +429,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5584538412710819558, guid: dc123ab36a20ed345a796eb72eef9bb4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -2629617839589394853, guid: dc123ab36a20ed345a796eb72eef9bb4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -411,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dc123ab36a20ed345a796eb72eef9bb4, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Bridge_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc123ab36a20ed345a796eb72eef9bb4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc123ab36a20ed345a796eb72eef9bb4, type: 3}
@@ -470,9 +503,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7953882145906414144, guid: f0ee53b5df3c41448aa449de61d3efd8, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f0ee53b5df3c41448aa449de61d3efd8, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0ee53b5df3c41448aa449de61d3efd8, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1216110495271308284, guid: f0ee53b5df3c41448aa449de61d3efd8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -544,6 +585,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alien_Corvette_Sides
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 58927253d873653439ca05f2e892d241, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632451022845175168, guid: 58927253d873653439ca05f2e892d241, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58927253d873653439ca05f2e892d241, type: 3}
 --- !u!4 &4334799797391150293 stripped
@@ -606,9 +655,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1220358113207114902, guid: 0ccbf9c93b19b654f912062a35f3da16, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ccbf9c93b19b654f912062a35f3da16, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Thrusterx6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ccbf9c93b19b654f912062a35f3da16, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ccbf9c93b19b654f912062a35f3da16, type: 3}
@@ -671,6 +728,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 822e9f1666c2bbe448871846d9393464, type: 3}
       propertyPath: m_Name
       value: Alien_Corvette_Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 822e9f1666c2bbe448871846d9393464, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4906903872887923629, guid: 822e9f1666c2bbe448871846d9393464, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9209157021724927568, guid: 822e9f1666c2bbe448871846d9393464, type: 3}
       propertyPath: m_Materials.Array.data[0]
