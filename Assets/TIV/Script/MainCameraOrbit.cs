@@ -6,6 +6,7 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
     [SerializeField] float rotationSpeed = 15.0f; // 회전 속도
     [SerializeField] float distance = 600f; // 카메라와 중심점 사이의 거리
     [SerializeField] float inertia = 0.97f;
+    [SerializeField] bool isTopviewFixed = false;
 
     Vector3 _centerPosTemp;
 
@@ -55,27 +56,36 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
 
     void UpdateCameraPosition()
     {
-        pitch += deltaPitch * Time.deltaTime;
-        yaw += deltaYaw * Time.deltaTime;
+        if (isTopviewFixed == false)
+        {
+            pitch += deltaPitch * Time.deltaTime;
+            yaw += deltaYaw * Time.deltaTime;
 
-        // 피치 제한 (예: -30도에서 30도 사이)
-        pitch = Mathf.Clamp(pitch, -30f, 30f);
+            // 피치 제한 (예: -30도에서 30도 사이)
+            pitch = Mathf.Clamp(pitch, -30f, 30f);
 
-        // 회전 쿼터니언 생성
-        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+            // 회전 쿼터니언 생성
+            Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
 
-        Vector3 targetPos = ((target == null) ? _centerPosTemp : target.position);
-        _centerPosTemp = targetPos;
-        // 카메라 위치 계산
-        Vector3 newPos = rotation * new Vector3(0, 0, -distance) + targetPos;
+            Vector3 targetPos = ((target == null) ? _centerPosTemp : target.position);
+            _centerPosTemp = targetPos;
+            // 카메라 위치 계산
+            Vector3 newPos = rotation * new Vector3(0, 0, -distance) + targetPos;
 
-        // 카메라 위치와 회전 적용
-        transform.position = newPos;
-        //transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 2);
-        transform.LookAt(targetPos);
+            // 카메라 위치와 회전 적용
+            transform.position = newPos;
+            //transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * 2);
+            transform.LookAt(targetPos);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetPos - this.transform.position), Time.deltaTime * 5);
 
-        deltaPitch *= inertia;
-        deltaYaw *= inertia;
+            deltaPitch *= inertia;
+            deltaYaw *= inertia;
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, new Vector3(0, 800, -100), Time.deltaTime * 2);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90, -90, 0), Time.deltaTime * 2);
+        }
     }
 
     public void SetCameraTarget(Transform target)
