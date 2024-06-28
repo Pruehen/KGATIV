@@ -1,7 +1,6 @@
 using EnumTypes;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 public class State
 {
     float _curState = 0;
@@ -14,6 +13,15 @@ public class State
     public State(float state)
     {
         Init(state, 1);
+    }
+    /// <summary>
+    /// 버프 스탯용 생성자. 모든 파라미터를 0으로 조정할 것.
+    /// </summary>
+    /// <param name="state"></param>
+    /// <param name="stateMultipleier"></param>
+    public State(float state, float stateMultipleier)
+    {
+        Init(state, stateMultipleier);
     }
     public void Init(float curState = 0, float stateMultiplier = 1)
     {
@@ -37,15 +45,28 @@ public class State
     {
         _stateMultiplier += value * 0.01f;
     }
-    public float CurrentState()
+    float CurrentState()
     {
         return _curState * _stateMultiplier;
     }
+    public float CurrentState_AddedBuff(State buffState = null)
+    {
+        if (buffState == null)
+        {
+            return CurrentState();
+        }
+        else
+        {
+            return (_curState + buffState._curState) * (_stateMultiplier + buffState._stateMultiplier);
+        }
+    }
 }
+/// <summary>
+/// 함선 자체 데이터. 개함 버프는 포함하지 않음.
+/// </summary>
 public class ShipData
 {
-    Dictionary<CombatStateType, State> StateStaticBonusDic = new Dictionary<CombatStateType, State>();
-    Dictionary<CombatStateType, State> StateBuffBonusDic = new Dictionary<CombatStateType, State>();
+    Dictionary<CombatStateType, State> StateStaticBonusDic = new Dictionary<CombatStateType, State>();    
     ShipTable _shipTable;
     UserHaveShipData _shipData;
     int _id;
@@ -77,16 +98,6 @@ public class ShipData
         StateStaticBonusDic.Add(CombatStateType.ParticleDmg, new State());
         StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State());
 
-        StateBuffBonusDic.Add(CombatStateType.Hp, new State());
-        StateBuffBonusDic.Add(CombatStateType.Atk, new State());
-        StateBuffBonusDic.Add(CombatStateType.Def, new State());
-        StateBuffBonusDic.Add(CombatStateType.CritRate, new State());
-        StateBuffBonusDic.Add(CombatStateType.CritDmg, new State());
-        StateBuffBonusDic.Add(CombatStateType.PhysicsDmg, new State());
-        StateBuffBonusDic.Add(CombatStateType.OpticsDmg, new State());
-        StateBuffBonusDic.Add(CombatStateType.ParticleDmg, new State());
-        StateBuffBonusDic.Add(CombatStateType.PlasmaDmg, new State());
-
         AllStaticDataUpdate();
     }
 
@@ -107,16 +118,6 @@ public class ShipData
         StateStaticBonusDic.Add(CombatStateType.OpticsDmg, new State(0));
         StateStaticBonusDic.Add(CombatStateType.ParticleDmg, new State(0));
         StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State(0));
-
-        StateBuffBonusDic.Add(CombatStateType.Hp, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.Atk, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.Def, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.CritRate, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.CritDmg, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.PhysicsDmg, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.OpticsDmg, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.ParticleDmg, new State(0));
-        StateBuffBonusDic.Add(CombatStateType.PlasmaDmg, new State(0));
 
         IsValid_A4Set = false;
         IsValid_B4Set = false;
@@ -304,20 +305,14 @@ public class ShipData
 
 
     /// <summary>
-    /// StateType에 해당하는 최종 스텟을 반환함
+    /// StateType에 해당하는 최종 스텟을 버프를 포함해서 반환함. buffState가 null일 경우, 버프가 없는 기본 스탯을 반환함.
     /// </summary>
     /// <param name="stateType"></param>
     /// <returns></returns>
-    public float GetFinalState(CombatStateType stateType)
+    public float GetFinalState(CombatStateType stateType, State buffState = null)
     {
-        return StateStaticBonusDic[stateType].CurrentState() + StateBuffBonusDic[stateType].CurrentState();
-    }
-    public void AddBuffState_CurState(CombatStateType stateType, float addValue)
-    {
-        Debug.Log($"{_id}번 함선의 값 변경");
-        StateBuffBonusDic[stateType].AddCurState(addValue);
-        kjh.GameLogicManager.Instance.OnShipDataChenge(_id);
-    }
+        return StateStaticBonusDic[stateType].CurrentState_AddedBuff(buffState);
+    }    
 
     public string GetName()
     {

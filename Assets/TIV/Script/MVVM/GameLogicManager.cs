@@ -132,14 +132,6 @@ namespace kjh
             shipData.AllStaticDataUpdate();            
             callback.Invoke(shipData);
         }
-        public void OnShipDataChenge(int requestId)
-        {
-            if (_selectedShipID == requestId)
-            {
-                Debug.Log("데이터 갱신");
-                _onShipDataChange?.Invoke(GetShipData(requestId));
-            }
-        }
         public void OnShipDataChenge()
         {
             Debug.Log("데이터 갱신");

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ShipBuffManager : MonoBehaviour
 {
     ShipCombatData CombatData;
-    ShipData _shipData;
+    ShipData _shipData;//참조용. 사용 가능한 버프인지 파악하는 용도로만 사용할 것.
 
     BuffTable _a4setTable;
     bool _isActive_A4Set;
@@ -20,6 +20,25 @@ public class ShipBuffManager : MonoBehaviour
 
     BuffTable _d4setTable;    
     Queue<bool> _d4BuffCheckerQueue = new Queue<bool>();
+
+    Dictionary<CombatStateType, State> StateBuffBonusDic = new Dictionary<CombatStateType, State>();
+
+    /// <summary>
+    /// 현재 개함 적용중인 버프 스탯 클래스 객체를 반환.
+    /// </summary>
+    /// <param name="stateType"></param>
+    /// <returns></returns>
+    public State GetFinalState(CombatStateType stateType)
+    {
+        if (StateBuffBonusDic.ContainsKey(stateType))
+        {
+            return StateBuffBonusDic[stateType];
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     public void Init(ShipData shipData)
     {
@@ -36,6 +55,32 @@ public class ShipBuffManager : MonoBehaviour
     {
         BuffCheck_G4Set_OnUpdate();
         BuffCheck_A4Set_OnUpdate(CombatData.GetHpRatio());
+    }
+    /// <summary>
+    /// 고정 버프 수치를 변화시키는 메서드. 예) 공격력 1000 증가, 물리 피해 보너스 30% 증가 (value는 1000, 30)
+    /// </summary>
+    /// <param name="stateType"></param>
+    /// <param name="addValue"></param>
+    void AddBuffState_CurState(CombatStateType stateType, float addValue)
+    {
+        if (StateBuffBonusDic.ContainsKey(stateType) == false)
+        {
+            StateBuffBonusDic.Add(stateType, new State(0, 0));
+        }
+        StateBuffBonusDic[stateType].AddCurState(addValue);        
+    }
+    /// <summary>
+    /// 퍼센테이지 버프 수치를 변화시키는 메서드. 예) 공격력 30% 증가 (value는 30)
+    /// </summary>
+    /// <param name="stateType"></param>
+    /// <param name="addValue"></param>
+    void AddBuffState_MultiState(CombatStateType stateType, float addValue)
+    {
+        if (StateBuffBonusDic.ContainsKey(stateType) == false)
+        {
+            StateBuffBonusDic.Add(stateType, new State(0, 0));
+        }
+        StateBuffBonusDic[stateType].AddPercentageState(addValue);
     }
 
     public void BuffCheck_A4Set_OnUpdate(float hpRatio)
@@ -64,11 +109,11 @@ public class ShipBuffManager : MonoBehaviour
         _isActive_A4Set = value;
         if(value == true)//값이 true로 변경되었을 경우
         {
-            _shipData.AddBuffState_CurState(CombatStateType.PhysicsDmg, _a4setTable._buffValueList[1]);
+            AddBuffState_CurState(CombatStateType.PhysicsDmg, _a4setTable._buffValueList[1]);
         }
         else//값이 false로 변경되었을 경우
         {
-            _shipData.AddBuffState_CurState(CombatStateType.PhysicsDmg, -_a4setTable._buffValueList[1]);
+            AddBuffState_CurState(CombatStateType.PhysicsDmg, -_a4setTable._buffValueList[1]);
         }
     }
     public float BuffCheck_B4Set_OnSetCollDownValue(float originCollTime)
@@ -144,7 +189,7 @@ public class ShipBuffManager : MonoBehaviour
             _d4BuffCheckerQueue.Enqueue(true);//버프 스택 인큐
             if (_d4BuffCheckerQueue.Count <= _d4setTable._buffValueList[2])//6중첩 이하일 경우
             {
-                _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, _d4setTable._buffValueList[1]);//버프 스택 증가
+                AddBuffState_CurState(CombatStateType.PlasmaDmg, _d4setTable._buffValueList[1]);//버프 스택 증가
             }
             StartCoroutine(BuffCheckCoroutine_D4Set(_d4setTable._buffValueList[0]));//버프 지속시간 후 디큐 코루틴
         }
@@ -158,7 +203,7 @@ public class ShipBuffManager : MonoBehaviour
         _d4BuffCheckerQueue.Dequeue();
         if (_d4BuffCheckerQueue.Count < _d4setTable._buffValueList[2])//5중첩 이하일 경우
         {
-            _shipData.AddBuffState_CurState(CombatStateType.PlasmaDmg, -_d4setTable._buffValueList[1]);//버프 스택 감소
+            AddBuffState_CurState(CombatStateType.PlasmaDmg, -_d4setTable._buffValueList[1]);//버프 스택 감소
         }
     }
 }
