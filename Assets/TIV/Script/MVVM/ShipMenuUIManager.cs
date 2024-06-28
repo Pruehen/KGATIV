@@ -186,7 +186,7 @@ public class ShipMenuUIManager : MonoBehaviour
                 TMP_Cost.text = $"{_vm.UseSlotCount} / {_vm.MaxSlotCount}";
                 break;
             case nameof(_vm.EquipedCombatKeyList):
-                for (int i = 0; i < _equipedCombatItemIconList.Count; i++)//12번 순회.
+                for (int i = 0; i < _equipedCombatItemIconList.Count; i++)//5번 순회.
                 {
                     if(i < _vm.EquipedCombatKeyList.Count)
                     {
@@ -219,7 +219,7 @@ public class ShipMenuUIManager : MonoBehaviour
         else
         {            
             int equipTableKey = JsonDataManager.DataLode_UserHaveEquipData(equipUniqueKey)._equipTableKey;
-            icon.SetSprite(equipTableKey);
+            icon.SetSprite(equipUniqueKey);
             icon.AddListener(() => SetActiveEquipListWdw_ViewIconTypeSet(true, JsonDataManager.DataLode_EquipTable(equipTableKey)._type));
             icon.AddListener(() => SetEquipInfoData_SelectedEquip(equipUniqueKey));
         }
@@ -377,11 +377,7 @@ public class ShipMenuUIManager : MonoBehaviour
                 icon.gameObject.SetActive(true);
                 _activeIconCount++;
 
-                Sprite sprite = Resources.Load<Sprite>("Sprites/ShipBuilderIcon/Sprites/" + table._spriteName);
-                if (sprite != null)
-                {
-                    icon.SetSprite(sprite);
-                }
+                icon.SetSprite(data._itemUniqueKey);
                 icon.SetIsEquipedLabel(data._equipedShipKey >= 0);
 
                 icon.RemoveAllListeners();

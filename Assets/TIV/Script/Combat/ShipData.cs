@@ -14,15 +14,6 @@ public class State
     {
         Init(state, 1);
     }
-    /// <summary>
-    /// 버프 스탯용 생성자. 모든 파라미터를 0으로 조정할 것.
-    /// </summary>
-    /// <param name="state"></param>
-    /// <param name="stateMultipleier"></param>
-    public State(float state, float stateMultipleier)
-    {
-        Init(state, stateMultipleier);
-    }
     public void Init(float curState = 0, float stateMultiplier = 1)
     {
         _curState = curState;
@@ -45,7 +36,7 @@ public class State
     {
         _stateMultiplier += value * 0.01f;
     }
-    float CurrentState()
+    public float CurrentState()
     {
         return _curState * _stateMultiplier;
     }
@@ -53,11 +44,11 @@ public class State
     {
         if (buffState == null)
         {
-            return CurrentState();
+            return _curState * _stateMultiplier;
         }
         else
         {
-            return (_curState + buffState._curState) * (_stateMultiplier + buffState._stateMultiplier);
+            return (_curState + buffState._curState) * (_stateMultiplier + buffState._stateMultiplier - 1);
         }
     }
 }
@@ -73,10 +64,10 @@ public class ShipData
 
     public Action OnAllStaticDataUpdate { get; set; }
     public Action OnBuffDataUpdate { get; set; }
-    public bool IsValid_A4Set { get; private set; }
-    public bool IsValid_B4Set { get; private set; }
-    public bool IsValid_G4Set { get; private set; }
-    public bool IsValid_D4Set { get; private set; }
+    public int ValidCount_ASet { get; private set; }
+    public int ValidCount_BSet { get; private set; }
+    public int ValidCount_GSet { get; private set; }
+    public int ValidCount_DSet { get; private set; }
 
     /// <summary>
     /// 유저 함선 생성자
@@ -119,10 +110,10 @@ public class ShipData
         StateStaticBonusDic.Add(CombatStateType.ParticleDmg, new State(0));
         StateStaticBonusDic.Add(CombatStateType.PlasmaDmg, new State(0));
 
-        IsValid_A4Set = false;
-        IsValid_B4Set = false;
-        IsValid_G4Set = false;
-        IsValid_D4Set = false;
+        ValidCount_ASet = 0;
+        ValidCount_BSet = 0;
+        ValidCount_GSet = 0;
+        ValidCount_DSet = 0;
 
         _id = -1;
     }
@@ -205,10 +196,10 @@ public class ShipData
                 }
             }
 
-            IsValid_A4Set = false;
-            IsValid_B4Set = false;
-            IsValid_G4Set = false;
-            IsValid_D4Set = false;
+            ValidCount_ASet = 0;
+            ValidCount_BSet = 0;
+            ValidCount_GSet = 0;
+            ValidCount_DSet = 0;
 
             foreach (var item in validSetKeyDic)//적용중인 세트효과 키 순회
             {
@@ -249,10 +240,7 @@ public class ShipData
         {
             StateStaticBonusDic[CombatStateType.PhysicsDmg].AddCurState(JsonDataManager.DataLode_BuffTable(table._set2Key)._buffValueList[0]);
         }
-        if (count >= 4)
-        {
-            IsValid_A4Set = true;
-        }
+        ValidCount_ASet = count;
     }
     void Set_BSetEffect(SetType setType, int count)
     {
@@ -265,10 +253,7 @@ public class ShipData
         {
             StateStaticBonusDic[CombatStateType.OpticsDmg].AddCurState(JsonDataManager.DataLode_BuffTable(table._set2Key)._buffValueList[0]);
         }
-        if (count >= 4)
-        {
-            IsValid_B4Set = true;
-        }
+        ValidCount_BSet = count;
     }
     void Set_GSetEffect(SetType setType, int count)
     {
@@ -281,10 +266,7 @@ public class ShipData
         {
             StateStaticBonusDic[CombatStateType.ParticleDmg].AddCurState(JsonDataManager.DataLode_BuffTable(table._set2Key)._buffValueList[0]);
         }
-        if (count >= 4)
-        {
-            IsValid_G4Set = true;
-        }
+        ValidCount_GSet = count;
     }
     void Set_DSetEffect(SetType setType, int count)
     {
@@ -297,10 +279,7 @@ public class ShipData
         {
             StateStaticBonusDic[CombatStateType.PlasmaDmg].AddCurState(JsonDataManager.DataLode_BuffTable(table._set2Key)._buffValueList[0]);
         }
-        if (count >= 4)
-        {
-            IsValid_D4Set = true;
-        }
+        ValidCount_DSet = count;
     }
 
 
@@ -312,7 +291,11 @@ public class ShipData
     public float GetFinalState(CombatStateType stateType, State buffState = null)
     {
         return StateStaticBonusDic[stateType].CurrentState_AddedBuff(buffState);
-    }    
+    }
+    public float GetFinalState(CombatStateType stateType, ShipBuffManager buffManager)
+    {
+        return StateStaticBonusDic[stateType].CurrentState_AddedBuff(buffManager.GetFinalState(stateType));
+    }
 
     public string GetName()
     {

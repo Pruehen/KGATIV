@@ -16,6 +16,7 @@ public class EquipInfoUIManagerViewModel
     List<EquipStateSet> _subStateList = new List<EquipStateSet>();    
 
     SetType _setType;
+    int _activeSetEffectCount;
 
     public string UniqueKey
     {
@@ -108,6 +109,15 @@ public class EquipInfoUIManagerViewModel
         {
             _setType = value;
             OnPropertyChanged(nameof(SetType));
+        }
+    }
+    public int ActiveSetEffectCount
+    {
+        get { return _activeSetEffectCount; }
+        set
+        {
+            _activeSetEffectCount = value;
+            OnPropertyChanged(nameof(ActiveSetEffectCount));
         }
     }
 

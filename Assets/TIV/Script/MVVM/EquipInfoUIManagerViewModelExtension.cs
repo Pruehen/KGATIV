@@ -12,6 +12,15 @@ namespace ViewModel.Extensions
         {
             EquipLevelUpLogicManager.Instance.UnRegister_OnUpgradeInfoCallBack(vm.OnRefreshViewModel_UpgradeUI);
         }
+        public static void Register_OnEquipCallBack(this EquipInfoUIManagerViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.Register_OnEquipCallBack(vm.RefreshViewModel_ActiveSetEffectCount_OnEquip);
+        }
+        public static void UnRegister_OnEquipCallBack(this EquipInfoUIManagerViewModel vm)
+        {
+            kjh.GameLogicManager.Instance.UnRegister_OnEquipCallBack(vm.RefreshViewModel_ActiveSetEffectCount_OnEquip);
+        }
+
 
         public static void RefreshViewModel(this EquipInfoUIManagerViewModel vm, string equipUniqeKey)//요청 익스텐션
         {            
@@ -35,7 +44,12 @@ namespace ViewModel.Extensions
             vm.MainStateType = equipData._mainState._stateType;
             vm.Level = equipData._level;
             vm.SubStateList = equipData._subStateList;
-            vm.SetType = equipData._setType;            
+            vm.SetType = equipData._setType;
+        }
+        public static void RefreshViewModel_ActiveSetEffectCount_OnEquip(this EquipInfoUIManagerViewModel vm, int setEffectCount)
+        {
+            //vm.ActiveSetEffectCount = setEffectCount;
+            //기능 보류
         }
         public static void OnRefreshViewModel_UpgradeUI(this EquipInfoUIManagerViewModel vm, int levelUpCount, int needCredit)
         {

@@ -65,9 +65,10 @@ public class ShipBuffManager : MonoBehaviour
     {
         if (StateBuffBonusDic.ContainsKey(stateType) == false)
         {
-            StateBuffBonusDic.Add(stateType, new State(0, 0));
+            StateBuffBonusDic.Add(stateType, new State(0));
         }
-        StateBuffBonusDic[stateType].AddCurState(addValue);        
+        StateBuffBonusDic[stateType].AddCurState(addValue);
+        kjh.GameLogicManager.Instance.UpdateSelectShipData();
     }
     /// <summary>
     /// 퍼센테이지 버프 수치를 변화시키는 메서드. 예) 공격력 30% 증가 (value는 30)
@@ -78,14 +79,15 @@ public class ShipBuffManager : MonoBehaviour
     {
         if (StateBuffBonusDic.ContainsKey(stateType) == false)
         {
-            StateBuffBonusDic.Add(stateType, new State(0, 0));
+            StateBuffBonusDic.Add(stateType, new State(0));
         }
         StateBuffBonusDic[stateType].AddPercentageState(addValue);
+        kjh.GameLogicManager.Instance.UpdateSelectShipData();
     }
 
     public void BuffCheck_A4Set_OnUpdate(float hpRatio)
     {
-        if (_shipData.IsValid_A4Set == false)
+        if (_shipData.ValidCount_ASet < 4)
         {
             SetActive_A4Set(false);
         }
@@ -118,7 +120,7 @@ public class ShipBuffManager : MonoBehaviour
     }
     public float BuffCheck_B4Set_OnSetCollDownValue(float originCollTime)
     {
-        if(_shipData.IsValid_B4Set)
+        if(_shipData.ValidCount_BSet >= 4)
         {
             return originCollTime * (1 - (_b4setTable._buffValueList[0] * 0.01f));
         }
@@ -130,7 +132,7 @@ public class ShipBuffManager : MonoBehaviour
 
     public bool BuffCheck_G4Set_OnFire(out string debuffKey)
     {
-        if(_shipData.IsValid_G4Set)
+        if(_shipData.ValidCount_GSet >= 4)
         {
             debuffKey = _g4setTable._buffKey;
             return true;
@@ -181,7 +183,7 @@ public class ShipBuffManager : MonoBehaviour
     /// <returns></returns>
     public void BuffCheck_D4Set_OnFire()
     {
-        if (_shipData.IsValid_D4Set == false)
+        if (_shipData.ValidCount_DSet < 4)
             return;
 
         if(true)//세트 효과를 가진 객체가 무기를 발사했을 때

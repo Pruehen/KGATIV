@@ -1,6 +1,7 @@
 using EnumTypes;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface ITargetable
@@ -31,6 +32,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
 {
     [SerializeField] string _shipName;
     [SerializeField] long _dropCredit;
+    [SerializeField] GameObject Prefab_Debri;
     public string ShipName { get; private set; }
     public Rigidbody rigidbody { get; private set; }    
     public ShipCombatData CombatData { get; private set; }
@@ -102,10 +104,11 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         _onDead?.Invoke(this);
         Debug.Log("»ç¸Á Ã³¸®");
-        Debug.Log("Æø¹ß ÀÌÆåÆ® ½ÇÇà");
+        EffectManager.Instance.ExplosionEffectGenerate(this.transform.position, GetComponent<SphereCollider>().radius);
         UserData userDataTemp = JsonDataManager.DataLode_UserData();
-        userDataTemp.AddCredit((long)(userDataTemp.GetValue_StageState() * _dropCredit));
+        userDataTemp.AddCredit((long)(userDataTemp.GetValue_StageState() * _dropCredit));        
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);
+        CreateDebri();
         Destroy(this.gameObject);
     }
 
@@ -114,5 +117,34 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public void Register_OnDead(Action<ShipMaster> callBack)
     {
         _onDead += callBack;
+    }
+
+    void CreateDebri()
+    {
+        if(Prefab_Debri != null)
+        {
+            GameObject debri = Instantiate(Prefab_Debri, this.transform.position, this.transform.rotation, this.transform.parent);            
+            Material material = debri.GetComponent<Renderer>().material;
+
+            while(this.transform.childCount > 0)
+            {
+                Transform child = this.transform.GetChild(0);
+                child.SetParent(debri.transform);
+                Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
+                foreach (Renderer renderer in renderers)
+                {
+                    renderer.material = material;
+                }
+
+                Rigidbody childRb = child.AddComponent<Rigidbody>();
+                childRb.useGravity = false;
+                childRb.velocity = rigidbody.velocity;
+                childRb.AddForce(UnityEngine.Random.onUnitSphere * 2f, ForceMode.VelocityChange);
+                childRb.angularDrag = 0;
+                childRb.AddTorque(UnityEngine.Random.onUnitSphere * 0.2f, ForceMode.VelocityChange);
+            }
+            
+            Destroy(debri, 5);
+        }
     }
 }

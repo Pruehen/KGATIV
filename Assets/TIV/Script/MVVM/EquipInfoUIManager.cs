@@ -51,26 +51,8 @@ public class EquipInfoUIManager : MonoBehaviour
         _vm = new EquipInfoUIManagerViewModel();
         _vm.PropertyChanged += OnPropertyChanged;
         _vm.Register_OnUpgradeInfoCallBack();
+        _vm.Register_OnEquipCallBack();
     }
-
-    //private void OnEnable()
-    //{
-    //    if (_vm == null)
-    //    {
-    //        _vm = new EquipInfoUIManagerViewModel();
-    //        _vm.PropertyChanged += OnPropertyChanged;
-    //        _vm.Register_OnUpgradeInfoCallBack();
-    //    }
-    //}
-    //private void OnDisable()
-    //{
-    //    if (_vm != null)
-    //    {
-    //        _vm.UnRegister_OnUpgradeInfoCallBack();
-    //        _vm.PropertyChanged -= OnPropertyChanged;
-    //        _vm = null;
-    //    }
-    //}
 
     public void ViewItemKey(string key)
     {
@@ -83,7 +65,7 @@ public class EquipInfoUIManager : MonoBehaviour
         UserHaveEquipData equipDataTemp = new UserHaveEquipData(equipData);
         _vm.CommandUpgrade();
 
-        this.UIManager.PopupWdw_UpgradeResult(2, equipDataTemp, equipData);
+        this.UIManager.PopupWdw_UpgradeResult(2, equipDataTemp, equipData);        
     }
     void Command_ChangeLevelUpCount(int value)
     {
@@ -153,7 +135,10 @@ public class EquipInfoUIManager : MonoBehaviour
                 SetSubStateText(_vm.SubStateList);
                 break;
             case nameof(_vm.SetType):
-                Set_EffectText(_vm.SetType, _vm.TableKey);
+                Set_EffectText(_vm.SetType, _vm.TableKey, _vm.ActiveSetEffectCount);
+                break;
+            case nameof(_vm.ActiveSetEffectCount):
+                Set_EffectText(_vm.SetType, _vm.TableKey, _vm.ActiveSetEffectCount);
                 break;
         }
     }
@@ -168,7 +153,7 @@ public class EquipInfoUIManager : MonoBehaviour
         }
         TMP_StateField.text = text;
     }
-    void Set_EffectText(SetType setType, int tableKey)
+    void Set_EffectText(SetType setType, int tableKey, int activeSetCount)
     {
         EquipTable table = JsonDataManager.DataLode_EquipTable(tableKey);
         if (setType >= 0)
@@ -182,6 +167,19 @@ public class EquipInfoUIManager : MonoBehaviour
             string set1Text = string.Format(set1Table._buffInfo, set1Table._buffValueList.Cast<object>().ToArray());
             string set2Text = string.Format(set2Table._buffInfo, set2Table._buffValueList.Cast<object>().ToArray());
             string set4Text = string.Format(set4Table._buffInfo, set4Table._buffValueList.Cast<object>().ToArray());
+
+            if(activeSetCount >= 1)
+            {
+                set1Text = $"<color=yellow>{set1Text}</color>";
+            }
+            if(activeSetCount >= 2)
+            {
+                set2Text = $"<color=yellow>{set2Text}</color>";
+            }
+            if(activeSetCount >= 4)
+            {
+                set4Text = $"<color=yellow>{set4Text}</color>";
+            }
 
             TMP_EffectField.text = $"{table._info}\n\n{setTable._setEffectName}\n    1세트 효과: {set1Text}\n    2세트 효과: {set2Text}\n    4세트 효과: {set4Text}";
         }

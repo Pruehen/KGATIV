@@ -17,7 +17,7 @@ public class ShipCombatData : MonoBehaviour
     [SerializeField] float atk;
     [SerializeField] float def;
 
-    float _curHp;
+    public float CurHp { get; private set; }
     public void Init()
     {
         if (shipTableKey >= 0)
@@ -28,7 +28,7 @@ public class ShipCombatData : MonoBehaviour
         {
             this.ShipData = new ShipData(hp, atk, def, JsonDataManager.DataLode_UserData().GetValue_StageState());            
         }
-        _curHp = ShipData.GetFinalState(CombatStateType.Hp);
+        CurHp = ShipData.GetFinalState(CombatStateType.Hp);
 
         this.BuffManager = GetComponent<ShipBuffManager>();
         this.BuffManager.Init(ShipData);
@@ -52,10 +52,11 @@ public class ShipCombatData : MonoBehaviour
         float validDef = ShipData.GetFinalState(CombatStateType.Def, BuffManager.GetFinalState(CombatStateType.Def)) * BuffManager.BuffCheck_G4Set_OnHit_ValidDefRatio();
 
         float calcedDmg = originDmg * ((700 / (1000 + validDef) + 0.3f));
-        _curHp -= calcedDmg;
+        CurHp -= calcedDmg;
         kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position, isCrit);
+        kjh.GameLogicManager.Instance.UpdateSelectShipData();
 
-        if(_curHp <= 0)
+        if(CurHp <= 0)
         {
             _onDead?.Invoke();
         }
@@ -107,7 +108,7 @@ public class ShipCombatData : MonoBehaviour
         if (ShipData == null)
             return 1;
 
-        return _curHp / ShipData.GetFinalState(CombatStateType.Hp, BuffManager.GetFinalState(CombatStateType.Hp));
+        return CurHp / ShipData.GetFinalState(CombatStateType.Hp, BuffManager.GetFinalState(CombatStateType.Hp));
     }
 
     Action _onDead;

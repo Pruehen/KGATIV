@@ -132,11 +132,13 @@ public class UsingShipOverUI : MonoBehaviour
             MainCameraOrbit.Instance.SetCameraTarget(targetObject.transform);
             _vm.TargetShipMaster = targetObject;
             _vm.IsViewData = true;
+            kjh.GameLogicManager.Instance.SelectActiveShip(targetObject);
         }
     }
     public void UnSelectTargetObject_OnDeSelect()
     {
         _vm.IsViewData = false;
+        kjh.GameLogicManager.Instance.SelectActiveShip(null);
     }
 
     void SetHpbarRatio_OnUpdate(float ratio)

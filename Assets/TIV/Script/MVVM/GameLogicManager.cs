@@ -12,12 +12,17 @@ namespace kjh
 
         private static Dictionary<int, ShipData> _shipDatas = new Dictionary<int, ShipData>();
         static Dictionary<int, ShipMaster> _activeShipDic = new Dictionary<int, ShipMaster>();
+
         Action<ShipMaster, bool> _shipListChangeCallBack;
+        Action<ShipMaster> _onSelectShipCallBack;
+        ShipMaster _selectedShipMaster;
+
         private TaskCompletionSource<bool> _callbackRegisteredTcs;
 
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
         Action<ShipData> _onShipDataChange;
+        Action<int> _onEquipCallBack;
         int _selectedShipID;        
         
 
@@ -46,7 +51,7 @@ namespace kjh
             }
         }
 
-        //===============================================================================================
+        //전투 중 함선 선택 UI 관련 처리===============================================================================================
 
         public void Register_shipListChangeCallBack(Action<ShipMaster, bool> callback)
         {
@@ -58,6 +63,17 @@ namespace kjh
         {
             _shipListChangeCallBack -= callback;
         }
+
+        public void Register_OnSelectShipCallBack(Action<ShipMaster> callback)
+        {
+            _onSelectShipCallBack += callback;            
+        }
+
+        public void UnRegister_OnSelectShipCallBack(Action<ShipMaster> callback)
+        {
+            _onSelectShipCallBack -= callback;
+        }
+
         public async void AddActiveShip(ShipMaster shipMaster)
         {
             if(_activeShipDic == null)
@@ -82,13 +98,22 @@ namespace kjh
 
             await _callbackRegisteredTcs.Task;
         }
+        public void SelectActiveShip(ShipMaster shipMaster)
+        {
+            _selectedShipMaster = shipMaster;
+            _onSelectShipCallBack?.Invoke(shipMaster);
+        }
+        public void UpdateSelectShipData()
+        {
+            _onSelectShipCallBack?.Invoke(_selectedShipMaster);
+        }
 
         public void RemoveActiveShip(ShipMaster shipMaster)
         {
             _activeShipDic.Remove(shipMaster.GetInstanceID());
             _shipListChangeCallBack.Invoke(shipMaster, false);
         }
-        //=====================================================================================
+        //피격, 데미지 발생 시에 대한 처리=====================================================================================
         public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
         {
             _onDmgedCallBack += callback;
@@ -114,7 +139,7 @@ namespace kjh
             _onDmgedCallBack?.Invoke((int)viewDmg, type, position, isCrit);
         }
 
-        //======================================================================================
+        //함선 메뉴창에서의 처리======================================================================================
         public void Register_OnShipDataChange(Action<ShipData> callback)
         {
             _onShipDataChange += callback;
@@ -123,6 +148,15 @@ namespace kjh
         public void UnRegister_OnShipDataChange(Action<ShipData> callback)
         {
             _onShipDataChange -= callback;
+        }
+        public void Register_OnEquipCallBack(Action<int> callback)
+        {
+            _onEquipCallBack += callback;
+        }
+
+        public void UnRegister_OnEquipCallBack(Action<int> callback)
+        {
+            _onEquipCallBack -= callback;
         }
         public void RefreshShipInfo(int requestId, Action<ShipData> callback)
         {
@@ -153,6 +187,27 @@ namespace kjh
             ShipData shipData = GetShipData(shipKey);
             shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
+
+            int setCount = 0;
+            UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
+            switch (equipData._setType)
+            {
+                case SetType.Alpha:
+                    setCount = shipData.ValidCount_ASet;
+                    break;
+                case SetType.Beta:
+                    setCount = shipData.ValidCount_BSet;
+                    break;
+                case SetType.Gamma:
+                    setCount = shipData.ValidCount_GSet;
+                    break;
+                case SetType.Delta:
+                    setCount = shipData.ValidCount_DSet;
+                    break;
+                default:
+                    break;
+            }
+            _onEquipCallBack.Invoke(setCount);
         }
         public void ShipUnEquipItem(string equipUniqeKey, Action<ShipData> callback)
         {
@@ -167,6 +222,27 @@ namespace kjh
             ShipData shipData = GetShipData(shipKey);
             shipData.AllStaticDataUpdate();
             callback.Invoke(shipData);
+
+            int setCount = 0;
+            UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
+            switch (equipData._setType)
+            {
+                case SetType.Alpha:
+                    setCount = shipData.ValidCount_ASet;
+                    break;
+                case SetType.Beta:
+                    setCount = shipData.ValidCount_BSet;
+                    break;
+                case SetType.Gamma:
+                    setCount = shipData.ValidCount_GSet;
+                    break;
+                case SetType.Delta:
+                    setCount = shipData.ValidCount_DSet;
+                    break;
+                default:
+                    break;
+            }
+            _onEquipCallBack.Invoke(setCount);
         }
 
 

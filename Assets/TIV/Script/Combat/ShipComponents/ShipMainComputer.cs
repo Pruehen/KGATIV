@@ -80,7 +80,10 @@ public class ShipMainComputer : MonoBehaviour
                         priorityQueue_InterceptTarget.TryAdd(distance, target);
                     }
                 }
-                _FCS.SetInterceptTarget(priorityQueue_InterceptTarget);
+                if (priorityQueue_InterceptTarget.Count > 0)
+                {
+                    _FCS.SetInterceptTarget(priorityQueue_InterceptTarget);
+                }
             }
         }     
     }
@@ -91,6 +94,7 @@ public class ShipMainComputer : MonoBehaviour
 
         // 현재 위치를 기준으로 searchRadius 반경 내의 모든 콜라이더 검색
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3000);
+        bool thisID = _Master.GetID();
 
         foreach (Collider collider in colliders)
         {
@@ -98,7 +102,10 @@ public class ShipMainComputer : MonoBehaviour
             ITargetable target;
             if (collider.TryGetComponent(out target))
             {
-                targetList.Add(target);
+                if (target.IFF(thisID) == false)
+                {
+                    targetList.Add(target);
+                }
             }
         }
 

@@ -1,4 +1,5 @@
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class EquipIcon : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] GameObject IsEquipedLabel;
     [SerializeField] UnityEngine.UI.Image Image;
+    [SerializeField] TextMeshProUGUI Text_Level;
+    UserHaveEquipData _data;
 
     bool _isEquiedItem = false;
     private void Awake()
@@ -16,6 +19,10 @@ public class EquipIcon : MonoBehaviour
         if (IsEquipedLabel != null)
         {
             IsEquipedLabel.SetActive(false);
+        }
+        if(Text_Level != null)
+        {
+            Text_Level.gameObject.SetActive(false);
         }
     }
 
@@ -60,6 +67,35 @@ public class EquipIcon : MonoBehaviour
             if (sprite != null)
             {
                 SetSprite(sprite);
+            }
+        }
+    }
+    public void SetSprite(string equipUniqueKey)
+    {
+        if(_data != null)
+        {
+            _data.OnUpgrade -= SetText_Upgrade;
+        }
+
+        _data = JsonDataManager.DataLode_UserHaveEquipData(equipUniqueKey);
+        _data.OnUpgrade += SetText_Upgrade;
+        SetSprite(_data._equipTableKey);
+        SetText_Upgrade();
+    }
+
+    void SetText_Upgrade()
+    {
+        if (Text_Level != null)
+        {
+            int itemLevel = _data._level;
+            if (itemLevel > 0)
+            {
+                Text_Level.gameObject.SetActive(true);
+                Text_Level.text = $"+{itemLevel}";
+            }
+            else
+            {
+                Text_Level.gameObject.SetActive(false);
             }
         }
     }

@@ -767,6 +767,7 @@ public class UserHaveEquipData
     public int _equipedShipKey;
 
     EquipTable _equipTable;
+    [JsonIgnore]public Action OnUpgrade { get; set; }
 
     [JsonConstructor]
     public UserHaveEquipData(string itemUniqueKey, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList, int equipedShipKey)
@@ -876,7 +877,7 @@ public class UserHaveEquipData
     /// <param name="msg"></param>
     public void LevelUp(int plusLevel)
     {
-        if(_level + plusLevel > 20 || plusLevel <= 0)
+        if(_level + plusLevel > MaxLevel() || plusLevel <= 0)
         {
             Debug.Log("잘못된 강화 수치");
         }
@@ -891,6 +892,7 @@ public class UserHaveEquipData
                 }
             }
             _mainState.SetValue(_level + 5);
+            OnUpgrade?.Invoke();
             Debug.Log("강화 성공");
         }
     }
@@ -1020,6 +1022,7 @@ public class UserData
     public void AddCredit(long value)
     {
         Credit += value;
+        AddCreditViewOverUIManager.Instance.OnAddCredit((int)value);
         RefreshViewModel();
     }
     /// <summary>
