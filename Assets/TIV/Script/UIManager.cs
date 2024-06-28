@@ -10,10 +10,10 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] Button Btn_ShipMenuOn;
     [SerializeField] Button Btn_ShipMenuOff;
 
-    [Header("장비 메뉴 조작")]
-    [SerializeField] GameObject Wdw_EquipMenu;
-    [SerializeField] Button Btn_EquipMenuOn;
-    [SerializeField] Button Btn_EquipMenuOff;
+    [Header("편제 메뉴 조작")]
+    [SerializeField] GameObject Wdw_FleetMenu;
+    [SerializeField] Button Btn_FleetMenuOn;
+    [SerializeField] Button Btn_FleetMenuOff;
 
     [Header("뽑기 메뉴 조작")]
     [SerializeField] GameObject Wdw_GachaMenu;
@@ -41,9 +41,9 @@ public class UIManager : SceneSingleton<UIManager>
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_ShipMenu(false));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
 
-        SetActiveWdw_EquipMenu(false);
-        Btn_EquipMenuOn.onClick.AddListener(() => SetActiveWdw_EquipMenu(true));
-        Btn_EquipMenuOff.onClick.AddListener(() => SetActiveWdw_EquipMenu(false));
+        SetActiveWdw_FleetMenu(false);
+        Btn_FleetMenuOn.onClick.AddListener(() => SetActiveWdw_FleetMenu(true));
+        Btn_FleetMenuOff.onClick.AddListener(() => SetActiveWdw_FleetMenu(false));
 
         SetActiveWdw_GachaMenu(false);
         Btn_GachaMenuOn.onClick.AddListener(() => SetActiveWdw_GachaMenu(true));
@@ -84,9 +84,9 @@ public class UIManager : SceneSingleton<UIManager>
             OnShipMenuWdwOff?.Invoke();
         }
     }
-    public void SetActiveWdw_EquipMenu(bool value)
+    public void SetActiveWdw_FleetMenu(bool value)
     {        
-        SetActiveWdw(Wdw_EquipMenu, value);
+        SetActiveWdw(Wdw_FleetMenu, value);
     }
     public void SetActiveWdw_GachaMenu(bool value)
     {

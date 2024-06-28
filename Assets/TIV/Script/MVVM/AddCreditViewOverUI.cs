@@ -1,7 +1,5 @@
-using EnumTypes;
 using TMPro;
 using UnityEngine;
-using UI.Extension;
 
 public class AddCreditViewOverUI : MonoBehaviour
 {
