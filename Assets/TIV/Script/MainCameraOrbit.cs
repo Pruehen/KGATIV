@@ -92,4 +92,9 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
     {
         this.target = target;
     }
+    public void SetIsTopviewFixed(bool value)
+    {
+        isTopviewFixed = value;
+        SetCameraTarget(null);
+    }
 }

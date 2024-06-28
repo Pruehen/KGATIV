@@ -87,6 +87,7 @@ public class UIManager : SceneSingleton<UIManager>
     public void SetActiveWdw_FleetMenu(bool value)
     {        
         SetActiveWdw(Wdw_FleetMenu, value);
+        MainCameraOrbit.Instance.SetIsTopviewFixed(value);
     }
     public void SetActiveWdw_GachaMenu(bool value)
     {
