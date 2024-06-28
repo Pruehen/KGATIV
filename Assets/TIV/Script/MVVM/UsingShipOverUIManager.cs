@@ -34,27 +34,7 @@ public class UsingShipOverUIManager : MonoBehaviour
             _vm.OnRefreshViewModel_ShipStateData(null);
         }
     }
-    private void OnEnable()
-    {
-        if (_vm == null)
-        {
-            _vm = new UsingShipOverUIManagerViewModel();
-            _vm.PropertyChanged += OnPropertyChanged;
-            _vm.Register_shipListChangeCallBack();
-            _vm.Register_OnSelectShipCallBack();
-            _vm.OnRefreshViewModel_ShipStateData(null);
-        }
-    }
-    private void OnDisable()
-    {
-        if (_vm != null)
-        {
-            _vm.UnRegister_OnSelectShipCallBack();
-            _vm.UnRegister_shipListChangeCallBack();
-            _vm.PropertyChanged -= OnPropertyChanged;
-            _vm = null;
-        }
-    }
+
     private void Update()
     {
         if (_buffManagerRef == null)

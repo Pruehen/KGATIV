@@ -33186,6 +33186,7 @@ MonoBehaviour:
   - {fileID: 1946062102}
   Popup_UpgradeResult: {fileID: 1167846258}
   PopUp_WarningPopUpUI: {fileID: 2099588593}
+  UsingShipOverUIManager: {fileID: 1617075791}
 --- !u!1001 &858421899
 PrefabInstance:
   m_ObjectHideFlags: 0

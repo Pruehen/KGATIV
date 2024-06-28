@@ -4,11 +4,11 @@ public class FleetMenuUIManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        //Time.timeScale = 0.3f;        
+        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);
     }
     private void OnDisable()
     {
-        //Time.timeScale = 1f;
+        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);
     }
 
     void Update()

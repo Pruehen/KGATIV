@@ -32,6 +32,9 @@ public class UIManager : SceneSingleton<UIManager>
 
     [Header("경고 팝업창")]
     [SerializeField] WarningPopUpUI PopUp_WarningPopUpUI;
+
+    [Header("기타 UI")]
+    [SerializeField] UsingShipOverUIManager UsingShipOverUIManager;
     //-----------------------------------------------------------
 
     private void Awake()
@@ -104,6 +107,10 @@ public class UIManager : SceneSingleton<UIManager>
     public string GetEquipInfo_StringKey()
     {
         return _equipInfoUIManager.UniqueKey;
+    }
+    public void SetActiveWdw_UsingShipOverUIManager(bool value)
+    {
+        SetActiveWdw(UsingShipOverUIManager.gameObject, value);
     }
 
     public void PopupWdw_UpgradeResult(float time, UserHaveEquipData before, UserHaveEquipData affter)
