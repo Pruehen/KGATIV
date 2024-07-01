@@ -6,8 +6,7 @@ public class ShipMainComputer : MonoBehaviour
 {
     ShipMaster _Master;
     ShipEngine _Engine;
-    ShipFCS _FCS;
-    [SerializeField] Vector3 TargetPos;
+    ShipFCS _FCS;    
 
     bool _isInit = false;
     bool _isInterceptMode = false;
@@ -18,18 +17,8 @@ public class ShipMainComputer : MonoBehaviour
         TryGetComponent(out _Engine);
         TryGetComponent(out _FCS);        
 
-        StartCoroutine(SearchTarget());
-        SetMoveTargetPos(TargetPos);
+        StartCoroutine(SearchTarget());        
         _isInit = true;
-    }
-
-
-    void SetMoveTargetPos(Vector3 pos)
-    {
-        if(_Engine != null)
-        {
-            _Engine.SetMoveTargetPos(pos);
-        }
     }
     
     IEnumerator SearchTarget()

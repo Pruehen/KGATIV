@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using EnumTypes;
 using System;
+using static UserData;
 
 public class ShipTable
 {
@@ -974,17 +975,19 @@ public class UserData
     [JsonProperty] public int Fuel { get; private set; }
     [JsonProperty] public int CurPrmStage { get; private set; }
     [JsonProperty] public int CurSecStage { get; private set; }
+    [JsonProperty] List<ShipPositionData> ShipPositionDatas;
 
     public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
 
     [JsonConstructor]
-    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage)
+    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage, List<ShipPositionData> shipPositionDatas)
     {
         Credit = credit;
         SuperCredit = superCredit;
         Fuel = fuel;
         CurPrmStage = curPrmStage;
         CurSecStage = curSecStage;
+        ShipPositionDatas = shipPositionDatas;
     }
     public UserData()
     {
@@ -993,7 +996,46 @@ public class UserData
         Fuel = 240;
         CurPrmStage = 1;
         CurSecStage = 1;
+        ShipPositionDatas = new List<ShipPositionData>();
+        ShipPositionDatas.Add(new ShipPositionData(0));
     }
+    public class ShipPositionData
+    {
+        public int _index;
+        public int _shipKey;
+        public float _posX;
+        public float _posZ;
+
+        [JsonConstructor]
+        public ShipPositionData(int index, int shipKey, float posX, float posZ)
+        {
+            _index = index;
+            _shipKey = shipKey;
+            _posX = posX;
+            _posZ = posZ;
+        }
+        public ShipPositionData(int index)
+        {
+            _index = index;
+            _shipKey = 0;
+            _posX = 0;
+            _posZ = 0;
+        }
+    }
+    public List<ShipPositionData> GetShipPosDataList() { return ShipPositionDatas; }
+    public void NewShipPosData(int shipKey, Vector3 position)
+    {
+        if (ShipPositionDatas == null) ShipPositionDatas = new List<ShipPositionData>();
+
+        ShipPositionDatas.Add(new ShipPositionData(ShipPositionDatas.Count, shipKey, position.x, position.z));
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
+    public void SetShipPosData(int index, Vector3 newPos)
+    {
+        ShipPositionDatas[index]._posX = newPos.x;
+        ShipPositionDatas[index]._posZ = newPos.z;
+    }
+
     //MVVM 관련 코드==============================
     Action<UserData> _onRefreshViewModel_CallBack;
     public void Register_OnRefreshViewModel(Action<UserData> callBack)

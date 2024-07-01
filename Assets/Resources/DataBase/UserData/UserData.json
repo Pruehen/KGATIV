@@ -1,7 +1,15 @@
 {
-  "Credit": 72632999496,
+  "ShipPositionDatas": [
+    {
+      "_index": 0,
+      "_shipKey": 0,
+      "_posX": -77.83787,
+      "_posZ": -224.7786
+    }
+  ],
+  "Credit": 814,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 48,
-  "CurSecStage": 10
+  "CurPrmStage": 2,
+  "CurSecStage": 6
 }

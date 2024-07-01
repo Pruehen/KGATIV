@@ -63,6 +63,7 @@ public class ShipController : MonoBehaviour
     {
         Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay();        
         _selectShip.Engine.SetMoveTargetPos(targetPos);
+        UserData.Instance.SetShipPosData(_selectShip.ShipIndex, targetPos);
         _selectShip = null;
 
         _selectDummy.SetActive(false);

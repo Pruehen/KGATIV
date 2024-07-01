@@ -22,6 +22,7 @@ public class ShipEngine : MonoBehaviour
         _initPos = transform.position;
         _initWarpPos = _initPos - (this.transform.forward * 10000);
         transform.position = _initWarpPos;
+        SetMoveTargetPos(_initPos);
         StartCoroutine(Warp());
     }
 

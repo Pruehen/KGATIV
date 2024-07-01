@@ -42,6 +42,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipEngine Engine { get; private set; }    
     public ShipFCS FCS { get; private set; }
     public ShipBuffManager BuffManager { get; private set; }
+    public int ShipIndex { get; set; }
 
     Action InitComplite;
     /// <summary>
@@ -80,7 +81,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public void Hit(float dmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey)
     {
         CombatData.Hit(dmg, type, isCrit, hasDebuffKey);
-    }
+    }    
 
     private void Awake()
     {
