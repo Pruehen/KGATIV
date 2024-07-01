@@ -33,6 +33,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
     [SerializeField] string _shipName;
     [SerializeField] long _dropCredit;
     [SerializeField] GameObject Prefab_Debri;
+    [SerializeField] GameObject Prefab_Dummy;
+    [SerializeField] bool _isDummy;
     public string ShipName { get; private set; }
     public Rigidbody rigidbody { get; private set; }    
     public ShipCombatData CombatData { get; private set; }
@@ -75,29 +77,43 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         this.rigidbody = GetComponent<Rigidbody>();
 
-        CombatData = GetComponent<ShipCombatData>();        
+        CombatData = GetComponent<ShipCombatData>();
         MainComputer = GetComponent<ShipMainComputer>();
-        Engine = GetComponent<ShipEngine>();        
+        Engine = GetComponent<ShipEngine>();
         FCS = GetComponent<ShipFCS>();
-        BuffManager = GetComponent<ShipBuffManager>();             
+        BuffManager = GetComponent<ShipBuffManager>();
 
-        CombatData.Init();
-        CombatData.Register_OnDead(Destroy_OnDead);
-        MainComputer.Init();
-        Engine.Init();
-
-        int shipKey = CombatData.GetShipTableKey();
-        FCS.Init(shipKey);
-        if (shipKey >= 0)
+        if (_isDummy == false)
         {
-            ShipName = JsonDataManager.DataLode_ShipTable(shipKey)._name;
+            CombatData.Init();
+            CombatData.Register_OnDead(Destroy_OnDead);
+            MainComputer.Init();
+            Engine.Init();
+
+            int shipKey = CombatData.GetShipTableKey();
+            FCS.Init(shipKey);
+            if (shipKey >= 0)
+            {
+                ShipName = JsonDataManager.DataLode_ShipTable(shipKey)._name;
+            }
+            else
+            {
+                ShipName = _shipName;
+            }
+
+            kjh.GameLogicManager.Instance.AddActiveShip(this);
         }
         else
-        {
-            ShipName = _shipName;
-        }
+        {            
+            CombatData.enabled = false;
+            MainComputer.enabled = false;
+            Engine.enabled = false;
+            FCS.enabled = false;
+            BuffManager.enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
 
-        kjh.GameLogicManager.Instance.AddActiveShip(this);
+            CreateDummy();
+        }
     }
 
     void Destroy_OnDead()
@@ -145,6 +161,26 @@ public class ShipMaster : MonoBehaviour, ITargetable
             }
             
             Destroy(debri, 5);
+        }
+    }
+
+    void CreateDummy()
+    {
+        if (Prefab_Dummy != null)
+        {
+            GameObject dummy = Instantiate(Prefab_Dummy, this.transform.position, this.transform.rotation, this.transform.parent);
+            Material material = dummy.GetComponent<Renderer>().material;
+
+            while (this.transform.childCount > 0)
+            {
+                Transform child = this.transform.GetChild(0);
+                child.SetParent(dummy.transform);
+                Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
+                foreach (Renderer renderer in renderers)
+                {
+                    renderer.material = material;
+                }
+            }
         }
     }
 }

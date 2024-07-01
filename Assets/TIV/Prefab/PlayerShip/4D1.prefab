@@ -92,6 +92,7 @@ MonoBehaviour:
   _shipName: 
   _dropCredit: 0
   Prefab_Debri: {fileID: 1153682822628254354, guid: 6e0538367c1c85343b8582a264b9accd, type: 3}
+  Prefab_Dummy: {fileID: 1153682822628254354, guid: 1579da52d05fe4945bb39e0346041414, type: 3}
 --- !u!114 &7071318071890555380
 MonoBehaviour:
   m_ObjectHideFlags: 0
