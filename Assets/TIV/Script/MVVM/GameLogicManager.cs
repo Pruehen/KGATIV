@@ -1,7 +1,6 @@
 using EnumTypes;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace kjh
@@ -15,15 +14,14 @@ namespace kjh
 
         Action<ShipMaster, bool> _shipListChangeCallBack;
         Action<ShipMaster> _onSelectShipCallBack;
-        ShipMaster _selectedShipMaster;
-
-        private TaskCompletionSource<bool> _callbackRegisteredTcs;
+        ShipMaster _selectedShipMaster;        
 
         Action<int, WeaponProjectileType, Vector3, bool> _onDmgedCallBack;
         Action _onDmgedCallBack_NoData;
         Action<ShipData> _onShipDataChange;
         Action<int> _onEquipCallBack;
-        int _selectedShipID;        
+        int _selectedShipID;
+        
         
 
         public static GameLogicManager Instance
@@ -55,8 +53,7 @@ namespace kjh
 
         public void Register_shipListChangeCallBack(Action<ShipMaster, bool> callback)
         {
-            _shipListChangeCallBack += callback;
-            _callbackRegisteredTcs?.TrySetResult(true);
+            _shipListChangeCallBack += callback;            
         }
 
         public void UnRegister_shipListChangeCallBack(Action<ShipMaster, bool> callback)
@@ -74,29 +71,15 @@ namespace kjh
             _onSelectShipCallBack -= callback;
         }
 
-        public async void AddActiveShip(ShipMaster shipMaster)
+        public void AddActiveShip(ShipMaster shipMaster)
         {
             if(_activeShipDic == null)
             {
                 _activeShipDic = new Dictionary<int, ShipMaster>();
             }
 
-            _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
-
-            if (_shipListChangeCallBack == null)
-            {
-                await WaitForCallbackRegistration();
-            }
+            _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);            
             _shipListChangeCallBack.Invoke(shipMaster, true);
-        }
-        async Task WaitForCallbackRegistration()
-        {
-            if (_callbackRegisteredTcs == null || _callbackRegisteredTcs.Task.IsCompleted)
-            {
-                _callbackRegisteredTcs = new TaskCompletionSource<bool>();
-            }
-
-            await _callbackRegisteredTcs.Task;
         }
         public void SelectActiveShip(ShipMaster shipMaster)
         {

@@ -43,6 +43,15 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipFCS FCS { get; private set; }
     public ShipBuffManager BuffManager { get; private set; }
 
+    Action InitComplite;
+    /// <summary>
+    /// 워프 완료 후 호출됨
+    /// </summary>
+    public void InitCompliteInvoke()
+    {
+        InitComplite?.Invoke();
+    }
+
     public Vector3 GetPosition()
     {
         if(this == null || transform == null)
@@ -101,7 +110,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
                 ShipName = _shipName;
             }
 
-            kjh.GameLogicManager.Instance.AddActiveShip(this);
+            InitComplite += () => kjh.GameLogicManager.Instance.AddActiveShip(this);
         }
         else
         {            
