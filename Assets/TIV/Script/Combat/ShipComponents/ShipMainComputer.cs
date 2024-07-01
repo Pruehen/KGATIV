@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShipMainComputer : MonoBehaviour
 {
+    [SerializeField] bool _AiMove;
+    [SerializeField] float _range;
+
     ShipMaster _Master;
     ShipEngine _Engine;
     ShipFCS _FCS;    
 
     bool _isInit = false;
     bool _isInterceptMode = false;
+
+    Vector3 _mainTargetPos;    
 
     public void Init()
     {
@@ -19,6 +25,8 @@ public class ShipMainComputer : MonoBehaviour
 
         StartCoroutine(SearchTarget());        
         _isInit = true;
+
+        if (_AiMove) { StartCoroutine(CommandMove()); }
     }
     
     IEnumerator SearchTarget()
@@ -48,7 +56,14 @@ public class ShipMainComputer : MonoBehaviour
                     priorityQueue_MainTarget.TryAdd(distance, target);
                 }
             }
-
+            if (priorityQueue_MainTarget.Count > 0)
+            {
+                _mainTargetPos = priorityQueue_MainTarget.First().Value.GetPosition();
+            }
+            else
+            {
+                _mainTargetPos = Vector3.zero;
+            }
             _FCS.SetMainTarget(priorityQueue_MainTarget);
 
             if (true)//요격 모드. 가장 가까운 투사체를 메인 타겟으로 설정함.
@@ -93,5 +108,18 @@ public class ShipMainComputer : MonoBehaviour
         }
 
         return targetList;
+    }
+
+
+    IEnumerator CommandMove()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            Vector3 targetPos = _mainTargetPos + Vector3.ClampMagnitude(this.transform.position - _mainTargetPos, _range);
+            targetPos.x = this.transform.position.x;
+            targetPos.y = this.transform.position.y;
+            _Engine.SetMoveTargetPos(targetPos);
+        }
     }
 }

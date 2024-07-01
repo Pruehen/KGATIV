@@ -12,7 +12,7 @@ public class ShipEngine : MonoBehaviour
 
     float kp = 1.0f; // 비례 게인
     float kd = 3f; // 미분 게인
-    float maxForce = 25.0f; // 최대 적용 힘
+    float maxForce = 10f; // 최대 적용 힘
     float maxVelocity = 50.0f; // 최대 속도
 
     // Start is called before the first frame update

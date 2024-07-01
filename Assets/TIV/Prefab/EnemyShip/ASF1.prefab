@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ef4df6e1888304ca7a73eefda26d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPos: {x: 0, y: 0, z: 0}
+  _AiMove: 1
+  _range: 400
 --- !u!114 &1621038602054271039
 MonoBehaviour:
   m_ObjectHideFlags: 0

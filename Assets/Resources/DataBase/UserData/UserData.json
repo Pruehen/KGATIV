@@ -3,13 +3,13 @@
     {
       "_index": 0,
       "_shipKey": 0,
-      "_posX": -77.83787,
-      "_posZ": -224.7786
+      "_posX": -84.9920959,
+      "_posZ": -11.6692657
     }
   ],
-  "Credit": 814,
+  "Credit": 1072,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 2,
-  "CurSecStage": 6
+  "CurPrmStage": 3,
+  "CurSecStage": 10
 }
