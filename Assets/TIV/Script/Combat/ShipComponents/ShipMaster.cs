@@ -168,9 +168,10 @@ public class ShipMaster : MonoBehaviour, ITargetable
                 childRb.AddForce(UnityEngine.Random.onUnitSphere * 2f, ForceMode.VelocityChange);
                 childRb.angularDrag = 0;
                 childRb.AddTorque(UnityEngine.Random.onUnitSphere * 0.2f, ForceMode.VelocityChange);
+                Destroy(child.gameObject, UnityEngine.Random.Range(5f, 8f));
             }
             
-            Destroy(debri, 5);
+            Destroy(debri, 8);
         }
     }
 
@@ -178,14 +179,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         if (Material_Dummy != null)
         {
-            foreach (Transform child in this.transform)
-            {                
-                Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
-                foreach (Renderer renderer in renderers)
-                {
-                    renderer.material = Material_Dummy;
-                }
-            }
+            this.AddComponent<ShipDummy>().Init(Material_Dummy);
         }
     }
 }

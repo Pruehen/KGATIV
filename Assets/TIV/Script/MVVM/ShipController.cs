@@ -11,7 +11,7 @@ public class ShipController : MonoBehaviour
     [Header("더미 함선")]
     [SerializeField] List<GameObject> GameObject_DummyShipList;
 
-    GameObject _selectDummy;
+    ShipDummy _selectDummy;
     ShipMaster _selectShip;
     ShipControllerViewModel _vm;    
     LineRenderer _lineRenderer;
@@ -56,17 +56,19 @@ public class ShipController : MonoBehaviour
         _selectShip = selectShip;
 
         int key = selectShip.CombatData.GetShipTableKey();
-        _selectDummy = GameObject_DummyShipList[key];
-        _selectDummy.SetActive(true);
+        _selectDummy = GameObject_DummyShipList[key].GetComponent<ShipDummy>();
+        _selectDummy.gameObject.SetActive(true);
     }
     public void MoveTargetObject_OnPointerUp()
     {
-        Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay();        
+        bool isDeleteZone;
+
+        Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out isDeleteZone);        
         _selectShip.Engine.SetMoveTargetPos(targetPos);
         UserData.Instance.SetShipPosData(_selectShip.ShipIndex, targetPos);
         _selectShip = null;
 
-        _selectDummy.SetActive(false);
+        _selectDummy.gameObject.SetActive(false);
         _selectDummy = null;
     }
 
@@ -74,7 +76,10 @@ public class ShipController : MonoBehaviour
     {
         if(_selectShip != null )
         {
-            DrawLine_OnUpdate(_selectShip.transform.position, UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay());
+            Vector3 rayPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out bool isDeleteZone);
+
+            DrawLine_OnUpdate(_selectShip.transform.position, rayPos);
+            SetDummyPos(rayPos, isDeleteZone);
         }
         else
         {
@@ -83,7 +88,7 @@ public class ShipController : MonoBehaviour
     }
 
     void DrawLine_OnUpdate(Vector3 pos1, Vector3 pos2)
-    {
+    {        
         _lineRenderer.SetPosition(0, pos1);
         _lineRenderer.SetPosition(1, pos2);
         
@@ -99,8 +104,12 @@ public class ShipController : MonoBehaviour
             _lineScale = new Vector2(lineLength * 0.03f, 1);
             _lineMaterial.SetTextureOffset("_BaseMap", _lineOffset);
             _lineMaterial.SetTextureScale("_BaseMap", _lineScale);
-
-            _selectDummy.transform.position = pos2;
         }
+    }
+
+    void SetDummyPos(Vector3 pos, bool isDeleteZone)
+    {
+        _selectDummy.transform.position = pos;
+        _selectDummy.SetMatColor(isDeleteZone);
     }
 }

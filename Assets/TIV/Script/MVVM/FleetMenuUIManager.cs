@@ -16,7 +16,7 @@ public class FleetMenuUIManager : MonoBehaviour
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);        
     }
 
-    public Vector3 RayCast_ScreenPointToRay()
+    public Vector3 RayCast_ScreenPointToRay(out bool isDeleteZone)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // y=0 평면 생성
@@ -27,9 +27,10 @@ public class FleetMenuUIManager : MonoBehaviour
             hitPoint = ray.GetPoint(enter); // y=0 평면과의 교차점 계산
 
             hitPoint.x = Mathf.Clamp(hitPoint.x, -250, 250);
-            hitPoint.z = Mathf.Clamp(hitPoint.z, -500, 0);            
+            hitPoint.z = Mathf.Clamp(hitPoint.z, -625, 0);            
             // 교차점(hitPoint)을 사용하여 원하는 동작 수행
         }
+        isDeleteZone = hitPoint.z < -500;
         return hitPoint;
     }
 }

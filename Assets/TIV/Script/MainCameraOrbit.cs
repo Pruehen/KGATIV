@@ -83,7 +83,7 @@ public class MainCameraOrbit : SceneSingleton<MainCameraOrbit>
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(0, 800, 200), Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(0, 800, 50), Time.deltaTime * 5);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90, -90, 0), Time.deltaTime * 5);
         }
     }
