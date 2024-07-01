@@ -1,14 +1,19 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using ViewModel.Extensions;
 
-public class MyShipOverUIManager : MonoBehaviour
+public class ShipController : MonoBehaviour
 {
     [Header("UI 프리팹")]
     [SerializeField] GameObject Prefab_Icon_MyShipOverUIPrf;
 
+    [Header("더미 함선")]
+    [SerializeField] List<GameObject> GameObject_DummyShipList;
+
+    GameObject _selectDummy;
     ShipMaster _selectShip;
-    UsingShipOverUIManagerViewModel _vm;    
+    ShipControllerViewModel _vm;    
     LineRenderer _lineRenderer;
     Material _lineMaterial;
     Vector2 _lineOffset = Vector2.zero;
@@ -20,9 +25,14 @@ public class MyShipOverUIManager : MonoBehaviour
         _lineMaterial = _lineRenderer.material;
         if (_vm == null)
         {
-            _vm = new UsingShipOverUIManagerViewModel();
+            _vm = new ShipControllerViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.Register_shipListChangeCallBack();                        
+        }
+
+        foreach (var item in GameObject_DummyShipList)
+        {
+            item.SetActive(false);
         }
     }
 
@@ -44,12 +54,19 @@ public class MyShipOverUIManager : MonoBehaviour
     public void SelectTargetObject_OnPointerDown(ShipMaster selectShip)
     {
         _selectShip = selectShip;
+
+        int key = selectShip.CombatData.GetShipTableKey();
+        _selectDummy = GameObject_DummyShipList[key];
+        _selectDummy.SetActive(true);
     }
     public void MoveTargetObject_OnPointerUp()
     {
         Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay();        
         _selectShip.Engine.SetMoveTargetPos(targetPos);
         _selectShip = null;
+
+        _selectDummy.SetActive(false);
+        _selectDummy = null;
     }
 
     private void Update()
@@ -81,6 +98,8 @@ public class MyShipOverUIManager : MonoBehaviour
             _lineScale = new Vector2(lineLength * 0.03f, 1);
             _lineMaterial.SetTextureOffset("_BaseMap", _lineOffset);
             _lineMaterial.SetTextureScale("_BaseMap", _lineScale);
+
+            _selectDummy.transform.position = pos2;
         }
     }
 }

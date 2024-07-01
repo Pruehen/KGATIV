@@ -33,7 +33,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     [SerializeField] string _shipName;
     [SerializeField] long _dropCredit;
     [SerializeField] GameObject Prefab_Debri;
-    [SerializeField] GameObject Prefab_Dummy;
+    [SerializeField] Material Material_Dummy;
     [SerializeField] bool _isDummy;
     public string ShipName { get; private set; }
     public Rigidbody rigidbody { get; private set; }    
@@ -166,19 +166,14 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
     void CreateDummy()
     {
-        if (Prefab_Dummy != null)
+        if (Material_Dummy != null)
         {
-            GameObject dummy = Instantiate(Prefab_Dummy, this.transform.position, this.transform.rotation, this.transform.parent);
-            Material material = dummy.GetComponent<Renderer>().material;
-
-            while (this.transform.childCount > 0)
-            {
-                Transform child = this.transform.GetChild(0);
-                child.SetParent(dummy.transform);
+            foreach (Transform child in this.transform)
+            {                
                 Renderer[] renderers = child.GetComponentsInChildren<Renderer>();
                 foreach (Renderer renderer in renderers)
                 {
-                    renderer.material = material;
+                    renderer.material = Material_Dummy;
                 }
             }
         }

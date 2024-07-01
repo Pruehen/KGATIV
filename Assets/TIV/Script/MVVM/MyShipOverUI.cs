@@ -8,7 +8,7 @@ public class MyShipOverUI : MonoBehaviour
 {            
     ShipMaster _targetObject;
     RectTransform _rectTransform;
-    MyShipOverUIManager _myShipOverUIManager;
+    ShipController _myShipOverUIManager;
 
     private void Awake()
     {                
@@ -27,7 +27,7 @@ public class MyShipOverUI : MonoBehaviour
         }
     }
 
-    public void Init(ShipMaster target, MyShipOverUIManager manager)
+    public void Init(ShipMaster target, ShipController manager)
     {
         _targetObject = target;
         _myShipOverUIManager = manager;
