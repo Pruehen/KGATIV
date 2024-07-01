@@ -5,6 +5,8 @@ using ViewModel.Extensions;
 
 public class ShipController : MonoBehaviour
 {
+    [SerializeField] FleetMenuUIManager _fleetMenuUIManager;
+
     [Header("UI ÇÁ¸®ÆÕ")]
     [SerializeField] GameObject Prefab_Icon_MyShipOverUIPrf;
 
@@ -18,6 +20,7 @@ public class ShipController : MonoBehaviour
     Material _lineMaterial;
     Vector2 _lineOffset = Vector2.zero;
     Vector2 _lineScale = Vector2.one;
+    int _selectKey;
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class ShipController : MonoBehaviour
             item.SetActive(false);
         }
     }
+    
 
     void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
     {
@@ -53,20 +57,71 @@ public class ShipController : MonoBehaviour
 
     public void SelectTargetObject_OnPointerDown(ShipMaster selectShip)
     {
-        _selectShip = selectShip;
+        if(_selectDummy != null)
+        {
+            _selectDummy.gameObject.SetActive(false);
+        }
 
+        _selectShip = selectShip;
+        
         int key = selectShip.CombatData.GetShipTableKey();
         _selectDummy = GameObject_DummyShipList[key].GetComponent<ShipDummy>();
         _selectDummy.gameObject.SetActive(true);
+
+        _selectKey = key;
     }
+    public void SelectTargetObject_OnClick(int shipKey)
+    {
+        if (_selectDummy != null)
+        {
+            _selectDummy.gameObject.SetActive(false);
+        }
+
+        _selectDummy = GameObject_DummyShipList[shipKey].GetComponent<ShipDummy>();
+        _selectDummy.gameObject.SetActive(true);
+        _selectDummy.transform.position = new Vector3(0, 0, -250);
+        _selectKey = shipKey;
+    }
+
     public void MoveTargetObject_OnPointerUp()
     {
         bool isDeleteZone;
 
-        Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out isDeleteZone);        
-        _selectShip.Engine.SetMoveTargetPos(targetPos);
-        UserData.Instance.SetShipPosData(_selectShip.ShipIndex, targetPos);
+        Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out isDeleteZone);
+
+        if (_selectShip != null)
+        {
+            SelectShipMoveOrExit(targetPos, isDeleteZone);
+        }
+    }
+
+    void SelectShipMoveOrExit(Vector3 targetPos, bool isDeleteZone)
+    {
+        if (isDeleteZone == false)
+        {
+            _selectShip.Engine.SetMoveTargetPos(targetPos);
+            UserData.Instance.SetShipPosData(_selectShip.ShipIndex, targetPos);
+        }
+        else
+        {
+            _selectShip.CommandExit();
+        }
+
         _selectShip = null;
+
+        _selectDummy.gameObject.SetActive(false);
+        _selectDummy = null;
+    }
+    void ShipCreateOrCancel(Vector3 targetPos, bool isDeleteZone)
+    {
+        if (isDeleteZone == false)
+        {
+            PlayerSpawner.Instance.NewShipSpawn(_selectKey, targetPos);
+        }
+        else
+        {
+            _fleetMenuUIManager.ExitCreateMode();            
+        }        
 
         _selectDummy.gameObject.SetActive(false);
         _selectDummy = null;
@@ -74,16 +129,23 @@ public class ShipController : MonoBehaviour
 
     private void Update()
     {
-        if(_selectShip != null )
-        {
-            Vector3 rayPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out bool isDeleteZone);
-
+        Vector3 rayPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out bool isDeleteZone);
+        if (_selectShip != null )
+        {            
             DrawLine_OnUpdate(_selectShip.transform.position, rayPos);
-            SetDummyPos(rayPos, isDeleteZone);
-        }
+        }        
         else
         {
             DrawLine_OnUpdate(Vector3.zero, Vector3.zero);
+        }
+
+        if(_selectDummy != null)
+        {            
+            SetDummyPos(rayPos, isDeleteZone);
+            if(Input.GetMouseButtonUp(0))
+            {
+                ShipCreateOrCancel(rayPos, isDeleteZone);
+            }
         }
     }
 

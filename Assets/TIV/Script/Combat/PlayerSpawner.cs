@@ -27,7 +27,7 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
     public void NewShipSpawn(int shipKey, Vector3 spawnPos)
     {
         SpawndShipInit(shipKey, spawnPos);
-        UserData.Instance.NewShipPosData(shipKey, spawnPos);
+        UserData.Instance.AddShipPosData(shipKey, spawnPos);
     }
 
     void SpawndShipInit(int shipKey, Vector3 spawnPos)

@@ -1,5 +1,6 @@
 using EnumTypes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -144,6 +145,18 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         _onDead += callBack;
     }
+
+    public void CommandExit()
+    {
+        Exit();
+    }
+    void Exit()
+    {
+        UserData.Instance.RemoveShipPosData(ShipIndex);
+        kjh.GameLogicManager.Instance.RemoveActiveShip(this);        
+        Destroy(this.gameObject);
+    }
+
 
     void CreateDebri()
     {

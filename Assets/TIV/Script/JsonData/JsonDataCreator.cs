@@ -1023,11 +1023,20 @@ public class UserData
         }
     }
     public List<ShipPositionData> GetShipPosDataList() { return ShipPositionDatas; }
-    public void NewShipPosData(int shipKey, Vector3 position)
+    public void AddShipPosData(int shipKey, Vector3 position)
     {
         if (ShipPositionDatas == null) ShipPositionDatas = new List<ShipPositionData>();
 
         ShipPositionDatas.Add(new ShipPositionData(ShipPositionDatas.Count, shipKey, position.x, position.z));
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
+    public void RemoveShipPosData(int shipIndex)
+    {
+        for (int i = shipIndex + 1; i < ShipPositionDatas.Count; i++)
+        {
+            ShipPositionDatas[i]._index--;
+        }
+        ShipPositionDatas.RemoveAt(shipIndex);
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
     public void SetShipPosData(int index, Vector3 newPos)
