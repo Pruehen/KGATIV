@@ -2,27 +2,24 @@ using UnityEngine;
 
 public class FleetMenuUIManager : MonoBehaviour
 {
+    Plane plane;
+    private void Awake()
+    {
+        plane = new Plane(Vector3.up, Vector3.zero);
+    }
     private void OnEnable()
     {
-        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);
+        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);        
     }
     private void OnDisable()
-    {
-        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);
+    {        
+        UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);        
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭 시
-        {
-            Debug.Log(RayCast_ScreenPointToRay());
-        }
-    }
-
-    Vector3 RayCast_ScreenPointToRay()
+    public Vector3 RayCast_ScreenPointToRay()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, Vector3.zero); // y=0 평면 생성
+        // y=0 평면 생성
         Vector3 hitPoint = Vector3.zero;
 
         if (plane.Raycast(ray, out float enter))

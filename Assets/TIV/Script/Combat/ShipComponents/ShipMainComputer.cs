@@ -19,18 +19,12 @@ public class ShipMainComputer : MonoBehaviour
         TryGetComponent(out _FCS);        
 
         StartCoroutine(SearchTarget());
+        SetMoveTargetPos(TargetPos);
         _isInit = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_isInit == false) return;
 
-        SetMoveTargetPos(TargetPos);
-    }
-
-    public void SetMoveTargetPos(Vector3 pos)
+    void SetMoveTargetPos(Vector3 pos)
     {
         if(_Engine != null)
         {

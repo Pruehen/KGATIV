@@ -9,11 +9,13 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] GameObject Wdw_ShipMenu;
     [SerializeField] Button Btn_ShipMenuOn;
     [SerializeField] Button Btn_ShipMenuOff;
+    public ShipMenuUIManager ShipMenuUIManager { get; private set; }
 
     [Header("편제 메뉴 조작")]
     [SerializeField] GameObject Wdw_FleetMenu;
     [SerializeField] Button Btn_FleetMenuOn;
     [SerializeField] Button Btn_FleetMenuOff;
+    public FleetMenuUIManager FleetMenuUIManager { get; private set; }
 
     [Header("뽑기 메뉴 조작")]
     [SerializeField] GameObject Wdw_GachaMenu;
@@ -40,11 +42,13 @@ public class UIManager : SceneSingleton<UIManager>
     private void Awake()
     {
         SetActiveWdw_ShipMenu(false);
+        ShipMenuUIManager = Wdw_ShipMenu.GetComponent<ShipMenuUIManager>();
         Btn_ShipMenuOn.onClick.AddListener(() => SetActiveWdw_ShipMenu(true));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_ShipMenu(false));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
 
         SetActiveWdw_FleetMenu(false);
+        FleetMenuUIManager = Wdw_FleetMenu.GetComponent<FleetMenuUIManager>();
         Btn_FleetMenuOn.onClick.AddListener(() => SetActiveWdw_FleetMenu(true));
         Btn_FleetMenuOff.onClick.AddListener(() => SetActiveWdw_FleetMenu(false));
 

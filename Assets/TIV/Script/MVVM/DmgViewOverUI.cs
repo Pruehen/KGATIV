@@ -67,9 +67,9 @@ public class DmgViewOverUI : MonoBehaviour
         }
     }
 
-    //public void SetViewTargetObject(ShipMaster target)
+    //public void Init(ShipMaster target)
     //{
-    //    targetObject = target;
+    //    _targetObject = target;
 
     //    if (target == null)
     //    {
