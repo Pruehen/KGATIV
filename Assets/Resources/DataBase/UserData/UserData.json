@@ -1,69 +1,24 @@
 {
-  "ShipPositionDatas": [
+  "_shipPositionDatas": [
     {
-      "_shipKey": 3,
-      "_posX": -219.718216,
-      "_posZ": -189.497971
-    },
-    {
-      "_shipKey": 3,
-      "_posX": 250.0,
-      "_posZ": 0.0
-    },
-    {
-      "_shipKey": 2,
-      "_posX": -225.062836,
-      "_posZ": -68.67723
+      "_shipKey": 0,
+      "_posX": 16.84655,
+      "_posZ": -235.101837
     },
     {
       "_shipKey": 0,
-      "_posX": -217.579712,
-      "_posZ": -189.497971
-    },
-    {
-      "_shipKey": 2,
-      "_posX": -213.3217,
-      "_posZ": -475.0064
-    },
-    {
-      "_shipKey": 4,
-      "_posX": -167.1948,
-      "_posZ": -118.48024
-    },
-    {
-      "_shipKey": 4,
-      "_posX": -55.7246132,
-      "_posZ": -460.5864
-    },
-    {
-      "_shipKey": 4,
-      "_posX": -161.989777,
-      "_posZ": -419.120544
-    },
-    {
-      "_shipKey": 4,
-      "_posX": 19.4386158,
-      "_posZ": -400.9814
+      "_posX": 151.6411,
+      "_posZ": -338.8135
     },
     {
       "_shipKey": 0,
-      "_posX": -79.0506744,
-      "_posZ": -375.058746
-    },
-    {
-      "_shipKey": 0,
-      "_posX": 22.0303326,
-      "_posZ": -382.834381
-    },
-    {
-      "_shipKey": 0,
-      "_posX": 120.519508,
-      "_posZ": -398.385529
+      "_posX": -112.7595,
+      "_posZ": -325.854523
     }
   ],
-  "Credit": 31510,
+  "Credit": 33228,
   "SuperCredit": 0,
   "Fuel": 240,
   "CurPrmStage": 13,
-  "CurSecStage": 3
+  "CurSecStage": 8
 }

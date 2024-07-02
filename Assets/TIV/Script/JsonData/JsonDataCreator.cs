@@ -975,7 +975,7 @@ public class UserData
     [JsonProperty] public int Fuel { get; private set; }
     [JsonProperty] public int CurPrmStage { get; private set; }
     [JsonProperty] public int CurSecStage { get; private set; }
-    [JsonProperty] List<ShipPositionData> ShipPositionDatas;
+    [JsonProperty] List<ShipPositionData> _shipPositionDatas;
 
     public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
     public static void Save()
@@ -991,7 +991,7 @@ public class UserData
         Fuel = fuel;
         CurPrmStage = curPrmStage;
         CurSecStage = curSecStage;
-        ShipPositionDatas = shipPositionDatas;
+        _shipPositionDatas = shipPositionDatas;
     }
     public UserData()
     {
@@ -1000,8 +1000,8 @@ public class UserData
         Fuel = 240;
         CurPrmStage = 1;
         CurSecStage = 1;
-        ShipPositionDatas = new List<ShipPositionData>();
-        ShipPositionDatas.Add(new ShipPositionData());
+        _shipPositionDatas = new List<ShipPositionData>();
+        _shipPositionDatas.Add(new ShipPositionData());
     }
     public class ShipPositionData
     {        
@@ -1023,18 +1023,18 @@ public class UserData
             _posZ = 0;
         }
     }
-    public List<ShipPositionData> GetShipPosDataList() { return ShipPositionDatas; }    
+    public List<ShipPositionData> GetShipPosDataList() { return _shipPositionDatas; }    
 
     public void SetShipPosDatas(Dictionary<int, ShipMaster> dicData)
     {
-        ShipPositionDatas.Clear();
+        _shipPositionDatas.Clear();
         foreach (var item in dicData)
         {
             int shipKey = item.Value.CombatData.GetShipTableKey();
             Vector3 targetPos = item.Value.Engine.GetMoveTargetPos();
             ShipPositionData data = new ShipPositionData(shipKey, targetPos.x, targetPos.z);
 
-            ShipPositionDatas.Add(data);
+            _shipPositionDatas.Add(data);
         }
     }
 

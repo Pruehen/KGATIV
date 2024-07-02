@@ -15,13 +15,13 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         }
 
         _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
-        shipMaster.Register_OnDead(RemoveActiveShip_Player);
-        UserData.Instance.SetShipPosDatas(_activeShipDic);
+        shipMaster.Register_OnExit(RemoveActiveShip_Player);        
     }
-    public void RemoveActiveShip_Player(ShipMaster shipMaster)
+    void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
         _activeShipDic.Remove(shipMaster.GetInstanceID());
         UserData.Instance.SetShipPosDatas(_activeShipDic);
+        UserData.Save();
     }
 
     private void Start()
@@ -37,13 +37,15 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
             {
                 Vector3 newPos = new Vector3(shipPosData._posX, 0, shipPosData._posZ);
                 ShipSpawnAndInit(shipPosData._shipKey, newPos);
-            }
+            }            
         }
     }
 
     public void NewShipSpawn(int shipKey, Vector3 spawnPos)
     {
-        ShipSpawnAndInit(shipKey, spawnPos);        
+        ShipSpawnAndInit(shipKey, spawnPos);
+        UserData.Instance.SetShipPosDatas(_activeShipDic);
+        UserData.Save();
     }
 
     void ShipSpawnAndInit(int shipKey, Vector3 spawnPos)

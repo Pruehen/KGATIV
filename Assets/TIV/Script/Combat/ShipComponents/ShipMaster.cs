@@ -139,10 +139,15 @@ public class ShipMaster : MonoBehaviour, ITargetable
     }
 
     Action<ShipMaster> _onDead;
+    Action<ShipMaster> _onExit;
 
     public void Register_OnDead(Action<ShipMaster> callBack)
     {
         _onDead += callBack;
+    }
+    public void Register_OnExit(Action<ShipMaster> callBack)
+    {
+        _onExit += callBack;
     }
 
     public void CommandExit()
@@ -151,7 +156,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
     }
     void Exit()
     {        
-        kjh.GameLogicManager.Instance.RemoveActiveShip(this);        
+        kjh.GameLogicManager.Instance.RemoveActiveShip(this);
+        _onExit?.Invoke(this);
         Destroy(this.gameObject);
     }
 
