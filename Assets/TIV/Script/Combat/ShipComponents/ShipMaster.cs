@@ -42,8 +42,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipMainComputer MainComputer { get; private set; }
     public ShipEngine Engine { get; private set; }    
     public ShipFCS FCS { get; private set; }
-    public ShipBuffManager BuffManager { get; private set; }
-    public int ShipIndex { get; set; }
+    public ShipBuffManager BuffManager { get; private set; }    
 
     Action InitComplite;
     /// <summary>
@@ -151,8 +150,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
         Exit();
     }
     void Exit()
-    {
-        UserData.Instance.RemoveShipPosData(ShipIndex);
+    {        
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);        
         Destroy(this.gameObject);
     }

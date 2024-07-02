@@ -10620,6 +10620,7 @@ GameObject:
   - component: {fileID: 281763495}
   - component: {fileID: 281763494}
   - component: {fileID: 281763493}
+  - component: {fileID: 281763496}
   m_Layer: 5
   m_Name: Btn_ShipSpawn_4F1
   m_TagString: Untagged
@@ -10643,9 +10644,9 @@ RectTransform:
   m_Father: {fileID: 690078255}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281763493
@@ -10730,6 +10731,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281763491}
   m_CullTransparentMesh: 1
+--- !u!114 &281763496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281763491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &284938732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24477,6 +24495,7 @@ GameObject:
   - component: {fileID: 600401822}
   - component: {fileID: 600401821}
   - component: {fileID: 600401820}
+  - component: {fileID: 600401823}
   m_Layer: 5
   m_Name: Btn_ShipSpawn_4B1
   m_TagString: Untagged
@@ -24500,9 +24519,9 @@ RectTransform:
   m_Father: {fileID: 690078255}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 620, y: -70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600401820
@@ -24587,6 +24606,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600401818}
   m_CullTransparentMesh: 1
+--- !u!114 &600401823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600401818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &604542888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26191,11 +26227,11 @@ MonoBehaviour:
   _shipController: {fileID: 151681306}
   Label_SpawnMode: {fileID: 937351252}
   Text_FleetCost: {fileID: 337739993}
-  Btn_ShipSpawn_4F1: {fileID: 281763493}
-  Btn_ShipSpawn_4D1: {fileID: 1584389452}
-  Btn_ShipSpawn_4C1: {fileID: 1324318211}
-  Btn_ShipSpawn_4B1: {fileID: 600401820}
-  Btn_ShipSpawn_5T1: {fileID: 1476047918}
+  EventTrigger_ShipSpawn_4F1: {fileID: 281763496}
+  EventTrigger_ShipSpawn_4D1: {fileID: 1584389455}
+  EventTrigger_ShipSpawn_4C1: {fileID: 1324318214}
+  EventTrigger_ShipSpawn_4B1: {fileID: 600401823}
+  EventTrigger_ShipSpawn_5T1: {fileID: 1476047921}
 --- !u!1 &640410276
 GameObject:
   m_ObjectHideFlags: 0
@@ -50773,6 +50809,7 @@ GameObject:
   - component: {fileID: 1324318213}
   - component: {fileID: 1324318212}
   - component: {fileID: 1324318211}
+  - component: {fileID: 1324318214}
   m_Layer: 5
   m_Name: Btn_ShipSpawn_4C1
   m_TagString: Untagged
@@ -50796,9 +50833,9 @@ RectTransform:
   m_Father: {fileID: 690078255}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 450, y: -70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324318211
@@ -50883,6 +50920,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324318209}
   m_CullTransparentMesh: 1
+--- !u!114 &1324318214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324318209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1324982827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57754,6 +57808,7 @@ GameObject:
   - component: {fileID: 1476047920}
   - component: {fileID: 1476047919}
   - component: {fileID: 1476047918}
+  - component: {fileID: 1476047921}
   m_Layer: 5
   m_Name: Btn_ShipSpawn_5T1
   m_TagString: Untagged
@@ -57777,9 +57832,9 @@ RectTransform:
   m_Father: {fileID: 690078255}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 790, y: -70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1476047918
@@ -57864,6 +57919,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476047916}
   m_CullTransparentMesh: 1
+--- !u!114 &1476047921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476047916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1477964808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61284,6 +61356,7 @@ GameObject:
   - component: {fileID: 1584389454}
   - component: {fileID: 1584389453}
   - component: {fileID: 1584389452}
+  - component: {fileID: 1584389455}
   m_Layer: 5
   m_Name: Btn_ShipSpawn_4D1
   m_TagString: Untagged
@@ -61307,9 +61380,9 @@ RectTransform:
   m_Father: {fileID: 690078255}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1584389452
@@ -61394,6 +61467,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584389450}
   m_CullTransparentMesh: 1
+--- !u!114 &1584389455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584389450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1585051466
 PrefabInstance:
   m_ObjectHideFlags: 0

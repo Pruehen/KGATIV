@@ -54,7 +54,10 @@ public class ShipEngine : MonoBehaviour
     {
         targetPos = pos;
     }
-
+    public Vector3 GetMoveTargetPos()
+    {
+        return targetPos;
+    }
 
 
     void Move()

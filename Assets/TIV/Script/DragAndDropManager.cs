@@ -39,21 +39,21 @@ public class DragAndDropManager : SceneSingleton<DragAndDropManager>
         // 마우스 버튼이 눌렸을 때
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("OnPointerDown");
+            //Debug.Log("OnPointerDown");
             OnPointerDown?.Invoke();
         }
 
         // 마우스 버튼이 떼어졌을 때
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("OnPointerUp");
+            //Debug.Log("OnPointerUp");
             OnPointerUp?.Invoke(RayCast_ScreenPointToRay(out bool isDeleteZone), isDeleteZone);
         }
 
         // 마우스를 드래그할 때
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("OnDrag");
+            //Debug.Log("OnDrag");
             OnDrag?.Invoke(RayCast_ScreenPointToRay(out bool isDeleteZone), isDeleteZone);
         }
     }

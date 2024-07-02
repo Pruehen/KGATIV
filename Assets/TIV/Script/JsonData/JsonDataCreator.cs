@@ -978,6 +978,10 @@ public class UserData
     [JsonProperty] List<ShipPositionData> ShipPositionDatas;
 
     public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
+    public static void Save()
+    {
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+    }
 
     [JsonConstructor]
     public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage, List<ShipPositionData> shipPositionDatas)
@@ -997,52 +1001,41 @@ public class UserData
         CurPrmStage = 1;
         CurSecStage = 1;
         ShipPositionDatas = new List<ShipPositionData>();
-        ShipPositionDatas.Add(new ShipPositionData(0));
+        ShipPositionDatas.Add(new ShipPositionData());
     }
     public class ShipPositionData
-    {
-        public int _index;
+    {        
         public int _shipKey;
         public float _posX;
         public float _posZ;
 
         [JsonConstructor]
-        public ShipPositionData(int index, int shipKey, float posX, float posZ)
-        {
-            _index = index;
+        public ShipPositionData(int shipKey, float posX, float posZ)
+        {            
             _shipKey = shipKey;
             _posX = posX;
             _posZ = posZ;
         }
-        public ShipPositionData(int index)
-        {
-            _index = index;
+        public ShipPositionData()
+        {            
             _shipKey = 0;
             _posX = 0;
             _posZ = 0;
         }
     }
-    public List<ShipPositionData> GetShipPosDataList() { return ShipPositionDatas; }
-    public void AddShipPosData(int shipKey, Vector3 position)
-    {
-        if (ShipPositionDatas == null) ShipPositionDatas = new List<ShipPositionData>();
+    public List<ShipPositionData> GetShipPosDataList() { return ShipPositionDatas; }    
 
-        ShipPositionDatas.Add(new ShipPositionData(ShipPositionDatas.Count, shipKey, position.x, position.z));
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
-    }
-    public void RemoveShipPosData(int shipIndex)
+    public void SetShipPosDatas(Dictionary<int, ShipMaster> dicData)
     {
-        for (int i = shipIndex + 1; i < ShipPositionDatas.Count; i++)
+        ShipPositionDatas.Clear();
+        foreach (var item in dicData)
         {
-            ShipPositionDatas[i]._index--;
+            int shipKey = item.Value.CombatData.GetShipTableKey();
+            Vector3 targetPos = item.Value.Engine.GetMoveTargetPos();
+            ShipPositionData data = new ShipPositionData(shipKey, targetPos.x, targetPos.z);
+
+            ShipPositionDatas.Add(data);
         }
-        ShipPositionDatas.RemoveAt(shipIndex);
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
-    }
-    public void SetShipPosData(int index, Vector3 newPos)
-    {
-        ShipPositionDatas[index]._posX = newPos.x;
-        ShipPositionDatas[index]._posZ = newPos.z;
     }
 
     //MVVM 관련 코드==============================

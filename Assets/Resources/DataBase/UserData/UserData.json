@@ -1,45 +1,69 @@
 {
   "ShipPositionDatas": [
     {
-      "_index": 0,
-      "_shipKey": 2,
-      "_posX": 250.0,
-      "_posZ": -426.854248
+      "_shipKey": 3,
+      "_posX": -219.718216,
+      "_posZ": -189.497971
     },
     {
-      "_index": 1,
       "_shipKey": 3,
       "_posX": 250.0,
-      "_posZ": -272.889954
+      "_posZ": 0.0
     },
     {
-      "_index": 2,
-      "_shipKey": 3,
-      "_posX": 66.82184,
-      "_posZ": -124.274651
-    },
-    {
-      "_index": 3,
       "_shipKey": 2,
-      "_posX": -99.968605,
-      "_posZ": -126.410217
+      "_posX": -225.062836,
+      "_posZ": -68.67723
     },
     {
-      "_index": 4,
-      "_shipKey": 2,
-      "_posX": 210.089417,
-      "_posZ": -397.9784
+      "_shipKey": 0,
+      "_posX": -217.579712,
+      "_posZ": -189.497971
     },
     {
-      "_index": 5,
       "_shipKey": 2,
-      "_posX": -71.1005,
-      "_posZ": -295.341949
+      "_posX": -213.3217,
+      "_posZ": -475.0064
+    },
+    {
+      "_shipKey": 4,
+      "_posX": -167.1948,
+      "_posZ": -118.48024
+    },
+    {
+      "_shipKey": 4,
+      "_posX": -55.7246132,
+      "_posZ": -460.5864
+    },
+    {
+      "_shipKey": 4,
+      "_posX": -161.989777,
+      "_posZ": -419.120544
+    },
+    {
+      "_shipKey": 4,
+      "_posX": 19.4386158,
+      "_posZ": -400.9814
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -79.0506744,
+      "_posZ": -375.058746
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 22.0303326,
+      "_posZ": -382.834381
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 120.519508,
+      "_posZ": -398.385529
     }
   ],
-  "Credit": 26165,
+  "Credit": 31510,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 12,
-  "CurSecStage": 1
+  "CurPrmStage": 13,
+  "CurSecStage": 3
 }

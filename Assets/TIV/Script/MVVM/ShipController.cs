@@ -57,11 +57,7 @@ public class ShipController : MonoBehaviour
 
     public void SelectTargetObject_OnBtnPointerDown(ShipMaster selectShip)
     {
-        if(_selectDummy != null)
-        {
-            _selectDummy.gameObject.SetActive(false);
-        }
-
+        DeleteDummy();
         _selectShip = selectShip;
 
         int key = selectShip.CombatData.GetShipTableKey();
@@ -83,6 +79,14 @@ public class ShipController : MonoBehaviour
         _selectDummy.transform.position = initPos;
         _selectKey = key;
     }
+    void DeleteDummy()
+    {
+        if (_selectDummy != null)
+        {
+            _selectDummy.gameObject.SetActive(false);
+            _selectDummy = null;
+        }
+    }
 
     public void MoveTargetObject_OnPointerUp(Vector3 pos, bool isDeleteZone)
     {        
@@ -96,8 +100,7 @@ public class ShipController : MonoBehaviour
     {
         if (isDeleteZone == false)
         {
-            _selectShip.Engine.SetMoveTargetPos(targetPos);
-            UserData.Instance.SetShipPosData(_selectShip.ShipIndex, targetPos);
+            _selectShip.Engine.SetMoveTargetPos(targetPos);            
         }
         else
         {
@@ -114,7 +117,7 @@ public class ShipController : MonoBehaviour
     }
 
     //======================================================
-    public void SelectTargetObject_OnBtnClick(int shipKey)
+    public void SelectTargetObject_OnEventTriggerPointerDown(int shipKey)
     {
         if (_selectDummy != null)
         {
@@ -127,13 +130,16 @@ public class ShipController : MonoBehaviour
     }
     void ShipCreateOrCancel_OnPointerUp(Vector3 targetPos, bool isDeleteZone)
     {
+        Debug.Log("ShipCreateOrCancel_OnPointerUp");
         if (isDeleteZone == false)
-        {
-            _fleetMenuUIManager.ExitCreateMode_OnPointerUp();
-            PlayerSpawner.Instance.NewShipSpawn(_selectKey, targetPos);
-            DragAndDropManager.Instance.UnRegister_OnDrag(SetDummyPos);
-            DragAndDropManager.Instance.UnRegister_OnPointerUp(ShipCreateOrCancel_OnPointerUp);            
-        }     
+        {            
+            PlayerSpawner.Instance.NewShipSpawn(_selectKey, targetPos);                       
+        }
+
+        _fleetMenuUIManager.ExitCreateMode_OnPointerUp();
+        DeleteDummy();
+        DragAndDropManager.Instance.UnRegister_OnDrag(SetDummyPos);
+        DragAndDropManager.Instance.UnRegister_OnPointerUp(ShipCreateOrCancel_OnPointerUp);
     }
     //======================================================
 
