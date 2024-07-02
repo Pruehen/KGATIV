@@ -1,9 +1,20 @@
 {
-  "_shipPositionDatas": [],
-  "Credit": 10222,
+  "_shipPositionDatas": [
+    {
+      "_shipKey": 2,
+      "_posX": 3.740749,
+      "_posZ": -90.0629349
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 135.252823,
+      "_posZ": -277.184326
+    }
+  ],
+  "Credit": 24782,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 14,
-  "CurSecStage": 10,
+  "CurPrmStage": 17,
+  "CurSecStage": 1,
   "FleetCost": 5
 }
