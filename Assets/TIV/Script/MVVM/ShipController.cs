@@ -55,7 +55,7 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    public void SelectTargetObject_OnPointerDown(ShipMaster selectShip)
+    public void SelectTargetObject_OnBtnPointerDown(ShipMaster selectShip)
     {
         if(_selectDummy != null)
         {
@@ -63,39 +63,36 @@ public class ShipController : MonoBehaviour
         }
 
         _selectShip = selectShip;
-        
+
         int key = selectShip.CombatData.GetShipTableKey();
+        CreateDummy(key);
+
+        DragAndDropManager.Instance.Register_OnDrag(DrawLine_OnDrag);
+        DragAndDropManager.Instance.Register_OnDrag(SetDummyPos);
+    }
+    void CreateDummy(int key)
+    {
         _selectDummy = GameObject_DummyShipList[key].GetComponent<ShipDummy>();
         _selectDummy.gameObject.SetActive(true);
-
         _selectKey = key;
     }
-    public void SelectTargetObject_OnClick(int shipKey)
+    void CreateDummy(int key, Vector3 initPos)
     {
-        if (_selectDummy != null)
-        {
-            _selectDummy.gameObject.SetActive(false);
-        }
-
-        _selectDummy = GameObject_DummyShipList[shipKey].GetComponent<ShipDummy>();
+        _selectDummy = GameObject_DummyShipList[key].GetComponent<ShipDummy>();
         _selectDummy.gameObject.SetActive(true);
-        _selectDummy.transform.position = new Vector3(0, 0, -250);
-        _selectKey = shipKey;
+        _selectDummy.transform.position = initPos;
+        _selectKey = key;
     }
 
-    public void MoveTargetObject_OnPointerUp()
-    {
-        bool isDeleteZone;
-
-        Vector3 targetPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out isDeleteZone);
-
+    public void MoveTargetObject_OnPointerUp(Vector3 pos, bool isDeleteZone)
+    {        
         if (_selectShip != null)
         {
-            SelectShipMoveOrExit(targetPos, isDeleteZone);
+            SelectShipMoveOrExit_OnPointerUp(pos, isDeleteZone);
         }
     }
 
-    void SelectShipMoveOrExit(Vector3 targetPos, bool isDeleteZone)
+    void SelectShipMoveOrExit_OnPointerUp(Vector3 targetPos, bool isDeleteZone)
     {
         if (isDeleteZone == false)
         {
@@ -108,58 +105,55 @@ public class ShipController : MonoBehaviour
         }
 
         _selectShip = null;
-
         _selectDummy.gameObject.SetActive(false);
         _selectDummy = null;
+
+        DrawLine(Vector3.zero, Vector3.zero);
+        DragAndDropManager.Instance.UnRegister_OnDrag(DrawLine_OnDrag);
+        DragAndDropManager.Instance.UnRegister_OnDrag(SetDummyPos);
     }
-    void ShipCreateOrCancel(Vector3 targetPos, bool isDeleteZone)
+
+    //======================================================
+    public void SelectTargetObject_OnBtnClick(int shipKey)
+    {
+        if (_selectDummy != null)
+        {
+            _selectDummy.gameObject.SetActive(false);
+        }
+
+        CreateDummy(shipKey, new Vector3(0, 0, -250));
+        DragAndDropManager.Instance.Register_OnDrag(SetDummyPos);
+        DragAndDropManager.Instance.Register_OnPointerUp(ShipCreateOrCancel_OnPointerUp);
+    }
+    void ShipCreateOrCancel_OnPointerUp(Vector3 targetPos, bool isDeleteZone)
     {
         if (isDeleteZone == false)
         {
+            _fleetMenuUIManager.ExitCreateMode_OnPointerUp();
             PlayerSpawner.Instance.NewShipSpawn(_selectKey, targetPos);
-        }
-        else
-        {
-            _fleetMenuUIManager.ExitCreateMode();            
-        }        
-
-        _selectDummy.gameObject.SetActive(false);
-        _selectDummy = null;
+            DragAndDropManager.Instance.UnRegister_OnDrag(SetDummyPos);
+            DragAndDropManager.Instance.UnRegister_OnPointerUp(ShipCreateOrCancel_OnPointerUp);            
+        }     
     }
+    //======================================================
 
-    private void Update()
+    void DrawLine_OnDrag(Vector3 pos2, bool isDeleteZone)
     {
-        Vector3 rayPos = UIManager.Instance.FleetMenuUIManager.RayCast_ScreenPointToRay(out bool isDeleteZone);
-        if (_selectShip != null )
-        {            
-            DrawLine_OnUpdate(_selectShip.transform.position, rayPos);
-        }        
-        else
-        {
-            DrawLine_OnUpdate(Vector3.zero, Vector3.zero);
-        }
-
-        if(_selectDummy != null)
-        {            
-            SetDummyPos(rayPos, isDeleteZone);
-            if(Input.GetMouseButtonUp(0))
-            {
-                ShipCreateOrCancel(rayPos, isDeleteZone);
-            }
-        }
+        Vector3 pos1 = _selectShip.transform.position;
+        DrawLine(pos1, pos2);
     }
 
-    void DrawLine_OnUpdate(Vector3 pos1, Vector3 pos2)
-    {        
+    void DrawLine(Vector3 pos1, Vector3 pos2)
+    {
         _lineRenderer.SetPosition(0, pos1);
         _lineRenderer.SetPosition(1, pos2);
-        
+
         float lineLength = Vector3.Distance(pos1, pos2);
 
-        if(lineLength > 0)
+        if (lineLength > 0)
         {
             _lineOffset -= new Vector2(Time.deltaTime * 4, 0);
-            if(_lineOffset.x < -1)
+            if (_lineOffset.x < -1)
             {
                 _lineOffset = Vector2.zero;
             }

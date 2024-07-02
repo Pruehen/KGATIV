@@ -6,7 +6,7 @@ using UI.Extension;
 [RequireComponent(typeof(EventTrigger))]
 public class MyShipOverUI : MonoBehaviour
 {            
-    ShipMaster _targetObject;
+    ShipMaster _uiTargetShipMaster;
     RectTransform _rectTransform;
     ShipController _myShipOverUIManager;
 
@@ -15,11 +15,15 @@ public class MyShipOverUI : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();        
     }
 
+    private void OnDisable()
+    {
+        DragAndDropManager.Instance.UnRegister_OnPointerUp(MoveTargetObject_OnPointerUp);
+    }
     private void Update()
     {
-        if(_targetObject != null)
+        if(_uiTargetShipMaster != null)
         {
-            SetPosition_OnUpdate();
+            SetUIPosition_OnUpdate();
         }
         else
         {
@@ -29,21 +33,26 @@ public class MyShipOverUI : MonoBehaviour
 
     public void Init(ShipMaster target, ShipController manager)
     {
-        _targetObject = target;
+        _uiTargetShipMaster = target;
         _myShipOverUIManager = manager;
     }
 
-    void SetPosition_OnUpdate()
+    void SetUIPosition_OnUpdate()
     {
-        _rectTransform.SetUIPos_WorldToScreenPos(_targetObject.transform.position);
+        _rectTransform.SetUIPos_WorldToScreenPos(_uiTargetShipMaster.transform.position);
     }
 
-    public void SelectTargetObject_OnPointerDown()
+    /// <summary>
+    /// 버튼 자체의 이벤트 트리거로 작동함.
+    /// </summary>
+    public void SelectTargetObject_OnBtnPointerDown()
     {
-        _myShipOverUIManager.SelectTargetObject_OnPointerDown(_targetObject);
+        _myShipOverUIManager.SelectTargetObject_OnBtnPointerDown(_uiTargetShipMaster);
+        DragAndDropManager.Instance.Register_OnPointerUp(MoveTargetObject_OnPointerUp);
     }
-    public void MoveTargetObject_OnPointerUp()
+    void MoveTargetObject_OnPointerUp(Vector3 pos, bool isDeleteZone)
     {
-        _myShipOverUIManager.MoveTargetObject_OnPointerUp();
+        _myShipOverUIManager.MoveTargetObject_OnPointerUp(pos, isDeleteZone);
+        DragAndDropManager.Instance.UnRegister_OnPointerUp(MoveTargetObject_OnPointerUp);
     }
 }
