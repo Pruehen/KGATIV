@@ -1,7 +1,8 @@
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using ViewModel.Extensions;
 
 public class FleetMenuUIManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class FleetMenuUIManager : MonoBehaviour
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4B1;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_5T1;
 
+    FleetMenuUIManagerViewModel _vm;
+
     private void Awake()
     {
         AddEventTrigger(EventTrigger_ShipSpawn_4F1, EventTriggerType.PointerDown, () => EnterCreateMode_OnEventTriggerPointerDown(0));
@@ -24,7 +27,8 @@ public class FleetMenuUIManager : MonoBehaviour
         AddEventTrigger(EventTrigger_ShipSpawn_5T1, EventTriggerType.PointerDown, () => EnterCreateMode_OnEventTriggerPointerDown(4));
 
         Label_SpawnMode.gameObject.SetActive(false);
-    }
+    }    
+
     void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, UnityEngine.Events.UnityAction action)
     {
         var entry = new EventTrigger.Entry { eventID = eventType };
@@ -32,12 +36,37 @@ public class FleetMenuUIManager : MonoBehaviour
         trigger.triggers.Add(entry);
     }
 
+    void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(_vm.MaxFleetCost):
+                Text_FleetCost.text = $"{_vm.UsingFleetCost} / {_vm.MaxFleetCost}";
+                break;
+            case nameof(_vm.UsingFleetCost):
+                Text_FleetCost.text = $"{_vm.UsingFleetCost} / {_vm.MaxFleetCost}";
+                break;
+        }
+    }
+
     private void OnEnable()
     {
+        if(_vm == null)
+        {
+            _vm = new FleetMenuUIManagerViewModel();
+            _vm.PropertyChanged += OnPropertyChanged;
+            _vm.OnAllRefreshViewModel();
+        }
+
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);        
     }
     private void OnDisable()
     {        
+        if(_vm != null)
+        {            
+            _vm.PropertyChanged -= OnPropertyChanged;            
+            _vm = null;
+        }
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);        
     }
 

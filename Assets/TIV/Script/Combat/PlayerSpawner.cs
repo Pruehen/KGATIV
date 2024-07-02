@@ -23,6 +23,16 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         UserData.Instance.SetShipPosDatas(_activeShipDic);
         UserData.Save();
     }
+    public int GetTotalCoat()
+    {
+        int total = 0;
+        foreach (var item in _activeShipDic)
+        {
+            total += item.Value.GetCost();
+        }
+        return total;
+    }
+
 
     private void Start()
     {        
@@ -43,9 +53,17 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
 
     public void NewShipSpawn(int shipKey, Vector3 spawnPos)
     {
-        ShipSpawnAndInit(shipKey, spawnPos);
-        UserData.Instance.SetShipPosDatas(_activeShipDic);
-        UserData.Save();
+        int tryAddShipCost = JsonDataManager.DataLode_ShipTable(shipKey)._cost;
+        if(GetTotalCoat() + tryAddShipCost > UserData.Instance.FleetCost)
+        {
+            UIManager.Instance.PopUpWdw_WarningPopUpUI("수용량을 초과합니다. 함선을 배치할 수 없습니다.");
+        }
+        else
+        {
+            ShipSpawnAndInit(shipKey, spawnPos);
+            UserData.Instance.SetShipPosDatas(_activeShipDic);
+            UserData.Save();
+        }        
     }
 
     void ShipSpawnAndInit(int shipKey, Vector3 spawnPos)

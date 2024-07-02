@@ -15,11 +15,11 @@ public class WarningPopUpUI : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    private void Awake()
+    void Awake()
     {
         Btn_UIBtn.onClick.AddListener(ClosePopUp);
     }
-    private void Update()
+    void Update()
     {
         _activeTime -= Time.deltaTime;
         if (_activeTime <= 0)

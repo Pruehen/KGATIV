@@ -8,16 +8,24 @@ using static UserData;
 
 public class ShipTable
 {
-    public int _key;
-    public float _hp;
-    public float _atk;
-    public float _def;
-    public string _name;
-    public int _shipClass;
-    public int _star;
-    public int _maxCombatSlot;
+    [JsonProperty] public int _key { get; private set; }
+    [JsonProperty] public float _hp { get; private set; }
 
-    public ShipTable(int key, float hp, float atk, float def, string name, int shipClass, int star, int maxCombatSlot)
+    [JsonProperty] public float _atk { get; private set; }
+
+    [JsonProperty] public float _def { get; private set; }
+
+    [JsonProperty] public string _name { get; private set; }
+
+    [JsonProperty] public int _shipClass { get; private set; }
+
+    [JsonProperty] public int _star { get; private set; }
+
+    [JsonProperty] public int _maxCombatSlot { get; private set; }
+    [JsonProperty] public int _cost { get; private set; }
+
+    [JsonConstructor]
+    public ShipTable(int key, float hp, float atk, float def, string name, int shipClass, int star, int maxCombatSlot, int cost)
     {
         _key = key;
         _hp = hp;
@@ -27,6 +35,7 @@ public class ShipTable
         _shipClass = shipClass;
         _star = star;
         _maxCombatSlot = maxCombatSlot;
+        _cost = cost;
     }
 
     float StateMultiple(int level)
@@ -975,6 +984,7 @@ public class UserData
     [JsonProperty] public int Fuel { get; private set; }
     [JsonProperty] public int CurPrmStage { get; private set; }
     [JsonProperty] public int CurSecStage { get; private set; }
+    [JsonProperty] public int FleetCost { get; private set; }
     [JsonProperty] List<ShipPositionData> _shipPositionDatas;
 
     public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
@@ -984,13 +994,14 @@ public class UserData
     }
 
     [JsonConstructor]
-    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage, List<ShipPositionData> shipPositionDatas)
+    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage, int fleetCost, List<ShipPositionData> shipPositionDatas)
     {
         Credit = credit;
         SuperCredit = superCredit;
         Fuel = fuel;
         CurPrmStage = curPrmStage;
         CurSecStage = curSecStage;
+        FleetCost = fleetCost;
         _shipPositionDatas = shipPositionDatas;
     }
     public UserData()
@@ -1000,6 +1011,7 @@ public class UserData
         Fuel = 240;
         CurPrmStage = 1;
         CurSecStage = 1;
+        FleetCost = 1;
         _shipPositionDatas = new List<ShipPositionData>();
         _shipPositionDatas.Add(new ShipPositionData());
     }

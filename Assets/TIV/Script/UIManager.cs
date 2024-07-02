@@ -122,7 +122,7 @@ public class UIManager : SceneSingleton<UIManager>
         PopupWdw(Popup_UpgradeResult, time);
         _equipUpgradePopupUIManager.ViewResult(before, affter);
     }
-    public void PopUpWdw_WarningPopUpUI(string msg, float time)
+    public void PopUpWdw_WarningPopUpUI(string msg, float time = 2)
     {
         PopUp_WarningPopUpUI.SetWarningPopUp(msg, time);
     }

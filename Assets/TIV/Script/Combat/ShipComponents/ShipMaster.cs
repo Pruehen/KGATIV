@@ -82,6 +82,10 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         CombatData.Hit(dmg, type, isCrit, hasDebuffKey);
     }    
+    public int GetCost()
+    {
+        return JsonDataManager.DataLode_ShipTable(CombatData.GetShipTableKey())._cost;
+    }
 
     private void Awake()
     {
