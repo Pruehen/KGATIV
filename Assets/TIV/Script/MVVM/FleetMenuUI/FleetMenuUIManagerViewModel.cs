@@ -3,7 +3,7 @@ public class FleetMenuUIManagerViewModel
 {
     int _maxFleetCost;
     int _usingFleetCost;
-
+    long _upgradeCost;
     public int MaxFleetCost
     {
         get { return _maxFleetCost; }
@@ -22,6 +22,16 @@ public class FleetMenuUIManagerViewModel
             if (_usingFleetCost == value) return;
             _usingFleetCost = value;
             OnPropertyChanged(nameof(UsingFleetCost));
+        }
+    }
+    public long UpgradeCost
+    {
+        get { return _upgradeCost; }
+        set
+        {
+            if (_upgradeCost == value) return;
+            _upgradeCost = value;
+            OnPropertyChanged(nameof(UpgradeCost));
         }
     }
 

@@ -1097,7 +1097,7 @@ public class UserData
         {
             Credit -= value;
             RefreshViewModel();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            Save();
             return true;
         }
     }
@@ -1109,7 +1109,7 @@ public class UserData
     {
         SuperCredit += value;
         RefreshViewModel();
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+        Save();
     }
     /// <summary>
     /// 슈퍼 크레딧 사용 메서드. 충분하면 사용 후 true 반환, 아니면 false 반환
@@ -1127,7 +1127,7 @@ public class UserData
         {
             SuperCredit -= value;
             RefreshViewModel();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            Save();
             return true;
         }
     }
@@ -1145,7 +1145,7 @@ public class UserData
         {
             Fuel++;
             RefreshViewModel();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            Save();
             return true;
         }
     }
@@ -1157,7 +1157,7 @@ public class UserData
     {
         Fuel += value;
         RefreshViewModel();
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+        Save();
     }
     /// <summary>
     /// 연료 사용 시도 메서드. 연료가 충분하면 연료를 소모하고 true 반환. 아니면 false 반환
@@ -1174,7 +1174,7 @@ public class UserData
         {
             Fuel -= value;
             RefreshViewModel();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+            Save();
             return true;
         }
     }
@@ -1192,7 +1192,7 @@ public class UserData
             CurPrmStage++;
         }
         RefreshViewModel();
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+        Save();
     }
     /// <summary>
     /// 스테이지 감소 메서드. 보스 스테이지에서 패배했을 경우에만 호출.
@@ -1201,7 +1201,7 @@ public class UserData
     {
         CurPrmStage = 9;
         RefreshViewModel();
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
+        Save();
     }
 
     /// <summary>
@@ -1214,6 +1214,12 @@ public class UserData
         if (CurSecStage == 10) value *= 2;
         Debug.Log($"현재 승수 : {value}");
         return value;
+    }
+
+    public void UpgradeFleetCost()
+    {
+        FleetCost++;
+        Save();
     }
 }
 

@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEngine;
 
 namespace UI.Extension
@@ -43,6 +44,19 @@ namespace UI.Extension
             }
 
             return highestPriorityCamera;
+        }
+
+        public static void SetTmpCostText(this TextMeshProUGUI tmp, long cost)
+        {
+            if (JsonDataManager.DataLode_UserData().Credit >= cost)
+            {
+                tmp.color = Color.white;
+            }
+            else
+            {
+                tmp.color = Color.red;
+            }
+            tmp.text = $"{cost}";
         }
     }
 

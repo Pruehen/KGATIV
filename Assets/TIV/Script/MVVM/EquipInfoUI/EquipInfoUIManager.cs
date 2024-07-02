@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using TMPro;
+using UI.Extension;
 using UnityEngine;
 using UnityEngine.UI;
 using ViewModel.Extensions;
@@ -120,16 +121,8 @@ public class EquipInfoUIManager : MonoBehaviour
             case nameof(_vm.LevelUpCount):
                 TMP_LevelUpCount.text = $"°­È­ +{_vm.LevelUpCount}";
                 break;
-            case nameof(_vm.NeedCreditLevelUp):
-                if (JsonDataManager.DataLode_UserData().Credit >= _vm.NeedCreditLevelUp)
-                {
-                    TMP_CreditLevelUpNeed.color = Color.white;
-                }
-                else
-                {
-                    TMP_CreditLevelUpNeed.color = Color.red;
-                }
-                TMP_CreditLevelUpNeed.text = $"{_vm.NeedCreditLevelUp}";
+            case nameof(_vm.NeedCreditLevelUp):                
+                TMP_CreditLevelUpNeed.SetTmpCostText(_vm.NeedCreditLevelUp);
                 break;
             case nameof(_vm.SubStateList):
                 SetSubStateText(_vm.SubStateList);

@@ -1,7 +1,9 @@
 using System.ComponentModel;
 using TMPro;
+using UI.Extension;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using ViewModel.Extensions;
 
 public class FleetMenuUIManager : MonoBehaviour
@@ -15,6 +17,10 @@ public class FleetMenuUIManager : MonoBehaviour
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4C1;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4B1;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_5T1;
+
+    [Header("코스트 업그레이드 관련")]
+    [SerializeField] TextMeshProUGUI Text_FleetCostUpgradeCost;
+    [SerializeField] Button Btn_Upgrade;
 
     FleetMenuUIManagerViewModel _vm;
 
@@ -46,6 +52,9 @@ public class FleetMenuUIManager : MonoBehaviour
             case nameof(_vm.UsingFleetCost):
                 Text_FleetCost.text = $"{_vm.UsingFleetCost} / {_vm.MaxFleetCost}";
                 break;
+            case nameof(_vm.UpgradeCost):
+                Text_FleetCostUpgradeCost.SetTmpCostText(_vm.UpgradeCost);
+                break;
         }
     }
 
@@ -55,7 +64,9 @@ public class FleetMenuUIManager : MonoBehaviour
         {
             _vm = new FleetMenuUIManagerViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
-            _vm.OnAllRefreshViewModel();
+            _vm.Register_onFleetCostChange();
+            _vm.RefreshViewModel();
+            Btn_Upgrade.onClick.AddListener(_vm.Command_TryUpgradeFleetCost);
         }
 
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);        
@@ -63,7 +74,9 @@ public class FleetMenuUIManager : MonoBehaviour
     private void OnDisable()
     {        
         if(_vm != null)
-        {            
+        {
+            Btn_Upgrade.onClick.RemoveAllListeners();
+            _vm.UnRegister_onFleetCostChange();
             _vm.PropertyChanged -= OnPropertyChanged;            
             _vm = null;
         }

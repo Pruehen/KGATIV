@@ -15,11 +15,13 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         }
 
         _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
+        FleetLogicManager.Instance.OnFleetCostChange();
         shipMaster.Register_OnExit(RemoveActiveShip_Player);        
     }
     void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
         _activeShipDic.Remove(shipMaster.GetInstanceID());
+        FleetLogicManager.Instance.OnFleetCostChange();
         UserData.Instance.SetShipPosDatas(_activeShipDic);
         UserData.Save();
     }
