@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,28 +16,33 @@ public class ShipEngine : MonoBehaviour
     float maxForce = 10f; // 최대 적용 힘
     float maxVelocity = 50.0f; // 최대 속도
 
+    public Action<Vector3, float> onWarpStart;
+    public Action onWarpEnd;
+
     // Start is called before the first frame update
-    public void Init()
+    public void Init(float warpTime = 2)
     {
         _rigidbody = GetComponent<Rigidbody>();
         _initPos = transform.position;
-        _initWarpPos = _initPos - (this.transform.forward * 10000);
+        _initWarpPos = _initPos - (this.transform.forward * warpTime * 3000);
         transform.position = _initWarpPos;
         SetMoveTargetPos(_initPos);
-        StartCoroutine(Warp());
+        onWarpStart?.Invoke(_initPos, warpTime);
+        StartCoroutine(Warp(warpTime));
     }
 
-    IEnumerator Warp()
+    IEnumerator Warp(float warpTime)
     {
         float time = 0;
         while(true)
         {
             yield return null;
             time += Time.deltaTime * 2;
-            transform.position = Vector3.Lerp(_initWarpPos, _initPos, time);
-            if (time >= 1)
-            {
-                GetComponent<ShipMaster>().InitCompliteInvoke();
+            transform.position = Vector3.Lerp(_initWarpPos, _initPos, time / warpTime);
+            if (time >= warpTime)
+            {                
+                onWarpEnd?.Invoke();
+                _rigidbody.velocity = Vector3.zero;
                 yield break;
             }
         }

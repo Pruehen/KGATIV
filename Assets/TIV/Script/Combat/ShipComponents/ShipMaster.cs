@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public interface ITargetable
 {
@@ -42,16 +43,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipMainComputer MainComputer { get; private set; }
     public ShipEngine Engine { get; private set; }    
     public ShipFCS FCS { get; private set; }
-    public ShipBuffManager BuffManager { get; private set; }    
-
-    Action InitComplite;
-    /// <summary>
-    /// 워프 완료 후 호출됨
-    /// </summary>
-    public void InitCompliteInvoke()
-    {
-        InitComplite?.Invoke();
-    }
+    public ShipBuffManager BuffManager { get; private set; }       
 
     public Vector3 GetPosition()
     {
@@ -87,7 +79,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
         return JsonDataManager.DataLode_ShipTable(CombatData.GetShipTableKey())._cost;
     }
 
-    private void Awake()
+    public void Init(float warpTime)
     {
         this.rigidbody = GetComponent<Rigidbody>();
 
@@ -102,7 +94,11 @@ public class ShipMaster : MonoBehaviour, ITargetable
             CombatData.Init();
             CombatData.Register_OnDead(Destroy_OnDead);
             MainComputer.Init();
-            Engine.Init();
+
+            Engine.onWarpStart += CreateDummy_OnWarpStart;
+            Engine.onWarpEnd += () => kjh.GameLogicManager.Instance.AddActiveShip(this);
+            Engine.onWarpEnd += RemoveDummy_OnWarpEnd;
+            Engine.Init(warpTime);
 
             int shipKey = CombatData.GetShipTableKey();
             FCS.Init(shipKey);
@@ -114,8 +110,6 @@ public class ShipMaster : MonoBehaviour, ITargetable
             {
                 ShipName = _shipName;
             }
-
-            InitComplite += () => kjh.GameLogicManager.Instance.AddActiveShip(this);
         }
         else
         {            
@@ -201,6 +195,47 @@ public class ShipMaster : MonoBehaviour, ITargetable
         if (Material_Dummy != null)
         {
             this.AddComponent<ShipDummy>().Init(Material_Dummy);
+        }
+    }
+
+    GameObject spawnDummyTemp;
+    void CreateDummy_OnWarpStart(Vector3 initPos, float warpTime)
+    {
+        if (spawnDummyTemp == null)
+        {
+            // 1. 새 게임 오브젝트를 생성합니다.
+            GameObject newGameObject = new GameObject("Dummy");
+
+            // 2. 자기 자신의 하위 객체들을 복사해서 새 게임 오브젝트의 하위에 붙여넣습니다.
+            CopyChildrenRecursive(transform, newGameObject.transform);
+
+            // 새로 생성한 게임 오브젝트의 위치를 원래 게임 오브젝트와 동일하게 설정합니다.            
+            ShipDummy shipDummy = newGameObject.AddComponent<ShipDummy>();
+            shipDummy.Init(Material_Dummy);
+            shipDummy.SetMatColor_Spawn(warpTime);
+            spawnDummyTemp = newGameObject;
+        }
+        else
+        {
+            spawnDummyTemp.SetActive(true);
+        }
+        spawnDummyTemp.transform.position = initPos;
+    }
+    void RemoveDummy_OnWarpEnd()
+    {
+        spawnDummyTemp.SetActive(false);
+    }
+
+    void CopyChildrenRecursive(Transform source, Transform destination)
+    {
+        foreach (Transform child in source)
+        {
+            // 자식 객체를 복사해서 새로운 게임 오브젝트의 하위에 추가합니다.
+            GameObject newChild = Instantiate(child.gameObject, destination);
+            newChild.transform.localPosition = child.localPosition;
+
+            // 자식 객체의 하위 객체들도 재귀적으로 복사합니다.
+            //CopyChildrenRecursive(child, newChild.transform);
         }
     }
 }

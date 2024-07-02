@@ -64,6 +64,7 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
         while (fleet.transform.childCount != 0)
         {            
             ShipMaster shipMaster = fleet.transform.GetChild(0).GetComponent<ShipMaster>();
+            shipMaster.Init(2);
             AddActiveShip_Enemy(shipMaster);
             shipMaster.Register_OnDead(RemoveActiveShip_Enemy);
 

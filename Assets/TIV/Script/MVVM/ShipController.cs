@@ -172,6 +172,6 @@ public class ShipController : MonoBehaviour
     void SetDummyPos(Vector3 pos, bool isDeleteZone)
     {
         _selectDummy.transform.position = pos;
-        _selectDummy.SetMatColor(isDeleteZone);
+        _selectDummy.SetMatColor_DeleteZoneCheck(isDeleteZone);
     }
 }

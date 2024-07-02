@@ -16,7 +16,9 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
 
         _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
         FleetLogicManager.Instance.OnFleetCostChange();
-        shipMaster.Register_OnExit(RemoveActiveShip_Player);        
+        shipMaster.Register_OnExit(RemoveActiveShip_Player);
+        shipMaster.Register_OnDead(RemoveActiveShip_Player);
+        shipMaster.Register_OnDead(RespawnDeadShip);
     }
     void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
@@ -48,7 +50,7 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
             foreach (var shipPosData in UserData.Instance.GetShipPosDataList())
             {
                 Vector3 newPos = new Vector3(shipPosData._posX, 0, shipPosData._posZ);
-                ShipSpawnAndInit(shipPosData._shipKey, newPos);
+                ShipSpawnAndInit(shipPosData._shipKey, newPos, 2);
             }            
         }
     }
@@ -62,15 +64,20 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         }
         else
         {
-            ShipSpawnAndInit(shipKey, spawnPos);
+            ShipSpawnAndInit(shipKey, spawnPos, 2);
             UserData.Instance.SetShipPosDatas(_activeShipDic);
             UserData.Save();
         }        
     }
+    void RespawnDeadShip(ShipMaster shipMaster)
+    {
+        ShipSpawnAndInit(shipMaster.CombatData.GetShipTableKey(), shipMaster.transform.position, 60);
+    }
 
-    void ShipSpawnAndInit(int shipKey, Vector3 spawnPos)
+    void ShipSpawnAndInit(int shipKey, Vector3 spawnPos, float warpTime)
     {
         ShipMaster shipMaster = Instantiate(Prefab_ShipList[shipKey], spawnPos, Quaternion.identity, this.transform).GetComponent<ShipMaster>();
+        shipMaster.Init(warpTime);
         AddActiveShip_Player(shipMaster);
     }
 }
