@@ -41,29 +41,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7739215590266256159}
     m_Modifications:
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: hp
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: atk
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.z
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
       value: ASS1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: usingWeaponList_Key.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_RootOrder
@@ -108,10 +88,6 @@ PrefabInstance:
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8995537091400735530, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: _dropCredit
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
@@ -127,25 +103,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7739215590266256159}
     m_Modifications:
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: hp
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: atk
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.z
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
       value: ASS1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: usingWeaponList_Key.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_RootOrder
@@ -191,10 +151,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8995537091400735530, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: _dropCredit
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
 --- !u!4 &8245874224731890768 stripped
@@ -209,29 +165,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7739215590266256159}
     m_Modifications:
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: hp
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 544536306987245995, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: atk
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.x
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3662339830238096752, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: TargetPos.z
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 4595366713290060529, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_Name
       value: ASS1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824092344873962813, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: usingWeaponList_Key.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_RootOrder
@@ -276,10 +212,6 @@ PrefabInstance:
     - target: {fileID: 8446308181999618622, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8995537091400735530, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}
-      propertyPath: _dropCredit
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15076291774dbe74b8f8c58f8a014c7c, type: 3}

@@ -40,7 +40,7 @@ public class ShipTable
 
     float StateMultiple(int level)
     {
-        return ((level - 1) * 0.13f) + 1;
+        return ((level - 1) * 0.78f) + 1;
     }
     public static string GetClass(int shipClass) 
     {
@@ -982,8 +982,8 @@ public class UserData
     [JsonProperty] public long Credit { get; private set; }
     [JsonProperty] public int SuperCredit { get; private set; }
     [JsonProperty] public int Fuel { get; private set; }
-    [JsonProperty] public int CurPrmStage { get; private set; }
-    [JsonProperty] public int CurSecStage { get; private set; }
+    [JsonProperty] public int CurPrmStage { get; set; }
+    [JsonProperty] public int CurSecStage { get; set; }
     [JsonProperty] public int FleetCost { get; private set; }
     [JsonProperty] List<ShipPositionData> _shipPositionDatas;
 
@@ -1179,47 +1179,9 @@ public class UserData
         }
     }
 
-    /// <summary>
-    /// 스테이지 증가 메서드. 서브 스테이지가 10을 넘어갈 경우, 1로 변경 후 메인 스테이지를 1 증가.
-    /// </summary>
-    public void StageUp()
-    {
-        CurSecStage++;
-
-        if(CurSecStage >= 11)
-        {
-            CurSecStage = 1;
-            CurPrmStage++;
-        }
-        RefreshViewModel();
-        Save();
-    }
-    /// <summary>
-    /// 스테이지 감소 메서드. 보스 스테이지에서 패배했을 경우에만 호출.
-    /// </summary>
-    public void StageDown_OnBossStageDefeat()
-    {
-        CurPrmStage = 9;
-        RefreshViewModel();
-        Save();
-    }
-
-    /// <summary>
-    /// 스테이지 승수 반환. 스테이지에 비례.
-    /// </summary>
-    /// <returns></returns>
-    public float GetValue_StageState()
-    {
-        float value = (CurPrmStage + CurSecStage * 0.05f) * ((100 + CurPrmStage) / 100);
-        if (CurSecStage == 10) value *= 2;
-        Debug.Log($"현재 승수 : {value}");
-        return value;
-    }
-
     public void UpgradeFleetCost()
     {
-        FleetCost++;
-        Save();
+        FleetCost++;        
     }
 }
 

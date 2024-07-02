@@ -31,9 +31,8 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
     {
         if(_activeShipDic.Count == 0)
         {
-            UserData userData = JsonDataManager.DataLode_UserData();
-            userData.StageUp();
-            Spawn_SetIndex(userData.CurPrmStage, userData.CurSecStage);
+            NavMissionLogicManager.Instance.StageUp(out int prmStage, out int secStage);
+            Spawn_SetIndex(prmStage, secStage);
         }
     }
 

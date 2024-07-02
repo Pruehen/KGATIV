@@ -1,20 +1,45 @@
 {
   "_shipPositionDatas": [
     {
-      "_shipKey": 2,
-      "_posX": 3.740749,
-      "_posZ": -90.0629349
+      "_shipKey": 0,
+      "_posX": 95.70578,
+      "_posZ": -126.625336
     },
     {
       "_shipKey": 0,
-      "_posX": 135.252823,
-      "_posZ": -277.184326
+      "_posX": -139.53,
+      "_posZ": -186.348434
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -1.60492229,
+      "_posZ": -209.808578
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -72.17108,
+      "_posZ": -120.211182
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 173.720886,
+      "_posZ": -184.124237
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -225.037979,
+      "_posZ": -209.78598
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -8.023767,
+      "_posZ": -37.87311
     }
   ],
-  "Credit": 24782,
+  "Credit": 45602,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 17,
-  "CurSecStage": 1,
-  "FleetCost": 5
+  "CurPrmStage": 14,
+  "CurSecStage": 2,
+  "FleetCost": 7
 }

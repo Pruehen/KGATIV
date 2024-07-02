@@ -22,7 +22,7 @@ public class ShipController : MonoBehaviour
     Vector2 _lineScale = Vector2.one;
     int _selectKey;
 
-    private void Awake()
+    void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _lineMaterial = _lineRenderer.material;

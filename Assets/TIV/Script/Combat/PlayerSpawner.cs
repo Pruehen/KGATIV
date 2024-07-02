@@ -18,13 +18,13 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         FleetLogicManager.Instance.OnFleetCostChange();
         shipMaster.Register_OnExit(RemoveActiveShip_Player);        
         shipMaster.Register_OnDead(RespawnDeadShip);
+        shipMaster.Register_OnDead(RemoveActiveShip_Player);
     }
     void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
         _activeShipDic.Remove(shipMaster.GetInstanceID());
         FleetLogicManager.Instance.OnFleetCostChange();
         UserData.Instance.SetShipPosDatas(_activeShipDic);
-        UserData.Save();
     }
     public int GetTotalCoat()
     {
@@ -65,13 +65,12 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         {
             ShipSpawnAndInit(shipKey, spawnPos, 10);
             UserData.Instance.SetShipPosDatas(_activeShipDic);
-            UserData.Save();
         }        
     }
     void RespawnDeadShip(ShipMaster shipMaster)
-    {
-        ShipMaster createdshipMaster = Instantiate(Prefab_ShipList[shipMaster.CombatData.GetShipTableKey()], shipMaster.transform.position, Quaternion.identity, this.transform).GetComponent<ShipMaster>();
-        createdshipMaster.Init(60);
+    {        
+        ShipSpawnAndInit(shipMaster.CombatData.GetShipTableKey(), shipMaster.transform.position, 60);
+        UserData.Instance.SetShipPosDatas(_activeShipDic);        
     }
 
     void ShipSpawnAndInit(int shipKey, Vector3 spawnPos, float warpTime)

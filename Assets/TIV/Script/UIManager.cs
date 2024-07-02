@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class UIManager : SceneSingleton<UIManager>
 {
+    [Header("탐색 임무 오버레이")]
+    [SerializeField] GameObject Wdw_NavMissionOverUI;
+    public NavMissionUIManager NavMissionUIManager { get; private set; }
+
     [Header("함선 메뉴 조작")]
     [SerializeField] GameObject Wdw_ShipMenu;
     [SerializeField] Button Btn_ShipMenuOn;
@@ -41,16 +45,21 @@ public class UIManager : SceneSingleton<UIManager>
 
     private void Awake()
     {
-        SetActiveWdw_ShipMenu(false);
+        Wdw_NavMissionOverUI.SetActive(true);
+        NavMissionUIManager = Wdw_NavMissionOverUI.GetComponent<NavMissionUIManager>();
+
+        SetActiveWdw_ShipMenu(true);
         ShipMenuUIManager = Wdw_ShipMenu.GetComponent<ShipMenuUIManager>();
         Btn_ShipMenuOn.onClick.AddListener(() => SetActiveWdw_ShipMenu(true));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_ShipMenu(false));
         Btn_ShipMenuOff.onClick.AddListener(() => SetActiveWdw_EquipInfo(false));
+        SetActiveWdw_ShipMenu(false);
 
-        SetActiveWdw_FleetMenu(false);
+        SetActiveWdw_FleetMenu(true);
         FleetMenuUIManager = Wdw_FleetMenu.GetComponent<FleetMenuUIManager>();
         Btn_FleetMenuOn.onClick.AddListener(() => SetActiveWdw_FleetMenu(true));
         Btn_FleetMenuOff.onClick.AddListener(() => SetActiveWdw_FleetMenu(false));
+        SetActiveWdw_FleetMenu(false);
 
         SetActiveWdw_GachaMenu(false);
         Btn_GachaMenuOn.onClick.AddListener(() => SetActiveWdw_GachaMenu(true));

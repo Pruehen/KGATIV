@@ -26,7 +26,7 @@ public class ShipCombatData : MonoBehaviour
         }
         else
         {
-            this.ShipData = new ShipData(hp, atk, def, JsonDataManager.DataLode_UserData().GetValue_StageState());            
+            this.ShipData = new ShipData(hp, atk, def, NavMissionLogicManager.Instance.GetValue_StageState());            
         }
         CurHp = ShipData.GetFinalState(CombatStateType.Hp);
 

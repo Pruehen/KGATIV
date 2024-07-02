@@ -32,6 +32,15 @@ public class FleetMenuUIManager : MonoBehaviour
         AddEventTrigger(EventTrigger_ShipSpawn_4B1, EventTriggerType.PointerDown, () => EnterCreateMode_OnEventTriggerPointerDown(3));
         AddEventTrigger(EventTrigger_ShipSpawn_5T1, EventTriggerType.PointerDown, () => EnterCreateMode_OnEventTriggerPointerDown(4));
 
+        if (_vm == null)
+        {
+            _vm = new FleetMenuUIManagerViewModel();
+            _vm.PropertyChanged += OnPropertyChanged;
+            _vm.Register_onFleetCostChange();
+            _vm.RefreshViewModel();
+            Btn_Upgrade.onClick.AddListener(_vm.Command_TryUpgradeFleetCost);
+        }
+
         Label_SpawnMode.gameObject.SetActive(false);
     }    
 
@@ -60,26 +69,10 @@ public class FleetMenuUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if(_vm == null)
-        {
-            _vm = new FleetMenuUIManagerViewModel();
-            _vm.PropertyChanged += OnPropertyChanged;
-            _vm.Register_onFleetCostChange();
-            _vm.RefreshViewModel();
-            Btn_Upgrade.onClick.AddListener(_vm.Command_TryUpgradeFleetCost);
-        }
-
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(false);        
     }
     private void OnDisable()
     {        
-        if(_vm != null)
-        {
-            Btn_Upgrade.onClick.RemoveAllListeners();
-            _vm.UnRegister_onFleetCostChange();
-            _vm.PropertyChanged -= OnPropertyChanged;            
-            _vm = null;
-        }
         UIManager.Instance.SetActiveWdw_UsingShipOverUIManager(true);        
     }
 

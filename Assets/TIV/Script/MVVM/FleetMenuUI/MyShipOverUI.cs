@@ -15,10 +15,6 @@ public class MyShipOverUI : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();        
     }
 
-    private void OnDisable()
-    {
-        DragAndDropManager.Instance.UnRegister_OnPointerUp(MoveTargetObject_OnPointerUp);
-    }
     private void Update()
     {
         if(_uiTargetShipMaster != null)
@@ -27,7 +23,8 @@ public class MyShipOverUI : MonoBehaviour
         }
         else
         {
-            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);
+            DragAndDropManager.Instance.UnRegister_OnPointerUp(MoveTargetObject_OnPointerUp);
+            ObjectPoolManager.Instance.EnqueueObject(this.gameObject);            
         }
     }
 

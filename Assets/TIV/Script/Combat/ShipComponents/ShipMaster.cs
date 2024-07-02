@@ -91,8 +91,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
         if (_isDummy == false)
         {
-            CombatData.Init();
-            CombatData.Register_OnDead(Destroy_OnDead);
+            CombatData.Init();            
             MainComputer.Init();
 
             Engine.onWarpStart += CreateDummy_OnWarpStart;
@@ -110,6 +109,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
             {
                 ShipName = _shipName;
             }
+
+            CombatData.Register_OnDead(Destroy_OnDead);
         }
         else
         {            
@@ -126,13 +127,12 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
     void Destroy_OnDead()
     {
-        _onDead?.Invoke(this);
-        Debug.Log("»ç¸Á Ã³¸®");
-        EffectManager.Instance.ExplosionEffectGenerate(this.transform.position, GetComponent<SphereCollider>().radius);
-        UserData userDataTemp = JsonDataManager.DataLode_UserData();
-        userDataTemp.AddCredit((long)(userDataTemp.GetValue_StageState() * _dropCredit));        
+        EffectManager.Instance.ExplosionEffectGenerate(this.transform.position, GetComponent<SphereCollider>().radius);        
+        UserData.Instance.AddCredit((long)(NavMissionLogicManager.Instance.GetValue_StageState() * _dropCredit));        
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);
         CreateDebri();
+        _onDead?.Invoke(this);
+        if (spawnDummyTemp != null) Destroy(spawnDummyTemp);
         Destroy(this.gameObject);
     }
 
