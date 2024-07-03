@@ -9,6 +9,7 @@ public class UserDataView : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> TMPList_Credit;
     [SerializeField] List<TextMeshProUGUI> TMPList_SuperCredit;
     [SerializeField] List<TextMeshProUGUI> TMPList_Fuel;
+    [SerializeField] List<TextMeshProUGUI> TMPList_RefuelRemaningTime;
 
     UserDataViewModel _vm;
 
@@ -19,6 +20,7 @@ public class UserDataView : MonoBehaviour
             _vm = new UserDataViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.Register_OnRefreshViewModel();
+            _vm.Register_OnRefuelRemaningChange();
             _vm.RefreshViewModel_OnInit();
         }
     }
@@ -26,6 +28,7 @@ public class UserDataView : MonoBehaviour
     {
         if (_vm != null)
         {
+            _vm.UnRegister_OnRefuelRemaningChange();
             _vm.UnRegister_OnRefreshViewModel();
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
@@ -43,7 +46,18 @@ public class UserDataView : MonoBehaviour
                 TextUpdate(TMPList_SuperCredit, $"{_vm.SuperCredit}");
                 break;
             case nameof(_vm.Fuel):
-                TextUpdate(TMPList_Fuel, $"{_vm.Fuel}");
+                TextUpdate(TMPList_Fuel, $"{_vm.Fuel} / {UserData.MaxFuel()}");
+                break;
+            case nameof(_vm.ReFuelRemaning):
+                if(_vm.Fuel >= UserData.MaxFuel())
+                {
+                    TextUpdate(TMPList_RefuelRemaningTime, $"연료 만재");
+                }
+                else
+                {
+                    TextUpdate(TMPList_RefuelRemaningTime, $"연료 충전까지\n{_vm.ReFuelRemaning / 60} : {_vm.ReFuelRemaning % 60}");
+                }
+                
                 break;
             case nameof(_vm.CurPrmStage):
                 break;

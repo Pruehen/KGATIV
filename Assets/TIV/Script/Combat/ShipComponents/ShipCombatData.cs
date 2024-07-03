@@ -48,8 +48,7 @@ public class ShipCombatData : MonoBehaviour
 
     public void Hit(float originDmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey)
     {
-        BuffManager.BuffCheck_G4Set_OnHit_TryAddDebuff(type, hasDebuffKey);
-        Debug.Log(BuffManager.BuffCheck_G4Set_OnHit_ValidDefRatio());
+        BuffManager.BuffCheck_G4Set_OnHit_TryAddDebuff(type, hasDebuffKey);        
         float validDef = ShipData.GetFinalState(CombatStateType.Def, BuffManager.GetFinalState(CombatStateType.Def)) * BuffManager.BuffCheck_G4Set_OnHit_ValidDefRatio();
 
         float calcedDmg = originDmg * Calcf.DmgMultiple_Def(originDmg, validDef);

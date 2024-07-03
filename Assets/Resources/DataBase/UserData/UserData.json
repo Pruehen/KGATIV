@@ -12,11 +12,6 @@
     },
     {
       "_shipKey": 0,
-      "_posX": 26.0446777,
-      "_posZ": -75.15408
-    },
-    {
-      "_shipKey": 0,
       "_posX": 22.9069977,
       "_posZ": -138.763077
     },
@@ -27,14 +22,21 @@
     },
     {
       "_shipKey": 0,
-      "_posX": 111.340576,
-      "_posZ": -0.391659647
+      "_posX": 26.0468254,
+      "_posZ": -75.21818
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 111.366882,
+      "_posZ": -0.6266787
     }
   ],
-  "Credit": 152215,
+  "Credit": 827188,
   "SuperCredit": 0,
   "Fuel": 240,
-  "CurPrmStage": 20,
-  "CurSecStage": 2,
-  "FleetCost": 7
+  "ReFuelRemaning": 328,
+  "CurPrmStage": 26,
+  "CurSecStage": 6,
+  "FleetCost": 7,
+  "LastTime": "2024-07-03T14:37:13.1346211+09:00"
 }

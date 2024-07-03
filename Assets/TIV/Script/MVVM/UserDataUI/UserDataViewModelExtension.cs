@@ -11,6 +11,17 @@ namespace ViewModel.Extensions
         {
             UserData.Instance.UnRegister_OnRefreshViewModel(vm.OnRefreshViewModel);
         }
+
+        public static void Register_OnRefuelRemaningChange(this UserDataViewModel vm)
+        {
+            UserData.Instance.Register_OnRefuelRemaningChange(vm.OnRefuelRemaningChange);
+        }
+
+        public static void UnRegister_OnRefuelRemaningChange(this UserDataViewModel vm)
+        {
+            UserData.Instance.UnRegister_OnRefuelRemaningChange(vm.OnRefuelRemaningChange);
+        }
+
         public static void RefreshViewModel_OnInit(this UserDataViewModel vm)
         {
             UserData.Instance.RefreshViewModel();
@@ -23,6 +34,10 @@ namespace ViewModel.Extensions
             vm.Fuel = data.Fuel;
             vm.CurPrmStage = data.CurPrmStage;
             vm.CurSecStage = data.CurSecStage;
+        }
+        public static void OnRefuelRemaningChange(this UserDataViewModel vm, int reFuelRemaning)//ฤÝน้
+        {
+            vm.ReFuelRemaning = reFuelRemaning;
         }
     }
 }

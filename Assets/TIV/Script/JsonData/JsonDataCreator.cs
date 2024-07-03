@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using EnumTypes;
 using System;
 using static UserData;
+using Unity.VisualScripting;
 
 public class ShipTable
 {
@@ -982,38 +983,49 @@ public class UserData
     [JsonProperty] public long Credit { get; private set; }
     [JsonProperty] public int SuperCredit { get; private set; }
     [JsonProperty] public int Fuel { get; private set; }
+    [JsonProperty] public int ReFuelRemaning { get; private set; }
     [JsonProperty] public int CurPrmStage { get; set; }
     [JsonProperty] public int CurSecStage { get; set; }
     [JsonProperty] public int FleetCost { get; private set; }
+    [JsonProperty] public DateTime LastTime { get; private set; }
     [JsonProperty] List<ShipPositionData> _shipPositionDatas;
 
     public static UserData Instance { get { return JsonDataManager.DataLode_UserData(); } }
     public static void Save()
     {
+        JsonDataManager.jsonCache.UserDataCache.LastTime = DateTime.Now;
         JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserDataCache, UserData.FilePath());
     }
 
     [JsonConstructor]
-    public UserData(long credit, int superCredit, int fuel, int curPrmStage, int curSecStage, int fleetCost, List<ShipPositionData> shipPositionDatas)
+    public UserData(long credit, int superCredit, int fuel, int reFuelRemaning, int curPrmStage, int curSecStage, int fleetCost, DateTime lastTime, List<ShipPositionData> shipPositionDatas)
     {
         Credit = credit;
         SuperCredit = superCredit;
         Fuel = fuel;
+        ReFuelRemaning = reFuelRemaning;
         CurPrmStage = curPrmStage;
         CurSecStage = curSecStage;
         FleetCost = fleetCost;
+        LastTime = lastTime;
         _shipPositionDatas = shipPositionDatas;
+
+        TimeManager.Instance.Register_onSecChange(OnTimeChange);
     }
     public UserData()
     {
         Credit = 0;
         SuperCredit = 0;
-        Fuel = 240;
+        Fuel = MaxFuel();
+        ReFuelRemaning = 0;
         CurPrmStage = 1;
         CurSecStage = 1;
         FleetCost = 1;
+        LastTime = DateTime.Now;
         _shipPositionDatas = new List<ShipPositionData>();
         _shipPositionDatas.Add(new ShipPositionData());
+
+        TimeManager.Instance.Register_onSecChange(OnTimeChange);
     }
     public class ShipPositionData
     {        
@@ -1052,6 +1064,7 @@ public class UserData
 
     //MVVM 관련 코드==============================
     Action<UserData> _onRefreshViewModel_CallBack;
+    Action<int> _onRefuelRemaningChange;
     public void Register_OnRefreshViewModel(Action<UserData> callBack)
     {
         _onRefreshViewModel_CallBack += callBack;
@@ -1060,12 +1073,22 @@ public class UserData
     {
         _onRefreshViewModel_CallBack -= callBack;
     }
+    public void Register_OnRefuelRemaningChange(Action<int> callBack)
+    {
+        _onRefuelRemaningChange += callBack;
+    }
+    public void UnRegister_OnRefuelRemaningChange(Action<int> callBack)
+    {
+        _onRefuelRemaningChange -= callBack;
+    }
+
     public void RefreshViewModel()
     {
         _onRefreshViewModel_CallBack?.Invoke(this);
     }
 
-
+    public static int MaxFuel() { return 240; }
+    public static int ReFuelTime() { return 360; }
     public static string FilePath()
     {
         return "/Resources/DataBase/UserData/UserData.json";
@@ -1131,21 +1154,39 @@ public class UserData
             return true;
         }
     }
+    void OnTimeChange()
+    {
+        ReFuelRemaning--;
+
+        if(ReFuelRemaning <= 0)
+        {
+            if(TryAddFuel_Nature())
+            {
+                ReFuelRemaning = ReFuelTime();
+                Save();
+            }
+            else
+            {
+                ReFuelRemaning = 0;
+            }
+        }
+
+        _onRefuelRemaningChange?.Invoke(ReFuelRemaning);        
+    }
     /// <summary>
     /// 연료의 자연 충전 메서드. 6분에 1회씩 호출해야 함.
     /// </summary>
     /// <returns></returns>
     public bool TryAddFuel_Nature()
     {
-        if(Fuel >= 240)
+        if(Fuel >= MaxFuel())
         {
             return false;
         }
         else
         {
-            Fuel++;
+            Fuel++;            
             RefreshViewModel();
-            Save();
             return true;
         }
     }
@@ -1159,6 +1200,25 @@ public class UserData
         RefreshViewModel();
         Save();
     }
+
+    public void AddFuel_ProportionalToUnconnectedTime()
+    {
+        int deltaTime = TimeManager.GetDeltaTime(LastTime, DateTime.Now);
+        int fuelTemp = Fuel;
+        Fuel += deltaTime / ReFuelTime();
+        if(Fuel > MaxFuel())
+        {
+            Fuel = MaxFuel();
+        }
+
+        if (fuelTemp != Fuel)
+        {
+            UIManager.Instance.PopUpWdw_WarningPopUpUI($"연료 {Fuel - fuelTemp} 만큼 획득", 7);
+            RefreshViewModel();
+            Save();
+        }
+    }
+
     /// <summary>
     /// 연료 사용 시도 메서드. 연료가 충분하면 연료를 소모하고 true 반환. 아니면 false 반환
     /// </summary>

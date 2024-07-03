@@ -32,7 +32,7 @@
           "_level": 5
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_11204": {
       "_itemUniqueKey": "1719194457_11204",
@@ -134,7 +134,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_41-12": {
       "_itemUniqueKey": "1719194457_41-12",
@@ -377,7 +377,7 @@
           "_level": 5
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_130-12": {
       "_itemUniqueKey": "1719194457_130-12",
@@ -411,7 +411,7 @@
           "_level": 5
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_140-12": {
       "_itemUniqueKey": "1719194457_140-12",
@@ -445,7 +445,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_152001": {
       "_itemUniqueKey": "1719194457_152001",
@@ -513,7 +513,7 @@
           "_level": 5
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_171-12": {
       "_itemUniqueKey": "1719194457_171-12",
@@ -547,7 +547,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": 0
+      "_equipedShipKey": -1
     },
     "1719194457_182403": {
       "_itemUniqueKey": "1719194457_182403",
@@ -1077,7 +1077,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719194457_12221": {
       "_itemUniqueKey": "1719194457_12221",
@@ -1875,7 +1875,7 @@
           "_level": 3
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719221210_110-12": {
       "_itemUniqueKey": "1719221210_110-12",
@@ -2065,7 +2065,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719221210_1410-12": {
       "_itemUniqueKey": "1719221210_1410-12",
@@ -2346,7 +2346,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719221210_341424": {
       "_itemUniqueKey": "1719221210_341424",
@@ -2497,7 +2497,7 @@
           "_level": 4
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719221386_411-12": {
       "_itemUniqueKey": "1719221386_411-12",
@@ -2583,7 +2583,7 @@
           "_level": 3
         }
       ],
-      "_equipedShipKey": -1
+      "_equipedShipKey": 0
     },
     "1719221386_92621": {
       "_itemUniqueKey": "1719221386_92621",

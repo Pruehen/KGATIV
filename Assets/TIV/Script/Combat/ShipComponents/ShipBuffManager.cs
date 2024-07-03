@@ -133,8 +133,8 @@ public class ShipBuffManager : MonoBehaviour
     public bool BuffCheck_G4Set_OnFire(out string debuffKey)
     {
         if(_shipData.ValidCount_GSet >= 4)
-        {
-            debuffKey = _g4setTable._buffKey;
+        {            
+            debuffKey = _g4setTable._buffKey;            
             return true;
         }
         else

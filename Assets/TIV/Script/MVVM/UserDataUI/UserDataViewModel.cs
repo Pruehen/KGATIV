@@ -5,6 +5,7 @@ public class UserDataViewModel
     long _credit;
     int _superCredit;
     int _fuel;
+    int _reFuelRemaning;
     int _curPrmStage;
     int _curSecStage;
 
@@ -38,6 +39,17 @@ public class UserDataViewModel
             OnPropertyChanged(nameof(Fuel));
         }
     }
+    public int ReFuelRemaning
+    {
+        get { return _reFuelRemaning; }
+        set
+        {
+            if (_reFuelRemaning == value) return;
+            _reFuelRemaning = value;
+            OnPropertyChanged(nameof(ReFuelRemaning));
+        }
+    }
+
     public int CurPrmStage
     {
         get { return _curPrmStage; }
