@@ -62,13 +62,12 @@ namespace kjh
         void SetNeedCredit(int curShipLevel, int levelUpCount)
         {
             ShipTable table = JsonDataManager.DataLode_ShipTable(controlShipData._shipTablekey);
-            float multiple = (table._maxCombatSlot * table._maxCombatSlot * table._star * table._star + 37) * 0.1f;
             int creditTemp = 0;
-
+            
             for (int i = 0; i < levelUpCount; i++)
             {
                 curShipLevel++;
-                creditTemp += (int)(curShipLevel * multiple);                
+                creditTemp += (int)Calcf.ShipUpgradePrice(table, curShipLevel);
             }
             _needCreditLevelUp = creditTemp;
         }

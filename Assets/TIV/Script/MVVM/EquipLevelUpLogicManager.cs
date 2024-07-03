@@ -67,7 +67,7 @@ namespace kjh
             for (int i = 0; i < levelUpCount; i++)
             {
                 curEquipLevel++;
-                creditTemp += (int)(curEquipLevel * 1200 * (((curEquipLevel / 4) * (curEquipLevel / 4)) + 1));
+                creditTemp += (int)Calcf.EquipUPgradePrice(curEquipLevel);
             }
             _needCreditLevelUp = creditTemp;
         }
