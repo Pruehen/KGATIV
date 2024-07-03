@@ -67,14 +67,14 @@ namespace kjh
             for (int i = 0; i < levelUpCount; i++)
             {
                 curEquipLevel++;
-                creditTemp += (int)(curEquipLevel * 1200 * (((curEquipLevel / 4) * (curEquipLevel / 4)) + 1));
+                creditTemp += (int)(curEquipLevel * 12000 * (((curEquipLevel / 4) * (curEquipLevel / 4)) + 1));
             }
             _needCreditLevelUp = creditTemp;
         }
         /// <summary>
         /// 강화 버튼을 눌렀을 때 호출하도록 연결
         /// </summary>
-        public void UpgradeEquip(Action<UserHaveEquipData> callback)
+        public bool UpgradeEquip(Action<UserHaveEquipData> callback)
         {
             if (JsonDataManager.DataLode_UserData().TryUseCredit(_needCreditLevelUp))
             {
@@ -83,7 +83,12 @@ namespace kjh
                 SetNeedCredit(_equipData._level, _levelUpCount);
                 callback.Invoke(_equipData);
                 _onUpgradeInfoCallBack?.Invoke(_levelUpCount, _needCreditLevelUp);
+                return true;
             }           
+            else
+            {
+                return false;
+            }
         }
     }
 }

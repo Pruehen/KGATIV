@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +36,10 @@ public class UIManager : SceneSingleton<UIManager>
     [Header("장비 강화 결과창 조작")]
     [SerializeField] GameObject Popup_UpgradeResult;
     EquipUpgradePopupUIManager _equipUpgradePopupUIManager;
+
+    [Header("함선 강화 결과창 조작")]
+    [SerializeField] GameObject PopUpUI_ShipUpgrade;
+    ShipUpgradeResultPopupUIManager _shipUpgradeResultPopupUIManager;
 
     [Header("경고 팝업창")]
     [SerializeField] WarningPopUpUI PopUp_WarningPopUpUI;
@@ -82,6 +87,7 @@ public class UIManager : SceneSingleton<UIManager>
         }
 
         _equipUpgradePopupUIManager = Popup_UpgradeResult.GetComponent<EquipUpgradePopupUIManager>();
+        _shipUpgradeResultPopupUIManager = PopUpUI_ShipUpgrade.GetComponent<ShipUpgradeResultPopupUIManager>();
     }
 
     public Action OnShipMenuWdwOn;
@@ -126,11 +132,16 @@ public class UIManager : SceneSingleton<UIManager>
         SetActiveWdw(UsingShipOverUIManager.gameObject, value);
     }
 
-    public void PopupWdw_UpgradeResult(float time, UserHaveEquipData before, UserHaveEquipData affter)
+    public void PopupWdw_EquipUpgradeResult(float time, UserHaveEquipData before, UserHaveEquipData affter)
     {
         PopupWdw(Popup_UpgradeResult, time);
         _equipUpgradePopupUIManager.ViewResult(before, affter);
     }
+    public void PopupWdw_ShipUpgradeResult(ShipTable table, int beforeLevel, int affterLevel)
+    {
+        _shipUpgradeResultPopupUIManager.ViewResult_WdwPopUp(table, beforeLevel, affterLevel);
+    }
+
     public void PopUpWdw_WarningPopUpUI(string msg, float time = 2)
     {
         PopUp_WarningPopUpUI.SetWarningPopUp(msg, time);

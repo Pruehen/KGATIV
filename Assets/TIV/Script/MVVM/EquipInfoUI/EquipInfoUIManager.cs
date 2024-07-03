@@ -1,4 +1,5 @@
 using EnumTypes;
+using kjh;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -35,6 +36,8 @@ public class EquipInfoUIManager : MonoBehaviour
 
     EquipInfoUIManagerViewModel _vm;
     string _uniqueKey;
+    UserHaveEquipData equipDataTemp;
+
     public string UniqueKey
     {
         get { return _uniqueKey; }
@@ -61,13 +64,14 @@ public class EquipInfoUIManager : MonoBehaviour
     }
 
     void TryUpgrade()
-    {
-        UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(_uniqueKey);
-        UserHaveEquipData equipDataTemp = new UserHaveEquipData(equipData);
-        _vm.CommandUpgrade();
-
-        this.UIManager.PopupWdw_UpgradeResult(2, equipDataTemp, equipData);        
+    {        
+        equipDataTemp = new UserHaveEquipData(JsonDataManager.DataLode_UserHaveEquipData(_uniqueKey));
+        if(_vm.CommandUpgrade())
+        {
+            this.UIManager.PopupWdw_EquipUpgradeResult(2, equipDataTemp, JsonDataManager.DataLode_UserHaveEquipData(_uniqueKey));
+        }        
     }
+
     void Command_ChangeLevelUpCount(int value)
     {
         _vm.Command_ChangeLevelUpCount(value);

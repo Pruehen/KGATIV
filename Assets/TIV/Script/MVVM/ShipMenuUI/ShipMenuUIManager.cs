@@ -45,7 +45,7 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI TMP_ParticleDmg;
     [SerializeField] TextMeshProUGUI TMP_PlasmaDmg;
 
-    [Header("레벨업 관련 UI")]
+    [Header("레벨업 관련 UI")]    
     [SerializeField] TextMeshProUGUI TMP_CreditLevelUpNeed;
     [SerializeField] TextMeshProUGUI TMP_LevelUpCount;
     [SerializeField] Button Btn_ShipLevelUp;

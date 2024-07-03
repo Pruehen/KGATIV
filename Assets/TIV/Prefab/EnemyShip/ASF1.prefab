@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AiMove: 1
-  _range: 400
+  _range: 200
 --- !u!114 &1621038602054271039
 MonoBehaviour:
   m_ObjectHideFlags: 0

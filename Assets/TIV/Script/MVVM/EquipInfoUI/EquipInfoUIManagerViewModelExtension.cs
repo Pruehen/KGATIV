@@ -30,9 +30,9 @@ namespace ViewModel.Extensions
         {
             EquipLevelUpLogicManager.Instance.ChangeLevelUpCount(changedLevelUpCount);
         }
-        public static void CommandUpgrade(this EquipInfoUIManagerViewModel vm)
+        public static bool CommandUpgrade(this EquipInfoUIManagerViewModel vm)
         {
-            EquipLevelUpLogicManager.Instance.UpgradeEquip(vm.OnAllRefreshViewModel);//콜백 호출
+            return EquipLevelUpLogicManager.Instance.UpgradeEquip(vm.OnAllRefreshViewModel);//콜백 호출
         }
 
         public static void OnAllRefreshViewModel(this EquipInfoUIManagerViewModel vm, UserHaveEquipData equipData)//콜백
