@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class ShipFCS : MonoBehaviour
 {
+    ShipMaster Master;
     ShipCombatData CombatData;
     List<Weapon> _usingWeaponList;
     public List<Weapon> UsingWeaponList() { return _usingWeaponList; }
@@ -15,6 +17,7 @@ public class ShipFCS : MonoBehaviour
     public void Init(int shipKey)
     {
         _curShipKey = shipKey;
+        Master = GetComponent<ShipMaster>();
         CombatData = GetComponent<ShipCombatData>();
         _usingWeaponList = new List<Weapon>();
 
@@ -27,6 +30,9 @@ public class ShipFCS : MonoBehaviour
                 weapon.Init(item);
                 _usingWeaponList.Add(weapon);
             }
+
+            CombatData.Register_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);//장비 갱신을 위한 이벤트 연결
+            Master.Register_OnDead(OnDead_UnRegister_OnAllStaticDataUpdate);
         }
         else
         {            
@@ -38,9 +44,6 @@ public class ShipFCS : MonoBehaviour
                 _usingWeaponList.Add(weapon);
             }
         }
-
-        CombatData.Register_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);//장비 갱신을 위한 이벤트 연결
-        CombatData.Register_OnDead(OnDead);
     }
     public void UpdateUsingWeapon_OnEquipChange()//장비가 변경되었을 경우, 자신에게 장착된 장비를 갱신하는 메서드
     {
@@ -80,7 +83,7 @@ public class ShipFCS : MonoBehaviour
         }
     }
 
-    void OnDead()
+    void OnDead_UnRegister_OnAllStaticDataUpdate(ShipMaster master)
     {
         CombatData.UnRegister_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);
     }

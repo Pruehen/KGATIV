@@ -14,8 +14,11 @@ namespace ViewModel.Extensions
 
        
         public static void OnAddedNewUI(this ShipControllerViewModel vm, ShipMaster shipMaster, bool isAdd)//ฤÝน้
-        {            
-            vm.ChangedShipMaster = shipMaster;            
+        {
+            if (isAdd)
+            {
+                vm.ChangedShipMaster = shipMaster;
+            }
         }        
     }
 }

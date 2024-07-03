@@ -96,6 +96,11 @@ namespace kjh
             _activeShipDic.Remove(shipMaster.GetInstanceID());
             _shipListChangeCallBack.Invoke(shipMaster, false);
         }
+
+        public void AllActiveShipRemove()
+        {
+
+        }
         //피격, 데미지 발생 시에 대한 처리=====================================================================================
         public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)
         {
