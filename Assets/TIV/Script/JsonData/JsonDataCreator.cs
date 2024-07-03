@@ -1213,7 +1213,7 @@ public class UserData
 
         if (fuelTemp != Fuel)
         {
-            UIManager.Instance.PopUpWdw_WarningPopUpUI($"¿¬·á {Fuel - fuelTemp} ¸¸Å­ È¹µæ", 7);
+            UIManager.Instance.PopUpWdw_MsgPopUpUI($"¿¬·á {Fuel - fuelTemp} ¸¸Å­ È¹µæ", 7);
             RefreshViewModel();
             Save();
         }

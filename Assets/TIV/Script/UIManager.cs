@@ -47,8 +47,10 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] GameObject PopUpUI_ShipUpgrade;
     ShipUpgradeResultPopupUIManager _shipUpgradeResultPopupUIManager;
 
-    [Header("°æ°í ÆË¾÷Ã¢")]
-    [SerializeField] WarningPopUpUI PopUp_WarningPopUpUI;
+    [Header("ÆË¾÷Ã¢")]
+    [SerializeField] PopUpUI PopUp_WarningPopUpUI;
+    [SerializeField] PopUpUI PopUp_MsgPopUpUI;
+    [SerializeField] PopUpUI PopUp_InfoPopUpUI;
 
     [Header("±âÅ¸ UI")]
     [SerializeField] UsingShipOverUIManager UsingShipOverUIManager;
@@ -157,6 +159,14 @@ public class UIManager : SceneSingleton<UIManager>
     public void PopUpWdw_WarningPopUpUI(string msg, float time = 2)
     {
         PopUp_WarningPopUpUI.SetWarningPopUp(msg, time);
+    }
+    public void PopUpWdw_MsgPopUpUI(string msg, float time = 2)
+    {
+        PopUp_MsgPopUpUI.SetWarningPopUp(msg, time);
+    }
+    public void PopUpWdw_InfoPopUpUI(string msg, float time = 2)
+    {
+        PopUp_InfoPopUpUI.SetWarningPopUp(msg, time);
     }
 
     void PopupWdw(GameObject popUpWdw, float popUpTime)

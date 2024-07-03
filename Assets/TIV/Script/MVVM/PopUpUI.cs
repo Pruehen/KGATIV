@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WarningPopUpUI : MonoBehaviour
+public class PopUpUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TMP_Msg;
     [SerializeField] Button Btn_UIBtn;

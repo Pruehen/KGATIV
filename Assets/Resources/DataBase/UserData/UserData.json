@@ -31,12 +31,12 @@
       "_posZ": -0.6266787
     }
   ],
-  "Credit": 925283,
+  "Credit": 950771,
   "SuperCredit": 0,
   "Fuel": 240,
-  "ReFuelRemaning": 243,
+  "ReFuelRemaning": 155,
   "CurPrmStage": 27,
-  "CurSecStage": 1,
+  "CurSecStage": 7,
   "FleetCost": 7,
-  "LastTime": "2024-07-03T15:22:45.7824595+09:00"
+  "LastTime": "2024-07-03T16:33:22.2743433+09:00"
 }
