@@ -87971,8 +87971,14 @@ MonoBehaviour:
   Btn_SelectAnnihilation: {fileID: 2056107987}
   Btn_SelectBaseAttack: {fileID: 1327194229}
   Btn_InfoRequest: {fileID: 1581332681}
+  info_Request: "\uB300\uB7C9\uC758 \uD06C\uB808\uB527\uC744 \uD68D\uB4DD\uD560 \uC218
+    \uC788\uB294 \uC784\uBB34\uC785\uB2C8\uB2E4."
   Btn_InfoAnnihilation: {fileID: 188736522}
+  info_Annihilation: "\uC7A5\uBE44 \uBC0F \uBD80\uD488 \uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD560
+    \uC218 \uC788\uB294 \uC784\uBB34\uC785\uB2C8\uB2E4."
   Btn_InfoBaseAttack: {fileID: 175403599}
+  info_BaseAttack: "\uC288\uD37C \uD06C\uB808\uB527\uC744 \uD68D\uB4DD\uD560 \uC218
+    \uC788\uB294       \uB3C4\uC804\uC801 \uC784\uBB34\uC785\uB2C8\uB2E4."
   Rect_RequestDepth: {fileID: 1687691195}
   Btn_SelectLevel1: {fileID: 892590746}
   Btn_SelectLevel2: {fileID: 465341386}

@@ -18,6 +18,7 @@ public class ShipCombatData : MonoBehaviour
     [SerializeField] float def;
 
     public float CurHp { get; private set; }
+    float _hpRatioTemp;
     public void Init()
     {
         if (shipTableKey >= 0)
@@ -29,9 +30,11 @@ public class ShipCombatData : MonoBehaviour
             this.ShipData = new ShipData(hp, atk, def, NavMissionLogicManager.Instance.GetValue_StageState());            
         }
         CurHp = ShipData.GetFinalState(CombatStateType.Hp);
+        _hpRatioTemp = 1;
 
         this.BuffManager = GetComponent<ShipBuffManager>();
         this.BuffManager.Init(ShipData);
+        Register_OnAllStaticDataUpdate(SetHpRatio);
     }
     public void Register_OnDead(Action callBack)
     {
@@ -53,6 +56,7 @@ public class ShipCombatData : MonoBehaviour
 
         float calcedDmg = originDmg * Calcf.DmgMultiple_Def(originDmg, validDef);
         CurHp -= calcedDmg;
+        _hpRatioTemp = GetHpRatio();
         kjh.GameLogicManager.Instance.OnDameged(calcedDmg, type, this.transform.position, isCrit);
         kjh.GameLogicManager.Instance.UpdateSelectShipData();
 
@@ -109,6 +113,10 @@ public class ShipCombatData : MonoBehaviour
             return 1;
 
         return CurHp / ShipData.GetFinalState(CombatStateType.Hp, BuffManager.GetFinalState(CombatStateType.Hp));
+    }
+    void SetHpRatio()
+    {
+        CurHp = ShipData.GetFinalState(CombatStateType.Hp, BuffManager.GetFinalState(CombatStateType.Hp)) * _hpRatioTemp;
     }
 
     Action _onDead;

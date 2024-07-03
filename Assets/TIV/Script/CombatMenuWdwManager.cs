@@ -14,8 +14,11 @@ public class CombatMenuWdwManager : MonoBehaviour
     [SerializeField] Button Btn_SelectAnnihilation;
     [SerializeField] Button Btn_SelectBaseAttack;
     [SerializeField] Button Btn_InfoRequest;
+    [SerializeField] string info_Request;
     [SerializeField] Button Btn_InfoAnnihilation;
+    [SerializeField] string info_Annihilation;
     [SerializeField] Button Btn_InfoBaseAttack;
+    [SerializeField] string info_BaseAttack;
     Vector2 _mainDepthPos;
 
     [Header("Çù¾àÀÇ·Ú µª½º")]
@@ -70,6 +73,10 @@ public class CombatMenuWdwManager : MonoBehaviour
         {
             btn.onClick.AddListener(() => SetRectPosCoroutine_Lerp(Rect_BtnGroup, -_mainDepthPos));
         }
+
+        Btn_InfoRequest.onClick.AddListener(() => UIManager.Instance.PopUpWdw_InfoPopUpUI(info_Request, 10));
+        Btn_InfoAnnihilation.onClick.AddListener(() => UIManager.Instance.PopUpWdw_InfoPopUpUI(info_Annihilation, 10));
+        Btn_InfoBaseAttack.onClick.AddListener(() => UIManager.Instance.PopUpWdw_InfoPopUpUI(info_BaseAttack, 10));
     }
 
     public void SetWdwToggle()

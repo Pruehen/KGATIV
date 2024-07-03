@@ -84,7 +84,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Destroy(this.transform.position);
+            //Destroy(this.transform.position);
         }
     }
 

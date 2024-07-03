@@ -2,41 +2,51 @@
   "_shipPositionDatas": [
     {
       "_shipKey": 0,
-      "_posX": -173.908844,
-      "_posZ": -318.40564
+      "_posX": -36.89516,
+      "_posZ": -0.455645919
     },
     {
       "_shipKey": 0,
-      "_posX": -73.76995,
-      "_posZ": -163.0987
+      "_posX": -139.5307,
+      "_posZ": -0.02779021
     },
     {
       "_shipKey": 0,
-      "_posX": 22.9069977,
-      "_posZ": -138.763077
+      "_posX": 61.6089859,
+      "_posZ": -2.61012745
     },
     {
       "_shipKey": 0,
-      "_posX": -138.222778,
-      "_posZ": -239.628891
+      "_posX": 111.3684,
+      "_posZ": -0.671097934
     },
     {
       "_shipKey": 0,
-      "_posX": 26.0468254,
-      "_posZ": -75.21818
+      "_posX": -188.708755,
+      "_posZ": -0.00512077
     },
     {
       "_shipKey": 0,
-      "_posX": 111.366882,
-      "_posZ": -0.6266787
+      "_posX": 165.186035,
+      "_posZ": -0.03548671
+    },
+    {
+      "_shipKey": 0,
+      "_posX": 13.4334717,
+      "_posZ": -6.48475075
+    },
+    {
+      "_shipKey": 0,
+      "_posX": -91.06662,
+      "_posZ": -3.02079535
     }
   ],
-  "Credit": 950771,
+  "Credit": 186172,
   "SuperCredit": 0,
   "Fuel": 240,
-  "ReFuelRemaning": 155,
-  "CurPrmStage": 27,
-  "CurSecStage": 7,
-  "FleetCost": 7,
-  "LastTime": "2024-07-03T16:33:22.2743433+09:00"
+  "ReFuelRemaning": 0,
+  "CurPrmStage": 14,
+  "CurSecStage": 10,
+  "FleetCost": 8,
+  "LastTime": "2024-07-03T17:51:53.4380042+09:00"
 }

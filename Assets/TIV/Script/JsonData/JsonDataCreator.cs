@@ -742,7 +742,7 @@ public class UserHaveShipData
         }
     }
 
-    public static int MaxLevel() { return 1000; }
+    public static int MaxLevel() { return 10000; }
 }
 public class UserHaveShipDataList
 {

@@ -43,8 +43,7 @@ public class UserDataViewModel
     {
         get { return _reFuelRemaning; }
         set
-        {
-            if (_reFuelRemaning == value) return;
+        {            
             _reFuelRemaning = value;
             OnPropertyChanged(nameof(ReFuelRemaning));
         }
