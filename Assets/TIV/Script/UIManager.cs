@@ -27,6 +27,12 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] Button Btn_GachaMenuOn;
     [SerializeField] Button Btn_GachaMenuOff;
 
+    [Header("전투 메뉴 조작")]
+    [SerializeField] GameObject Ui_LeftTop;
+    [SerializeField] GameObject Wdw_CombatMenu;
+    [SerializeField] Button Btn_CombatMenuToggle;
+    public CombatMenuWdwManager CombatMenuWdwManager { get; private set; }
+
     [Header("장비 정보창 조작")]
     [SerializeField] GameObject Wdw_EquipInfo;
     EquipInfoUIManager _equipInfoUIManager;
@@ -70,6 +76,9 @@ public class UIManager : SceneSingleton<UIManager>
         Btn_GachaMenuOn.onClick.AddListener(() => SetActiveWdw_GachaMenu(true));
         Btn_GachaMenuOff.onClick.AddListener(() => SetActiveWdw_GachaMenu(false));
 
+        CombatMenuWdwManager = Wdw_CombatMenu.GetComponent<CombatMenuWdwManager>();
+        Btn_CombatMenuToggle.onClick.AddListener(CombatMenuWdwManager.SetWdwToggle);
+
         _equipInfoUIManager = Wdw_EquipInfo.GetComponent<EquipInfoUIManager>();
         if (Btn_EquipInfoOnArray != null && Btn_EquipInfoOnArray.Length > 0)
         {
@@ -96,6 +105,7 @@ public class UIManager : SceneSingleton<UIManager>
     public void SetActiveWdw_ShipMenu(bool value)
     {
         SetActiveWdw(Wdw_ShipMenu, value);
+        SetActiveWdw(Ui_LeftTop, !value);
 
         if (value)
         {
@@ -109,11 +119,13 @@ public class UIManager : SceneSingleton<UIManager>
     public void SetActiveWdw_FleetMenu(bool value)
     {        
         SetActiveWdw(Wdw_FleetMenu, value);
+        SetActiveWdw(Ui_LeftTop, !value);
         MainCameraOrbit.Instance.SetIsTopviewFixed(value);
     }
     public void SetActiveWdw_GachaMenu(bool value)
     {
         SetActiveWdw(Wdw_GachaMenu, value);
+        SetActiveWdw(Ui_LeftTop, !value);
     }
     public void SetActiveWdw_EquipInfo(bool value)
     {        

@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         _rigidbody.velocity = this.transform.forward * table._projectileVelocity;
 
         //_cumulativeDistance = 0;
-        //float toTargetDistance = Vector3.Distance(initPos, targetPos);
+        //float toTargetDistance = Vector3.Distance(_initPos, targetPos);
         //if (table._projectileVelocity * 0.5f < toTargetDistance)//비행 시간이 0.5초 이상일 경우
         //{
         //    _safeDistance = toTargetDistance * 0.9f;
