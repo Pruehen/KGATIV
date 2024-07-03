@@ -32,7 +32,9 @@ public class ShipFCS : MonoBehaviour
             }
 
             CombatData.Register_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);//장비 갱신을 위한 이벤트 연결
-            Master.Register_OnDead(OnDead_UnRegister_OnAllStaticDataUpdate);
+            Master.Register_OnDead(OnRemove_UnRegister_OnAllStaticDataUpdate);
+            Master.Register_OnExit(OnRemove_UnRegister_OnAllStaticDataUpdate);
+            Master.Register_OnRamove(OnRemove_UnRegister_OnAllStaticDataUpdate);
         }
         else
         {            
@@ -83,7 +85,7 @@ public class ShipFCS : MonoBehaviour
         }
     }
 
-    void OnDead_UnRegister_OnAllStaticDataUpdate(ShipMaster master)
+    void OnRemove_UnRegister_OnAllStaticDataUpdate(ShipMaster master)
     {
         CombatData.UnRegister_OnAllStaticDataUpdate(UpdateUsingWeapon_OnEquipChange);
     }

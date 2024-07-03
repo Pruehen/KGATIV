@@ -1,6 +1,7 @@
 using EnumTypes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace kjh
@@ -99,7 +100,10 @@ namespace kjh
 
         public void AllActiveShipRemove()
         {
-
+            while(_activeShipDic.Count > 0)
+            {
+                _activeShipDic.First().Value.CommandRemove();
+            }
         }
         //피격, 데미지 발생 시에 대한 처리=====================================================================================
         public void Register_onDmgedCallBack(Action<int, WeaponProjectileType, Vector3, bool> callback)

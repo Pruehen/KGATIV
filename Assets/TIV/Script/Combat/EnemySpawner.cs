@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +8,20 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
     [SerializeField] List<GameObject> SpawnEnemyPrf_Boss;
     Dictionary<int, ShipMaster> _activeShipDic = new Dictionary<int, ShipMaster>();
 
-    private void Start()
+    Action<int> _onActiveEnemyCountChanged;
+
+    public void Register_onActiveEnemyCountChanged(Action<int> callBack)
     {
-        UserData userData = JsonDataManager.DataLode_UserData();        
-        Spawn_SetIndex(userData.CurPrmStage, userData.CurSecStage);
+        _onActiveEnemyCountChanged += callBack;
+    }
+    public void UpRegister_onActiveEnemyCountChanged(Action<int> callBack)
+    {
+        _onActiveEnemyCountChanged -= callBack;
+    }
+
+    private void Start()
+    {               
+        Spawn_NavStage(UserData.Instance.CurPrmStage, UserData.Instance.CurSecStage, 2);
     }
 
     void AddActiveShip_Enemy(ShipMaster shipMaster)
@@ -25,18 +36,10 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
     public void RemoveActiveShip_Enemy(ShipMaster shipMaster)
     {
         _activeShipDic.Remove(shipMaster.GetInstanceID());
-        NextStageCheck_OnRemoveActiveShip_Enemy();
-    }
-    void NextStageCheck_OnRemoveActiveShip_Enemy()
-    {
-        if(_activeShipDic.Count == 0)
-        {
-            NavMissionLogicManager.Instance.StageUp(out int prmStage, out int secStage);
-            Spawn_SetIndex(prmStage, secStage);
-        }
+        _onActiveEnemyCountChanged.Invoke(_activeShipDic.Count);
     }
 
-    void Spawn_SetIndex(int prmStage, int secStage)
+    public void Spawn_NavStage(int prmStage, int secStage, float warpTime)
     {
         int useIndex = prmStage - 1;
         if (secStage != 10)//일반 스테이지
@@ -45,7 +48,7 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
             {
                 useIndex = SpawnEnemyPrf.Count - 1;
             }
-            Spawn(SpawnEnemyPrf[useIndex]);
+            Spawn(SpawnEnemyPrf[useIndex], warpTime);
         }
         else//보스 스테이지
         {
@@ -53,19 +56,20 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
             {
                 useIndex = SpawnEnemyPrf_Boss.Count - 1;
             }
-            Spawn(SpawnEnemyPrf_Boss[useIndex]);
+            Spawn(SpawnEnemyPrf_Boss[useIndex], warpTime);
         }
     }
 
-    void Spawn(GameObject prf)
+    void Spawn(GameObject prf, float warpTime)
     {
         GameObject fleet = Instantiate(prf, this.transform);
         while (fleet.transform.childCount != 0)
         {            
             ShipMaster shipMaster = fleet.transform.GetChild(0).GetComponent<ShipMaster>();
-            shipMaster.Init(2);
+            shipMaster.Init(warpTime);
             AddActiveShip_Enemy(shipMaster);
             shipMaster.Register_OnDead(RemoveActiveShip_Enemy);
+            shipMaster.Register_OnRamove(RemoveActiveShip_Enemy);
 
             shipMaster.transform.SetParent(this.transform);
         }

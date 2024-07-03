@@ -16,9 +16,13 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
 
         _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
         FleetLogicManager.Instance.OnFleetCostChange();
-        shipMaster.Register_OnExit(RemoveActiveShip_Player);        
-        shipMaster.Register_OnDead(RespawnDeadShip);
+        shipMaster.Register_OnExit(RemoveActiveShip_Player);   
+        
+        shipMaster.Register_OnDead(RespawnShip_OnDead);
         shipMaster.Register_OnDead(RemoveActiveShip_Player);
+
+        shipMaster.Register_OnRamove(RespawnShip_OnRemove);
+        shipMaster.Register_OnRamove(RemoveActiveShip_Player);
     }
     void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
@@ -67,11 +71,17 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
             UserData.Instance.SetShipPosDatas(_activeShipDic);
         }        
     }
-    void RespawnDeadShip(ShipMaster shipMaster)
+    void RespawnShip_OnDead(ShipMaster shipMaster)
     {        
         ShipSpawnAndInit(shipMaster.CombatData.GetShipTableKey(), shipMaster.transform.position, 60);
         UserData.Instance.SetShipPosDatas(_activeShipDic);        
     }
+    void RespawnShip_OnRemove(ShipMaster shipMaster)
+    {
+        ShipSpawnAndInit(shipMaster.CombatData.GetShipTableKey(), shipMaster.transform.position, 10);
+        UserData.Instance.SetShipPosDatas(_activeShipDic);
+    }
+
 
     void ShipSpawnAndInit(int shipKey, Vector3 spawnPos, float warpTime)
     {

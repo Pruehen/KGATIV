@@ -135,9 +135,18 @@ public class ShipMaster : MonoBehaviour, ITargetable
         if (spawnDummyTemp != null) Destroy(spawnDummyTemp);
         Destroy(this.gameObject);
     }
-
+    /// <summary>
+    /// 기본 사망 처리
+    /// </summary>
     Action<ShipMaster> _onDead;
+    /// <summary>
+    /// 플레이어 함선의 탈출
+    /// </summary>
     Action<ShipMaster> _onExit;
+    /// <summary>
+    /// 스테이지 변경을 위한 제거
+    /// </summary>
+    Action<ShipMaster> _onRemove;
 
     public void Register_OnDead(Action<ShipMaster> callBack)
     {
@@ -147,18 +156,29 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         _onExit += callBack;
     }
-
+    public void Register_OnRamove(Action<ShipMaster> callBack)
+    {
+        _onRemove += callBack;
+    }
+    /// <summary>
+    /// 이젝숀!
+    /// </summary>
     public void CommandExit()
     {
-        Exit();
-    }
-    void Exit()
-    {        
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);
         _onExit?.Invoke(this);
         Destroy(this.gameObject);
     }
 
+    /// <summary>
+    /// 스테이지 변경 처리를 위한 함선 제거
+    /// </summary>
+    public void CommandRemove()
+    {
+        kjh.GameLogicManager.Instance.RemoveActiveShip(this);
+        _onRemove?.Invoke(this);
+        Destroy(this.gameObject);
+    }
 
     void CreateDebri()
     {
