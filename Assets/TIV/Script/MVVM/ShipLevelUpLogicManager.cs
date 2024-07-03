@@ -75,7 +75,7 @@ namespace kjh
         /// <summary>
         /// 레벨업 버튼을 눌렀을 때 호출하도록 연결
         /// </summary>
-        public void LevelUp()
+        public bool LevelUp()
         {                        
             if(JsonDataManager.DataLode_UserData().TryUseCredit(_needCreditLevelUp))
             {
@@ -84,7 +84,12 @@ namespace kjh
                 SetNeedCredit(controlShipData._level, _levelUpCount);
                 OnLevelUpInfoCallBack?.Invoke(_levelUpCount, controlShipData._level, _needCreditLevelUp);
                 kjh.GameLogicManager.Instance.OnShipDataChenge();
+                return true;
             }            
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -30442,7 +30442,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uCD08 \uCCB4\uB825 +"
+  m_text: "\uAE30\uCD08 \uCCB4\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}
   m_sharedMaterial: {fileID: 3836177784178267265, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}
@@ -61503,7 +61503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uCD08 \uACF5\uACA9\uB825 +"
+  m_text: "\uAE30\uCD08 \uACF5\uACA9\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}
   m_sharedMaterial: {fileID: 3836177784178267265, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}
@@ -75024,7 +75024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAE30\uCD08 \uBC29\uC5B4\uB825 +"
+  m_text: "\uAE30\uCD08 \uBC29\uC5B4\uB825"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}
   m_sharedMaterial: {fileID: 3836177784178267265, guid: 18184a6c039255a498e5bcf57c250da0, type: 2}

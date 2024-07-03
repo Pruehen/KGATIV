@@ -290,7 +290,12 @@ public class ShipMenuUIManager : MonoBehaviour
     }
     void Command_LevelUp()
     {
-        _vm.Command_LevelUp();
+        ShipTable table = JsonDataManager.DataLode_ShipTable(_selectedShip);
+        int beforeLevel = JsonDataManager.DataLode_UserHaveShipData(_selectedShip)._level;
+        if (_vm.Command_LevelUp())
+        {
+            UIManager.Instance.PopupWdw_ShipUpgradeResult(table, beforeLevel, JsonDataManager.DataLode_UserHaveShipData(_selectedShip)._level);
+        }
     }
 
     public void SelectWdw(GameObject wdw)

@@ -70,9 +70,9 @@ namespace ViewModel.Extensions
         {
             ShipLevelUpLogicManager.Instance.ChangeLevelUpCount(changedLevelUpCount);
         }
-        public static void Command_LevelUp(this ShipMenuUIViewModel vm)
+        public static bool Command_LevelUp(this ShipMenuUIViewModel vm)
         {
-            ShipLevelUpLogicManager.Instance.LevelUp();
+            return ShipLevelUpLogicManager.Instance.LevelUp();
         }
 
         public static void OnChange_LevelUpInfo(this ShipMenuUIViewModel vm, int levelUpCount, int shipLevel, int needCredit)

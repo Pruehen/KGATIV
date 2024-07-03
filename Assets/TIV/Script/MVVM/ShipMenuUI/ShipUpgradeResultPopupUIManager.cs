@@ -22,9 +22,9 @@ public class ShipUpgradeResultPopupUIManager : MonoBehaviour
         float affterAtk = table.GetAtk(affterLevel);
         float affterDef = table.GetDef(affterLevel);
 
-        TMP_DeltaHp.text = $"{affterHp - beforeHp:F0}";
-        TMP_DeltaAtk.text = $"{affterAtk - beforeAtk:F0}";
-        TMP_DeltaDef.text = $"{affterDef - beforeDef:F0}";
+        TMP_DeltaHp.text = $"+{affterHp - beforeHp:F0}";
+        TMP_DeltaAtk.text = $"+{affterAtk - beforeAtk:F0}";
+        TMP_DeltaDef.text = $"+{affterDef - beforeDef:F0}";
 
         StartCoroutine(CloseWdw(activeTime));
     }
