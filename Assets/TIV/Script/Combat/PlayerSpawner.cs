@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
     [SerializeField] List<GameObject> Prefab_ShipList;    
 
     Dictionary<int, ShipMaster> _activeShipDic = new Dictionary<int, ShipMaster>();
+    public Action<Dictionary<int, ShipMaster>> _onActiveShipChanged;
 
     void AddActiveShip_Player(ShipMaster shipMaster)
     {
@@ -15,6 +17,8 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
         }
 
         _activeShipDic.Add(shipMaster.GetInstanceID(), shipMaster);
+        _onActiveShipChanged.Invoke(_activeShipDic);
+
         FleetLogicManager.Instance.OnFleetCostChange();
         shipMaster.Register_OnExit(RemoveActiveShip_Player);   
         
@@ -27,6 +31,8 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
     void RemoveActiveShip_Player(ShipMaster shipMaster)
     {
         _activeShipDic.Remove(shipMaster.GetInstanceID());
+        _onActiveShipChanged.Invoke(_activeShipDic);
+
         FleetLogicManager.Instance.OnFleetCostChange();
         UserData.Instance.SetShipPosDatas(_activeShipDic);
     }

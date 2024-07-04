@@ -58,6 +58,38 @@ namespace UI.Extension
             }
             tmp.text = $"{cost}";
         }
+
+        public static string SimplifyNumber(this float number)
+        {
+            if (number >= 1_000_000_000_000_000_000)
+            {
+                return $"{number / 1_000_000_000_000_000_000.0:F1}E";
+            }
+            else if (number >= 1_000_000_000_000_000)
+            {
+                return $"{number / 1_000_000_000_000_000.0:F1}P";
+            }
+            else if (number >= 1_000_000_000_000)
+            {
+                return $"{number / 1_000_000_000_000.0:F1}T";
+            }
+            else if (number >= 1_000_000_000)
+            {
+                return $"{number / 1_000_000_000.0:F1}G";
+            }
+            else if (number >= 1_000_000)
+            {
+                return $"{number / 1_000_000.0:F1}M";
+            }
+            else if (number >= 1_000)
+            {
+                return $"{number / 1_000.0:F1}k";
+            }
+            else
+            {
+                return $"{number:F0}";
+            }
+        }
     }
 
 

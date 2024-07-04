@@ -12,6 +12,7 @@ public class FleetMenuUIManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI Label_SpawnMode;
     [SerializeField] TextMeshProUGUI Text_FleetCost;
+    [SerializeField] TextMeshProUGUI Text_FleetCombatPower;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4F1;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4D1;
     [SerializeField] EventTrigger EventTrigger_ShipSpawn_4C1;
@@ -37,6 +38,7 @@ public class FleetMenuUIManager : MonoBehaviour
             _vm = new FleetMenuUIManagerViewModel();
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.Register_onFleetCostChange();
+            _vm.Register_onActiveShipChanged();
             _vm.RefreshViewModel();
             Btn_Upgrade.onClick.AddListener(_vm.Command_TryUpgradeFleetCost);
         }
@@ -60,6 +62,9 @@ public class FleetMenuUIManager : MonoBehaviour
                 break;
             case nameof(_vm.UsingFleetCost):
                 Text_FleetCost.text = $"{_vm.UsingFleetCost} / {_vm.MaxFleetCost}";
+                break;
+            case nameof(_vm.FleetCombatPower):
+                Text_FleetCombatPower.text = _vm.FleetCombatPower.SimplifyNumber();
                 break;
             case nameof(_vm.UpgradeCost):
                 Text_FleetCostUpgradeCost.SetTmpCostText(_vm.UpgradeCost);

@@ -17,6 +17,7 @@ public class UsingShipOverUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI Text_ShipName;
     [SerializeField] Image[] Image_Array_WeaponCoolCover;
     [SerializeField] Image[] Image_Array_WeaponCool;
+    [SerializeField] TextMeshProUGUI Text_CombatPower;
 
 
     Button button;
@@ -74,7 +75,10 @@ public class UsingShipOverUI : MonoBehaviour
                 {
                     Text_ShipName.text = targetObject.ShipName;                    
                 }
-                break;         
+                break;
+            case nameof(_vm.CombatPower):
+                Text_CombatPower.text = _vm.CombatPower.SimplifyNumber();
+                break;
         }
     }
 
@@ -133,6 +137,8 @@ public class UsingShipOverUI : MonoBehaviour
             _vm.TargetShipMaster = targetObject;
             _vm.IsViewData = true;
             kjh.GameLogicManager.Instance.SelectActiveShip(targetObject);
+
+            _vm.CombatPower = Calcf.CombatPower(targetObject);
         }
     }
     public void UnSelectTargetObject_OnDeSelect()

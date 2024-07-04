@@ -1,4 +1,5 @@
 using kjh;
+using System.Collections.Generic;
 
 namespace ViewModel.Extensions
 {
@@ -12,6 +13,15 @@ namespace ViewModel.Extensions
         {
             FleetLogicManager.Instance.UnRegister_onFleetCostChange(vm.OnRefreshViewModel);
         }
+        public static void Register_onActiveShipChanged(this FleetMenuUIManagerViewModel vm)
+        {
+            PlayerSpawner.Instance._onActiveShipChanged += (vm.OnRefreshViewModel_CombatPower);
+        }
+        public static void UnRegister_onActiveShipChanged(this FleetMenuUIManagerViewModel vm)
+        {
+            PlayerSpawner.Instance._onActiveShipChanged -= (vm.OnRefreshViewModel_CombatPower);
+        }
+
         public static void RefreshViewModel(this FleetMenuUIManagerViewModel vm)
         {
             FleetLogicManager.Instance.OnFleetCostChange();
@@ -26,6 +36,18 @@ namespace ViewModel.Extensions
             vm.MaxFleetCost = maxCost;
             vm.UsingFleetCost = usingCost;
             vm.UpgradeCost = upgradeCost;
+        }
+
+        public static void OnRefreshViewModel_CombatPower(this FleetMenuUIManagerViewModel vm, Dictionary<int, ShipMaster> activeShipDic)//ฤÝน้
+        {
+            float totalCombatPower = 0;
+            foreach (var item in activeShipDic)
+            {
+                ShipMaster shipMaster = item.Value;
+                totalCombatPower += Calcf.CombatPower(shipMaster);
+            }        
+
+            vm.FleetCombatPower = totalCombatPower;
         }
     }
 }

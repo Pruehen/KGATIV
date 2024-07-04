@@ -3,6 +3,7 @@ public class FleetMenuUIManagerViewModel
 {
     int _maxFleetCost;
     int _usingFleetCost;
+    float _fleetCombatPower;
     long _upgradeCost;
     public int MaxFleetCost
     {
@@ -22,6 +23,16 @@ public class FleetMenuUIManagerViewModel
             if (_usingFleetCost == value) return;
             _usingFleetCost = value;
             OnPropertyChanged(nameof(UsingFleetCost));
+        }
+    }
+    public float FleetCombatPower
+    {
+        get { return _fleetCombatPower; }
+        set
+        {
+            if (_fleetCombatPower == value) return;
+            _fleetCombatPower = value;
+            OnPropertyChanged(nameof(FleetCombatPower));
         }
     }
     public long UpgradeCost

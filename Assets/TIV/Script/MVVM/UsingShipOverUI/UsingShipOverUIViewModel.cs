@@ -7,6 +7,7 @@ public class UsingShipOverUIViewModel
     float _hpRatio;
     List<Weapon> _usingWeaponList;
     bool _isViewData;
+    float _combatPower;
 
     public ShipMaster TargetShipMaster
     {
@@ -59,6 +60,20 @@ public class UsingShipOverUIViewModel
         {
             _isViewData = value;
             OnPropertyChanged(nameof(IsViewData));            
+        }
+    }
+
+    public float CombatPower
+    {
+        get
+        {
+            return _combatPower;
+        }
+        set
+        {
+            if (_combatPower == value) return;
+            _combatPower = value;
+            OnPropertyChanged(nameof(CombatPower));
         }
     }
 

@@ -1,6 +1,7 @@
 using EnumTypes;
 using System.ComponentModel;
 using TMPro;
+using UI.Extension;
 using UnityEngine;
 using ViewModel.Extensions;
 
@@ -59,7 +60,7 @@ public class UsingShipOverUIManager : MonoBehaviour
                 Wdw_SelectShipInfoView.SetActive(_vm.IsActiveInfoView);
                 break;
             case nameof(_vm.Hp):
-                TextSetColor(TMP_Hp, $"{_vm.Hp:F0} / {_vm.MaxHp:F0}", CombatStateType.Hp);
+                TextSetColor(TMP_Hp, $"{_vm.Hp.SimplifyNumber()} / {_vm.MaxHp.SimplifyNumber()}", CombatStateType.Hp);
                 break;
             case nameof(_vm.MaxHp):
                 TextSetColor(TMP_Hp, $"{_vm.Hp:F0} / {_vm.MaxHp:F0}", CombatStateType.Hp);
