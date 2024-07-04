@@ -372,9 +372,9 @@ public class ShipMenuUIManager : MonoBehaviour
         }
         _activeIconCount = 0;
 
-        foreach (var item in JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache._dic)
+        foreach (UserHaveEquipData item in UserHaveEquipDataPack.GetCacheList())
         {
-            UserHaveEquipData data = item.Value;
+            UserHaveEquipData data = item;
             EquipTable table = JsonDataManager.DataLode_EquipTable(data._equipTableKey);
             if (table._type == equipType)
             {

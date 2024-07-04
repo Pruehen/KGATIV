@@ -63,7 +63,7 @@ public class UsingShipOverUIManager : MonoBehaviour
                 TextSetColor(TMP_Hp, $"{_vm.Hp.SimplifyNumber()} / {_vm.MaxHp.SimplifyNumber()}", CombatStateType.Hp);
                 break;
             case nameof(_vm.MaxHp):
-                TextSetColor(TMP_Hp, $"{_vm.Hp:F0} / {_vm.MaxHp:F0}", CombatStateType.Hp);
+                TextSetColor(TMP_Hp, $"{_vm.Hp.SimplifyNumber()} / {_vm.MaxHp.SimplifyNumber()}", CombatStateType.Hp);
                 break;
             case nameof(_vm.Atk):
                 TextSetColor(TMP_Atk, $"{_vm.Atk:F0}", CombatStateType.Atk);

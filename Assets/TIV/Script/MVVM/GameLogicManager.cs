@@ -172,8 +172,8 @@ namespace kjh
 
             shipDataOrigin.Equip(equipUniqeKey);
 
-            //JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+            //JsonDataManager.jsonCache.UserHaveEquipDataPackCache.AllDicItemUpdate_EquipedShipKey();
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataPackCache, UserHaveEquipDataPack.FilePath());
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
             ShipData shipData = GetShipData(shipKey);
@@ -207,8 +207,8 @@ namespace kjh
 
             JsonDataManager.DataLode_UserHaveShipData(shipKey).Unequip(equipUniqeKey);
 
-            //JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+            //JsonDataManager.jsonCache.UserHaveEquipDataPackCache.AllDicItemUpdate_EquipedShipKey();
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataPackCache, UserHaveEquipDataPack.FilePath());
             JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveShipDataListCache, UserHaveShipDataList.FilePath());
 
             ShipData shipData = GetShipData(shipKey);
@@ -247,7 +247,7 @@ namespace kjh
         {
             UserHaveEquipData equipData = JsonDataManager.DataLode_UserHaveEquipData(equipUniqeKey);
             equipData.LevelUp(20);
-            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+            JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataPackCache, UserHaveEquipDataPack.FilePath());
             callback.Invoke(equipData);
         }
 

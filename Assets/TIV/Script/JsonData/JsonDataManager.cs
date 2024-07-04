@@ -96,8 +96,8 @@ public static class JsonDataManager
     }
     public static UserHaveEquipData DataLode_UserHaveEquipData(string key)
     {
-        UserHaveEquipDataDictionary dataDictionary = jsonCache.UserHaveEquipDataDictionaryCache;
-        return dataDictionary._dic[key];
+        UserHaveEquipDataPack dataDictionary = jsonCache.UserHaveEquipDataPackCache;
+        return dataDictionary.Find(key);
     }
     public static UserHaveShipData DataLode_UserHaveShipData(int key)
     {
@@ -223,17 +223,18 @@ public class JsonCache
             return _userData;
         }
     }
-    UserHaveEquipDataDictionary _userHaveEquipDataDictionaryCache;
-    public UserHaveEquipDataDictionary UserHaveEquipDataDictionaryCache
+    UserHaveEquipDataPack _userHaveEquipDataPackCache;
+    public UserHaveEquipDataPack UserHaveEquipDataPackCache
     {
         get
         {
-            if (_userHaveEquipDataDictionaryCache == null)
+            if (_userHaveEquipDataPackCache == null)
             {
-                _userHaveEquipDataDictionaryCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataDictionary>(UserHaveEquipDataDictionary.FilePath());
-                _userHaveEquipDataDictionaryCache.AllDicItemUpdate_EquipedShipKey();
+                _userHaveEquipDataPackCache = JsonDataManager.DataTableListLoad<UserHaveEquipDataPack>(UserHaveEquipDataPack.FilePath());
+                _userHaveEquipDataPackCache.AllDicItemUpdate_EquipedShipKey();
+                _userHaveEquipDataPackCache.DataPackInit_CopyDic_PathList();
             }
-            return _userHaveEquipDataDictionaryCache;
+            return _userHaveEquipDataPackCache;
         }
     }
     UserHaveShipDataList _userHaveShipDataListCache;
@@ -260,7 +261,7 @@ public class JsonCache
         _equipSetTableList = EquipSetTableListCache;
         _buffTableDictionaryCache = BuffTableDictionaryCache;
         _userData = UserDataCache;
-        _userHaveEquipDataDictionaryCache = UserHaveEquipDataDictionaryCache;
+        _userHaveEquipDataPackCache = UserHaveEquipDataPackCache;
         _userHaveShipDataListCache = UserHaveShipDataListCache;
     }
 }

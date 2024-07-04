@@ -60,19 +60,22 @@ public static class EquipManager
     /// <param name="setType"></param>
     /// <param name="count"></param>
     /// <returns></returns>
-    public static void RandomEquipDrop(SetType setType, int count)
+    public static List<string> RandomEquipDrop(SetType setType, int count)
     {
+        List<string> addedEquipKeyList = new List<string>();
         List<int> validEquipKeyList = GetValidEquipTable(setType);
-        UserHaveEquipDataDictionary data = JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache;
+        UserHaveEquipDataPack data = JsonDataManager.jsonCache.UserHaveEquipDataPackCache;
 
         for (int i = 0; i < count; i++)
         {
             int randomItemKey = validEquipKeyList[Random.Range(0, validEquipKeyList.Count)];
             UserHaveEquipData newItem = CreateEquip(randomItemKey, setType, i);
-            data._dic.Add(newItem._itemUniqueKey, newItem);
+            data.Add(newItem._itemUniqueKey, newItem);
+            addedEquipKeyList.Add(newItem._itemUniqueKey);
         }
 
-        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache, UserHaveEquipDataDictionary.FilePath());
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataPackCache, UserHaveEquipDataPack.FilePath());
+        return addedEquipKeyList;
     }
     /// <summary>
     /// 해당 키 아이템의 메인 스탯을 정한 후 생성해주는 메서드
@@ -98,19 +101,19 @@ public static class EquipManager
 
     public static List<string> PrintEquipData(UserHaveEquipData equip)
     {
-        UserHaveEquipDataDictionary data = JsonDataManager.jsonCache.UserHaveEquipDataDictionaryCache;
+        UserHaveEquipDataPack data = JsonDataManager.jsonCache.UserHaveEquipDataPackCache;
         List<string> stringData = new List<string>();
-        foreach (var item in data._dic)
+        foreach (var item in data.cacheList)
         {
-            EquipTable tabledata = JsonDataManager.DataLode_EquipTable(item.Value._equipTableKey);
+            EquipTable tabledata = JsonDataManager.DataLode_EquipTable(item._equipTableKey);
             stringData.Add($"{EnumTextData.EquipTypeText(tabledata._type)}");
             stringData.Add($"{tabledata._star}성");
             stringData.Add(tabledata._name);
             stringData.Add(tabledata._info);
 
-            stringData.Add($"{item.Value._level} 레벨");
-            float addStateValue = item.Value._mainState._level * JsonDataManager.DataLode_StateType_StateMultipleTable(item.Value._mainState._stateType)._multipleValue;
-            stringData.Add($"{EnumTextData.EquipTypeText(item.Value._mainState._stateType, addStateValue)}");
+            stringData.Add($"{item._level} 레벨");
+            float addStateValue = item._mainState._level * JsonDataManager.DataLode_StateType_StateMultipleTable(item._mainState._stateType)._multipleValue;
+            stringData.Add($"{EnumTextData.EquipTypeText(item._mainState._stateType, addStateValue)}");
         }
         return stringData;
     }

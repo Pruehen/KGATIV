@@ -54,4 +54,6 @@ public class TargetableProjectile : Projectile, ITargetable
             base.Destroy(this.transform.position);
         }
     }
+
+    public bool IsActive() { return true; }
 }

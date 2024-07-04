@@ -1,10 +1,8 @@
 using EnumTypes;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public interface ITargetable
 {
@@ -22,6 +20,7 @@ public interface ITargetable
     /// <returns></returns>
     public bool GetID();
     public void Hit(float dmg, WeaponProjectileType type, bool isCrit, List<string> hasDebuffKey);
+    public bool IsActive();
 }
 
 [RequireComponent(typeof(ShipCombatData))]
@@ -43,7 +42,8 @@ public class ShipMaster : MonoBehaviour, ITargetable
     public ShipMainComputer MainComputer { get; private set; }
     public ShipEngine Engine { get; private set; }    
     public ShipFCS FCS { get; private set; }
-    public ShipBuffManager BuffManager { get; private set; }       
+    public ShipBuffManager BuffManager { get; private set; }
+    bool _isActive;
 
     public Vector3 GetPosition()
     {
@@ -78,6 +78,10 @@ public class ShipMaster : MonoBehaviour, ITargetable
     {
         return JsonDataManager.DataLode_ShipTable(CombatData.GetShipTableKey())._cost;
     }
+    public bool IsActive()
+    {
+        return _isActive;
+    }
 
     public void Init(float warpTime)
     {
@@ -95,7 +99,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
             MainComputer.Init();
 
             Engine.onWarpStart += CreateDummy_OnWarpStart;
-            Engine.onWarpEnd += () => kjh.GameLogicManager.Instance.AddActiveShip(this);
+            Engine.onWarpEnd += ShipActivate_onWarpEnd;
             Engine.onWarpEnd += RemoveDummy_OnWarpEnd;
             Engine.Init(warpTime);
 
@@ -123,6 +127,11 @@ public class ShipMaster : MonoBehaviour, ITargetable
 
             CreateDummy();
         }
+    }
+    void ShipActivate_onWarpEnd()
+    {
+        kjh.GameLogicManager.Instance.AddActiveShip(this);
+        _isActive = true;
     }
 
     void Destroy_OnDead()

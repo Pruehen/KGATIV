@@ -769,6 +769,7 @@ public class UserHaveShipDataList
 public class UserHaveEquipData
 {
     public string _itemUniqueKey;
+    public int _itemGetTime;
     public int _equipTableKey;
     public SetType _setType;
     public int _level;
@@ -781,9 +782,10 @@ public class UserHaveEquipData
     [JsonIgnore]public Action OnUpgrade { get; set; }
 
     [JsonConstructor]
-    public UserHaveEquipData(string itemUniqueKey, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList, int equipedShipKey)
+    public UserHaveEquipData(string itemUniqueKey, int itemGetTime, int equipTableKey, SetType setType, int level, int optimizedLevel, EquipStateSet mainState, List<EquipStateSet> subStateList, int equipedShipKey)
     {
         _itemUniqueKey = itemUniqueKey;
+        _itemGetTime = itemGetTime;
         _equipTableKey = equipTableKey;
         _setType = setType;
         _level = level;
@@ -804,6 +806,7 @@ public class UserHaveEquipData
     {
         DateTimeOffset now = DateTimeOffset.UtcNow;
         int unixTimeSeconds = (int)now.ToUnixTimeSeconds();
+        _itemGetTime = unixTimeSeconds;
 
         _itemUniqueKey = $"{unixTimeSeconds}_{createNum}{equipTableKey}{(int)setType}{(int)mainStateType}";
         _equipTableKey = equipTableKey;
@@ -948,17 +951,20 @@ public class UserHaveEquipData
         _equipedShipKey = -1;
     }
 }
-public class UserHaveEquipDataDictionary
+public class UserHaveEquipDataPack
 {    
-    public Dictionary<string, UserHaveEquipData> _dic = new Dictionary<string, UserHaveEquipData>();
+    [JsonProperty] Dictionary<string, UserHaveEquipData> _saveDic = new Dictionary<string, UserHaveEquipData>();
+    [JsonIgnore] public List<UserHaveEquipData> cacheList = new List<UserHaveEquipData>();
+
     [JsonConstructor]
-    public UserHaveEquipDataDictionary(Dictionary<string, UserHaveEquipData> dic)
+    public UserHaveEquipDataPack(Dictionary<string, UserHaveEquipData> saveDic)
     {
-        _dic = dic;        
+        _saveDic = saveDic;
     }
-    public UserHaveEquipDataDictionary()
+    public UserHaveEquipDataPack()
     {
-        _dic = new Dictionary<string, UserHaveEquipData>();        
+        _saveDic = new Dictionary<string, UserHaveEquipData>();
+        cacheList = new List<UserHaveEquipData>();
     }
     public void AllDicItemUpdate_EquipedShipKey()
     {
@@ -968,9 +974,67 @@ public class UserHaveEquipDataDictionary
         {
             foreach (string equipedKey in shipData.GetAllEquipedItemKey())
             {
-                _dic[equipedKey]._equipedShipKey = shipData._shipTablekey;
+                _saveDic[equipedKey]._equipedShipKey = shipData._shipTablekey;
             }
         }
+    }
+    public void DataPackInit_CopyDic_PathList()
+    {
+        cacheList = new List<UserHaveEquipData>();
+        foreach (var item in _saveDic)
+        {
+            cacheList.Add(item.Value);
+        }        
+        CacheListSort(SortValue.Level);
+    }
+    public void Add(string key, UserHaveEquipData item)
+    {
+        _saveDic.Add(key, item);
+        cacheList.Insert(0, item);
+    }
+    public enum SortValue
+    {
+        Level,
+        SetType,
+        GetTime,
+        IsEquiped
+    }
+    public void CacheListSort(SortValue sortValue)
+    {
+        switch (sortValue)
+        {
+            case SortValue.Level:
+                cacheList.Sort((x, y) => y._level.CompareTo(x._level));
+                break;
+            case SortValue.SetType:
+                cacheList.Sort((x, y) => y._setType.CompareTo(x._setType));
+                break;
+            case SortValue.GetTime:
+                cacheList.Sort((x, y) => y._itemGetTime.CompareTo(x._itemGetTime));
+                break;
+            case SortValue.IsEquiped:
+                cacheList.Sort((x, y) => y._equipedShipKey.CompareTo(x._equipedShipKey));
+                break;
+            default:
+                break;
+        }
+    }
+    public UserHaveEquipData Find(string key)
+    {
+        return _saveDic[key];
+    }
+
+    public static Dictionary<string, UserHaveEquipData> GetSaveDictionary()
+    {
+        return JsonDataManager.jsonCache.UserHaveEquipDataPackCache._saveDic;
+    }
+    public static List<UserHaveEquipData> GetCacheList()
+    {
+        return JsonDataManager.jsonCache.UserHaveEquipDataPackCache.cacheList;
+    }
+    public static void CommandSave()
+    {
+        JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.UserHaveEquipDataPackCache, FilePath());
     }
     public static string FilePath()
     {
@@ -1065,6 +1129,7 @@ public class UserData
     //MVVM 관련 코드==============================
     Action<UserData> _onRefreshViewModel_CallBack;
     Action<int> _onRefuelRemaningChange;
+    Action<int> _onCreditChange;
     public void Register_OnRefreshViewModel(Action<UserData> callBack)
     {
         _onRefreshViewModel_CallBack += callBack;
@@ -1080,6 +1145,14 @@ public class UserData
     public void UnRegister_OnRefuelRemaningChange(Action<int> callBack)
     {
         _onRefuelRemaningChange -= callBack;
+    }
+    public void Register_OnCreditChange(Action<int> callBack)
+    {
+        _onCreditChange += callBack;
+    }
+    public void UnRegister_OnCreditChange(Action<int> callBack)
+    {
+        _onCreditChange -= callBack;
     }
 
     public void RefreshViewModel()
@@ -1100,9 +1173,13 @@ public class UserData
     /// <param name="value"></param>
     public void AddCredit(long value)
     {
-        Credit += value;
-        AddCreditViewOverUIManager.Instance.OnAddCredit((int)value);
-        RefreshViewModel();
+        if (value != 0)
+        {
+            Credit += value;
+            AddCreditViewOverUIManager.Instance.OnAddCredit((int)value);
+            _onCreditChange?.Invoke((int)value);
+            RefreshViewModel();
+        }
     }
     /// <summary>
     /// 크레딧 사용 메서드. 충분하면 사용 후 true 반환, 아니면 false 반환
@@ -1119,6 +1196,7 @@ public class UserData
         else
         {
             Credit -= value;
+            _onCreditChange.Invoke((int)-value);
             RefreshViewModel();
             Save();
             return true;
@@ -1265,11 +1343,11 @@ public class JsonDataCreator : MonoBehaviour
         //EquipManager.RandomEquipDrop(SetType.Gamma, 40);
         //EquipManager.RandomEquipDrop(SetType.Delta, 20);
 
-        //foreach (EquipSetTable Table in JsonDataManager.jsonCache.EquipSetTableListCache.list)
+        //foreach (EquipSetTable Table in JsonDataManager.jsonCache.EquipSetTableListCache.cacheList)
         //{
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set1Key, new BuffTable(Table._set1Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set2Key, new BuffTable(Table._set2Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._dic.Add(Table._set4Key, new BuffTable(Table._set4Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set1Key, new BuffTable(Table._set1Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set2Key, new BuffTable(Table._set2Key, "버프 설명", new List<float>() { 18 }));
+        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set4Key, new BuffTable(Table._set4Key, "버프 설명", new List<float>() { 18 }));
         //}
 
         //JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.BuffTableDictionaryCache, BuffTableDictionary.FilePath());

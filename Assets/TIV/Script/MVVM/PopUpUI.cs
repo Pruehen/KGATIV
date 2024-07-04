@@ -8,7 +8,7 @@ public class PopUpUI : MonoBehaviour
     [SerializeField] Button Btn_UIBtn;
     float _activeTime = 0;
 
-    public void SetWarningPopUp(string msg, float activeTime)
+    public void SetPopUpUI(string msg, float activeTime)
     {
         TMP_Msg.text = msg;
         _activeTime = activeTime;

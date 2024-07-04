@@ -13,7 +13,7 @@ public class NavMissionLogicManager
                 _instance._prmStage = UserData.Instance.CurPrmStage;
                 _instance._secStage = UserData.Instance.CurSecStage;
                 _instance._defeatedBossStage = false;
-                _instance._inNavMissionDefaultMode = true;
+                _instance._isEnemyRespawn_OnStageChanged = true;
 
                 EnemySpawner.Instance.Register_onActiveEnemyCountChanged(_instance.OnActiveEnemyCountChanged);
             }
@@ -26,7 +26,16 @@ public class NavMissionLogicManager
     /// </summary>
     Action<int, int, bool, bool> _onStageChange;
 
-    bool _inNavMissionDefaultMode;
+    bool _isEnemyRespawn_OnStageChanged;
+
+    /// <summary>
+    /// false일 경우, 모든 적이 죽어도 자동으로 적을 재생성하지 않음
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetIsEnemyRespawn_OnStageChanged(bool value)
+    {
+        _isEnemyRespawn_OnStageChanged = value;
+    }
 
     int _prmStage;
     int _secStage;
@@ -48,14 +57,14 @@ public class NavMissionLogicManager
 
     void OnActiveEnemyCountChanged(int count) 
     {
-        if(_inNavMissionDefaultMode && count <= 0)
+        if(_isEnemyRespawn_OnStageChanged && count <= 0)
         {
-            StageUp(out int prmStage, out int secStage);
+            TryStageUp(out int prmStage, out int secStage);
             EnemySpawner.Instance.Spawn_NavStage(prmStage, secStage, 2);
         }
     }
 
-    public void StageUp(out int prmStage, out int secStage)
+    public void TryStageUp(out int prmStage, out int secStage)
     {
         if (_defeatedBossStage == false)
         {
@@ -95,10 +104,11 @@ public class NavMissionLogicManager
         _defeatedBossStage = true;        
         _onStageChange.Invoke(_prmStage, _secStage, false, _defeatedBossStage);
 
-        _inNavMissionDefaultMode = false;
+        SetIsEnemyRespawn_OnStageChanged(false);
         kjh.GameLogicManager.Instance.AllActiveShipRemove();
-        EnemySpawner.Instance.Spawn_NavStage(_prmStage, _secStage, 10);
-        _inNavMissionDefaultMode = true;
+        SetIsEnemyRespawn_OnStageChanged(true);
+
+        EnemySpawner.Instance.Spawn_NavStage(_prmStage, _secStage, 10);        
 
         UserData.Instance.CurPrmStage = _prmStage;
         UserData.Instance.CurSecStage = _secStage;
@@ -107,8 +117,7 @@ public class NavMissionLogicManager
 
     public float GetValue_StageState()
     {
-        float value = MathF.Pow(_prmStage + _secStage * 0.05f, 1.5f);
-        if (_secStage == 10) value *= 3;        
+        float value = MathF.Pow(_prmStage + _secStage * 0.05f, 1.5f);     
         return value;
     }
 }

@@ -51,7 +51,7 @@ public class ShipMainComputer : MonoBehaviour
                 if (target.GetVelocity().sqrMagnitude >= 10000) continue;
 
                 float distance = Vector3.SqrMagnitude(originPos - target.GetPosition());
-                if (target.IFF(thisID) == false)
+                if (target.IFF(thisID) == false && target.IsActive())
                 {
                     priorityQueue_MainTarget.TryAdd(distance, target);
                 }
@@ -72,8 +72,13 @@ public class ShipMainComputer : MonoBehaviour
                 {
                     if (target.GetVelocity().sqrMagnitude < 10000) continue;
 
-                    float distance = Vector3.SqrMagnitude(originPos - target.GetPosition());
-                    if (target.IFF(thisID) == false)
+                    Vector3 toTarget = target.GetPosition() - originPos;
+                    float distance = toTarget.sqrMagnitude;
+
+                    // 타겟이 자신에게 가까워지고 있는지 확인
+                    float approachingSpeed = Vector3.Dot(target.GetVelocity(), toTarget.normalized);
+
+                    if (approachingSpeed < 0 && target.IFF(thisID) == false && target.IsActive())
                     {
                         priorityQueue_InterceptTarget.TryAdd(distance, target);
                     }
@@ -100,7 +105,7 @@ public class ShipMainComputer : MonoBehaviour
             ITargetable target;
             if (collider.TryGetComponent(out target))
             {
-                if (target.IFF(thisID) == false)
+                if (target.IFF(thisID) == false && target.IsActive())
                 {
                     targetList.Add(target);
                 }

@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class UIManager : SceneSingleton<UIManager>
 {
-    [Header("탐색 임무 오버레이")]
+    [Header("탐색 임무 UI")]
     [SerializeField] GameObject Wdw_NavMissionOverUI;
+    [SerializeField] GameObject Wdw_RightTop;
+    [SerializeField] GameObject Wdw_LeftTop;
     public NavMissionUIManager NavMissionUIManager { get; private set; }
 
     [Header("함선 메뉴 조작")]
@@ -51,6 +53,7 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] PopUpUI PopUp_WarningPopUpUI;
     [SerializeField] PopUpUI PopUp_MsgPopUpUI;
     [SerializeField] PopUpUI PopUp_InfoPopUpUI;
+    [SerializeField] ConfirmPopUpUI ConfirmPopUp_ConfirmPopUpUI;
 
     [Header("기타 UI")]
     [SerializeField] UsingShipOverUIManager UsingShipOverUIManager;
@@ -104,6 +107,12 @@ public class UIManager : SceneSingleton<UIManager>
     public Action OnShipMenuWdwOn;
     public Action OnShipMenuWdwOff;
 
+    public void SetActiveWdw_NavMissionUI(bool value)
+    {
+        Wdw_NavMissionOverUI.SetActive(value);
+        Wdw_RightTop.SetActive(value);
+        Wdw_LeftTop.SetActive(value);
+    }
     public void SetActiveWdw_ShipMenu(bool value)
     {
         SetActiveWdw(Wdw_ShipMenu, value);
@@ -158,15 +167,19 @@ public class UIManager : SceneSingleton<UIManager>
 
     public void PopUpWdw_WarningPopUpUI(string msg, float time = 2)
     {
-        PopUp_WarningPopUpUI.SetWarningPopUp(msg, time);
+        PopUp_WarningPopUpUI.SetPopUpUI(msg, time);
     }
     public void PopUpWdw_MsgPopUpUI(string msg, float time = 2)
     {
-        PopUp_MsgPopUpUI.SetWarningPopUp(msg, time);
+        PopUp_MsgPopUpUI.SetPopUpUI(msg, time);
     }
     public void PopUpWdw_InfoPopUpUI(string msg, float time = 2)
     {
-        PopUp_InfoPopUpUI.SetWarningPopUp(msg, time);
+        PopUp_InfoPopUpUI.SetPopUpUI(msg, time);
+    }
+    public void PopUpWdw_ConfirmPopUpUI(Action callBack, string msg)
+    {
+        ConfirmPopUp_ConfirmPopUpUI.SetPopUpUI(callBack, msg);
     }
 
     void PopupWdw(GameObject popUpWdw, float popUpTime)
