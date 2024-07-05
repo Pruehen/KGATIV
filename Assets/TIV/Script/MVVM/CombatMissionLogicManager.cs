@@ -20,17 +20,24 @@ public class CombatMissionLogicManager
     Action _onStageClear;
     void OnActiveEnemyCountChanged(int count)
     {
-        if(count <= 0)
+        _deadEnemyCount++;
+        if (count <= 0)
         {
             //스테이지 클리어 처리 
             _onStageClear?.Invoke();
-            ExitCombatMission();
+
+            UIManager.Instance.PopUpWdw_MissionResultPopupUI(ExitCombatMission, _collectedCredit, _collectedEquipKeyList);
         }
     }
 
     int _collectedCredit;
+    int _deadEnemyCount;
+    List<string> _collectedEquipKeyList;
+
     void EnterCombatMission(Action missionSpawnCallBack)
     {
+        UIManager.Instance.PopUpWdw_VirtualLoding(5);
+
         NavMissionLogicManager.Instance.SetIsEnemyRespawn_OnStageChanged(false);
         kjh.GameLogicManager.Instance.AllActiveShipRemove();
         missionSpawnCallBack.Invoke();
@@ -38,6 +45,7 @@ public class CombatMissionLogicManager
         EnemySpawner.Instance.Register_onActiveEnemyCountChanged(OnActiveEnemyCountChanged);
         UserData.Instance.Register_OnCreditChange(OnCreditChange);
         _collectedCredit = 0;
+        _deadEnemyCount = 0;
 
         UIManager.Instance.SetActiveWdw_NavMissionUI(false);        
         UserData.Save();
@@ -46,11 +54,14 @@ public class CombatMissionLogicManager
     {
         UIManager.Instance.SetActiveWdw_NavMissionUI(true);
 
-        NavMissionLogicManager.Instance.SetIsEnemyRespawn_OnStageChanged(true);
-
         UserData.Instance.UnRegister_OnCreditChange(OnCreditChange);
         EnemySpawner.Instance.UnRegister_onActiveEnemyCountChanged(OnActiveEnemyCountChanged);
+        
+        NavMissionLogicManager.Instance.SetIsEnemyRespawn_OnStageChanged(true);
+        kjh.GameLogicManager.Instance.AllActiveShipRemove();
         EnemySpawner.Instance.Invoke_onActiveEnemyCountChanged();
+
+        UIManager.Instance.PopUpWdw_VirtualLoding(5);
     }
     void OnCreditChange(int changedCredit)
     {
@@ -78,22 +89,22 @@ public class CombatMissionLogicManager
     public void OnClick_Alpha()
     {
         EnterCombatMission(EnemySpawner.Instance.Spawn_Alpha);
-        _onStageClear += () => AddEquipItem(SetType.Alpha, UnityEngine.Random.Range(3, 6));
+        _onStageClear += () => AddEquipItem(SetType.Alpha, _deadEnemyCount);
     }
     public void OnClick_Beta()
     {
         EnterCombatMission(EnemySpawner.Instance.Spawn_Beta);
-        _onStageClear += () => AddEquipItem(SetType.Beta, UnityEngine.Random.Range(3, 6));
+        _onStageClear += () => AddEquipItem(SetType.Beta, _deadEnemyCount);
     }
     public void OnClick_Gamma()
     {
         EnterCombatMission(EnemySpawner.Instance.Spawn_Gamma);
-        _onStageClear += () => AddEquipItem(SetType.Gamma, UnityEngine.Random.Range(3, 6));
+        _onStageClear += () => AddEquipItem(SetType.Gamma, _deadEnemyCount);
     }
     public void OnClick_Delta()
     {
         EnterCombatMission(EnemySpawner.Instance.Spawn_Delta);
-        _onStageClear += () => AddEquipItem(SetType.Delta, UnityEngine.Random.Range(3, 6));
+        _onStageClear += () => AddEquipItem(SetType.Delta, _deadEnemyCount);
     }
 
     void AddEquipItem(SetType setType, int count)
@@ -101,9 +112,11 @@ public class CombatMissionLogicManager
         List<string> addedEquipKeyList = EquipManager.RandomEquipDrop(setType, count);
         _onStageClear = null;
 
+        if (_collectedEquipKeyList == null) _collectedEquipKeyList = new List<string>();
+
         foreach (string key in addedEquipKeyList)
         {
-            Debug.Log($"{key} 획득");
+            _collectedEquipKeyList.Add(key);
         }
     }
 }

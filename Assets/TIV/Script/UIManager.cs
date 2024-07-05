@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,7 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] PopUpUI PopUp_InfoPopUpUI;
     [SerializeField] ConfirmPopUpUI ConfirmPopUp_ConfirmPopUpUI;
     [SerializeField] VirtualLodingWdw Wdw_LodingWdw;
+    [SerializeField] MissionResultPopupUI PopUp_MissionResultPopupUI;
 
     [Header("±‚≈∏ UI")]
     [SerializeField] UsingShipOverUIManager UsingShipOverUIManager;
@@ -63,7 +65,7 @@ public class UIManager : SceneSingleton<UIManager>
 
     private void Awake()
     {
-        Wdw_LodingWdw.StartLoding(5);
+        PopUpWdw_VirtualLoding(5);
         Wdw_NavMissionOverUI.SetActive(true);
         NavMissionUIManager = Wdw_NavMissionOverUI.GetComponent<NavMissionUIManager>();
 
@@ -112,9 +114,15 @@ public class UIManager : SceneSingleton<UIManager>
 
     public void SetActiveWdw_NavMissionUI(bool value)
     {
-        Wdw_NavMissionOverUI.SetActive(value);
-        Wdw_RightTop.SetActive(value);
+        Wdw_NavMissionOverUI.SetActive(value);        
         Wdw_LeftTop.SetActive(value);
+        Btn_ShipMenuOn.gameObject.SetActive(value);
+        Btn_FleetMenuOn.gameObject.SetActive(value);
+        Btn_GachaMenuOn.gameObject.SetActive(value);
+        if(value)
+        {
+            CombatMenuWdwManager.SetWdwToggle();
+        }
     }
     public void SetActiveWdw_ShipMenu(bool value)
     {
@@ -139,7 +147,7 @@ public class UIManager : SceneSingleton<UIManager>
     public void SetActiveWdw_GachaMenu(bool value)
     {
         SetActiveWdw(Wdw_GachaMenu, value);
-        SetActiveWdw(Ui_LeftTop, !value);
+        SetActiveWdw(Ui_LeftTop, !value);        
     }
     public void SetActiveWdw_EquipInfo(bool value)
     {        
@@ -183,6 +191,14 @@ public class UIManager : SceneSingleton<UIManager>
     public void PopUpWdw_ConfirmPopUpUI(Action callBack, string msg)
     {
         ConfirmPopUp_ConfirmPopUpUI.SetPopUpUI(callBack, msg);
+    }
+    public void PopUpWdw_VirtualLoding(float time)
+    {
+        Wdw_LodingWdw.StartLoding(time);
+    }
+    public void PopUpWdw_MissionResultPopupUI(Action callback, int addedCredit, List<string> addedItemKey)
+    {
+        PopUp_MissionResultPopupUI.SetPopUpUI(callback, addedCredit, addedItemKey);
     }
 
     void PopupWdw(GameObject popUpWdw, float popUpTime)

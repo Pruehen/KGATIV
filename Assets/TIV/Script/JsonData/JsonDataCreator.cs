@@ -1196,7 +1196,7 @@ public class UserData
         else
         {
             Credit -= value;
-            _onCreditChange.Invoke((int)-value);
+            _onCreditChange?.Invoke((int)-value);
             RefreshViewModel();
             Save();
             return true;
@@ -1320,51 +1320,5 @@ public class UserData
     public void UpgradeFleetCost()
     {
         FleetCost++;        
-    }
-}
-
-public class JsonDataCreator : MonoBehaviour
-{
-    string saveDataFileName = GachaTable.FilePath();
-    string saveFolderPath = "/Resources/DataBase/Table/Value";
-
-    public GachaTable saveData;
-
-    private void OnEnable()
-    {
-        SetData();
-    }
-
-    void SetData()
-    {
-        //JsonDataManager.jsonCache.GachaTableCache.TryGacha(100);
-        //EquipManager.RandomEquipDrop(SetType.Alpha, 20);
-        //EquipManager.RandomEquipDrop(SetType.Beta, 20);
-        //EquipManager.RandomEquipDrop(SetType.Gamma, 40);
-        //EquipManager.RandomEquipDrop(SetType.Delta, 20);
-
-        //foreach (EquipSetTable Table in JsonDataManager.jsonCache.EquipSetTableListCache.cacheList)
-        //{
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set1Key, new BuffTable(Table._set1Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set2Key, new BuffTable(Table._set2Key, "버프 설명", new List<float>() { 18 }));
-        //    JsonDataManager.jsonCache.BuffTableDictionaryCache._saveDic.Add(Table._set4Key, new BuffTable(Table._set4Key, "버프 설명", new List<float>() { 18 }));
-        //}
-
-        //JsonDataManager.DataSaveCommand(JsonDataManager.jsonCache.BuffTableDictionaryCache, BuffTableDictionary.FilePath());
-    }
-
-    void DataCreate()//Dictionary 데이터를 json으로 저장하는 함수
-    {
-        string folderPath = Application.dataPath + saveFolderPath;
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-        
-        string data = JsonConvert.SerializeObject(saveData, Formatting.Indented);
-
-        File.WriteAllText(Application.dataPath + saveDataFileName, data);
-
-        Debug.Log("데이터 생성 및 저장 완료");
     }
 }

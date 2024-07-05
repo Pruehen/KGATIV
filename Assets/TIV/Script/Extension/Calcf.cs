@@ -18,6 +18,10 @@ public struct Calcf
     {
         return baseDmg / (baseDmg + def);
     }
+    public static long GetFleetUpgradeNeedCredit(int fleetCost)
+    {
+        return (long)(Mathf.Pow(2, fleetCost)) * 50000;
+    }
 
     static float GetWeaponPower(WeaponSkillTable table)
     {

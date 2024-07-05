@@ -28,7 +28,7 @@ public class VirtualLodingWdw : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            elapsedTime += Random.Range(0, 0.4f);
+            elapsedTime += Random.Range(0, 0.6f);
             Img_LodingBar.fillAmount = Mathf.Clamp01(0.7f * elapsedTime / time);
 
             // 시간 간격을 설정하여 FillAmount가 뚝뚝 끊기듯이 채워지도록 함

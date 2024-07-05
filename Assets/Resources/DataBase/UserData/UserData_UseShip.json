@@ -8,18 +8,26 @@
       "_reactorSlotItemKey": "1719194457_162406",
       "_radiatorSlotItemKey": "1719194457_02003",
       "_combatSlotItemKeyList": [
-        "1719194457_121204",
-        "1719194457_52-12"
+        "1719194457_56-12",
+        "1719194457_86-12",
+        "1719194457_107-12",
+        "1719194457_121204"
       ]
     },
     {
       "_shipTablekey": 1,
-      "_level": 1,
+      "_level": 162,
       "_isHave": true,
-      "_thrusterSlotItemKey": "",
-      "_reactorSlotItemKey": "",
-      "_radiatorSlotItemKey": "",
-      "_combatSlotItemKeyList": []
+      "_thrusterSlotItemKey": "1719194457_11718",
+      "_reactorSlotItemKey": "1719194457_42515",
+      "_radiatorSlotItemKey": "1719194457_22225",
+      "_combatSlotItemKeyList": [
+        "1719194457_31314",
+        "1719194457_111314",
+        "1719194457_94-12",
+        "1719194457_03-12",
+        "1719194457_144-12"
+      ]
     },
     {
       "_shipTablekey": 2,

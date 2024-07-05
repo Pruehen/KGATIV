@@ -42,8 +42,8 @@ public class FleetLogicManager
             OnFleetCostChange();
         }
     }
-    public long GetUpgradeNeedCredit()
+    long GetUpgradeNeedCredit()
     {
-        return (long)(Mathf.Pow(2, UserData.Instance.FleetCost)) * 1000;
+        return Calcf.GetFleetUpgradeNeedCredit(UserData.Instance.FleetCost);
     }
 }
