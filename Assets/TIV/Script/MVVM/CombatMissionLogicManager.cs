@@ -46,6 +46,7 @@ public class CombatMissionLogicManager
         UserData.Instance.Register_OnCreditChange(OnCreditChange);
         _collectedCredit = 0;
         _deadEnemyCount = 0;
+        _collectedEquipKeyList = new List<string>();
 
         UIManager.Instance.SetActiveWdw_NavMissionUI(false);        
         UserData.Save();
