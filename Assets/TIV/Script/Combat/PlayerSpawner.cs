@@ -59,7 +59,7 @@ public class PlayerSpawner : SceneSingleton<PlayerSpawner>
             foreach (var shipPosData in UserData.Instance.GetShipPosDataList())
             {
                 Vector3 newPos = new Vector3(shipPosData._posX, 0, shipPosData._posZ);
-                ShipSpawnAndInit(shipPosData._shipKey, newPos, 2);
+                ShipSpawnAndInit(shipPosData._shipKey, newPos, 10);
             }            
         }
     }

@@ -54,13 +54,16 @@ public class UIManager : SceneSingleton<UIManager>
     [SerializeField] PopUpUI PopUp_MsgPopUpUI;
     [SerializeField] PopUpUI PopUp_InfoPopUpUI;
     [SerializeField] ConfirmPopUpUI ConfirmPopUp_ConfirmPopUpUI;
+    [SerializeField] VirtualLodingWdw Wdw_LodingWdw;
 
     [Header("±‚≈∏ UI")]
     [SerializeField] UsingShipOverUIManager UsingShipOverUIManager;
+    
     //-----------------------------------------------------------
 
     private void Awake()
     {
+        Wdw_LodingWdw.StartLoding(5);
         Wdw_NavMissionOverUI.SetActive(true);
         NavMissionUIManager = Wdw_NavMissionOverUI.GetComponent<NavMissionUIManager>();
 

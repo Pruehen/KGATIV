@@ -39,7 +39,7 @@ public class EnemySpawner : SceneSingleton<EnemySpawner>
 
     private void Start()
     {               
-        Spawn_NavStage(UserData.Instance.CurPrmStage, UserData.Instance.CurSecStage, 2);
+        Spawn_NavStage(UserData.Instance.CurPrmStage, UserData.Instance.CurSecStage, 10);
     }
 
     void AddActiveShip_Enemy(ShipMaster shipMaster)
