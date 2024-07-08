@@ -14,6 +14,7 @@ public class TimeManager : SceneSingleton<TimeManager>
     {
         // Start에서 현재 시간을 초기화합니다.
         _previousTime = DateTime.Now;
+        UserData.Instance.Register_onSecChange();
     }
 
     void Update()

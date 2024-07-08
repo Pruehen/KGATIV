@@ -966,6 +966,7 @@ public class UserHaveEquipDataPack
         _saveDic = new Dictionary<string, UserHaveEquipData>();
         cacheList = new List<UserHaveEquipData>();
     }
+    public static UserHaveEquipDataPack Instance { get { return JsonDataManager.jsonCache.UserHaveEquipDataPackCache; } }
     public void AllDicItemUpdate_EquipedShipKey()
     {
         UserHaveShipDataList shipDataList = JsonDataManager.jsonCache.UserHaveShipDataListCache;
@@ -995,6 +996,7 @@ public class UserHaveEquipDataPack
     public enum SortValue
     {
         Level,
+        Key,
         SetType,
         GetTime,
         IsEquiped
@@ -1005,6 +1007,9 @@ public class UserHaveEquipDataPack
         {
             case SortValue.Level:
                 cacheList.Sort((x, y) => y._level.CompareTo(x._level));
+                break;
+            case SortValue.Key:
+                cacheList.Sort((x, y) => y._equipTableKey.CompareTo(x._equipTableKey));
                 break;
             case SortValue.SetType:
                 cacheList.Sort((x, y) => y._setType.CompareTo(x._setType));
@@ -1072,9 +1077,7 @@ public class UserData
         CurSecStage = curSecStage;
         FleetCost = fleetCost;
         LastTime = lastTime;
-        _shipPositionDatas = shipPositionDatas;
-
-        TimeManager.Instance.Register_onSecChange(OnTimeChange);
+        _shipPositionDatas = shipPositionDatas;        
     }
     public UserData()
     {
@@ -1087,9 +1090,7 @@ public class UserData
         FleetCost = 1;
         LastTime = DateTime.Now;
         _shipPositionDatas = new List<ShipPositionData>();
-        _shipPositionDatas.Add(new ShipPositionData());
-
-        TimeManager.Instance.Register_onSecChange(OnTimeChange);
+        _shipPositionDatas.Add(new ShipPositionData());        
     }
     public class ShipPositionData
     {        
@@ -1113,6 +1114,10 @@ public class UserData
     }
     public List<ShipPositionData> GetShipPosDataList() { return _shipPositionDatas; }    
 
+    public void Register_onSecChange()
+    {
+        TimeManager.Instance.Register_onSecChange(OnTimeChange);
+    }
     public void SetShipPosDatas(Dictionary<int, ShipMaster> dicData)
     {
         _shipPositionDatas.Clear();

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using ViewModel.Extensions;
+using static UserHaveEquipDataPack;
 
 public class ShipMenuUIManager : MonoBehaviour
 {
@@ -73,6 +74,9 @@ public class ShipMenuUIManager : MonoBehaviour
     [SerializeField] RectTransform RectTransform_SCV_Content;
     [SerializeField] Button Btn_EquipSelected;
     [SerializeField] Button Btn_UnEquipSelected;
+    [SerializeField] Button Btn_SortKey;
+    [SerializeField] Button Btn_SortLevel;
+    [SerializeField] Button Btn_SortTime;
     List<EquipIcon> _equipIconList;
     int _activeIconCount;
     EquipType _viewEquipType;
@@ -261,6 +265,9 @@ public class ShipMenuUIManager : MonoBehaviour
 
         Btn_EquipSelected.onClick.AddListener(TryEquip_OnBtn_EquipSelectedClick);
         Btn_UnEquipSelected.onClick.AddListener(UnEquip_OnBtn_UnEquipSelectedClick);
+        Btn_SortKey.onClick.AddListener(() => CommandSort(SortValue.Key));
+        Btn_SortLevel.onClick.AddListener(() => CommandSort(SortValue.Level));
+        Btn_SortTime.onClick.AddListener(() => CommandSort(SortValue.GetTime));
 
         UIManager.OnShipMenuWdwOn += () => SelectShip("4F1", 0);
         UIManager.OnShipMenuWdwOn += () => SelectWdw(Wdw_Info);
@@ -363,6 +370,12 @@ public class ShipMenuUIManager : MonoBehaviour
         }
         SetActive_EquipSelectedBtns(key);
     }    
+
+    void CommandSort(SortValue type)
+    {
+        UserHaveEquipDataPack.Instance.CacheListSort(type);
+        SetAllEquipIconsData_MatchType(_viewEquipType);
+    }
     void SetAllEquipIconsData_MatchType(EquipType equipType)//장비 장착 버튼 세팅
     {
         _viewEquipType = equipType;
@@ -453,6 +466,7 @@ public class ShipMenuUIManager : MonoBehaviour
     {
         CamMoveOnLateUpdate();
     }
+
     float radius = 200;
     float currentAngle = 0f;
     void CamMoveOnLateUpdate()

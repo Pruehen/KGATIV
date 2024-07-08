@@ -21,9 +21,14 @@ public class ShipMainComputer : MonoBehaviour
     {
         TryGetComponent(out _Master);
         TryGetComponent(out _Engine);
-        TryGetComponent(out _FCS);        
+        TryGetComponent(out _FCS);
 
-        StartCoroutine(SearchTarget());        
+        _Engine.onWarpEnd += Init_OnWarpEnd;
+    }
+
+    void Init_OnWarpEnd()
+    {
+        StartCoroutine(SearchTarget());
         _isInit = true;
 
         if (_AiMove) { StartCoroutine(CommandMove()); }

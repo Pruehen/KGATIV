@@ -139,53 +139,53 @@ public class CombatMenuWdwManager : MonoBehaviour
     #region 버튼 클릭 등록 메서드
     void OnClick_RequestLevel1()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level1, "협약 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level1, "연료를 40 소모하여 협약 임무에 입장하시겠습니까?");
     }
     void OnClick_RequestLevel2()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level2, "협약 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level2, "연료를 40 소모하여 협약 임무에 입장하시겠습니까?");
     }
     void OnClick_RequestLevel3()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level3, "협약 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level3, "연료를 40 소모하여 협약 임무에 입장하시겠습니까?");
     }
     void OnClick_RequestLevel4()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level4, "협약 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Request_Level4, "연료를 40 소모하여 협약 임무에 입장하시겠습니까?");
     }
     //=====================================================================================
     void OnClick_Alpha()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Alpha, "추적 섬멸 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Alpha, "연료를 40 소모하여 추적 섬멸 임무에 입장하시겠습니까?");
     }
     void OnClick_Beta()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Beta, "추적 섬멸 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Beta, "연료를 40 소모하여 추적 섬멸 임무에 입장하시겠습니까?");
     }
     void OnClick_Gamma()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Gamma, "추적 섬멸 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Gamma, "연료를 40 소모하여 추적 섬멸 임무에 입장하시겠습니까?");
     }
     void OnClick_Delta()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Delta, "추적 섬멸 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(CombatMissionLogicManager.Instance.OnClick_Delta, "연료를 40 소모하여 추적 섬멸 임무에 입장하시겠습니까?");
     }
     //=====================================================================================
     void OnClick_BaseAttackLevel9()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "기지 타격 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "연료를 40 소모하여 기지 타격 임무에 입장하시겠습니까?");
     }
     void OnClick_BaseAttackLevel10()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "기지 타격 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "연료를 40 소모하여 기지 타격 임무에 입장하시겠습니까?");
     }
     void OnClick_BaseAttackLevel11()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "기지 타격 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "연료를 40 소모하여 기지 타격 임무에 입장하시겠습니까?");
     }
     void OnClick_BaseAttackLevel12()
     {
-        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "기지 타격 임무에 입장하시겠습니까?");
+        UIManager.Instance.PopUpWdw_ConfirmPopUpUI(Test, "연료를 40 소모하여 기지 타격 임무에 입장하시겠습니까?");
     }
     #endregion
 

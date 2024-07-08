@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     float _collDownValue;
     float _curMaxCool;
     float _fireRoundSize;
+    bool _isInit;
     public void Init(WeaponSkillTable table)
     {
         this.Table = table;
@@ -20,6 +21,7 @@ public class Weapon : MonoBehaviour
         _fireRoundSize = this.GetComponent<SphereCollider>().radius;
         SetCollDownValue();
         _targetList = new SortedDictionary<float, ITargetable>();
+        _isInit = false;
     }
 
     void SetCollDownValue()
