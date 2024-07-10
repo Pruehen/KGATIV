@@ -22,11 +22,23 @@ public struct Calcf
     {
         return (long)(Mathf.Pow(2, fleetCost)) * 50000;
     }
+    public static long DropCredit(long _dropCredit)
+    {
+        if (_dropCredit == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return (long)(NavMissionLogicManager.Instance.GetValue_StageState() * _dropCredit) + 15;
+        }
+    }
 
     static float GetWeaponPower(WeaponSkillTable table)
     {
         return (table._dmg * 0.01f / table._collTime) * table._maxRange * 0.001f;
     }
+
 
     public static float CombatPower(ShipMaster shipMaster)
     {

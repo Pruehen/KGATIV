@@ -83,7 +83,7 @@ public static class EquipManager
     /// <param name="equipTableKey"></param>
     /// <param name="setType"></param>
     /// <returns></returns>
-    static UserHaveEquipData CreateEquip(int equipTableKey, SetType setType, int createNum)
+    public static UserHaveEquipData CreateEquip(int equipTableKey, SetType setType, int createNum)
     {
         EquipTable equipTable = JsonDataManager.DataLode_EquipTable(equipTableKey);
         EquipType_PossibleReinforcementOptionsListTable stateTeble = JsonDataManager.DataLode_EquipType_PROTable(equipTable._type);

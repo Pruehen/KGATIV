@@ -137,7 +137,7 @@ public class ShipMaster : MonoBehaviour, ITargetable
     void Destroy_OnDead()
     {
         EffectManager.Instance.ExplosionEffectGenerate(this.transform.position, GetComponent<SphereCollider>().radius);        
-        UserData.Instance.AddCredit((long)(NavMissionLogicManager.Instance.GetValue_StageState() * _dropCredit));        
+        UserData.Instance.AddCredit(Calcf.DropCredit(_dropCredit));        
         kjh.GameLogicManager.Instance.RemoveActiveShip(this);
         CreateDebri();
         _onDead?.Invoke(this);

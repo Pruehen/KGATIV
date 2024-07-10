@@ -982,10 +982,22 @@ public class UserHaveEquipDataPack
     public void DataPackInit_CopyDic_PathList()
     {
         cacheList = new List<UserHaveEquipData>();
-        foreach (var item in _saveDic)
+
+        if (_saveDic == null || _saveDic.Count == 0)
         {
-            cacheList.Add(item.Value);
-        }        
+            for (int i = 0; i < 4; i++)
+            {
+                UserHaveEquipData newItem = EquipManager.CreateEquip(0, SetType.Alpha, i);
+                Add(newItem._itemUniqueKey, newItem);
+            }
+        }
+        else
+        {
+            foreach (var item in _saveDic)
+            {
+                cacheList.Add(item.Value);
+            }
+        }
         CacheListSort(SortValue.Level);
     }
     public void Add(string key, UserHaveEquipData item)
@@ -993,6 +1005,7 @@ public class UserHaveEquipDataPack
         _saveDic.Add(key, item);
         cacheList.Insert(0, item);
     }
+
     public enum SortValue
     {
         Level,
